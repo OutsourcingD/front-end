@@ -1,0 +1,59 @@
+.main {
+    background-color: #FFF;
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.left {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 20%;
+    float: left;
+}
+
+#menu {
+    font-size: 16px;
+    align-items: center;
+    color: #222222;
+    font-weight: 600;
+    margin-left: 5%;
+}
+
+.right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    float: right;
+    margin-right: 5%;
+    width: 10%;
+}
+
+#logo {
+    margin-left: 10%;
+}
+
+#name {
+    color: #DDB0E3;
+    font-weight: 600;
+    margin-left: 5%;
+}
+
+.nameDiv {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.chatDiv {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+#chat {
+    font-weight: 600;
+    font-size: 16px;
+    flex-basis: 0;
+}
