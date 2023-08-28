@@ -1,9 +1,32 @@
 import React from 'react';
+import './Main.css';
 
 function Main() {
   return (
-    <div className="Main">
+    <div className="main">
       <h1>main</h1>
+      <h1>main</h1>
+      <h1>main</h1>
+      <h1>main</h1>
+      <h1>main</h1>
+      <h1>main</h1>
+      <h1>main</h1>
+
+      <h1>main</h1>
+      <h1>main</h1>
+      <h1>main</h1>
+      <h1>main</h1>
+      <h1>main</h1>
+
+      <h1>main</h1>
+      <h1>main</h1>
+      <h1>main</h1>
+      <h1>main</h1>
+      <h1>main</h1>
+      <h1>main</h1>
+      <h1>main</h1>
+      <h1>main</h1>
+
     </div>
   );
 }
