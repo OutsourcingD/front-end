@@ -1,19 +1,11 @@
 import React from 'react';
 import './Footer.css';
+import FooterBody from './body/FooterBody';
 
 function Footer() {
   return (
-    <div className="footer">
-        <div className='footerDiv'>
-            <p>문의하기</p>
-            <p>|</p>
-            <p>개인정보처리방침</p>
-            <p>|</p>
-            <p>이용약관</p>
-        </div>
-        <div id='info'>
-            <p>이용약관s</p>
-        </div>
+    <div>
+      <FooterBody/>
     </div>
   );
 }
