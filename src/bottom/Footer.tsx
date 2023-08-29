@@ -11,7 +11,7 @@ function Footer() {
             <p>|</p>
             <p>이용약관</p>
         </div>
-        <div id='info' style={{flex: 1, display: 'flex', backgroundColor: 'red'}}>
+        <div id='info'>
             <p>이용약관s</p>
         </div>
     </div>

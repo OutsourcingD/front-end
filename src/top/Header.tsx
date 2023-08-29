@@ -13,7 +13,7 @@ const Menu = styled.p``;
 
 function Header() {
   return (
-    <HeaderDiv className='main'>
+    <HeaderDiv className='header'>
       <LeftDiv className='left'>
         <img src='/logo/logo.png' alt='logo' sizes='1%' id='logo'/>
         <Menu id="menu">병원정보</Menu>

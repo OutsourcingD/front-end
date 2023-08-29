@@ -2,10 +2,11 @@
     bottom: 0;
     position: fix;
     display: flex;
+    justify-content: start;
     width: 100%;
     height: fit-content;
     padding-left: 10%;
-    flex-direction: column;
+    flex-direction: row;
 };
 
 .footerDiv {
@@ -14,6 +15,7 @@
     justify-content: start;
     width: 100%;
     height: fit-content;
+    flex-direction: row;
 }
 
 p {
