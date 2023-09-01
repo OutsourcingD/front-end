@@ -7,3 +7,35 @@
 .main::-webkit-scrollbar {
     display: none;
 }
+
+.recommend_review {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1%;
+    justify-content: space-between;
+}
+
+.recommend_div {
+    display: flex;
+    width: 52%;
+    border-radius: 15px;
+    border: double 2.5px transparent;
+    background-image: linear-gradient(white, white), 
+                      linear-gradient(to right, #A891D4, #FAC1EC);
+    background-origin: border-box;
+    background-clip: content-box, border-box; 
+    box-decoration-break: clone; 
+    flex-direction: row;
+     /* Add this line */
+   box-shadow: 0 0 3px rgba(0,0,0,.5);
+}
+
+.recommend_text_div {
+    padding-left: 5%;
+    display: flex;
+    flex: 6;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}

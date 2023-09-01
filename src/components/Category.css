@@ -1,0 +1,14 @@
+.category {
+    display: inline-block;
+    flex-direction: column;
+}
+
+.category > div {
+    margin-top: 3%;
+    display: inline-block;
+    width: 10%;
+}
+
+img {
+    width: 100px;
+}
