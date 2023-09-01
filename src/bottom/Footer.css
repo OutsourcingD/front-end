@@ -1,7 +1,7 @@
 .parent_div {
     display: flex;
     flex-direction: row; 
-    justify-content: center; 
+    justify-content: start; 
     align-items: center; 
 }
 .parent_div p:not(:last-child) {
@@ -74,108 +74,108 @@
 
 .email {
     position: absolute;
-left: 25.57%;
-right: 65.47%;
-top: 52.5%;
-bottom: 38.75%;
+    left: 25.57%;
+    right: 65.47%;
+    top: 52.5%;
+    bottom: 38.75%;
 
-font-family: 'Pretendard';
-font-style: normal;
-font-weight: 400;
-font-size: 12px;
-line-height: 14px;
-letter-spacing: -0.02em;
-white-space: nowrap;
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
 
-color: #666666;
+    color: #666666;
 }
 
 .phone-number {
     position: absolute;
-left: 34.95%;
-right: 59.48%;
-top: 52.5%;
-bottom: 38.75%;
+    left: 34.95%;
+    right: 59.48%;
+    top: 52.5%;
+    bottom: 38.75%;
 
-font-family: 'Pretendard';
-font-style: normal;
-font-weight: 400;
-font-size: 12px;
-line-height: 14px;
-letter-spacing: -0.02em;
-white-space: nowrap;
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
 
-color: #666666;
+    color: #666666;
 }
 
 .boss {
     position: absolute;
-left: 21.67%;
-right: 74.84%;
-top: 52.5%;
-bottom: 38.75%;
+    left: 21.67%;
+    right: 74.84%;
+    top: 52.5%;
+    bottom: 38.75%;
 
-font-family: 'Pretendard';
-font-style: normal;
-font-weight: 400;
-font-size: 12px;
-line-height: 14px;
-letter-spacing: -0.02em;
-white-space: nowrap;
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
 
-color: #666666;
+    color: #666666;
 }
 
 .inquiry {
     position: absolute;
-left: 21.67%;
-right: 76.2%;
-top: 20%;
-bottom: 71.25%;
+    left: 21.67%;
+    right: 76.2%;
+    top: 20%;
+    bottom: 71.25%;
 
-font-family: 'Pretendard';
-font-style: normal;
-font-weight: 600;
-font-size: 12px;
-line-height: 14px;
-letter-spacing: -0.02em;
-white-space: nowrap;
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
 
-color: #222222;
+    color: #222222;
 }
 
 .privacy {
     position: absolute;
-left: 24.64%;
-right: 71.09%;
-top: 20%;
-bottom: 71.25%;
+    left: 24.64%;
+    right: 71.09%;
+    top: 20%;
+    bottom: 71.25%;
 
-font-family: 'Pretendard';
-font-style: normal;
-font-weight: 600;
-font-size: 12px;
-line-height: 14px;
-letter-spacing: -0.02em;
-white-space: nowrap;
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
 
-color: #222222;
+    color: #222222;
 }
 
 .term-of-use {
     position: absolute;
-left: 29.74%;
-right: 68.12%;
-top: 20%;
-bottom: 71.25%;
+    left: 29.74%;
+    right: 68.12%;
+    top: 20%;
+    bottom: 71.25%;
 
-font-family: 'Pretendard';
-font-style: normal;
-font-weight: 600;
-font-size: 12px;
-line-height: 14px;
-letter-spacing: -0.02em;
-white-space: nowrap;
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
 
-color: #222222;
+    color: #222222;
 }
