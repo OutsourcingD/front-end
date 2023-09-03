@@ -2,8 +2,11 @@ import React from 'react';
 import './Main.css';
 import Category from '../components/Category';
 import Review from '../components/Review';
+import Search from '../components/Search';
+import ReviewItem from '../components/ReviewItem';
 
 function Main() {
+  const reviewList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   return (
     <div className="main">
       {/* 광고 섹션 */}
@@ -48,7 +51,28 @@ function Main() {
           part={["가슴", "코"]}
         />
       </div>
-      
+      {/* 검색 섹션 */}
+      <div className="search_div">
+        <Search />
+        <div className="filter_div">
+          <img src="filter.png" alt="filter" id="filter" />
+        </div>
+      </div>
+      {/*d 후기 리스트 섹션 */}
+      <div className="review_list_div">
+        {
+          reviewList.map((review, index) => {
+            return (
+                <div className="review_item_div">
+                  <ReviewItem 
+                    key={review + index}
+                  />
+                </div>
+            );
+          })
+        }
+      </div>
+        
     </div>
   );
 }

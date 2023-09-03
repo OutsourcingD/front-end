@@ -1,6 +1,7 @@
 .category {
     display: inline-block;
     flex-direction: column;
+    width: 52%;
 }
 
 .category > div {
@@ -10,5 +11,5 @@
 }
 
 img {
-    width: 100px;
+    width: 100%;
 }

@@ -4,7 +4,7 @@
     background-size: cover; /* div 영역에 맞추어 배경 이미지 사이즈 조절 */
     background-position: center; /* 배경 위치 중앙으로 조정 */
     display: inline-block;
-    width: 480px;
+    width: 100%;
     height: 300px;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -12,6 +12,10 @@
     justify-content: flex-start;
     flex-direction: column;
     margin: 0;
+    /* position: relative 
+        하위 div background blur
+        absolute    
+    */
 }
 
 #description {
@@ -36,9 +40,10 @@
 
 .review_main {
     display: inline-block;
-    text-align: left;
+    text-align: center;
     flex-direction: column;
-    margin-top: 1%;
+    margin-top: 3%;
+    width: 49%;
 }
 
 .review_text_div {
@@ -50,13 +55,11 @@
 
 .hospital_rate_info_div {
     display: flex;
-    align-items: flex-start;
     flex-direction: column;
     border: 1px solid #D4D4D4;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    width: 82.5%;
-    margin: 0;
+    margin-right: 0;
 }
 
 #hospital_name {
@@ -66,6 +69,7 @@
     margin-top: 3%;
     font-weight: 700;
     margin-bottom: 1%;
+    text-align: start;
 }
 
 .rate_start_div {
@@ -95,4 +99,9 @@
     margin-top: 1%;
     margin-bottom: 1%;
     font-weight: 600;
+}
+
+.hospital_info_div {
+    margin-right: 0;
+    width: 100%;
 }

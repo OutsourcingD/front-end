@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import './Header.css';
 import { IoPaperPlaneOutline } from 'react-icons/io5';
-import { BiLogIn } from 'react-icons/bi';
 
 const HeaderDiv = styled.div``;
 
@@ -13,12 +12,12 @@ const RightDiv = styled.div``;
 const Menu = styled.p``;
 
 function Header() {
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin] = useState(false);
 
   return (
     <HeaderDiv className='header'>
       <LeftDiv className='left'>
-        <img src='/logo/logo.png' alt='logo' sizes='1%' id='logo'/>
+        <img src='/logo/logo.png' alt='logo' id='logo'/>
         <Menu id="menu">병원정보</Menu>
         <Menu id="menu">원장정보</Menu>
         <Menu id="menu">전후사진</Menu>
@@ -39,9 +38,8 @@ function Header() {
             </>
             : 
               <>
-                <div style={{display: "flex", flexDirection: "row"}}>
-                  <BiLogIn size="13%" style={{paddingTop: "7%"}}/>
-                  <p id="chat" style={{marginLeft: "2%"}}>SignIn/SignUp</p>
+                <div className="login_div">
+                  <img src="login.png" alt="login" />
                 </div>
               </>
         }

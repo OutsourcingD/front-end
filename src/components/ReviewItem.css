@@ -1,0 +1,78 @@
+.review_item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.left_review_item {
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+}
+
+.right_item_div {
+    display: flex;
+    flex-direction: row;
+}
+
+p {
+    margin: 0
+}
+
+.profile_div {
+    width: 8%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 2%;
+}
+
+.title_div {
+    text-align: start;
+}
+
+#review_item_title {
+    font-weight: 700;
+    font-size: 0.835vw;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    color: #222222;
+}
+
+#review_user {
+    color: #666666;
+    font-weight: 500;
+    font-size: 0.7vw;
+}
+
+#review_date {
+    color: #D4D4D4;
+    font-size: 0.7vw;
+}
+
+.right_item_div {
+    width: 30%;
+}
+
+.comment_div {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2%;
+}
+
+.watch_div {
+}
+
+.view_div {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+}
+
+.view_image_div {
+    width: 40px;
+}
+
+.comment_div {
+    margin-top: 2.5%;
+    width: 50%;
+}

@@ -1,0 +1,32 @@
+.search_input_div {
+    margin-top: 3%;
+    border-radius: 25px;
+    border: double 2.5px transparent;
+    background-image: linear-gradient(white, white), 
+                      linear-gradient(to right, #A891D4, #FAC1EC);
+    background-origin: border-box;
+    background-clip: content-box, border-box; 
+    box-decoration-break: clone; 
+    flex-direction: row;
+     /* Add this line */
+     box-shadow: 0 0 8px rgba(250, 193, 236, .7);
+     width: 51%;
+     justify-content: space-between;
+     display: flex;
+    flex-direction: row;
+}
+
+#search_input {
+    border: none;
+    outline: none;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 15%;
+    padding: 0;
+}
+
+.search_button_div {
+    width: 5.1%;
+    margin-right: 0.2%;
+    margin-top: 0.3%;
+}

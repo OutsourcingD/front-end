@@ -2,6 +2,9 @@
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
 }
 
 .main::-webkit-scrollbar {
@@ -14,6 +17,7 @@
     align-items: center;
     margin-top: 1%;
     justify-content: space-between;
+    width: 100%;
 }
 
 .recommend_div {
@@ -38,15 +42,18 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    width: 100%;
+    margin-right: 1%;
 }
 
 #recommended_title {
     font-family: 'recommended_title';
     color: #222222;
     font-weight: 800;
-    font-size: 140%;
+    font-size: 1.2vw;
     margin-bottom: 0;
     margin-top: 7.3%;
+    white-space: nowrap;
 }
 
 .hotDiv {
@@ -65,7 +72,7 @@
     color: #DDB0E3;
     font-weight: 800;
     font-family: Pretendard;
-    font-size: 100%;
+    font-size: 1vw;
 }
 
 .moreDiv {
@@ -74,17 +81,51 @@
     align-items: center;
     justify-content: flex-end;
     padding-right: 1.5%;
+    width: 100%;
 }
 
 #week_text {
-    font-size: 100%;
+    font-size: 0.87vw;
     font-family: Pretendard;
     color: #444444;
     margin-top: 2%;
+    white-space: nowrap;
 }
 
 .review_div {
     display: flex;
+    width: 51%;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mainBody {
+    width: 100%;
+}
+
+.search_div {
+    width: 51%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.filter_div {
+    display: flex;
+    margin-top: 1%;
+    width: 5%;
+    align-items: end;
+}
+
+.review_list_div {
+    width: 51%;
+    margin-top: 1%;
+}
+
+.review_item_div {
+    margin-bottom: 1%;
+    border-radius: 15px;
+    border: 1px solid #D4D4D4;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
 }
