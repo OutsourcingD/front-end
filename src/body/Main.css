@@ -18,7 +18,7 @@
 
 .recommend_div {
     display: flex;
-    width: 52%;
+    width: 51%;
     border-radius: 15px;
     border: double 2.5px transparent;
     background-image: linear-gradient(white, white), 
@@ -28,14 +28,63 @@
     box-decoration-break: clone; 
     flex-direction: row;
      /* Add this line */
-   box-shadow: 0 0 3px rgba(0,0,0,.5);
+     box-shadow: 0 0 8px rgba(250, 193, 236, .5);
 }
 
 .recommend_text_div {
-    padding-left: 5%;
+    padding-left: 2%;
     display: flex;
     flex: 6;
     flex-direction: column;
-    justify-content: start;
-    align-items: start;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#recommended_title {
+    font-family: 'recommended_title';
+    color: #222222;
+    font-weight: 800;
+    font-size: 140%;
+    margin-bottom: 0;
+    margin-top: 7.3%;
+}
+
+.hotDiv {
+    display: flex;
+    flex: 9;
+    align-items: flex-start;
+    margin-top: 1.1%;
+    margin-right: 3%;
+}
+
+#hot {
+    width: 10%;
+}
+
+#more_text {
+    color: #DDB0E3;
+    font-weight: 800;
+    font-family: Pretendard;
+    font-size: 100%;
+}
+
+.moreDiv {
+    flex: 4;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 1.5%;
+}
+
+#week_text {
+    font-size: 100%;
+    font-family: Pretendard;
+    color: #444444;
+    margin-top: 2%;
+}
+
+.review_div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }

@@ -1,0 +1,98 @@
+.review_img_div {
+    background-image: url("https://cdn.mhnse.com/news/photo/202305/183305_183232_222.jpg");
+    background-repeat: no-repeat; /* 배경 이미지를 반복하지 않도록 합니다 */
+    background-size: cover; /* div 영역에 맞추어 배경 이미지 사이즈 조절 */
+    background-position: center; /* 배경 위치 중앙으로 조정 */
+    display: inline-block;
+    width: 480px;
+    height: 300px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin: 0;
+}
+
+#description {
+    align-content: flex-start;
+    color: #DFB1E4;
+    margin-left: 4%;
+    margin-top: 0;
+    font-size: 88%;
+    width: 120%;
+    word-wrap: break-word;
+    text-align: left;
+}
+
+#review_title {
+    align-content: flex-start;
+    font-size: 140%;
+    color: #DFB1E4;
+    margin-left: 3%;
+    margin-bottom: 1%;
+    margin-top: 0;
+}
+
+.review_main {
+    display: inline-block;
+    text-align: left;
+    flex-direction: column;
+    margin-top: 1%;
+}
+
+.review_text_div {
+    width: 50%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.hospital_rate_info_div {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    border: 1px solid #D4D4D4;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    width: 82.5%;
+    margin: 0;
+}
+
+#hospital_name {
+    margin-bottom: 1%;
+    font-size: 110%;
+    margin-left: 2%;
+    margin-top: 3%;
+    font-weight: 700;
+    margin-bottom: 1%;
+}
+
+.rate_start_div {
+    display: flex;
+    align-items: flex-start; /* 수직으로 상단 정렬 */
+    justify-content: flex-start; /* 수평으로 좌측 정렬 */
+    flex-direction: row;
+    padding-left: 2%;
+    margin-bottom: 3%;
+}
+
+#hospital_rate {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-right: 1%;
+}
+
+#surgery_part {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-right: 1%;
+    color: #DDB0E3;
+    font-weight: 600;
+}
+
+#doctor_name {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    font-weight: 600;
+}
