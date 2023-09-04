@@ -15,7 +15,12 @@ const  Review : React.FC<ReviewProps> = (props: ReviewProps) => {
   return ( 
         <div className="review_main">
             { /* 이미지 섹션 */}
-            <div className="review_img_div">
+            <div className="review_image_div">
+                <img src="https://cdn.mhnse.com/news/photo/202305/183305_183232_222.jpg" alt="review_image" id="review_image"/>
+                <div className="review_text_div_">
+                    <p id="review_title">아름다운 성형외과</p>
+                    <p id="description">아름다운성형외과 OOO원장님께 코, 윤곽,입술필러,쌍커풀 했어요. 3개월차 후기입니다. 2023년 1월..</p>
+                </div>
                 <div className="review_text_div">
                     <p id="review_title">아름다운 성형외과</p>
                     <p id="description">아름다운성형외과 OOO원장님께 코, 윤곽,입술필러,쌍커풀 했어요. 3개월차 후기입니다. 2023년 1월..</p>
@@ -32,10 +37,6 @@ const  Review : React.FC<ReviewProps> = (props: ReviewProps) => {
                         <p id="surgery_part">코+윤곽+입술필러+쌍꺼풀</p>
                         <p id="doctor_name">김철수 원장님</p>
                     </div>
-                </div>
-                {/* 더보기 섹션 */}
-                <div>
-
                 </div>
             </div>
         </div>

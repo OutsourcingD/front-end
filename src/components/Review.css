@@ -1,26 +1,19 @@
-.review_img_div {
-    background-image: url("https://cdn.mhnse.com/news/photo/202305/183305_183232_222.jpg");
-    background-repeat: no-repeat; /* 배경 이미지를 반복하지 않도록 합니다 */
-    background-size: cover; /* div 영역에 맞추어 배경 이미지 사이즈 조절 */
-    background-position: center; /* 배경 위치 중앙으로 조정 */
-    display: inline-block;
+.review_image_div {
+    display: flex;
     width: 100%;
-    height: 300px;
+    position: relative;
+}
+
+#review_image {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex-direction: column;
-    margin: 0;
-    /* position: relative 
-        하위 div background blur
-        absolute    
-    */
+    height: 35vh;
+    object-fit: cover;
 }
 
 #description {
     align-content: flex-start;
-    color: #DFB1E4;
+    color: #FFF;
     margin-left: 4%;
     margin-top: 0;
     font-size: 88%;
@@ -32,7 +25,7 @@
 #review_title {
     align-content: flex-start;
     font-size: 140%;
-    color: #DFB1E4;
+    color: #FFF;
     margin-left: 3%;
     margin-bottom: 1%;
     margin-top: 0;
@@ -46,11 +39,26 @@
     width: 49%;
 }
 
+.review_text_div_ {
+    width: 50%;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    bottom: 4%;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.37);
+    filter: blur(50px);
+    margin-left: 2%;
+}
+
 .review_text_div {
     width: 50%;
     display: flex;
+    position: absolute;
     align-items: flex-start;
+    bottom: 4%;
     flex-direction: column;
+    margin-left: 2%;
 }
 
 .hospital_rate_info_div {
