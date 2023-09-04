@@ -1,78 +1,173 @@
 .review_item {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .left_review_item {
-    display: flex;
-    flex-direction: row;
-    width: 70%;
+  display: flex;
+  flex-direction: row;
+  width: 60%;
 }
 
 .right_item_div {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
+  width: 30%;
 }
 
 p {
-    margin: 0
+  margin: 0;
 }
 
 .profile_div {
-    width: 8%;
-    margin-left: 2%;
-    margin-right: 2%;
-    margin-top: 2%;
+  width: 8%;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 2%;
 }
 
 .title_div {
-    text-align: start;
+  text-align: start;
 }
 
 #review_item_title {
-    font-weight: 700;
-    font-size: 0.835vw;
-    margin-top: 2%;
-    margin-bottom: 1%;
-    color: #222222;
+  font-weight: 700;
+  font-size: 0.835vw;
+  margin-top: 2%;
+  margin-bottom: 1%;
+  color: #222222;
 }
 
 #review_user {
-    color: #666666;
-    font-weight: 500;
-    font-size: 0.7vw;
+  color: #666666;
+  font-weight: 500;
+  font-size: 0.7vw;
 }
 
 #review_date {
-    color: #D4D4D4;
-    font-size: 0.7vw;
+  color: #d4d4d4;
+  font-size: 0.7vw;
 }
 
 .right_item_div {
-    width: 30%;
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 3%;
 }
 
 .comment_div {
-    display: flex;
-    flex-direction: row;
-    margin-top: 2%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 2%;
+  padding-top: 1%;
 }
 
-.watch_div {
+#comment_number {
+  font-size: 0.7vw;
+  margin-left: 10%;
+  color: #444444;
+}
+
+#comment_icon {
+  width: 0.8vw;
+}
+
+.view_info {
+  display: flex;
+  flex-direction: row;
+  margin-top: 2.5%;
+  margin-left: 10%;
+  margin-right: 3%;
 }
 
 .view_div {
-    width: 50%;
-    display: flex;
-    flex-direction: row;
+  width: 15%;
+  margin-right: 10%;
 }
 
-.view_image_div {
-    width: 40px;
+#view_icon {
+  width: 0.6vw;
+}
+
+#view_number {
+  font-size: 0.7vw;
+  font-weight: 300;
+  margin-left: 6%;
+  color: #444444;
 }
 
 .comment_div {
-    margin-top: 2.5%;
-    width: 50%;
+  margin-top: 2%;
+  margin-left: 3%;
+}
+
+#index_hospital_name,
+#index_part_name,
+#index_doctor_name {
+  white-space: nowrap;
+  font-size: 0.7vw;
+  font-weight: 900;
+  color: #222222;
+}
+
+.index_name_div {
+  padding-top: 3%;
+}
+
+.info_div {
+  margin-left: 3%;
+  padding-top: 3.5%;
+}
+
+.index_hospital,
+.index_doctor,
+.index_part {
+  margin-bottom: 10%;
+}
+
+#review_item_info {
+  white-space: nowrap;
+  font-size: 0.6vw;
+  text-align: start;
+  color: #666666;
+}
+
+.review_item_info_div {
+  margin-bottom: 4.5%;
+}
+
+.index_hospital_div {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2%;
+}
+
+.index_div {
+  margin-top: 3%;
+}
+
+#review_hospital_info {
+  white-space: nowrap;
+  font-size: 0.64vw;
+  color: #666666;
+  font-weight: 400;
+  margin-left: 14%;
+}
+
+#review_doctor_info {
+  white-space: nowrap;
+  font-size: 0.64vw;
+  color: #666666;
+  font-weight: 400;
+  margin-left: 4%;
+}
+
+#review_part_info {
+  white-space: nowrap;
+  font-size: 0.64vw;
+  color: #666666;
+  font-weight: 400;
+  margin-left: 14%;
 }

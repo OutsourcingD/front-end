@@ -114,7 +114,7 @@
     display: flex;
     margin-top: 1%;
     width: 5%;
-    align-items: end;
+    align-items: flex-end;
 }
 
 .review_list_div {
