@@ -1,0 +1,70 @@
+.inquery_div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #D4D4D4;
+    padding-top: 3%;
+    margin-top: 0.5%;
+    flex-direction: column;
+}
+
+.inquery_title_div {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#inquery_title {
+    font-weight: 700;
+    font-size: 1.5vw;
+}
+
+.inquery_body {
+    width: 30%;
+    font-size: 0.9vw;
+    font-weight: 600;
+    margin-top: 2%;
+}
+
+.inquery_input_div {
+    width: 30%;
+    margin-top: 0.7%;
+}
+
+#inquery_input {
+    display: flex;
+    border: none;
+    outline: none;
+    font-size: 80%;
+    width: 97%;
+    padding-left: 2%;
+    height: 100px;
+    border-radius: 15px;
+    border: 1px solid #D4D4D4;
+    padding-top: 2%;
+}
+
+.inquery_button_div {
+    display: flex;
+    background-color: #DFB1E4;
+    margin-top: 3%;
+    width: 30%;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+}
+
+#inquery_button {
+    color: white;
+    font-size: 0.9vw;
+    font-weight: 700;
+}
+
+#inquery_sub_title {
+    font-weight: 500;
+    font-size: 0.95vw;
+}
