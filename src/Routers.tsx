@@ -5,17 +5,17 @@ import Review from "./components/Review";
 import InqueryComponent from "./inquiry/InqueryComponent";
 import RecommendedReview from "./components/RecommendedReview";
 import MyPage from "./my/MyPage";
-import MyReviewItem from "./my/MyReviewItem";
 import MyRecommendReview from "./my/MyReviewMore";
 import MyCommentMore from "./my/MyCommentMore";
 import MyInqueryMore from "./my/MyInqueryMore";
 import MyPageInfo from "./my/MyPageInfo";
+import BeforePage from "./before/BeforePage";
 
 function Routers () {
     return (
             <Routes>
                 <Route path="/" element={<App />} />
-                <Route path="/test" element={<MyReviewItem title="아름다운 성형외과에서 윤곽수술 받은 3개월차 후기" date="2023-09-03" />} />
+                <Route path="/test" element={<img src="/man.png" alt="man" />} />
                 <Route path="/review" element={
                     <Review reviewTitle="후기 제목"
                         reviewDescription="후기 내용"
@@ -31,6 +31,7 @@ function Routers () {
                 <Route path="/mypage/comment/more" element={<MyCommentMore />} />
                 <Route path="/mypage/inquery/more" element={<MyInqueryMore />} />
                 <Route path="/mypage/info" element={<MyPageInfo />} />
+                <Route path="/before-after" element={<BeforePage />} />
             </Routes>
     );
 }

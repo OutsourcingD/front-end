@@ -1,0 +1,22 @@
+.before_item_div_ {
+    width:49%;
+    margin-top: 1%;
+}
+
+.before_after_img {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#before_img {
+    width: 50%;
+    object-fit: fill;
+}
+
+#after_img {
+    width: 50%;
+    object-fit: fill;
+}

@@ -1,0 +1,17 @@
+.before_div {
+    width: 100%;
+    border-top: 1px solid #D4D4D4;
+    margin-top: 0.5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.before_item_div {
+    width: 51%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}

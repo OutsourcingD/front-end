@@ -17,7 +17,7 @@ function Header() {
   return (
     <HeaderDiv className='header'>
       <LeftDiv className='left'>
-        <img src='/logo/logo.png' alt='logo' id='logo'/>
+        <img src='/k-logo.png' alt='logo' id='logo'/>
         <Menu id="menu">병원정보</Menu>
         <Menu id="menu">원장정보</Menu>
         <Menu id="menu">전후사진</Menu>
