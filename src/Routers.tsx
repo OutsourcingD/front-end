@@ -9,6 +9,7 @@ import MyReviewItem from "./my/MyReviewItem";
 import MyRecommendReview from "./my/MyReviewMore";
 import MyCommentMore from "./my/MyCommentMore";
 import MyInqueryMore from "./my/MyInqueryMore";
+import MyPageInfo from "./my/MyPageInfo";
 
 function Routers () {
     return (
@@ -29,6 +30,7 @@ function Routers () {
                 <Route path="/mypage/review/more" element={<MyRecommendReview />} />
                 <Route path="/mypage/comment/more" element={<MyCommentMore />} />
                 <Route path="/mypage/inquery/more" element={<MyInqueryMore />} />
+                <Route path="/mypage/info" element={<MyPageInfo />} />
             </Routes>
     );
 }

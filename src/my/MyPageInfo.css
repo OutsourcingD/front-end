@@ -1,0 +1,119 @@
+.mypage_info_div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-top: 1px solid #d4d4d4;
+    margin-top: 0.5%;
+}
+
+.mypage_info_name_div {
+    width: 30%;
+    margin-top: 3%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.mypage_info_profile_div {
+    margin-top: 1%;
+    width: 30%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+#profile_img {
+    width: 15%;
+}
+
+.mypage_info_body {
+    width: 30%;
+    margin-top: 1%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.mypage_info_body {
+    width: 30%;
+    margin-top: 1%;
+    display: flex;
+    flex-direction: column;
+}
+
+.my_info_sub_title_div {
+    margin-bottom: 2%;
+}
+
+#my_info_sub_title {
+    font-weight: 800;
+    font-size: 0.8vw;
+}
+
+#form_tag {
+    margin-bottom: 1%;
+}
+
+#input_tag {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #d4d4d4;
+    width: 100%;
+    color: #C1C1C1;
+    padding-top: 3%;
+    padding-bottom: 2%;
+    font-size: 0.7vw;
+    font-weight: 400;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nickname_div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 1%;
+    justify-content: space-between;
+}
+
+#check_button {
+    width: 10%;
+    height: fit-content;
+}
+
+#form_nickname {
+    width: 84%;
+}
+
+.check_nickname {
+    border-radius: 10px;
+    background-color: #F5F5F5;
+    display: flex;
+    align-items: flex-end;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+#check_nickname {
+    color: #D4D4D4;
+    white-space: nowrap;
+    font-size: 0.7vw;
+}
+
+.gender_button {
+    margin-top: 2%;
+    display: flex;
+    flex-direction: row;
+}
+
+#man_button {
+    width: 8%;
+    height: 8%;
+    margin-right: 2%;
+}
+
+#woman_button {
+    width: 8%;
+    height: 8%;
+}
