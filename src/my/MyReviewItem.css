@@ -1,0 +1,22 @@
+.myreview_div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 97%;
+    margin-left: 3%;
+    border-bottom: 1px solid #D4D4D4;
+    margin-bottom: 2%;
+    padding-bottom: 1%;
+}
+
+#my_review_title {
+    color: #444444;
+    font-size: 0.7vw;
+    font-weight: 500;
+}
+
+#my_review_date {
+    color: #D4D4D4;
+    font-size: 0.6vw;
+    font-weight: 300;
+}
