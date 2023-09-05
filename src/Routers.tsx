@@ -4,6 +4,7 @@ import App from "./App";
 import Test from "./Test";
 import Review from "./components/Review";
 import InqueryComponent from "./inquiry/InqueryComponent";
+import RecommendedReview from "./components/RecommendedReview";
 
 function Routers () {
     return (
@@ -17,6 +18,7 @@ function Routers () {
                     totalRate={4.5}
                     part={["가슴", "코"]}/>} />
                 <Route path="/inquery" element={<InqueryComponent />} />
+                <Route path="/recommend/review" element={<RecommendedReview />} />
             </Routes>
     );
 }

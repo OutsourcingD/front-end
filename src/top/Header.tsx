@@ -39,7 +39,7 @@ function Header() {
             : 
               <>
                 <div className="login_div">
-                  <img src="login.png" alt="login" />
+                  <img src="/login.png" alt="login" />
                 </div>
               </>
         }

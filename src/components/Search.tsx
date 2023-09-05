@@ -23,7 +23,7 @@ function Search() {
                 <input type="text" value={value} onChange={onChange} placeholder="검색어를 입력하세요." id="search_input"/>
             </form>
             <div className="search_button_div">
-                <img src="search.png" alt="search" id="search_button" />
+                <img src="/search.png" alt="search" id="search_button" />
             </div>
         </div>
     );

@@ -29,12 +29,13 @@ p {
 
 .title_div {
   text-align: start;
+
 }
 
 #review_item_title {
   font-weight: 700;
   font-size: 0.835vw;
-  margin-top: 2%;
+  margin-top: 1%;
   margin-bottom: 1%;
   color: #222222;
 }

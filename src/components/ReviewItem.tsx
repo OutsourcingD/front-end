@@ -10,7 +10,7 @@ function ReviewItem() {
       <div className="left_review_item">
         {/* 프로필 섹션 */}
         <div className="profile_div">
-          <img src="profile.png" alt="profile" />
+          <img src="/profile.png" alt="profile" />
         </div>
         {/* 제목, 이름, 날짜 */}
         <div className="title_div">
