@@ -1,9 +1,10 @@
 import React from "react";
+import "./AdItem.css";
 
 function AdItem() {
     return (
         <div className="ad_div">
-            <img src="/ad/advertise.png" alt="ad"/>
+            <img id="bottom_ad" src="/ad/advertise.png" alt="ad"/>
         </div>
     );
 }

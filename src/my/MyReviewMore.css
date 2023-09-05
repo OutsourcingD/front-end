@@ -1,0 +1,28 @@
+.my_recommend_review_div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-top: 1px solid #d4d4d4;
+    margin-top: 0.5%;
+}
+
+.my_recommend_review_header {
+    margin-top: 2%;
+    width: 40%;
+    justify-content: space-between;
+    display: flex;
+}
+
+#my_recommend_review_title {
+    font-weight: 700;
+    font-size: 1.5vw;
+    white-space: nowrap;
+    margin-right: 5%;
+}
+
+.my_review_item_list_div {
+    width: 40%;
+    margin-top: 1%;
+}
