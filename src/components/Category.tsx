@@ -36,7 +36,7 @@ function Category() {
                 { categoryNumber === 7 ?  <img id="eyes_white" src="/category/Eyes_white.png" alt="eyes" sizes="5%" /> : <img id="eyes" src="/category/eyes.png" alt="eyes" sizes="5%" /> }
             </div>
             <div className="categoryDiv" onClick={() => handleCategory(8)}>
-                { categoryNumber === 8 ? <img id="con_white" src="/category/Contouring_white.png" alt="contouring" sizes="5%" /> : <img id="con" src="/category/con.png" alt="contouring" sizes="5%" /> }
+                { categoryNumber === 8 ? <img id="con_white" src="/category/Contouring_white.png" alt="contouring" sizes="5%" /> : <img id="con" src="/category/contouring.png" alt="contouring" sizes="5%" /> }
             </div>
             <div className="categoryDiv" onClick={() => handleCategory(9)}>
                 { categoryNumber === 9 ? <img id="doctor_white" src="/category/Doctors_white.png" alt="doctor" sizes="5%" /> : <img id="doctor" src="/category/doctors.png" alt="doctor" sizes="5%" /> }
