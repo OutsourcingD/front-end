@@ -81,8 +81,8 @@ function MyPageInfo() {
         <div className="my_info_sub_title_div">
           <p id="my_info_sub_title">성별</p>
           <div className="gender_button">
-            <img id="man_button" src="/man.png" alt="man"/>
-            <img id="woman_button" src="/woman.png" alt="woman" />
+            <img id="man_button" src="/male.png" alt="man"/>
+            <img id="woman_button" src="/female.png" alt="woman" />
           </div>
         </div>
       </div>

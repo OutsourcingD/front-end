@@ -10,6 +10,7 @@ import MyCommentMore from "./my/MyCommentMore";
 import MyInqueryMore from "./my/MyInqueryMore";
 import MyPageInfo from "./my/MyPageInfo";
 import BeforePage from "./before/BeforePage";
+import Doctor from "./doctor/Doctor";
 
 function Routers () {
     return (
@@ -32,6 +33,7 @@ function Routers () {
                 <Route path="/mypage/inquery/more" element={<MyInqueryMore />} />
                 <Route path="/mypage/info" element={<MyPageInfo />} />
                 <Route path="/before-after" element={<BeforePage />} />
+                <Route path="/doctor" element={<Doctor />} />
             </Routes>
     );
 }
