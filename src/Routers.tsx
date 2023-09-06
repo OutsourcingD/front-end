@@ -11,6 +11,7 @@ import MyInqueryMore from "./my/MyInqueryMore";
 import MyPageInfo from "./my/MyPageInfo";
 import BeforePage from "./before/BeforePage";
 import Doctor from "./doctor/Doctor";
+import Hospital from "./hospital/Hospital";
 
 function Routers () {
     return (
@@ -34,6 +35,7 @@ function Routers () {
                 <Route path="/mypage/info" element={<MyPageInfo />} />
                 <Route path="/before-after" element={<BeforePage />} />
                 <Route path="/doctor" element={<Doctor />} />
+                <Route path="/hospital" element={<Hospital />} />
             </Routes>
     );
 }

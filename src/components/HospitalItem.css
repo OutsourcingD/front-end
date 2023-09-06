@@ -1,0 +1,43 @@
+.hospital_item_container {
+    width: 49%;
+    margin-bottom: 3%;
+}
+
+.hospital_item_wrapper {
+    width: 100%;
+}
+
+#hospital_item {
+    width: 100%;
+    object-fit: fill;
+    height: 300px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border: 1px solid #D4D4D4;
+}
+
+.hospital_info_div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #D4D4D4;
+    border-left: 1px solid #D4D4D4;
+    border-bottom: 1px solid #D4D4D4;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+#hospital_name_info {
+    margin-top: 2%;
+    margin-left: 3%;
+    margin-bottom: 0.5%;
+    font-weight: 700;
+    font-size: 0.8vw;
+}
+
+#hospital_hospital {
+    margin-bottom: 4%;
+    margin-left: 3%;
+    font-size: 0.7vw;
+    font-weight: 400;
+}
