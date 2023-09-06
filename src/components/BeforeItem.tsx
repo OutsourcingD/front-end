@@ -4,9 +4,23 @@ import "./BeforeItem.css";
 function BeforeItem() {
     return (
         <div className="before_item_div_">
-            <div className="before_after_img">
+            <div className="before_img_div">
                 <img id="before_img" src="https://p16-sign-sg.tiktokcdn.com/tos-alisg-p-0037/c62efd51c45e4dc3af9bc6dae7d6a2eb~tplv-photomode-zoomcover:720:720.jpeg?x-expires=1694052000&x-signature=iF3J2a0Ae6Zwbv8Fv%2BPk3%2Fb2AZ4%3D" alt="before_img"/>
-                <img id="after_img" src="https://i.ytimg.com/vi/jCMT4v6JI9Q/maxresdefault.jpg" alt="after_img" />
+                <div className="review_text_div_">
+                    <p id="before_title">before</p>
+                </div>
+                <div className="review_text_div">
+                    <p id="before_title">Before</p>
+                </div>
+            </div>
+            <div className="after_img_div">
+                <img id="after_img" src="https://t0.gstatic.com/licensed-image?q=tbn:ANd9GcTpS_yWseZ7zulpE4Cuec0C5rP1BgVcjm-1TGgXtzpesqDx1IOrU-15Sff0rc9FLThz" alt="after_img" />
+                <div className="review_text_div_">
+                    <p id="before_title">After</p>
+                </div>
+                <div className="review_text_div">
+                    <p id="before_title">After</p>
+                </div>
             </div>
         </div>
     );
