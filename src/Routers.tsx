@@ -12,6 +12,7 @@ import MyPageInfo from "./my/MyPageInfo";
 import BeforePage from "./before/BeforePage";
 import Doctor from "./doctor/Doctor";
 import Hospital from "./hospital/Hospital";
+import Login from "./home/Longin";
 
 function Routers () {
     return (
@@ -36,6 +37,7 @@ function Routers () {
                 <Route path="/before-after" element={<BeforePage />} />
                 <Route path="/doctor" element={<Doctor />} />
                 <Route path="/hospital" element={<Hospital />} />
+                <Route path="/login" element={<Login />} />
             </Routes>
     );
 }
