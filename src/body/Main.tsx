@@ -1,19 +1,94 @@
-import React from 'react';
-import './Main.css';
-import Category from '../components/Category';
-import Review from '../components/Review';
-import Search from '../components/Search';
-import ReviewItem from '../components/ReviewItem';
+import React, { useEffect } from "react";
+import "./Main.css";
+import Category from "../components/Category";
+import Review from "../components/Review";
+import Search from "../components/Search";
+import ReviewItem from "../components/ReviewItem";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { ImageDto } from "../dto/ImageDto";
+import axios from "axios";
+import { ReviewDto } from "../dto/ReviewDto";
 
 function Main() {
-  const reviewList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const reviewList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const settings = {
+    infinite: true,
+    autoplaySpeed: 5000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    fade: true,
+  };
+  const [imageList, setImageList] = React.useState<ImageDto[]>([]);
+  const [reviews, setReviews] = React.useState<ReviewDto[]>([]);
+
+  const getBanners = async () => {
+    //배너 이미지 가져오기
+    const storedImages = localStorage.getItem("image_dto");
+    
+    if (storedImages === null) {
+      await axios({
+        method: 'get', // or 'post', 'put', etc.
+        url: `${process.env.REACT_APP_SERVER_URL}/banner?location=1`,
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
+        }
+      }).then((res) => {
+        localStorage.setItem("image_dto", JSON.stringify(res.data));
+        setImageList(res.data);
+      });
+    } else {
+      setImageList(JSON.parse(storedImages));
+    }
+  };
+
+  const getReviews = async () => {
+    //배너 이미지 가져오기
+    const storedReviews = localStorage.getItem("review_dto");
+    
+    if (storedReviews === null) {
+      await axios({
+        method: 'get', // or 'post', 'put', etc.
+        url: `${process.env.REACT_APP_SERVER_URL}/review?pages=0`,
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
+        }
+      }).then((res) => {
+        localStorage.setItem("review_dto", JSON.stringify(res.data));
+        setReviews(res.data);
+      });
+    } else {
+      setReviews(JSON.parse(storedReviews));
+    }
+  };
+
+  useEffect(() => {
+    getBanners();
+    getReviews();
+  },[]);
+
+  useEffect(() => {
+    console.log(imageList);
+    console.log(reviews);
+  }, [imageList, reviews]);
+
   return (
     <div className="main">
       {/* 광고 섹션 */}
       <div className="advertisement">
-        <img src="/ad/advertise.png" alt="advertisement" style={{width: "100%"}}/>
+        <Slider {...settings}>
+          {
+            imageList.map((image, index) => {
+              return (
+                <img key={image.bannerId} src={image.bannerImg} alt={image.hospital_name} id="advertisement_img" />
+              );
+            })
+          }
+        </Slider>
       </div>
-      {/* 카테고리 섹션 */ }
+      {/* 카테고리 섹션 */}
       <div className="mainBody">
         <Category />
       </div>
@@ -34,7 +109,7 @@ function Main() {
       </div>
       {/* 후기 요약 정보 */}
       <div className="review_div">
-        <Review 
+        <Review
           reviewTitle="후기 제목"
           reviewDescription="후기 내용"
           reviewImage="후기 이미지"
@@ -42,7 +117,7 @@ function Main() {
           totalRate={4.5}
           part={["가슴", "코"]}
         />
-        <Review 
+        <Review
           reviewTitle="후기 제목"
           reviewDescription="후기 내용"
           reviewImage="후기 이미지"
@@ -60,19 +135,14 @@ function Main() {
       </div>
       {/*d 후기 리스트 섹션 */}
       <div className="review_list_div">
-        {
-          reviewList.map((review, index) => {
-            return (
-                <div className="review_item_div">
-                  <ReviewItem 
-                    key={review + index}
-                  />
-                </div>
-            );
-          })
-        }
+        {reviewList.map((review, index) => {
+          return (
+            <div className="review_item_div">
+              <ReviewItem key={review + index} />
+            </div>
+          );
+        })}
       </div>
-        
     </div>
   );
 }

@@ -13,12 +13,13 @@ import BeforePage from "./before/BeforePage";
 import Doctor from "./doctor/Doctor";
 import Hospital from "./hospital/Hospital";
 import Login from "./home/Longin";
+import Test from "./Test";
 
 function Routers () {
     return (
             <Routes>
                 <Route path="/" element={<App />} />
-                <Route path="/test" element={<img src="/man.png" alt="man" />} />
+                <Route path="/test" element={<Test />} />
                 <Route path="/review" element={
                     <Review reviewTitle="후기 제목"
                         reviewDescription="후기 내용"
