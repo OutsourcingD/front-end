@@ -1,4 +1,4 @@
-export type ReviewDto = {
+export type RecommendReviewDto = {
     "reviewId": number, 
     "totalPages": number,
     "title": string,

@@ -9,7 +9,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { ImageDto } from "../dto/ImageDto";
 import axios from "axios";
-import { ReviewDto } from "../dto/ReviewDto";
+import { RecommendReviewDto } from "../dto/ReviewDto";
 
 function Main() {
   const reviewList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -22,7 +22,7 @@ function Main() {
     fade: true,
   };
   const [imageList, setImageList] = React.useState<ImageDto[]>([]);
-  const [reviews, setReviews] = React.useState<ReviewDto[]>([]);
+  const [reviews, setReviews] = React.useState<RecommendReviewDto[]>([]);
 
   const getBanners = async () => {
     //배너 이미지 가져오기
