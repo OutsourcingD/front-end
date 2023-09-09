@@ -106,13 +106,8 @@
     font-weight: 500;
 }
 
-#find_pwd {
-    font-size: 0.8vw;
-    color: #666666;
-    padding-right: 2%;
-    padding-left: 2%;
-    border-right: 1px solid #c4c4c4;
-    font-weight: 500;
+#find_id:hover {
+    color: black;
 }
 
 #sign_up {
@@ -120,4 +115,8 @@
     color: #666666;
     padding-left: 2%;
     font-weight: 500;
+}
+
+#sign_up:hover {
+    color: black;
 }

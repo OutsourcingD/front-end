@@ -14,6 +14,7 @@ import Doctor from "./doctor/Doctor";
 import Hospital from "./hospital/Hospital";
 import Login from "./home/Longin";
 import Test from "./Test";
+import SignUp from "./home/SignUp";
 
 function Routers () {
     return (
@@ -39,6 +40,7 @@ function Routers () {
                 <Route path="/doctor" element={<Doctor />} />
                 <Route path="/hospital" element={<Hospital />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<SignUp />} />
             </Routes>
     );
 }

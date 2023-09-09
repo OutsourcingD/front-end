@@ -1,10 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import "./Login.css";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
+  const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
+  const navigate = useNavigate();
 
   const emailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -12,6 +15,14 @@ function Login() {
 
   const pwdHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPwd(e.target.value);
+  }
+
+  const loginHandler = () => {
+    emailRegEx.test(email) ? alert("로그인") : alert("이메일 형식이 올바르지 않습니다.");
+  }
+
+  const signUpHandler = () => {
+    navigate("/signup");
   }
 
   return (
@@ -42,13 +53,12 @@ function Login() {
             />
           </form>
         </div>
-        <div className="login_button_item_div">
+        <div className="login_button_item_div" onClick={loginHandler}>
             <p id="login_item_text">Login</p>
         </div>
         <div className="login_more_div">
-            <p id="find_id">아이디 찾기</p>
-            <p id="find_pwd">비밀번호 찾기</p>
-            <p id="sign_up">회원가입</p>
+            <p id="find_id">아이디 찾기 / 비밀번호 찾기</p>
+            <p id="sign_up" onClick={signUpHandler}>회원가입</p>
         </div>
       </div>
     </div>
