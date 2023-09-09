@@ -74,14 +74,12 @@
     font-size: 0.9vw;
     margin-bottom: 2%;
     margin-top: 6%;
-}
-
-#login_id_input::placeholder {
-    padding-left: 15%;
+    text-align: left;
+    padding-left: 10%;
 }
 
 #login_pwd_input {
-    background-image: url(/public/login/account.png);
+    background-image: url(/public/login/pwd.png);
     border: none;
     outline: none;
     background-repeat: no-repeat;
@@ -91,10 +89,7 @@
     font-size: 0.9vw;
     margin-bottom: 2%;
     margin-top: 6%;
-}
-
-#login_pwd_input::placeholder {
-    padding-left: 15%;
+    padding-left: 10%;
 }
 
 #login_item_text {

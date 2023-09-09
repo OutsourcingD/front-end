@@ -6,6 +6,14 @@ function Login() {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
 
+  const emailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  }
+
+  const pwdHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPwd(e.target.value);
+  }
+
   return (
     <div className="login_container">
       <div className="login_wrapper">
@@ -19,6 +27,7 @@ function Login() {
               placeholder="아이디"
               type="email"
               value={email}
+              onChange={emailHandler}
             />
           </form>
         </div>
@@ -27,8 +36,9 @@ function Login() {
             <input
               id="login_pwd_input"
               placeholder="비밀번호"
-              type="text"
+              type="password"
               value={pwd}
+              onChange={pwdHandler}
             />
           </form>
         </div>
