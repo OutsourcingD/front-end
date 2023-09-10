@@ -27,6 +27,7 @@ function SignUp() {
 
   const codeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCode(e.target.value);
+
   };
 
   const passwordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,6 +49,10 @@ function SignUp() {
 
   const setCountDown = () => {
     setInterval(() => {
+      if(count === 0 || codeVerified) {
+        console.log('error')
+        return;
+      }
       setCount((count) => count - 1);
     }, 1000);
   };
@@ -117,7 +122,7 @@ function SignUp() {
               </form>
               {verified ? (
                 <p id="count_time">
-                  {Math.floor(count / 60)}:{String(count % 60).padStart(2, "0")}
+                  {!codeVerified ? `${Math.floor(count / 60)}:${String(count % 60).padStart(2, "0")}` : null}
                 </p>
               ) : null}
             </div>
@@ -149,7 +154,7 @@ function SignUp() {
               <form onSubmit={sendEmail}>
                 <input
                   id="signup_email_input"
-                  placeholder="비밀번호를 입력해주세요"
+                  placeholder="8~16글자의 비밀번호를 입력해주세요"
                   type="password"
                   value={password}
                   onChange={passwordHandler}
