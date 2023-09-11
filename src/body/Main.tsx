@@ -25,23 +25,16 @@ function Main() {
   const [reviews, setReviews] = React.useState<RecommendReviewDto[]>([]);
 
   const getBanners = async () => {
-    //배너 이미지 가져오기
-    const storedImages = localStorage.getItem("image_dto");
-    
-    if (storedImages === null) {
-      await axios({
-        method: 'get', // or 'post', 'put', etc.
-        url: `${process.env.REACT_APP_SERVER_URL}/banner?location=1`,
-        headers: {
-          Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
-        }
-      }).then((res) => {
-        localStorage.setItem("image_dto", JSON.stringify(res.data));
-        setImageList(res.data);
-      });
-    } else {
-      setImageList(JSON.parse(storedImages));
-    }
+    //배너 이미지 가져오기    
+    await axios({
+      method: 'get', // or 'post', 'put', etc.
+      url: `${process.env.REACT_APP_SERVER_URL}/banner?location=1`,
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
+      }
+    }).then((res) => {
+      setImageList(res.data);
+    });
   };
 
   const getReviews = async () => {
@@ -70,7 +63,7 @@ function Main() {
   },[]);
 
   useEffect(() => {
-    console.log(imageList);
+    console.log("banner id: ", imageList);
     console.log(reviews);
   }, [imageList, reviews]);
 
