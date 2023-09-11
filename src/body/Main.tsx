@@ -48,20 +48,16 @@ function Main() {
     //배너 이미지 가져오기
     const storedReviews = localStorage.getItem("review_dto");
     
-    if (storedReviews === null) {
-      await axios({
-        method: 'get', // or 'post', 'put', etc.
-        url: `${process.env.REACT_APP_SERVER_URL}/review?pages=0`,
-        headers: {
-          Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
-        }
-      }).then((res) => {
-        localStorage.setItem("review_dto", JSON.stringify(res.data));
-        setReviews(res.data);
-      });
-    } else {
-      setReviews(JSON.parse(storedReviews));
-    }
+    //배너 이미지 가져오기    
+    await axios({
+      method: 'get', // or 'post', 'put', etc.
+      url: `${process.env.REACT_APP_SERVER_URL}/banner?location=1`,
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
+      }
+    }).then((res) => {
+      setImageList(res.data);
+    });
   };
 
   useEffect(() => {
