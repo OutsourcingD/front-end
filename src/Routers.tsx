@@ -15,6 +15,7 @@ import Hospital from "./hospital/Hospital";
 import Login from "./home/Longin";
 import Test from "./Test";
 import SignUp from "./home/SignUp";
+import ReviewPage from "./review_page/ReviewPage";
 
 function Routers () {
     return (
@@ -41,6 +42,7 @@ function Routers () {
                 <Route path="/hospital" element={<Hospital />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
+                <Route path="/review/make" element={<ReviewPage checkBox={true} />} />
             </Routes>
     );
 }

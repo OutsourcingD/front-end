@@ -130,10 +130,19 @@
 }
 
 .signup_input_div {
+    position: relative;
     margin-bottom: 4%;
     height: 13%;
     width: 23%;
     display: inline-block;
+}
+
+#camera_img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 30%;
+    height: 30%;
 }
 
 #profile_input_img {

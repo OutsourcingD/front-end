@@ -181,6 +181,7 @@ function SignUp() {
         </div>
         {/* 프로필 이미지 입력 */}
         <div className="signup_input_div">
+          <img src="/camera.png" alt="" id="camera_img" />
           <img
             src={image}
             alt="profile"
