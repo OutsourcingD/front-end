@@ -55,8 +55,6 @@ function SignUp() {
         email: email,
       })
       .then((res) => {
-        console.log("code push: ", res.data);
-
         localStorage.setItem("code", res.data);
       });
 
@@ -68,7 +66,6 @@ function SignUp() {
   const setCountDown = () => {
     const id = setInterval(() => {
       if (count === 0 || codeVerified) {
-        console.log("count: ", count);
         clearInterval(id); // 타이머 멈추기
         return;
       }
@@ -94,8 +91,6 @@ function SignUp() {
         code: code,
       })
       .then((res) => {
-        console.log("code: ", res.data);
-
         res.data && count >= 0 ? setCodeVerified(1) : setCodeVerified(2);
       });
   };
@@ -143,7 +138,6 @@ function SignUp() {
       await axios
         .post(`${process.env.REACT_APP_SERVER_URL}/login/member`, formData, {headers: {"Content-Type": "multipart/form-data"}})
         .then((res) => {
-          console.log();
           localStorage.setItem("access_token", res.data.accessToken);
           localStorage.setItem("refresh_token", res.data.refreshToken);
           navagate("/");
@@ -155,7 +149,6 @@ function SignUp() {
 
   const saveImgFile = () => {
     if (fileInput.current === null || fileInput.current.files === null) {
-      console.log("file is null");
       setImage(prevImage); // 파일 선택이 없거나 취소된 경우 이전 사진으로 복원
       return;
     }
@@ -178,13 +171,7 @@ function SignUp() {
         setProfileFile(profile);
       }
     };
-
-    console.log(profileFile);
   };
-
-  useEffect(() => {
-    console.log(profileFile); 
-  }, [profileFile]);
 
   return (
     <div className="signup_div">

@@ -7,13 +7,11 @@ function Search() {
 
   const onChange = (e : React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
-    console.log(e.target.value);
   }
 
   const onSubmit = (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmit(true);
-    console.log(e.target);
     setText("");
   }
 

@@ -10,6 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { ImageDto } from "../dto/ImageDto";
 import axios from "axios";
 import { RecommendReviewDto } from "../dto/ReviewDto";
+import { GoPencil } from "react-icons/go";
 
 function Main() {
   const reviewList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -22,7 +23,7 @@ function Main() {
     fade: true,
   };
   const [imageList, setImageList] = React.useState<ImageDto[]>([]);
-  const [reviews, setReviews] = React.useState<RecommendReviewDto[]>([]);
+  const [recommendReviews, setRecommendReviews] = React.useState<RecommendReviewDto[]>([]);
 
   const getBanners = async () => {
     //배너 이미지 가져오기    
@@ -37,27 +38,22 @@ function Main() {
     });
   };
 
-  const getReviews = async () => {
+  const getRecommendedReviews = async () => {
     await axios({
       method: 'get', // or 'post', 'put', etc.
-      url: `${process.env.REACT_APP_SERVER_URL}/banner?location=1`,
+      url: `${process.env.REACT_APP_SERVER_URL}/review/recommendation/all?pages=0`,
       headers: {
         Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
       }
     }).then((res) => {
-      setImageList(res.data);
+      setRecommendReviews(res.data);
     });
   };
 
   useEffect(() => {
     getBanners();
-    getReviews();
+    getRecommendedReviews();
   },[]);
-
-  useEffect(() => {
-    console.log(imageList);
-    console.log(reviews);
-  }, [imageList, reviews]);
 
   return (
     <div className="main">
@@ -127,6 +123,10 @@ function Main() {
             </div>
           );
         })}
+      </div>
+      {/* 후기 만들기 floating button */}
+      <div className="make_review_button_div">
+        <GoPencil color="white" id="pencil" />
       </div>
     </div>
   );

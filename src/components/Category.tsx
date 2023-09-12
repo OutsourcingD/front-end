@@ -7,10 +7,6 @@ function Category() {
     const handleCategory = (nav: number) => {
         setCotegoryNumber(nav);
     }
-  
-    useEffect(() => {
-        console.log(categoryNumber);
-    }, [categoryNumber])
 
     return (
         <div className="category">

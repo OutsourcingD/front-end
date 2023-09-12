@@ -7,7 +7,8 @@ export type RecommendReviewDto = {
     "createdAt": string,
     "hospitalName": string,
     "doctorName": string,
-    "part": string,
+    "part": string[],
     "commentCount": number,
+    "likeCount": number,
     "viewCount": number,
 }
