@@ -221,7 +221,7 @@ function SignUp() {
           </div>
           <div className="email_form_container">
             <div className="email_form_div">
-              <form onSubmit={sendEmail}>
+              <form onSubmit={sendEmail} id="sign_up_form">
                 <input
                   id="signup_email_input"
                   placeholder="이메일을 입력해주세요"
@@ -260,7 +260,7 @@ function SignUp() {
           </div>
           <div className="email_form_container">
             <div className="email_form_div">
-              <form onSubmit={sendEmail}>
+              <form onSubmit={sendEmail} id="sign_up_form">
                 <input
                   id="signup_email_input"
                   placeholder="인증번호를 입력해주세요"
@@ -305,7 +305,7 @@ function SignUp() {
           </div>
           <div className="email_form_container">
             <div className="email_form_div">
-              <form onSubmit={sendEmail}>
+              <form onSubmit={sendEmail} id="sign_up_form">
                 <input
                   id="signup_email_input"
                   placeholder="8~16글자의 비밀번호를 입력해주세요"
@@ -328,7 +328,7 @@ function SignUp() {
           </div>
           <div className="email_form_container">
             <div className="email_form_div">
-              <form onSubmit={sendEmail}>
+              <form onSubmit={sendEmail} id="sign_up_form">
                 <input
                   id="signup_email_input"
                   placeholder="비밀번호를 입력해주세요"
@@ -354,7 +354,7 @@ function SignUp() {
           </div>
           <div className="email_form_container">
             <div className="email_form_div">
-              <form onSubmit={sendEmail}>
+              <form onSubmit={sendEmail} id="sign_up_form">
                 <input
                   id="signup_email_input"
                   placeholder="닉네임을 입력해주세요"
@@ -386,7 +386,7 @@ function SignUp() {
           </div>
           <div className="email_form_container">
             <div className="email_form_div">
-              <form onSubmit={sendEmail}>
+              <form onSubmit={sendEmail} id="sign_up_form">
                 <input
                   id="signup_email_input"
                   placeholder="이름을 입력해주세요"
@@ -406,7 +406,7 @@ function SignUp() {
           </div>
           <div className="email_form_container">
             <div className="email_form_div">
-              <form onSubmit={sendEmail}>
+              <form onSubmit={sendEmail} id="sign_up_form">
                 <input
                   id="signup_email_input"
                   placeholder="전화번호를 입력해주세요"

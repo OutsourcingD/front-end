@@ -19,7 +19,7 @@ function Search() {
 
     return (
         <div className="search_input_div">
-            <form onSubmit={onSubmit}>
+            <form onSubmit={onSubmit} id="search_form">
                 <input type="text" value={value} onChange={onChange} placeholder="검색어를 입력하세요." id="search_input"/>
             </form>
             <div className="search_button_div">
