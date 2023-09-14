@@ -29,6 +29,10 @@ p {
 
 .title_div {
   text-align: start;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
 
 }
 

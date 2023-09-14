@@ -12,6 +12,7 @@ import axios from "axios";
 import { GoPencil } from "react-icons/go";
 import { RecommendedReviewDto } from "../dto/RecommendedReviewDto";
 import { ReviewResponseDto } from "../dto/ReviewDto";
+import Pagination from "react-js-pagination";
 
 function Main() {
   const settings = {
@@ -25,6 +26,25 @@ function Main() {
   const [imageList, setImageList] = React.useState<ImageDto[]>([]);
   const [recommendReviews, setRecommendReviews] = React.useState<RecommendedReviewDto[]>([]);
   const [reviewList, setReviewList] = React.useState<ReviewResponseDto[]>([]);
+  const [page, setPage] = React.useState(1);
+  const [totalPages, setTotalPages] = React.useState(0);
+  const [isSearch, setIsSearch] = React.useState(false); // 검색 여부 [true: 검색, false: 검색x]
+  const [searchValue, setSearchValue] = React.useState("");
+
+  const handlePageChange = (page: React.SetStateAction<number>) => {
+    setPage(page);
+  };
+
+  const handleSearch = (value: string) => {
+    setSearchValue(value);
+    setIsSearch(true);
+    setPage(1);
+  };
+
+  const handleSearchResult = (value: ReviewResponseDto[]) => {
+    setReviewList(value);
+    setTotalPages(value[0].totalPages);
+  };
 
   const getBanners = async () => {
     //배너 이미지 가져오기    
@@ -54,21 +74,36 @@ function Main() {
   const getReviewList = async () => {
     await axios({
       method: 'get', // or 'post', 'put', etc.
-      url: `${process.env.REACT_APP_SERVER_URL}/review?pages=0`,
+      url: `${process.env.REACT_APP_SERVER_URL}/review?pages=${page - 1}`,
       headers: {
         Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
       }
     }).then((res) => {
-      console.log(res.data);
       setReviewList(res.data);
+
+      setTotalPages(res.data[0].totalPages);
+    });
+  };
+
+  const getSearchReviewList = async () => {
+    await axios({
+      method: 'get', // or 'post', 'put', etc.
+      url: `${process.env.REACT_APP_SERVER_URL}/review/search?query=${searchValue}&pages=${page - 1}`,
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
+      }
+    }).then((res) => {
+      setReviewList(res.data);
+
+      setTotalPages(res.data[0].totalPages);
     });
   };
 
   useEffect(() => {
     getBanners();
     getRecommendedReviews();
-    getReviewList();
-  },[]);
+    !isSearch ? getReviewList() : console.log("검색");
+  },[page]);
 
   return (
     <div className="main">
@@ -136,7 +171,7 @@ function Main() {
       </div>
       {/* 검색 섹션 */}
       <div className="search_div">
-        <Search />
+        <Search page={page} onSearch={handleSearch} onSearchResult={handleSearchResult}/>
         <div className="filter_div">
           <img src="filter.png" alt="filter" id="filter" />
         </div>
@@ -165,6 +200,16 @@ function Main() {
           );
         })}
       </div>
+      {/* pagenation 섹션 */}
+      <Pagination
+        activePage={page}
+        itemsCountPerPage={10}
+        totalItemsCount={totalPages * 10}
+        pageRangeDisplayed={10}
+        prevPageText={"‹"}
+        nextPageText={"›"}
+        onChange={handlePageChange}
+      />
       {/* 후기 만들기 floating button */}
       <div className="make_review_button_div">
         <GoPencil color="white" id="pencil" />

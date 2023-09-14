@@ -14,7 +14,7 @@ function BeforePage() {
       </div>
       <Category />
       <div className="search_div">
-        <Search />
+        <Search page={0} onSearch={(value) => console.log("")} onSearchResult={() => console.log("")}/>
       </div>
       <div className="before_item_div">
         {

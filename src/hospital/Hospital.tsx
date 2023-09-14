@@ -12,7 +12,7 @@ function Hospital() {
         <p id="recommend_title">병원정보</p>
       </div>
       <div className="search_div">
-        <Search />
+        <Search page={0} onSearch={(value) => console.log("")} onSearchResult={() => console.log("")}/>
       </div>
       <div className="hospital_item_div">
         {

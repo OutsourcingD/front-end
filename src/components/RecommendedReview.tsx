@@ -36,7 +36,7 @@ function RecommendedReview() {
         <DropBox />
       </div>
       <div className="search_div">
-        <Search />
+        <Search page={0} onSearch={(value) => console.log("")} onSearchResult={() => console.log("")}/>
       </div>
       {/*d 후기 리스트 섹션 */}
       <div className="review_list_div">

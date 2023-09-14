@@ -11,7 +11,7 @@ const ReviewItem = (props : ReviewResponseDto) => {
       <div className="left_review_item">
         {/* 프로필 섹션 */}
         <div className="profile_div">
-          <img src={props.profile} alt="profile" />
+          <img src={props.profile} alt="profile" id="review_list_profile" />
         </div>
         {/* 제목, 이름, 날짜 */}
         <div className="title_div">

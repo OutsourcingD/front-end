@@ -19,14 +19,20 @@
 #search_input {
     border: none;
     outline: none;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    margin-left: 15%;
+    margin-top: 1.5%;
+    margin-bottom: 1%;
+    margin-left: 3%;
     padding: 0;
+    width: 100%;
 }
 
 .search_button_div {
     width: 5.1%;
     margin-right: 0.2%;
     margin-top: 0.3%;
+}
+
+#search_form {
+    width: 100%;
+    justify-content: flex-start;
 }
