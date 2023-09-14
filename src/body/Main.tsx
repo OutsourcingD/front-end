@@ -11,9 +11,9 @@ import { ImageDto } from "../dto/ImageDto";
 import axios from "axios";
 import { GoPencil } from "react-icons/go";
 import { RecommendedReviewDto } from "../dto/RecommendedReviewDto";
+import { ReviewResponseDto } from "../dto/ReviewDto";
 
 function Main() {
-  const reviewList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const settings = {
     infinite: true,
     autoplaySpeed: 5000,
@@ -24,6 +24,7 @@ function Main() {
   };
   const [imageList, setImageList] = React.useState<ImageDto[]>([]);
   const [recommendReviews, setRecommendReviews] = React.useState<RecommendedReviewDto[]>([]);
+  const [reviewList, setReviewList] = React.useState<ReviewResponseDto[]>([]);
 
   const getBanners = async () => {
     //배너 이미지 가져오기    
@@ -50,9 +51,23 @@ function Main() {
     });
   };
 
+  const getReviewList = async () => {
+    await axios({
+      method: 'get', // or 'post', 'put', etc.
+      url: `${process.env.REACT_APP_SERVER_URL}/review?pages=0`,
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
+      }
+    }).then((res) => {
+      console.log(res.data);
+      setReviewList(res.data);
+    });
+  };
+
   useEffect(() => {
     getBanners();
     getRecommendedReviews();
+    getReviewList();
   },[]);
 
   return (
@@ -92,7 +107,7 @@ function Main() {
       <div className="review_div">
         <Review
           reviewTitle={recommendReviews[0]?.title}
-          reviewDescription={recommendReviews[0]?.content}
+          reviewDescription={recommendReviews[0]?.content.substring(0, 57) + "..."}
           reviewImage={recommendReviews[0]?.imageVo.url}
           imageAlt={recommendReviews[0]?.imageVo.description}
           hospitalName={recommendReviews[0]?.hospitalName}
@@ -106,7 +121,7 @@ function Main() {
         />
         <Review
           reviewTitle={recommendReviews[1]?.title}
-          reviewDescription={recommendReviews[1]?.content}
+          reviewDescription={recommendReviews[1]?.content.substring(0, 57) + "..."}
           reviewImage={recommendReviews[1]?.imageVo.url}
           imageAlt={recommendReviews[1]?.imageVo.description}
           hospitalName={recommendReviews[1]?.hospitalName}
@@ -131,7 +146,21 @@ function Main() {
         {reviewList.map((review, index) => {
           return (
             <div key={"des" + index} className="review_item_div">
-              <ReviewItem />
+              <ReviewItem
+                key={review.reviewId}
+                commentCount={review.commentCount}
+                createdAt={review.createdAt}
+                doctorName={review.doctorName}
+                hospitalName={review.hospitalName}
+                part={review.part}
+                profile={review.profile}
+                reviewId={review.reviewId}
+                title={review.title}
+                viewCount={review.viewCount}
+                likeCount={review.likeCount}
+                nickname={review.nickname}
+                totalPages={review.totalPages}
+              />
             </div>
           );
         })}

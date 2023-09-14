@@ -2,29 +2,29 @@ import React from "react";
 import "./ReviewItem.css";
 import { GrView } from "react-icons/gr";
 import { PiChatTeardropDotsLight } from "react-icons/pi";
+import { ReviewResponseDto } from "../dto/ReviewDto";
 
-function ReviewItem() {
+const ReviewItem = (props : ReviewResponseDto) => {
   return (
     <div className="review_item">
       {/* 왼쪽 섹션 */}
       <div className="left_review_item">
         {/* 프로필 섹션 */}
         <div className="profile_div">
-          <img src="/profile.png" alt="profile" />
+          <img src={props.profile} alt="profile" />
         </div>
         {/* 제목, 이름, 날짜 */}
         <div className="title_div">
           <div className="review_item_title_div">
             <p id="review_item_title">
-              아름다운 성형외과에서 김철수 원장님게 윤곽수술 받았어요 (성형
-              3개월차 후기)
+              {props.title}
             </p>
           </div>
           <div className="review_user_div">
-            <p id="review_user">성형으로 이뻐질거야</p>
+            <p id="review_user">{props.nickname}</p>
           </div>
           <div className="review_date_div">
-            <p id="review_date">2023.10.22</p>
+            <p id="review_date">{props.createdAt}</p>
           </div>
         </div>
       </div>
@@ -33,15 +33,15 @@ function ReviewItem() {
 				<div className="index_div">
 					<div className="index_hospital_div">
             <p id="index_hospital_name">병원</p>
-            <p id="review_hospital_info">아름다운 성형외과</p>
+            <p id="review_hospital_info">{props.hospitalName}</p>
 					</div>
 					<div className="index_hospital_div">
             <p id="index_hospital_name">원장님</p>
-            <p id="review_doctor_info">김철수 원장님</p>
+            <p id="review_doctor_info">{props.doctorName}</p>
 					</div>
 					<div className="index_hospital_div">
             <p id="index_hospital_name">부위</p>
-            <p id="review_part_info">윤곽수술</p>
+            <p id="review_part_info">{props.part?.length !== 0 && props.part?.length > 1 ? props.part[0] + "..." : props.part[0]}</p>
 					</div>
 				</div>
         {/* 조회수 */}
@@ -50,7 +50,7 @@ function ReviewItem() {
             <GrView id="view_icon"/>
           </div>
           <div className="view_info_div">
-            <p id="view_number">2,302</p>
+            <p id="comment_number">{props.viewCount}</p>
           </div>
         </div>
         {/* 댓글 수 */}
@@ -59,7 +59,7 @@ function ReviewItem() {
             <PiChatTeardropDotsLight id="comment_icon" />
           </div>
           <div>
-          	<p id="comment_number">23</p>     
+          	<p id="comment_number">{props.commentCount}</p>     
           </div>
         </div>
       </div>

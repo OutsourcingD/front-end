@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import App from "./App";
-import Review from "./components/Review";
 import InqueryComponent from "./inquiry/InqueryComponent";
 import RecommendedReview from "./components/RecommendedReview";
 import MyPage from "./my/MyPage";

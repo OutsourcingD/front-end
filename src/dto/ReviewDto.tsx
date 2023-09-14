@@ -1,14 +1,14 @@
-export type RecommendReviewDto = {
-    "reviewId": number, 
-    "totalPages": number,
-    "title": string,
-    "profile": string,
-    "nickname": string,
-    "createdAt": string,
-    "hospitalName": string,
-    "doctorName": string,
-    "part": string[],
+export type ReviewResponseDto = {
     "commentCount": number,
+    "createdAt": string,
+    "doctorName": string,
+    "hospitalName": string,
     "likeCount": number,
-    "viewCount": number,
+    "nickname": string,
+    "part": string[],
+    "profile": string,
+    "reviewId": number,
+    "title": string,
+    "totalPages": number,
+    "viewCount": number
 }

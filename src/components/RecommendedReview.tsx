@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./RecommendedReview.css";
 import Category from "./Category";
 import Search from "./Search";
 import DropBox from "./DropBox";
 import ReviewItem from "./ReviewItem";
+import { ReviewResponseDto } from "../dto/ReviewDto";
+import axios from "axios";
 
 function RecommendedReview() {
-  const reviewList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const [reviewList, setReviewList] = React.useState<ReviewResponseDto[]>([]);
+
+  useEffect(() => {
+    axios({
+      method: 'get', // or 'post', 'put', etc.
+      url: `${process.env.REACT_APP_SERVER_URL}/review/recommendation?pages=0`,
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
+      }
+    }).then((res) => {
+      setReviewList(res.data);
+    });
+  }, []);
 
   return (
     <div className="recommed_div">
@@ -31,7 +45,19 @@ function RecommendedReview() {
             return (
                 <div className="review_item_div">
                   <ReviewItem 
-                    key={review + index}
+                    key={review.reviewId}
+                    commentCount={review.commentCount}
+                    createdAt={review.createdAt}
+                    doctorName={review.doctorName}
+                    hospitalName={review.hospitalName}
+                    part={review.part}
+                    profile={review.profile}
+                    reviewId={review.reviewId}
+                    title={review.title}
+                    viewCount={review.viewCount}
+                    likeCount={review.likeCount}
+                    nickname={review.nickname}
+                    totalPages={review.totalPages}
                   />
                 </div>
             );

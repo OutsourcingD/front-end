@@ -24,7 +24,7 @@ const  Review : React.FC<ReviewProps> = (props: ReviewProps) => {
                 <img src={props.imageUrl} alt={props.imageAlt} id="review_image"/>
                 <div className="review_text_div_">
                     <p id="review_title">{props.reviewTitle}</p>
-                    <p id="description">{props.reviewDescription?.substring(0, 57)}</p>
+                    <p id="description">{props.reviewDescription}</p>
                 </div>
                 <div className="review_text_div">
                     <p id="review_title">{props.reviewTitle}</p>
