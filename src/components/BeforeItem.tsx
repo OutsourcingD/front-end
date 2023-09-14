@@ -5,7 +5,7 @@ function BeforeItem() {
     return (
         <div className="before_item_div_">
             <div className="before_img_div">
-                <img id="before_img" src="https://p16-sign-sg.tiktokcdn.com/tos-alisg-p-0037/c62efd51c45e4dc3af9bc6dae7d6a2eb~tplv-photomode-zoomcover:720:720.jpeg?x-expires=1694052000&x-signature=iF3J2a0Ae6Zwbv8Fv%2BPk3%2Fb2AZ4%3D" alt="before_img"/>
+                <img id="before_img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8uKXKlZPAOB4nhAd6VG7-h9B18DispQpnUA&usqp=CAU"/>
                 <div className="review_text_div_">
                     <p id="before_title">before</p>
                 </div>

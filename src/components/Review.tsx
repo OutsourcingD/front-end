@@ -1,6 +1,7 @@
 import React from "react";
 import "./Review.css";
 import { AiOutlineStar } from "react-icons/ai";
+import axios from "axios";
 
 interface ReviewProps {
     reviewTitle: string;
@@ -16,9 +17,21 @@ interface ReviewProps {
     reviewId: number;
 }
 
+const onClick = (id: number) => {
+    axios({
+        method: 'get', // or 'post', 'put', etc.
+        url: `${process.env.REACT_APP_SERVER_URL}/review/detail?reviewId=${id}`,
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
+        }
+      }).then((res) => {
+        console.log("추천 후기", res.data);
+      });
+}
+
 const  Review : React.FC<ReviewProps> = (props: ReviewProps) => {
   return ( 
-        <div className="review_main">
+        <div className="review_main" onClick={() => onClick(props.reviewId)}>
             { /* 이미지 섹션 */}
             <div className="review_image_div">
                 <img src={props.imageUrl} alt={props.imageAlt} id="review_image"/>

@@ -2,9 +2,12 @@ import React from "react";
 import Search from "../components/Search";
 import "./Hospital.css";
 import HospitalItem from "../components/HospitalItem";
+import Pagination from "react-js-pagination";
 
 function Hospital() {
     const hospital_list = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const [page, setPage] = React.useState(1);
+    const [totalPages, setTotalPages] = React.useState(1);
 
   return (
     <div className="hospital_div">
@@ -23,6 +26,15 @@ function Hospital() {
             })
         }
       </div>
+      <Pagination
+        activePage={page}
+        itemsCountPerPage={10}
+        totalItemsCount={totalPages * 10}
+        pageRangeDisplayed={10}
+        prevPageText={"‹"}
+        nextPageText={"›"}
+        onChange={(page) => setPage(page)}
+      />
     </div>
   );
 }

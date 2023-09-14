@@ -13,6 +13,8 @@ import { GoPencil } from "react-icons/go";
 import { RecommendedReviewDto } from "../dto/RecommendedReviewDto";
 import { ReviewResponseDto } from "../dto/ReviewDto";
 import Pagination from "react-js-pagination";
+import { useNavigate } from "react-router-dom";
+import { ReviewDetailDto } from "../dto/ReviewDetailDto";
 
 function Main() {
   const settings = {
@@ -30,6 +32,8 @@ function Main() {
   const [totalPages, setTotalPages] = React.useState(0);
   const [isSearch, setIsSearch] = React.useState(false); // 검색 여부 [true: 검색, false: 검색x]
   const [searchValue, setSearchValue] = React.useState("");
+  const navigate = useNavigate();
+  const [reviewDetail, setReviewDetail] = React.useState<ReviewDetailDto[]>([]); // 검색 여부 [true: 검색, false: 검색x
 
   const handlePageChange = (page: React.SetStateAction<number>) => {
     setPage(page);
@@ -99,11 +103,43 @@ function Main() {
     });
   };
 
+  const makeReviewButtonClick = () => {
+    navigate("/review/make")
+  };
+
+  const handleReview = (id: number) => {
+    axios({
+      method: 'get', // or 'post', 'put', etc.
+      url: `${process.env.REACT_APP_SERVER_URL}/review/detail?reviewId=${id}`,
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
+      }
+    }).then((res) => {
+      setReviewDetail(res.data);
+    });
+  };
+
+  const handleRecommendReview = () => {
+    axios({
+      method: 'get', // or 'post', 'put', etc.
+      url: `${process.env.REACT_APP_SERVER_URL}/review/recommendation`,
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
+      }
+    }).then((res) => {
+      console.log("추천 후기 전체: ", res.data)
+    });
+  };
+
   useEffect(() => {
     getBanners();
     getRecommendedReviews();
-    !isSearch ? getReviewList() : console.log("검색");
+    !isSearch ? getReviewList() : getSearchReviewList();
   },[page]);
+
+  useEffect(() => {
+    console.log(reviewDetail);
+  }, [reviewDetail]);
 
   return (
     <div className="main">
@@ -180,7 +216,7 @@ function Main() {
       <div className="review_list_div">
         {reviewList.map((review, index) => {
           return (
-            <div key={"des" + index} className="review_item_div">
+            <div key={"des" + index} className="review_item_div" onClick={() => handleReview(review.reviewId)}>
               <ReviewItem
                 key={review.reviewId}
                 commentCount={review.commentCount}
@@ -211,7 +247,7 @@ function Main() {
         onChange={handlePageChange}
       />
       {/* 후기 만들기 floating button */}
-      <div className="make_review_button_div">
+      <div className="make_review_button_div" onClick={makeReviewButtonClick}>
         <GoPencil color="white" id="pencil" />
       </div>
     </div>
