@@ -4,6 +4,8 @@ import PartCategory from "./PartCategory";
 import axios from "axios";
 import { HospitalNameResponseDto } from "../dto/HospitalNameResponseDto";
 import { DoctorNameResponseDto } from "../dto/DoctorNameResponseDto";
+import HospitalStarRate from "../components/HospitalStarRate";
+import DoctorStarRate from "../components/DoctorStarRate";
 
 interface ReviewProps {
   checkBox: boolean;
@@ -136,7 +138,7 @@ const ReviewPage = ({ checkBox }: ReviewProps) => {
         </div>
       </div>
       {/* 병원 */}
-      <div className="make_review_part_div">
+      <div className="make_review_hospital_div">
         <div className="make_review_title_header_div">
           <p id="make_review_sub_title_text">병원</p>
           <div className="doctor_dropbox">
@@ -174,6 +176,19 @@ const ReviewPage = ({ checkBox }: ReviewProps) => {
           ) : null}
           <div className="total_star_div">
             <p id="total_star_title">총별점</p>
+          </div>
+          <DoctorStarRate/>
+        </div>
+        <div className="make_review_hospital_body_div">
+          <div>
+            <p id="start_rate_title">별점을 선택해주세요</p>
+            <p id="start_rate_sub_title">원장님과의 수술은 어떠셨나요?</p>
+          </div>
+          <div>
+
+          </div>
+          <div>
+
           </div>
         </div>
       </div>
@@ -217,6 +232,7 @@ const ReviewPage = ({ checkBox }: ReviewProps) => {
           <div className="total_star_div">
             <p id="total_star_title">총별점</p>
           </div>
+          <HospitalStarRate />
         </div>
       </div>
       {/* 사진 */}

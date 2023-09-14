@@ -9,8 +9,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { ImageDto } from "../dto/ImageDto";
 import axios from "axios";
-import { RecommendReviewDto } from "../dto/ReviewDto";
 import { GoPencil } from "react-icons/go";
+import { RecommendedReviewDto } from "../dto/RecommendedReviewDto";
 
 function Main() {
   const reviewList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -23,7 +23,7 @@ function Main() {
     fade: true,
   };
   const [imageList, setImageList] = React.useState<ImageDto[]>([]);
-  const [recommendReviews, setRecommendReviews] = React.useState<RecommendReviewDto[]>([]);
+  const [recommendReviews, setRecommendReviews] = React.useState<RecommendedReviewDto[]>([]);
 
   const getBanners = async () => {
     //배너 이미지 가져오기    
@@ -41,7 +41,7 @@ function Main() {
   const getRecommendedReviews = async () => {
     await axios({
       method: 'get', // or 'post', 'put', etc.
-      url: `${process.env.REACT_APP_SERVER_URL}/review/recommendation/all?pages=0`,
+      url: `${process.env.REACT_APP_SERVER_URL}/review/recommendation`,
       headers: {
         Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
       }
@@ -91,20 +91,32 @@ function Main() {
       {/* 후기 요약 정보 */}
       <div className="review_div">
         <Review
-          reviewTitle="후기 제목"
-          reviewDescription="후기 내용"
-          reviewImage="후기 이미지"
-          hospitalName="병원 이름"
-          totalRate={4.5}
-          part={["가슴", "코"]}
+          reviewTitle={recommendReviews[0]?.title}
+          reviewDescription={recommendReviews[0]?.content}
+          reviewImage={recommendReviews[0]?.imageVo.url}
+          imageAlt={recommendReviews[0]?.imageVo.description}
+          hospitalName={recommendReviews[0]?.hospitalName}
+          totalRate={recommendReviews[0]?.starRate}
+          part={recommendReviews[0]?.parts}
+          imageUrl={recommendReviews[0]?.imageVo.url}
+          key={recommendReviews[0]?.reviewId}
+          imageId={recommendReviews[0]?.imageVo.imageId}
+          reviewId={recommendReviews[0]?.reviewId}
+          doctorName={recommendReviews[0]?.doctorName}
         />
         <Review
-          reviewTitle="후기 제목"
-          reviewDescription="후기 내용"
-          reviewImage="후기 이미지"
-          hospitalName="병원 이름"
-          totalRate={4.5}
-          part={["가슴", "코"]}
+          reviewTitle={recommendReviews[1]?.title}
+          reviewDescription={recommendReviews[1]?.content}
+          reviewImage={recommendReviews[1]?.imageVo.url}
+          imageAlt={recommendReviews[1]?.imageVo.description}
+          hospitalName={recommendReviews[1]?.hospitalName}
+          totalRate={recommendReviews[1]?.starRate}
+          part={recommendReviews[1]?.parts}
+          imageUrl={recommendReviews[1]?.imageVo.url}
+          key={recommendReviews[1]?.reviewId}
+          imageId={recommendReviews[1]?.imageVo.imageId}
+          reviewId={recommendReviews[1]?.reviewId}
+          doctorName={recommendReviews[1]?.doctorName}
         />
       </div>
       {/* 검색 섹션 */}
@@ -118,8 +130,8 @@ function Main() {
       <div className="review_list_div">
         {reviewList.map((review, index) => {
           return (
-            <div className="review_item_div">
-              <ReviewItem key={"des" + index} />
+            <div key={"des" + index} className="review_item_div">
+              <ReviewItem />
             </div>
           );
         })}

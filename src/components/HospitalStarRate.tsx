@@ -3,16 +3,15 @@ import styled from "styled-components";
 
 const StarRateWrap = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
-  margin: 100px 0 0 15px;
   .star_icon {
     display: inline-flex;
     margin-right: 5px;
   }
 `;
 
-function Test() {
+function StarRate() {
   const AVR_RATE = 100;
   const STAR_IDX_ARR = ["first", "second", "third", "fourth", "last"];
   const [ratesResArr, setRatesResArr] = useState([0, 0, 0, 0, 0]);
@@ -31,6 +30,7 @@ function Test() {
   };
 
   useEffect(() => {
+    console.log(totalRate)
     setRatesResArr(calcStarRates);
   }, [totalRate]);
 
@@ -49,10 +49,11 @@ function Test() {
           <span className="star_icon" key={`${item}_${idx}`} onClick={(e) => handleStarClick(e, idx)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="40"
+              width="1vw"
               height="39"
               viewBox="0 0 14 13"
               fill="white"
+              style={{marginBottom: "15%"}}
             >
               <clipPath id={`${item}StarClip`}>
                 <rect width={`${ratesResArr[idx]}`} height="39" />
@@ -76,4 +77,4 @@ function Test() {
   );
 }
 
-export default Test;
+export default StarRate;
