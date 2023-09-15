@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Search from "../components/Search";
 import "./Doctor.css";
 import DoctorItem from "../components/DoctorItem";
 import Pagination from "react-js-pagination";
+import axios from "axios";
+import { DoctorResponseDto } from "../dto/DoctorResponseDto";
 
 function Doctor() {
-    const doctor_list = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const [doctor_list, setDoctorList] = useState<DoctorResponseDto[]>([]);
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(1);
+
+    useEffect(() => {
+      axios({
+        method: 'get', // or 'post', 'put', etc.
+        url: `${process.env.REACT_APP_SERVER_URL}/doctor?pages=${page - 1}`,
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
+        }
+      }).then((res) => {
+        setDoctorList(res.data);
+      });
+    }, [page]);
 
   return (
     <div className="doctor_div">
@@ -19,9 +33,9 @@ function Doctor() {
       </div>
       <div className="doctor_item_div">
         {
-            doctor_list.map((item) => {
+            doctor_list.map((doctor) => {
                 return (
-                   <DoctorItem key={item.toString()} />
+                   <DoctorItem key={doctor.doctorId} {...doctor} />
                 )
             })
         }
