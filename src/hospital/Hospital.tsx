@@ -1,13 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Search from "../components/Search";
 import "./Hospital.css";
 import HospitalItem from "../components/HospitalItem";
 import Pagination from "react-js-pagination";
+import axios from "axios";
+import { HospitalResponseDto } from "../dto/HospitalResponseDto";
 
 function Hospital() {
-    const hospital_list = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const [hospitalList, setHospitalList] = useState<HospitalResponseDto[]>([]);
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(1);
+    const [isSearch, setIsSearch] = React.useState(false); // 검색 여부 [true: 검색, false: 검색x]
+
+    const getHospitalList = async () => {
+      await axios({
+        method: 'get', // or 'post', 'put', etc.
+        url: `${process.env.REACT_APP_SERVER_URL}/hospital?pages=${page - 1}`,
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
+        }
+      }).then((res) => {
+        setHospitalList(res.data);
+        setTotalPages(res.data[0].totalPages);
+      });
+    };
+
+    useEffect(() => {
+      !isSearch ? getHospitalList() : console.log("검색x");
+    }, [page]);
+
+    useEffect(() => {
+      console.log(hospitalList)
+    }, [hospitalList]);
 
   return (
     <div className="hospital_div">
@@ -19,9 +43,12 @@ function Hospital() {
       </div>
       <div className="hospital_item_div">
         {
-            hospital_list.map((item) => {
+            hospitalList.map((hospital) => {
                 return (
-                   <HospitalItem key={item.toString()} />
+                   <HospitalItem 
+                   key={hospital.hospitalId}
+                    {...hospital}
+                  />
                 )
             })
         }

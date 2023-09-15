@@ -1,4 +1,4 @@
 export type DoctorNameResponseDto = {
-    "doctorId": number,
-    "doctorName": string,
-}
+  doctorId: number;
+  doctorName: string;
+};
