@@ -64,7 +64,7 @@ function Main() {
   };
 
   const getRecommendedReviews = async () => {
-    /*await axios({
+    await axios({
       method: 'get', // or 'post', 'put', etc.
       url: `${process.env.REACT_APP_SERVER_URL}/review/recommendation`,
       headers: {
@@ -72,11 +72,11 @@ function Main() {
       }
     }).then((res) => {
       setRecommendReviews(res.data);
-    });*/
+    });
   };
 
   const getReviewList = async () => {
-    /*await axios({
+    await axios({
       method: 'get', // or 'post', 'put', etc.
       url: `${process.env.REACT_APP_SERVER_URL}/review?pages=${page - 1}`,
       headers: {
@@ -86,7 +86,7 @@ function Main() {
       setReviewList(res.data);
 
       setTotalPages(res.data[0].totalPages);
-    });*/
+    });
   };
 
   const getSearchReviewList = async () => {
@@ -158,7 +158,7 @@ function Main() {
           <div className="hotDiv">
             <img id="hot" src="hot.png" alt="추천 후기" />
           </div>
-          <div className="moreDiv">
+          <div className="moreDiv" onClick={() => navigate("/recommend/review/all")}>
             <p id="more_text">더보기</p>
           </div>
         </div>

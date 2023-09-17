@@ -1,0 +1,27 @@
+.recommend_all_div {
+    width: 100%;
+    border-top: 1px solid #D4D4D4;
+    margin-top: 0.5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.hot_div {
+    display: flex;
+    align-items: center;   
+    margin-left: 1%; 
+}
+
+#hot_image {
+    width: 50%;
+}
+
+.recommend_all_item {
+    width: 51%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
