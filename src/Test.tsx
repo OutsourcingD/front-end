@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Pagination from "react-js-pagination";
 import "./Test.css";
+import Wysiwyg from "./components/Wysiwyg";
 
 function Test() {
   const [page, setPage] = useState(1);
@@ -11,6 +12,8 @@ function Test() {
   };
 
   return (
+    <>
+    <Wysiwyg />
     <Pagination
       activePage={page}
       itemsCountPerPage={10}
@@ -20,6 +23,7 @@ function Test() {
       nextPageText={"›"}
       onChange={handlePageChange}
     />
+    </>
   );
 }
 

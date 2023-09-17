@@ -17,17 +17,25 @@ function Header() {
   const navigate = useNavigate();
   const [selected, setSelected] = useState(0);
 
+  useEffect(() => {
+    localStorage.getItem("selected") ? setSelected(Number(localStorage.getItem("selected"))) : setSelected(0);
+  }, []);
+
   const movePage = (page: number) => {
     if(page === 0) {
+      localStorage.setItem("selected", "0");
       setSelected(0);
       navigate("/");
     } else if(page === 1) {
+      localStorage.setItem("selected", "1");
       setSelected(1);
       navigate("/hospital");
     } else if(page === 2) {
+      localStorage.setItem("selected", "2");
       setSelected(2);
       navigate("/doctor");
     } else if(page === 3) {
+      localStorage.setItem("selected", "3");
       setSelected(3);
       navigate("/before-after");
     }

@@ -5,9 +5,9 @@ type HospitalImg = {
 };
 
 export type HospitalResponseDto = {
-  hospitalId: number;
+  postId: number;
   hospitalImg: HospitalImg;
-  hospitalName: string;
+  name: string;
   location: string;
   totalPages: number;
 };

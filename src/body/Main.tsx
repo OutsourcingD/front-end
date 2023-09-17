@@ -64,7 +64,7 @@ function Main() {
   };
 
   const getRecommendedReviews = async () => {
-    await axios({
+    /*await axios({
       method: 'get', // or 'post', 'put', etc.
       url: `${process.env.REACT_APP_SERVER_URL}/review/recommendation`,
       headers: {
@@ -72,11 +72,11 @@ function Main() {
       }
     }).then((res) => {
       setRecommendReviews(res.data);
-    });
+    });*/
   };
 
   const getReviewList = async () => {
-    await axios({
+    /*await axios({
       method: 'get', // or 'post', 'put', etc.
       url: `${process.env.REACT_APP_SERVER_URL}/review?pages=${page - 1}`,
       headers: {
@@ -86,7 +86,7 @@ function Main() {
       setReviewList(res.data);
 
       setTotalPages(res.data[0].totalPages);
-    });
+    });*/
   };
 
   const getSearchReviewList = async () => {
@@ -108,6 +108,7 @@ function Main() {
   };
 
   const handleReview = (id: number) => {
+    console.log("id: ", id);
     axios({
       method: 'get', // or 'post', 'put', etc.
       url: `${process.env.REACT_APP_SERVER_URL}/review/detail?reviewId=${id}`,
@@ -120,15 +121,7 @@ function Main() {
   };
 
   const handleRecommendReview = () => {
-    axios({
-      method: 'get', // or 'post', 'put', etc.
-      url: `${process.env.REACT_APP_SERVER_URL}/review/recommendation`,
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
-      }
-    }).then((res) => {
-      console.log("추천 후기 전체: ", res.data)
-    });
+    /* 추천 후기 페이지로 이동 후 useEffect에서 axios 요청 */
   };
 
   useEffect(() => {
@@ -136,10 +129,6 @@ function Main() {
     getRecommendedReviews();
     !isSearch ? getReviewList() : getSearchReviewList();
   },[page]);
-
-  useEffect(() => {
-    console.log(reviewDetail);
-  }, [reviewDetail]);
 
   return (
     <div className="main">

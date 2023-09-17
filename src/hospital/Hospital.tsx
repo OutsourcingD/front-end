@@ -20,6 +20,7 @@ function Hospital() {
           Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
         }
       }).then((res) => {
+        console.log(res.data)
         setHospitalList(res.data);
         setTotalPages(res.data[0].totalPages);
       });
@@ -46,7 +47,7 @@ function Hospital() {
             hospitalList.map((hospital) => {
                 return (
                    <HospitalItem 
-                   key={hospital.hospitalId}
+                   key={hospital.postId}
                     {...hospital}
                   />
                 )
