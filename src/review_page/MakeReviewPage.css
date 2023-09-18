@@ -138,6 +138,66 @@
     margin-top: 0.8%;
 }
 
+.make_review_picture_div {
+    width: 68%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-top: 0.8%;
+}
+
+#make_review_add_picture_warning {
+    margin-top: 1%;
+}
+
+.make_review_pictures_div {
+    width: 68%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: row;
+    margin-top: 0.8%;
+}
+
+.make_review_picture_input_div {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5%;
+}
+
+.make_review_add_picture_wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+}
+
+.make_review_add_picture_div {
+    width: 100%;
+    height: 240px;
+    border: 1px solid #C4C4C4;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.add_picture_button {
+    width: 150px;
+    height: 240px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.add_picture_plus_div {
+    width: 30%;
+}
+
 .make_review_hospital_div {
     width: 68%;
     display: flex;
@@ -146,28 +206,42 @@
     margin-top: 0.8%;
 }
 
+.add_picture_wrapper {
+    width: 20%;
+}
+
+#add_picture {
+    color: #D4D4D4;
+}
+
 .etc_input_div {
     margin-left: 1%;
-    border: 1px solid #DFB1E4;
+    border: 1px solid #D4D4D4;
     border-radius: 8px;
     padding-right: 1%;
     padding-left: 1%;
 }
 
+.etc_input_div:focus {
+    border: 1px solid #DFB1E4;
+}
+
 #etc_input_form {
     border: none;
+    outline: none;
 }
 
 #etc_input {
     padding-left: 5%;
-    padding-top: 4%;
+    padding-top: 6%;
     padding-bottom: 4%;
     font-size: 0.8vw;
     border: none;
+    outline: none;
 }
 
 .doctor_dropbox {
-    width: 30%;
+    width: 18%;
 }
 
 #select {
@@ -234,4 +308,47 @@
 
 #start_rate_sub_title {
     font-size: 0.8vw;
+}
+
+.wysiwyg_div {
+    width: 70%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: row;
+    margin-top: 1%;
+}
+
+#period_select {
+    border-radius: 8px;
+    border-color: #D4D4D4;
+    color: #D4D4D4;
+    padding: 2%;
+    margin-right: 3%;
+}
+
+#period_input {
+    border: none;
+    outline: none;
+    width: 85%;
+    height: 88%;
+    border: 1px solid #D4D4D4;
+    padding-left: 5%;
+    border-radius: 8px;
+    color: #D4D4D4;
+}
+
+#period_input_form {
+    width: 70%;
+}
+
+.start_rate_div {
+    display: flex;
+    flex-direction: row;
+}
+
+.star_rate_wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 7%;
 }

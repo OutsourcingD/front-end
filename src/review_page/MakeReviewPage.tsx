@@ -6,6 +6,7 @@ import { HospitalNameResponseDto } from "../dto/HospitalNameResponseDto";
 import { DoctorNameResponseDto } from "../dto/DoctorNameResponseDto";
 import HospitalStarRate from "../components/HospitalStarRate";
 import DoctorStarRate from "../components/DoctorStarRate";
+import Wysiwyg from "../components/ContentInput";
 
 interface ReviewProps {
   checkBox: boolean;
@@ -20,6 +21,7 @@ const MakeReviewPage = ({ checkBox }: ReviewProps) => {
   const [etcHospital, setEtcHospital] = React.useState<string>("");
   const [etcDoctor, setEtcDoctor] = React.useState<string>("");
   const [doctorInfo, setDoctorInfo] = React.useState<DoctorNameResponseDto[]>();
+  const [pictureNum, setPictureNum] = React.useState<number[]>([0]);
 
   const handleReview = (review: boolean) => {
     setIsReview(review);
@@ -174,27 +176,84 @@ const MakeReviewPage = ({ checkBox }: ReviewProps) => {
               </form>
             </div>
           ) : null}
-          <div className="total_star_div">
-            <p id="total_star_title">총별점</p>
-          </div>
-          <DoctorStarRate/>
         </div>
         <div className="make_review_hospital_body_div">
           <div>
             <p id="start_rate_title">별점을 선택해주세요</p>
             <p id="start_rate_sub_title">원장님과의 수술은 어떠셨나요?</p>
           </div>
-          <div>
-
+          <div className="start_rate_div">
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <p style={{ marginRight: "3%", whiteSpace: "nowrap" }}>
+                상담 퀄리티
+              </p>
+              <div className="star_rate_wrapper">
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+              </div>
+            </div>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <p style={{ marginRight: "3%", whiteSpace: "nowrap" }}>
+                수술 후 케어
+              </p>
+              <div className="star_rate_wrapper">
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+              </div>
+            </div>
           </div>
-          <div>
-
+          <div className="start_rate_div">
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <p style={{ marginRight: "3%", whiteSpace: "nowrap" }}>
+                결과 만족도
+              </p>
+              <div className="star_rate_wrapper">
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+              </div>
+            </div>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <p style={{ marginRight: "3%", whiteSpace: "nowrap" }}>
+                원장 매너
+              </p>
+              <div className="star_rate_wrapper">
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+              </div>
+            </div>
           </div>
+          <div className="start_rate_div">
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <p style={{ marginRight: "3%", whiteSpace: "nowrap" }}>
+                영어 소통
+              </p>
+              <div className="star_rate_wrapper">
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+              </div>
+            </div>
+          </div>
+          <div></div>
         </div>
       </div>
       {/* 원장 */}
-      <div className="make_review_part_div">
-      <div className="make_review_title_header_div">
+      <div className="make_review_hospital_div">
+        <div className="make_review_title_header_div">
           <p id="make_review_sub_title_text">원장</p>
           <div className="doctor_dropbox">
             <select
@@ -229,15 +288,169 @@ const MakeReviewPage = ({ checkBox }: ReviewProps) => {
               </form>
             </div>
           ) : null}
-          <div className="total_star_div">
-            <p id="total_star_title">총별점</p>
+        </div>
+        <div className="make_review_hospital_body_div">
+          <div>
+            <p id="start_rate_title">별점을 선택해주세요</p>
+            <p id="start_rate_sub_title">원장님과의 수술은 어떠셨나요?</p>
           </div>
-          <HospitalStarRate />
+          <div className="start_rate_div">
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <p
+                style={{
+                  marginRight: "3%",
+                  whiteSpace: "nowrap",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                상담 퀄리티
+              </p>
+              <div className="star_rate_wrapper">
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+              </div>
+            </div>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <p
+                style={{
+                  marginRight: "3%",
+                  whiteSpace: "nowrap",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                수술 후 케어
+              </p>
+              <div className="star_rate_wrapper">
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+              </div>
+            </div>
+          </div>
+          <div className="start_rate_div">
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <p
+                style={{
+                  marginRight: "3%",
+                  whiteSpace: "nowrap",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                결과 만족도
+              </p>
+              <div className="star_rate_wrapper">
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+              </div>
+            </div>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <p
+                style={{
+                  marginRight: "3%",
+                  whiteSpace: "nowrap",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                원장 매너
+              </p>
+              <div className="star_rate_wrapper">
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+              </div>
+            </div>
+          </div>
+          <div className="start_rate_div">
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <p
+                style={{
+                  marginRight: "3%",
+                  whiteSpace: "nowrap",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                영어 소통
+              </p>
+              <div className="star_rate_wrapper">
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+                <img src="/star_empty.png" alt="" id="star_rate" />
+              </div>
+            </div>
+          </div>
+          <div></div>
         </div>
       </div>
       {/* 사진 */}
-      <div className="make_review_part_div">
-        <p id="make_review_sub_title_text">사진</p>
+      <div className="make_review_picture_div">
+        <p id="make_review_sub_title_text">사진추가</p>
+        <p id="make_review_add_picture_warning">
+          사진은 최대 10장까지 가능해요
+        </p>
+      </div>
+      <div className="make_review_pictures_div">
+        {
+          <div className="make_review_add_picture_wrapper">
+            <div className="make_review_add_picture_div">
+              <div className="add_picture_wrapper">
+                <img src="/add_picture.png" alt="" id="make_review_picture" />
+              </div>
+              <p id="add_picture">add picture</p>
+            </div>
+            <div className="make_review_picture_input_div">
+              <select id="period_select">
+                <option key="period" value="period">
+                  select period
+                </option>
+                <option key="week" value="week">
+                  week
+                </option>
+                <option key="month" value="month">
+                  month
+                </option>
+                <option key="year" value="year">
+                  year
+                </option>
+                <option key="before-after" value="before-after">
+                  before-after
+                </option>
+              </select>
+              <form className="period_input_form">
+                <input
+                  type="text"
+                  id="period_input"
+                  placeholder="Direct input."
+                />
+              </form>
+              <p style={{ display: "flex", alignItems: "center" }}>주</p>
+            </div>
+          </div>
+        }
+        <div className="add_picture_button">
+          <div className="add_picture_plus_div">
+            <img src="/add_picture_plus.png" alt="" id="add_picture_plus" />
+          </div>
+        </div>
+      </div>
+      <div className="wysiwyg_div">
+        <Wysiwyg />
       </div>
     </div>
   );
