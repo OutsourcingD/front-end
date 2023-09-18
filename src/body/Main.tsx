@@ -34,6 +34,7 @@ function Main() {
   const [searchValue, setSearchValue] = React.useState("");
   const navigate = useNavigate();
   const [reviewDetail, setReviewDetail] = React.useState<ReviewDetailDto[]>([]); // 검색 여부 [true: 검색, false: 검색x
+  const [type, setType] = React.useState(0); //0: 날짜 순, 1: 조회수 별, 2: 댓글 수 별
 
   const handlePageChange = (page: React.SetStateAction<number>) => {
     setPage(page);
@@ -78,7 +79,7 @@ function Main() {
   const getReviewList = async () => {
     await axios({
       method: 'get', // or 'post', 'put', etc.
-      url: `${process.env.REACT_APP_SERVER_URL}/review?pages=${page - 1}`,
+      url: `${process.env.REACT_APP_SERVER_URL}/review?type=${type}&pages=${page - 1}`,
       headers: {
         Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
       }
@@ -107,17 +108,8 @@ function Main() {
     navigate("/review/make")
   };
 
-  const handleReview = (id: number) => {
-    console.log("id: ", id);
-    axios({
-      method: 'get', // or 'post', 'put', etc.
-      url: `${process.env.REACT_APP_SERVER_URL}/review/detail?reviewId=${id}`,
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
-      }
-    }).then((res) => {
-      setReviewDetail(res.data);
-    });
+  const handleReview = (reviewId: number) => {
+    navigate(`/review?reviewId=${reviewId}`);
   };
 
   const handleRecommendReview = () => {
