@@ -1,0 +1,101 @@
+.review_hospital_doctor_input_div {
+    width: 68%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1%;
+}
+
+#before_title_input {
+    white-space: nowrap;
+    margin-right: 3%;
+}
+
+.before_hospital_input_div {
+    width: 25%;
+    display: flex;
+    flex-direction: row;
+    margin-right: 2%;
+}
+
+.before_input_div {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+#before_hospital_input {
+    width: 100%;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #D4D4D4;
+    padding-bottom: 3%;
+}
+
+#before_hospital_input_form {
+    width: 100%;
+}
+
+.before_picture_div {
+    margin-top: 1%;
+}
+
+.before_picture_container {
+    width: 240px;
+    height: 300px;
+}
+
+.before_picture_wrapper {
+    width: 240px;
+    height: 240px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.before_picture_item {
+    height: 100%;
+    width: 48%;
+    border: 1px solid #D4D4D4;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#before_picture_add_item {
+    width: 40%;
+}
+
+#category_select {
+    width: 49%;
+    padding: 2%;
+    border-radius: 8px;
+    border: 1px solid #D4D4D4;
+    margin-top: 3%;
+}
+
+.before_detail_div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#surgery_period_form {
+    margin-top: 3%;
+    width: 49%;
+}
+
+#surgery_period_input {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #D4D4D4;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.before_pictures_div {
+    display: flex;
+    flex-direction: row;
+}
