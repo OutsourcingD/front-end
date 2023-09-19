@@ -23,7 +23,7 @@ function Routers () {
     return (
             <Routes>
                 <Route path="/" element={<App />} />
-                <Route path="/test" element={<TestSlider />} />
+                <Route path="/test" element={<Test />} />
                 <Route path="/inquery" element={<InqueryComponent />} />
                 <Route path="/recommend/review" element={<RecommendedReview />} />
                 <Route path="/mypage" element={<MyPage />} />

@@ -7,7 +7,6 @@ function App() {
   return (
     <div className="App">
       <Main />
-      <div style={{height: "50px", width: "100%"}}></div>
     </div>
     );
 }
