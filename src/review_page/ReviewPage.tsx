@@ -5,54 +5,79 @@ import axios from "axios";
 import { ReviewDetailDto } from "../dto/ReviewDetailDto";
 
 function ReviewPage() {
-    const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
-    const [reviewDetail, setReviewDetail] = React.useState<ReviewDetailDto | null>(null); // 검색 여부 [true: 검색, false: 검색x
-    const [isLoading, setIsLoading] = React.useState();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const [reviewDetail, setReviewDetail] =
+    React.useState<ReviewDetailDto | null>(null); // 검색 여부 [true: 검색, false: 검색x
+  const [isLoading, setIsLoading] = React.useState();
 
-    useEffect(() => {
-        const reviewId = queryParams.get('reviewId');
+  useEffect(() => {
+    const reviewId = queryParams.get("reviewId");
 
-        reviewDetail === null ? 
-        axios({
-            method: 'get', // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/review/detail?reviewId=${reviewId}`,
-            headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
-            }
-        }).then((res) => {
-            setReviewDetail(res.data);
-        }) : console.log("review detail ", reviewDetail);
-    }, []);
+    if (reviewDetail === null) {
+      axios({
+        method: "get", // or 'post', 'put', etc.
+        url: `${process.env.REACT_APP_SERVER_URL}/review/detail?reviewId=${reviewId}`,
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+        },
+      }).then((res) => {
+        setReviewDetail(res.data);
+      });
+    }
+  }, []);
 
-    return (
-        <div className="review_detail_div">
-            <div className="tag_div">
-                <p>tag</p>
+  return (
+    <div className="review_detail_div">
+      <div className="review_detail_wrapper">
+        <div className="tags_div">
+          {reviewDetail?.partList.map((part) => {
+            return (
+              <div className="tag_div" key={part}>
+                <p id="tag">{part}</p>
+              </div>
+            );
+          })}
+        </div>
+        <div className="review_detail_title_div">
+          <p id="review_detail_title">{reviewDetail?.title}</p>
+        </div>
+        <div className="profile_edit_div">
+          <div className="profile_left_div">
+            <div className="profile_info_div">
+                <img src={reviewDetail?.profileImgUrl} alt={reviewDetail?.nickname} id="profile_picture" />
             </div>
-            <div className="review_detail_title_div">
-            <p>tag</p>
+            <div className="profile_info_text_div">
+                <p id="nickname">{reviewDetail?.nickname}</p>
+                <p id="date">{reviewDetail?.createdAt}</p>
             </div>
-            <div className="profile_edit_div">
-            <p>tag</p>
-            </div>
-            <div className="review_detail_image_div">
-            <p>tag</p>
-            </div>
-            <div className="review_first_detail">
-            <p>tag</p>
-            </div>
-            <div className="review_nth_detail">
-            <p>tag</p>
-            </div>
-            <div className="review_info">
-            <p>tag</p>
-            </div>
-            <div className="review_comment">
-
+          </div>
+          <div className="profile_right_div">
+            <p id="post_edit_button">수정</p>
+            <p id="post_delete_button">삭제</p>
+          </div>
+        </div>
+        <div style={{width: "86%", marginTop: "1%", marginBottom: "3%"}}>
+            <hr style={{width: "100%"}}/>
+        </div>
+        <div className="review_detail_image_div">
+            <div className="review_detail_image_item_div">
+                <img src={reviewDetail?.imageList[0].url} alt="" id="review_detail_img" />
             </div>
         </div>
-    );
+        <div className="review_first_detail">
+          <p>tag</p>
+        </div>
+        <div className="review_nth_detail">
+          <p>tag</p>
+        </div>
+        <div className="review_info">
+          <p>tag</p>
+        </div>
+        <div className="review_comment"></div>
+      </div>
+    </div>
+  );
 }
 
 export default ReviewPage;

@@ -2,6 +2,8 @@ import React from "react";
 import "./Review.css";
 import { AiOutlineStar } from "react-icons/ai";
 import axios from "axios";
+import ReviewPage from "../review_page/ReviewPage";
+import { useNavigate } from "react-router-dom";
 
 interface ReviewProps {
     reviewTitle: string;
@@ -17,19 +19,13 @@ interface ReviewProps {
     reviewId: number;
 }
 
-const onClick = (id: number) => {
-    axios({
-        method: 'get', // or 'post', 'put', etc.
-        url: `${process.env.REACT_APP_SERVER_URL}/review/detail?reviewId=${id}`,
-        headers: {
-          Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
-        }
-      }).then((res) => {
-        console.log("추천 후기", res.data);
-      });
-}
-
 const  Review : React.FC<ReviewProps> = (props: ReviewProps) => {
+    const navigate = useNavigate();
+
+    const onClick = (id: number) => {
+        navigate(`/review?reviewId=${id}`);
+    };
+
   return ( 
         <div className="review_main" onClick={() => onClick(props.reviewId)}>
             { /* 이미지 섹션 */}
