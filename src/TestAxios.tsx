@@ -1,34 +1,46 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from "react";
+import "./Slider.css";
+import Slider from "react-slick";
 
-function MyComponent() {
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
+function TestSlider() {
+  const settings = {
+    infinite: true,
+    autoplaySpeed: 5000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+  };
+  let slider: any;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const response = await axios.get(process.env.REACT_APP_SERVER_URL + '/review/recommendation');
-        setData(response.data);
-      } catch (err: any) {
-        setError(err.message);
-      }
-      setLoading(false);
-    };
-
-    fetchData();
-  }, []); // 빈 의존성 배열은 컴포넌트가 마운트 될 때 한 번만 요청을 실행하도록 합니다.
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  React.useEffect(() => {
+    slider.slickGoTo(1);
+  }, []);
 
   return (
-    <div>
-      {/* data를 렌더링하는 로직 */}
+    <div className="slider">
+      <Slider ref={(c) => slider(c)} {...settings}>
+        <div onClick={() => console.log("1")}>
+        <img
+          src="https://hospital-image-bucket-1.s3.ap-northeast-2.amazonaws.com/banner/left/Mask%20group2.png"
+          alt=""
+        />
+        </div>
+        <div onClick={() => console.log("2")}>
+        <img
+          src="https://hospital-image-bucket-1.s3.ap-northeast-2.amazonaws.com/banner/left/Mask%20group1.png"
+          alt=""
+        />
+        </div>
+        <div onClick={() => console.log("3")}>
+        <img
+          src="https://hospital-image-bucket-1.s3.ap-northeast-2.amazonaws.com/banner/left/Mask%20group-1.png"
+          alt=""
+        />
+        </div>
+      </Slider>
+      
     </div>
   );
 }
 
-export default MyComponent;
+export default TestSlider;

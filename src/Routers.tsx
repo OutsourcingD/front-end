@@ -17,12 +17,13 @@ import SignUp from "./home/SignUp";
 import MakeReviewPage from "./review_page/MakeReviewPage";
 import RecommendReviewPage from "./review_page/RecommendReviewPage";
 import ReviewPage from "./review_page/ReviewPage";
+import TestSlider from "./TestAxios";
 
 function Routers () {
     return (
             <Routes>
                 <Route path="/" element={<App />} />
-                <Route path="/test" element={<Test />} />
+                <Route path="/test" element={<TestSlider />} />
                 <Route path="/inquery" element={<InqueryComponent />} />
                 <Route path="/recommend/review" element={<RecommendedReview />} />
                 <Route path="/mypage" element={<MyPage />} />

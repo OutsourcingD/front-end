@@ -1,0 +1,18 @@
+.slider {
+    overflow: hidden;
+  }
+  
+  .slide-track {
+    display: flex;
+    flex-direction: row;
+    transform: translateX(100%);
+  }
+  
+  .slide {
+    width: 100%;
+  }
+  
+  @keyframes scroll {
+    
+  }
+  

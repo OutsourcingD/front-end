@@ -23,7 +23,6 @@ function Main() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    fade: true,
   };
   const [imageList, setImageList] = React.useState<ImageDto[]>([]);
   const [recommendReviews, setRecommendReviews] = React.useState<RecommendedReviewDto[]>([]);
@@ -130,7 +129,11 @@ function Main() {
           {
             imageList.map((image, index) => {
               return (
-                <img key={image.bannerId} src={image.bannerImg} alt={image.hospital_name} id="advertisement_img" />
+                <div key={image.bannerId}>
+                <a href={image.bannerLink} target="_blank" rel="noreferrer" style={{outline: "none"}}>
+                  <img key={image.bannerId} src={image.bannerImg} alt={image.hospital_name} id="advertisement_img" />
+                </a>
+                </div>
               );
             })
           }
