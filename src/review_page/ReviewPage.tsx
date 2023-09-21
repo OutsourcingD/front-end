@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import "./ReviewPage.css";
 import axios from "axios";
 import { ReviewDetailDto } from "../dto/ReviewDetailDto";
+import Slider from "react-slick";
 
 function ReviewPage() {
   const location = useLocation();
@@ -10,6 +11,14 @@ function ReviewPage() {
   const [reviewDetail, setReviewDetail] =
     React.useState<ReviewDetailDto | null>(null); // 검색 여부 [true: 검색, false: 검색x
   const [isLoading, setIsLoading] = React.useState();
+  const [currentSlide, setCurrentSlide] = React.useState(0);
+  const settings = {
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    dots: true,
+    afterChange: (current: React.SetStateAction<number>) => setCurrentSlide(current)
+  };
 
   useEffect(() => {
     const reviewId = queryParams.get("reviewId");
@@ -61,20 +70,40 @@ function ReviewPage() {
             <hr style={{width: "100%"}}/>
         </div>
         <div className="review_detail_image_div">
-            <div className="review_detail_image_item_div">
-                <img src={reviewDetail?.imageList[0].url} alt="" id="review_detail_img" />
-            </div>
+          <Slider {...settings}>
+            {
+              reviewDetail?.imageList.map((image) => {
+                return(
+                  <>
+                    <div className="review_detail_image_item_div" key={image.imageId}>
+                        <img src={image.url} alt="" id="review_detail_img" />
+                    </div>
+                    <div className="review_detail_image_item_description_div">
+                      <p id="review_detail_image_number">{image.description}</p>
+                    </div>
+                  </>
+                );
+              })
+            }
+          </Slider>
         </div>
         <div className="review_first_detail">
-          <p>tag</p>
+          <p id="first_review_title">1차 후기</p>
+          <p id="review_created_at">{reviewDetail?.createdAt}</p>
         </div>
-        <div className="review_nth_detail">
-          <p>tag</p>
+        <div className="review_first_detail_div">
+          <div dangerouslySetInnerHTML={{__html: reviewDetail?.content || '' }}/>
         </div>
         <div className="review_info">
           <p>tag</p>
         </div>
-        <div className="review_comment"></div>
+        <div style={{display: "flex", flexDirection: "row", width: "86%", marginTop: "1%", marginBottom: "3%"}}>
+          <p style={{flex: "1"}}>리뷰 정보</p>
+          <hr style={{flex: "10", border: "none", borderTop: "1px solid #D4D4D4"}}/>
+        </div>
+        <div className="review_comment">
+
+        </div>
       </div>
     </div>
   );

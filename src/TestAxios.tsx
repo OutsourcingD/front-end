@@ -16,6 +16,8 @@ function TestSlider() {
     slider.slickGoTo(1);
   }, []);
 
+  //pointerEvents: "auto" z-index: 1
+
   return (
     <div className="slider">
       <Slider ref={(c) => slider(c)} {...settings}>

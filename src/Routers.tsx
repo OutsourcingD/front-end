@@ -17,7 +17,8 @@ import SignUp from "./home/SignUp";
 import MakeReviewPage from "./review_page/MakeReviewPage";
 import RecommendReviewPage from "./review_page/RecommendReviewPage";
 import ReviewPage from "./review_page/ReviewPage";
-import TestSlider from "./TestAxios";
+import DoctorDetailPage from "./doctor/DoctorDetailPage";
+import HospitalDetailPage from "./hospital/HospitalDetailPage";
 
 function Routers () {
     return (
@@ -39,6 +40,8 @@ function Routers () {
                 <Route path="/review/make" element={<MakeReviewPage checkBox={true} />} />
                 <Route path="/recommend/review/all" element={<RecommendReviewPage />} />
                 <Route path="/review" element={<ReviewPage />} />
+                <Route path="/doctor/detail" element={<DoctorDetailPage />} />
+                <Route path="/hospital/detail" element={<HospitalDetailPage />} />
             </Routes>
     );
 }

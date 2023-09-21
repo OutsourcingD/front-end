@@ -15,7 +15,6 @@ root.render(
     <Router>
         <Header />
         <Routers />
-        <Footer />
     </Router>
   </React.StrictMode>
 );

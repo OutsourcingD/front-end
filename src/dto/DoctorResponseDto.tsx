@@ -5,8 +5,8 @@ type ImageVo = {
 };
 
 export type DoctorResponseDto = {
-  doctorId: number;
-  doctorName: string;
+  postId: number;
+  name: string;
   hospitalName: string;
   imageVo: ImageVo;
   totalPages: number;

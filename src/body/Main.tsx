@@ -32,7 +32,7 @@ function Main() {
   const [isSearch, setIsSearch] = React.useState(false); // 검색 여부 [true: 검색, false: 검색x]
   const [searchValue, setSearchValue] = React.useState("");
   const navigate = useNavigate();
-  const [reviewDetail, setReviewDetail] = React.useState<ReviewDetailDto[]>([]); // 검색 여부 [true: 검색, false: 검색x
+  const [reviewDetail, setReviewDetail] = React.useState<ReviewDetailDto>(); 
   const [type, setType] = React.useState(0); //0: 날짜 순, 1: 조회수 별, 2: 댓글 수 별
 
   const handlePageChange = (page: React.SetStateAction<number>) => {

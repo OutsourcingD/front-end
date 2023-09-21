@@ -20,6 +20,7 @@ function Doctor() {
         }
       }).then((res) => {
         setDoctorList(res.data);
+        console.log(res.data)
       });
     }, [page]);
 
@@ -35,7 +36,7 @@ function Doctor() {
         {
             doctor_list.map((doctor) => {
                 return (
-                   <DoctorItem key={doctor.doctorId} {...doctor} />
+                   <DoctorItem key={doctor.postId} {...doctor} />
                 )
             })
         }
