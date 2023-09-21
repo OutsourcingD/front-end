@@ -57,7 +57,7 @@ function Login() {
             <p id="login_item_text">Login</p>
         </div>
         <div className="login_more_div">
-            <p id="find_id">아이디 찾기 / 비밀번호 찾기</p>
+            <p id="find_id" onClick={() => navigate('/login/find')}>아이디 찾기 / 비밀번호 찾기</p>
             <p id="sign_up" onClick={signUpHandler}>회원가입</p>
         </div>
       </div>

@@ -19,6 +19,7 @@ import RecommendReviewPage from "./review_page/RecommendReviewPage";
 import ReviewPage from "./review_page/ReviewPage";
 import DoctorDetailPage from "./doctor/DoctorDetailPage";
 import HospitalDetailPage from "./hospital/HospitalDetailPage";
+import FindPage from "./home/FindPage";
 
 function Routers () {
     return (
@@ -42,6 +43,7 @@ function Routers () {
                 <Route path="/review" element={<ReviewPage />} />
                 <Route path="/doctor/detail" element={<DoctorDetailPage />} />
                 <Route path="/hospital/detail" element={<HospitalDetailPage />} />
+                <Route path="/login/find" element={<FindPage />} />
             </Routes>
     );
 }
