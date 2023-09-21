@@ -115,6 +115,14 @@ h1 {
     flex-direction: row;
 }
 
+.find_page_verify_code_form_div {
+    width: 93%;
+    border-bottom: 1px solid #D4D4D4;
+    margin-right: 2%;
+    display: flex;
+    flex-direction: row;
+}
+
 .find_page_email_push_button_div {
     background-color: #DFB1E4;
     border-radius: 8px;

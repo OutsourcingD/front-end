@@ -24,7 +24,7 @@ function FindIdPageItem() {
       <div className="find_page_email_code_div">
         <p id="find_id_page_input_title">인증번호</p>
         <div className="find_page_email_container">
-          <div className="find_page_email_form_div">
+          <div className="find_page_verify_code_form_div">
             <form id="find_page_email_form">
               <input
                 id="find_id_page_email_input"
