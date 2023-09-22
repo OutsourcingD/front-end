@@ -47,7 +47,7 @@ function FindPwdPage() {
       </div>
       <div className="find_page_verify_code_button_div">
         <div className="find_page_email_push_button_div">
-          <p id="find_page_code_verify_button_text">verify code</p>
+          <p id="find_page_code_verify_button_text">verify</p>
         </div>
       </div>
     </>

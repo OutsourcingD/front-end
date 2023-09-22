@@ -1,7 +1,17 @@
 import React from "react";
-import FindPage from "./FindPage";
 
-function FindIdPageItem() {
+interface FindIdPageItemProps {
+  findId: (email: string) => void;
+}
+
+const FindIdPageItem = (props: FindIdPageItemProps) => {
+  const [isId, setIsId] = React.useState<boolean>(true);
+  const [email, setEmail] = React.useState<string>("");
+  
+  const onClick = () => {
+    isId ? props.findId(email + "hi") : alert("잘못된 접근입니다.");
+  }
+
   return (
     <>
       <div className="find_page_email_input_div">
@@ -45,7 +55,7 @@ function FindIdPageItem() {
           </div>
         </div>
       </div>
-      <div className="find_page_verify_code_button_div">
+      <div className="find_page_verify_code_button_div" onClick={() => onClick()}>
         <div className="find_page_email_push_button_div">
           <p id="find_page_code_verify_button_text">verify code</p>
         </div>

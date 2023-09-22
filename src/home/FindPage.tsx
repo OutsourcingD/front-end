@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./FindPage.css";
 import FindIdPageItem from "./FindIdPageItem";
 import FindPwdPage from "./FindPwdPage";
+import IdInfoPage from "./IdInfoPage";
 
 const FindPage = () => {
   const [isId, setIsId] = React.useState<boolean>(true);
+  const [isSubmit, setIsSubmit] = React.useState<boolean>(true);
+
+  const handleEmail = (email: string) => {
+    
+  }
 
   return (
     <div className="find_page_div">
@@ -28,9 +34,13 @@ const FindPage = () => {
             </div>
           </div>
           {
+            !isSubmit ?
+          <>{
             isId ? 
-                <FindIdPageItem />
+                <FindIdPageItem findId={handleEmail} />
             : <FindPwdPage />
+          }</>
+          : <>{isId ? <IdInfoPage /> : <div></div>}</>
           }
         </div>
       </div>

@@ -1,0 +1,35 @@
+.id_result_div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.id_result_text_div {
+  margin-top: 12%;
+}
+
+.id_result_ok_button {
+  background: #dfb1e4;
+  border: 1px solid #e6c2ea;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.11);
+  border-radius: 8px;
+  width: 100px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 30px;
+}
+
+.id_result_pwd_button {
+  border: 1px solid #e7e7e7;
+  filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.11));
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 40px;
+}
