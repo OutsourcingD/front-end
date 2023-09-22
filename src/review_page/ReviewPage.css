@@ -196,3 +196,10 @@
     white-space: nowrap;
     font-weight: 500;
 }
+
+.slick-dots li button:before {
+    color: #D4D4D4;  /* 원하는 색상으로 변경 */
+}
+.slick-dots li.slick-active button:before {
+    color: #DDB0E3;  /* 활성화된 dot의 색상을 변경 */
+}
