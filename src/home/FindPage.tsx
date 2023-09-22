@@ -3,6 +3,7 @@ import "./FindPage.css";
 import FindIdPageItem from "./FindIdPageItem";
 import FindPwdPage from "./FindPwdPage";
 import IdInfoPage from "./IdInfoPage";
+import PwdSettingPage from "./PwdSettingPage";
 
 const FindPage = () => {
   const [isId, setIsId] = React.useState<boolean>(true);
@@ -40,7 +41,7 @@ const FindPage = () => {
                 <FindIdPageItem findId={handleEmail} />
             : <FindPwdPage />
           }</>
-          : <>{isId ? <IdInfoPage /> : <div></div>}</>
+          : <>{isId ? <IdInfoPage /> : <PwdSettingPage />}</>
           }
         </div>
       </div>

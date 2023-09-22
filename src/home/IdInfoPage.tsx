@@ -7,7 +7,7 @@ function IdInfoPage() {
         <div className="id_result_text_div">
             <p style={{fontSize: "15px"}}>입력하신 정보와 일치하는 아이디입니다.</p>
             <div style={{display: "flex", flexDirection: "row", marginTop: "7%"}}>
-                <p style={{fontSize: "15px"}}>아이디 :</p>
+                <p style={{fontSize: "15px", alignItems: "center", display: "flex"}}>아이디 :</p>
                 <p style={{fontSize: "18px", fontWeight: "700"}}>Kimchulsoo@gmail.com</p>
             </div>
             <div style={{display: "flex", flexDirection: "row", marginTop: "2%"}}>

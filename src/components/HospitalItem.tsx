@@ -14,7 +14,7 @@ const HospitalItem = (props: HospitalResponseDto) => {
     return (
         <div className="hospital_item_container" onClick={() => onClick(props.postId)}>
             <div className="hospital_item_wrapper">
-                {firstImage && <img src={firstImage.url} alt={firstImage.description} id="hospital_item" />}
+                {firstImage && <img src={firstImage} alt={props.name} id="hospital_item" />}
             </div>
             <div className="hospital_info_div">
                 <p id="hospital_name_info">{props.name}</p>

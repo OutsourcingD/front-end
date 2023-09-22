@@ -1,0 +1,74 @@
+.pwd_setting_div {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 7%;
+  margin-left: 3%;
+}
+
+.pwd_setting_info {
+  margin-bottom: 3%;
+}
+
+#pwd_setting_title {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  color: #444444;
+}
+
+#pwd_setting_pwd_input_div {
+  font-weight: 700;
+  font-size: 18px;
+  color: #444444;
+  margin-bottom: 3%;
+}
+
+.pwd_setting_input_div {
+  width: 100%;
+  border-bottom: 1px solid #d4d4d4;
+  margin-bottom: 3%;
+}
+
+#setting_pwd_input_form {
+  width: 100%;
+  margin-bottom: 2%;
+}
+
+#pwd_setting_pwd_input {
+  width: 90%;
+  padding-left: 10px;
+  font-size: 15px;
+  border: none;
+  outline: none;
+}
+
+#pwd_setting_pwd_input::placeholder {
+  color: #d4d4d4;
+}
+
+.pwd_setting_check_button_div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pwd_setting_check_button {
+  background: #dfb1e4;
+  border: 1px solid #e6c2ea;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.11);
+  border-radius: 8px;
+  width: 120px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 7%;
+}
+
+#pwd_setting_check_button {
+    font-weight: 700;
+    font-size: 15px;
+    color: #ffffff;
+}
