@@ -30,7 +30,7 @@ const ReviewItem = (props : ReviewResponseDto) => {
       </div>
       {/* 목차, 내용, 조회수, 댓글 수 */}
       <div className="right_item_div">
-				<div className="index_div">
+				<div className="review_item_index_div">
 					<div className="index_hospital_div">
             <p id="index_hospital_name">병원</p>
             <p id="review_hospital_info">{props.hospitalName}</p>
