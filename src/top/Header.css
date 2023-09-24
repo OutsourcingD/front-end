@@ -13,10 +13,10 @@
 }
 
 #menu {
-    font-size: 1vw;
+    font-size: 16px;
     color: #666666;
     font-weight: 600;
-    margin-left: 1%;
+    margin-left: 10px;
     white-space: nowrap;
     text-align: start;
 }
@@ -26,6 +26,24 @@
     color: #222222;
     font-weight: 600;
     margin-left: 1%;
+    white-space: nowrap;
+    text-align: start;
+}
+
+#menu_hospital {
+    font-size: 16px;
+    color: #666666;
+    font-weight: 600;
+    margin-left: 120px;
+    white-space: nowrap;
+    text-align: start;
+}
+
+#selected_menu_hospital {
+    font-size: 1vw;
+    color: #222222;
+    font-weight: 600;
+    margin-left: 120px;
     white-space: nowrap;
     text-align: start;
 }
@@ -41,8 +59,8 @@
 }
 
 #logo {
-    width: 15%;
-    margin-left: 2%;
+    width: 35px;
+    margin-left: 20px;
     margin-right: 1%;
 }
 

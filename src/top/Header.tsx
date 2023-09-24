@@ -51,8 +51,8 @@ function Header() {
   return (
     <HeaderDiv className='header'>
       <LeftDiv className='left'>
-        <img src='/k-logo.png' alt='logo' id='logo' onClick={() => movePage(0)}/>
-        <Menu id={selected !== 1 ? "menu" : "selected_menu"} onClick={() => movePage(1)}>병원정보</Menu>
+        <img src='/logo.png' alt='logo' id='logo' onClick={() => movePage(0)}/>
+        <Menu id={selected !== 1 ? "menu_hospital" : "selected_menu_hospital"} onClick={() => movePage(1)}>병원정보</Menu>
         <Menu id={selected !== 2 ? "menu" : "selected_menu"} onClick={() => movePage(2)}>원장정보</Menu>
         <Menu id={selected !== 3 ? "menu" : "selected_menu"} onClick={() => movePage(3)}>전후사진</Menu>
       </LeftDiv>
