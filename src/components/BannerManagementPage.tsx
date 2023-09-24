@@ -96,8 +96,9 @@ const BannerManagementPage = () => {
                     </div>
                 </div>
             </div>
-            <div className="banner_management_add_button_div">
-                <p>Add Banner Button</p>
+            <div className="banner_management_page_add_button_div">
+                <p id="doctor_edit_page_add_button_text">add banner</p>
+                <IoMdAddCircleOutline size="20px"/>
             </div>
         </div>
     );
