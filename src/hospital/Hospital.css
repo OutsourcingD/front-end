@@ -1,18 +1,47 @@
 .hospital_div {
     width: 100%;
     border-top: 1px solid #D4D4D4;
-    margin-top: 0.5%;
+    margin-top: 7.7px;
     display: flex;
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
 }
 
+.hospital_container {
+    width: 1125px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .hospital_item_div {
-    width: 51%;
+    width: 1025px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin-top: 1%;
+    margin-top: 15px;
+}
+
+.hospital_page_search_div {
+    width: 1025px;
+    height: 63px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.hospital_page_recommend_title_div {
+    margin-top: 33.8px;
+    width: 1025px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#hospital_page_recommend_title {
+    font-weight: 700;
+    font-size: 32px;
+    color: #202020;
 }

@@ -1,6 +1,6 @@
 .hospital_item_container {
-    width: 49%;
-    margin-bottom: 3%;
+    width: 504px;
+    margin-bottom: 30px;
 }
 
 .hospital_item_wrapper {
@@ -29,16 +29,18 @@
 }
 
 #hospital_name_info {
-    margin-top: 2%;
-    margin-left: 3%;
-    margin-bottom: 0.5%;
+    margin-top: 10px;
+    margin-left: 15px;
+    margin-bottom: 2.5px;
     font-weight: 700;
-    font-size: 0.8vw;
+    font-size: 16px;
+    color: #222222;
 }
 
 #hospital_hospital {
-    margin-bottom: 4%;
-    margin-left: 3%;
-    font-size: 0.7vw;
-    font-weight: 400;
+    margin-bottom: 20px;
+    margin-left: 15px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #444444;
 }
