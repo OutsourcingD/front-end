@@ -73,7 +73,7 @@ function Header() {
             : 
               <>
                 <div className="login_div" onClick={() => navigate("/login")}>
-                  <img src="/login.png" alt="login" />
+                  <img src="/login.png" alt="login" id="header_login" />
                 </div>
               </>
         }

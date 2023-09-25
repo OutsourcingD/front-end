@@ -2,6 +2,11 @@
     background-color: #FFF;
     display: flex;
     width: 100%;
+    margin-bottom: 10px;
+}
+
+#header_login {
+    width: 120px;
 }
 
 .left {
@@ -34,7 +39,7 @@
     font-size: 16px;
     color: #666666;
     font-weight: 600;
-    margin-left: 120px;
+    margin-left: 40px;
     white-space: nowrap;
     text-align: start;
 }
@@ -43,7 +48,7 @@
     font-size: 1vw;
     color: #222222;
     font-weight: 600;
-    margin-left: 120px;
+    margin-left: 40px;
     white-space: nowrap;
     text-align: start;
 }
@@ -59,8 +64,8 @@
 }
 
 #logo {
-    width: 35px;
-    margin-left: 20px;
+    width: 120px;
+    margin-left: 40px;
     margin-right: 1%;
 }
 

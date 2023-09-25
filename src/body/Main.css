@@ -13,8 +13,7 @@
 
 .advertisement {
     width: 100%;
-    height: 441px;
-
+    height: 361px;
 }
 
 .recommend_review {
@@ -36,7 +35,7 @@
 
 .recommend_div {
     display: flex;
-    width: 51%;
+    width: 810px;
     border-radius: 15px;
     border: double 2.5px transparent;
     background-image: linear-gradient(white, white), 
@@ -54,19 +53,19 @@
     display: flex;
     flex: 6;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: flex-start;
     width: 100%;
+    height: 80px;
     margin-right: 1%;
 }
 
 #recommended_title {
     font-family: 'recommended_title';
     color: #222222;
-    font-weight: 800;
-    font-size: 1.2vw;
+    font-weight: 700;
+    font-size: 22px;
     margin-bottom: 0;
-    margin-top: 7.3%;
     white-space: nowrap;
 }
 
@@ -74,8 +73,8 @@
     display: flex;
     flex: 9;
     align-items: flex-start;
-    margin-top: 1.1%;
-    margin-right: 3%;
+    margin-top: 9px;
+    margin-right: 24px;
 }
 
 #hot {
@@ -84,9 +83,9 @@
 
 #more_text {
     color: #DDB0E3;
-    font-weight: 800;
+    font-weight: 700;
     font-family: Pretendard;
-    font-size: 1vw;
+    font-size: 16px;
 }
 
 .moreDiv {
@@ -94,12 +93,13 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding-right: 1.5%;
+    padding-right: 20px;
     width: 100%;
 }
 
 #week_text {
-    font-size: 0.87vw;
+    font-size: 16px;
+    font-weight: 500;
     font-family: Pretendard;
     color: #444444;
     margin-top: 2%;
@@ -147,8 +147,7 @@
 #advertisement_img {
     width: 100%;
     height: 100%;
-    height: 441px;
-    object-fit: contain;
+    object-fit: fill;
 }
 
 .make_review_button_div {
