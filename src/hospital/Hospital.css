@@ -6,6 +6,7 @@
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
+    margin-bottom: 60px;
 }
 
 .hospital_container {
