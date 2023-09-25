@@ -23,16 +23,18 @@
 
 #mypage_name {
     font-weight: 700;
-    font-size: 1.5vw;
+    font-size: 32px;
     white-space: nowrap;
-    margin-right: 5%;
+    color: #222222;
+    margin-right: 3px;
 }
 
 #mypage_sir {
     display: flex;
-    font-weight: 600;
-    font-size: 1.2vw;
-    margin-right: 3%;
+    font-weight: 700;
+    font-size: 24px;
+    margin-right: 10px;
+    color: #222222;
 }
 
 .mypage_name_div {
@@ -48,17 +50,19 @@
 }
 
 #mypage_setting_button {
-    width: 4.6vw;
+    width: 100px;
     height: fit-content;
 }
 
 #write_review {
-    width: 100%;
+    width: 110px;
     height: fit-content;
 }
 
 .write_review_button {
-    width: 5.6vw;
+    width: 110px;
+    display: flex;
+    align-items: flex-end;
 }
 
 .mypage_title_right_div {
@@ -89,14 +93,15 @@
 
 #my_page_sub_title {
     font-weight: 700;
-    font-size: 0.9vw;
-    margin-bottom: 2%;
+    font-size: 18px;
+    color: #222222;
+    margin-bottom: 10px;
 }
 
 #my_page_more {
-    font-weight: 500;
-    font-size: 0.8vw;
-    margin-bottom: 2%;
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 10px;
     color: #DDB0E3;
 }
 

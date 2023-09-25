@@ -11,12 +11,12 @@
 
 #my_inquery_title {
     color: #444444;
-    font-size: 0.7vw;
-    font-weight: 500;
+    font-size: 15px;
+    font-weight: 400;
 }
 
 #is_recieved {
-    font-weight: 800;
-    font-size: 0.7vw;
+    font-weight: 600;
+    font-size: 15px;
     color: #444444;
 }
