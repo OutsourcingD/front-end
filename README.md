@@ -46,4 +46,5 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## TODO
-- mypage: picture to div
+- [ ] mypage: picture to div
++ [ ] mypage/review/more: 2차 후기 쓰기 버튼
