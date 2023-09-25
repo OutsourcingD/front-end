@@ -1,5 +1,6 @@
 .login_container {
     width: 100%;
+    height: 100vh;
     border-top: 1px solid #666666;
     display: flex;
     justify-content: center;
@@ -7,10 +8,11 @@
 
 .login_wrapper {
     display: flex;
-    width: 30%;
-    margin-top: 4%;
-    padding-top: 2%;
-    padding-bottom: 2%;
+    width: 466px;
+    height: 345px;
+    margin-top: 62px;
+    padding-top: 31px;
+    padding-bottom: 31px;
     border: 1px solid #c4c4c4;
     justify-content: center;
     flex-direction: column;
@@ -19,42 +21,42 @@
 }
 
 .login_item_div {
-    width: 70%;
-    margin-bottom: 3%;
+    width: 85px;
+    margin-bottom: 15px;
     display: flex;
     justify-content: center;
 }
 
 .login_id_input_div {
-    width: 70%;
-    margin-bottom: 3%;
+    width: 326.2px;
+    margin-bottom: 15px;
     border-bottom: 1px solid #c4c4c4;
 }
 
 .pwd_id_input_div {
-    width: 70%;
-    margin-bottom: 3%;
+    width: 326.2px;
+    margin-bottom: 15px;
     border-bottom: 1px solid #c4c4c4;
 }
 
 .login_button_item_div {
-    width: 70%;
-    margin-bottom: 3%;
-    margin-top: 1%;
+    width: 326.2px;
+    margin-bottom: 15px;
+    margin-top: 5px;
     background-color: #DFB1E4;
     border-radius: 10px;
-    padding-top: 3%;
-    padding-bottom: 3%;
+    padding-top: 15px;
+    padding-bottom: 15px;
     text-align: center;
 }
 
 .login_more_div {
-    width: 70%;
-    margin-bottom: 4%;
+    width: 326.2px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 4%;
+    margin-top: 20px;
 }
 
 #login_item_title {

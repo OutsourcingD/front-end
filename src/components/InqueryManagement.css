@@ -1,12 +1,12 @@
 .check_user_index_left_div {
-    width: 30%;
+    width: 146.19px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
 .inquery_page_body {
-    width: 95%;
+    width: 1015.31px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -16,7 +16,7 @@
 }
 
 .check_user_index_right_div {
-    width: 35%;
+    width: 170.56px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

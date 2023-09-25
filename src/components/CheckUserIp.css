@@ -33,7 +33,7 @@
 }
 
 .check_user_ip_body_div {
-    width: 95%;
+    width: 1068.75px;
     height: 550px;
     margin-left: 20px;
     margin-top: 20px;
@@ -45,7 +45,7 @@
 }
 
 .check_user_body {
-    width: 95%;
+    width: 1015.31px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -57,7 +57,7 @@
 .check_user_left_div {
     display: flex;
     flex-direction: column;
-    width: 48%;
+    width: 487.33px;
     height: 400px;
 }
 
