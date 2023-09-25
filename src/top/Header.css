@@ -1,8 +1,9 @@
 .header {
     background-color: #FFF;
     display: flex;
-    width: 100%;
-    margin-bottom: 10px;
+    width: 100vw;
+    height: 65px;
+    justify-content: space-between;
 }
 
 #header_login {
@@ -12,9 +13,9 @@
 .left {
     display: flex;
     align-items: center;
-    width: 100%;
-    margin-left: 5%;
-    padding-top: 0.7%;
+    width: 696px;
+    margin-left: 77px;
+    padding-top: 11px;
 }
 
 #menu {
@@ -27,10 +28,10 @@
 }
 
 #selected_menu {
-    font-size: 1vw;
+    font-size: 16px;
     color: #222222;
     font-weight: 600;
-    margin-left: 1%;
+    margin-left: 40px;
     white-space: nowrap;
     text-align: start;
 }
@@ -45,7 +46,7 @@
 }
 
 #selected_menu_hospital {
-    font-size: 1vw;
+    font-size: 16px;
     color: #222222;
     font-weight: 600;
     margin-left: 40px;
@@ -55,34 +56,31 @@
 
 .right {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     float: right;
-    margin-right: 5%;
-    width: 100%;
+    margin-right: 120px;
     justify-content: right;
 }
 
 #logo {
     width: 120px;
     margin-left: 40px;
-    margin-right: 1%;
+    margin-right: 7px;
 }
 
 #name {
     color: #DDB0E3;
     font-weight: 600;
-    margin-left: 5%;
+    margin-left: 10px;
 }
 
 .nameDiv {
-    flex: 1;
     display: flex;
     align-items: center;
 }
 
 .chatDiv {
-    flex: 1;
     display: flex;
     align-items: center;
 }
@@ -95,6 +93,5 @@
 
 .login_div {
     display: flex;
-    width: 18%;
-    margin-right: 4%;
+    width: 120px;
 }
