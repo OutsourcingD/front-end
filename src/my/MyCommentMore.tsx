@@ -1,11 +1,18 @@
 import React from "react";
 import "./MyCommentMore.css";
 import MyCommentItem from "./MyCommentItem";
+import Pagination from "react-js-pagination";
 
 function MyRecommendReview() {
   const my_review_list = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
   ];
+  const [page, setPage] = React.useState(1);
+  const [totalPages, setTotalPages] = React.useState(2);
+
+  const handlePageChange = (page: React.SetStateAction<number>) => {
+    setPage(page);
+  };
 
   return (
     <div className="my_recommend_review_div">
@@ -21,6 +28,15 @@ function MyRecommendReview() {
           );
         })}
       </div>
+      <Pagination
+        activePage={page}
+        itemsCountPerPage={10}
+        totalItemsCount={totalPages * 10}
+        pageRangeDisplayed={10}
+        prevPageText={"‹"}
+        nextPageText={"›"}
+        onChange={handlePageChange}
+      />
     </div>
   );
 }
