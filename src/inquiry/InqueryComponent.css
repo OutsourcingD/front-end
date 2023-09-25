@@ -10,7 +10,7 @@
 }
 
 .inquery_title_div {
-    width: 30%;
+    width: 500px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -18,19 +18,21 @@
 
 #inquery_title {
     font-weight: 700;
-    font-size: 1.5vw;
+    font-size: 32px;
+    color: #222222;
 }
 
 .inquery_body {
-    width: 30%;
+    width: 500px;
     font-size: 0.9vw;
     font-weight: 600;
     margin-top: 2%;
 }
 
 .inquery_input_div {
-    width: 30%;
+    width: 700px;
     margin-top: 0.7%;
+    margin-left: 200px;
 }
 
 #inquery_input {
@@ -46,11 +48,19 @@
     padding-top: 2%;
 }
 
+#inquery_input::placeholder {
+    font-size: 14px;
+    font-weight: 400;
+    color: #444444;
+}
+
 .inquery_button_div {
     display: flex;
     background-color: #DFB1E4;
-    margin-top: 3%;
-    width: 30%;
+    margin-top: 40px;
+    margin-left: 200px;
+    width: 700px;
+    height: 25px;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
@@ -65,6 +75,7 @@
 }
 
 #inquery_sub_title {
-    font-weight: 500;
-    font-size: 0.95vw;
+    font-weight: 600;
+    font-size: 18px;
+    color: #444444;
 }
