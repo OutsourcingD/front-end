@@ -2,18 +2,13 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 70px;
+  align-items: center;
 }
 
 .left_review_item {
   display: flex;
   flex-direction: row;
-  width: 60%;
-}
-
-.right_item_div {
-  display: flex;
-  flex-direction: row;
-  width: 30%;
 }
 
 p {
@@ -21,10 +16,10 @@ p {
 }
 
 .profile_div {
-  width: 8%;
-  margin-left: 2%;
-  margin-right: 2%;
-  margin-top: 2%;
+  width: 50px;
+  height: 50px;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .title_div {
@@ -33,33 +28,41 @@ p {
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
-
 }
 
 #review_item_title {
   font-weight: 700;
-  font-size: 0.835vw;
-  margin-top: 1%;
-  margin-bottom: 1%;
+  font-size: 16px;
+  margin-top: 0.5px;
+  margin-bottom: 0.5px;
   color: #222222;
 }
 
 #review_user {
   color: #666666;
   font-weight: 500;
-  font-size: 0.7vw;
+  font-size: 14px;
 }
 
 #review_date {
   color: #d4d4d4;
-  font-size: 0.7vw;
+  font-size: 12px;
+}
+
+.review_item_index_container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 .right_item_div {
-  width: 30%;
+  width: 270px;
   display: flex;
-  justify-content: flex-end;
-  margin-right: 3%;
+  justify-content: flex-start;
+  margin-right: 24px;
+  flex-direction: row;
+  align-items: center;
 }
 
 .comment_div {
@@ -70,30 +73,51 @@ p {
 }
 
 #comment_number {
-  font-size: 0.7vw;
-  margin-left: 10%;
+  font-size: 12px;
+  font-weight: 400;
+  margin-left: 5px;
   color: #444444;
 }
 
+.comment_image_div {
+  display: flex;
+  width: 13px;
+  height: 13px;
+}
+
 #comment_icon {
-  width: 0.8vw;
+  width: 100%;
+  height: 100%;
 }
 
 .view_info {
   display: flex;
   flex-direction: row;
-  margin-top: 2.5%;
-  margin-left: 10%;
-  margin-right: 3%;
+  height: 55px;
+  width: 50px;
+}
+
+.comment_div {
+  display: flex;
+  flex-direction: row;
+  height: 59px;
+}
+
+.view_info_div {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
 }
 
 .view_div {
   display: flex;
-  margin-right: 10%;
+  width: 16px;
+  height: 16px;
 }
 
 #view_icon {
   width: 100%;
+  height: 100%;
 }
 
 #view_number {
@@ -112,8 +136,8 @@ p {
 #index_part_name,
 #index_doctor_name {
   white-space: nowrap;
-  font-size: 0.7vw;
-  font-weight: 900;
+  font-size: 14px;
+  font-weight: 700;
   color: #222222;
 }
 
@@ -147,20 +171,29 @@ p {
   display: flex;
   flex-direction: row;
   margin-bottom: 2%;
+  justify-content: flex-start;
 }
 
 .review_item_index_div {
   margin-top: 3%;
   display: flex;
   flex-direction: column;
+  width: 160px;
+}
+
+.hospital_name_data {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 #review_hospital_info {
   white-space: nowrap;
-  font-size: 0.64vw;
+  font-size: 12px;
   color: #666666;
   font-weight: 400;
-  margin-left: 14%;
+  display: flex;
+  justify-content: flex-start;
 }
 
 #review_doctor_info {
@@ -177,4 +210,16 @@ p {
   color: #666666;
   font-weight: 400;
   margin-left: 14%;
+}
+
+#review_list_profile {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.hospital_name_div {
+  width: 45px;
+  display: flex;
+  align-items: flex-start;
 }

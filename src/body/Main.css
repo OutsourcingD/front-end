@@ -13,21 +13,21 @@
 
 .advertisement {
     width: 100%;
-    height: 361px;
+    height: 461px;
 }
 
 .recommend_review {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 1%;
+    margin-top: 15.5px;
     justify-content: space-between;
     width: 100%;
 }
 
 #review_list_profile {
-    width: 80%;
-    height: 80%;
+    width: 789px;
+    height: 678px;
     border-radius: 50%; /* Add this line */
     object-fit: cover; /* Add this line */
     border: 1px solid #D4D4D4;
@@ -49,15 +49,14 @@
 }
 
 .recommend_text_div {
-    padding-left: 2%;
+    padding-left: 14px;
     display: flex;
     flex: 6;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    width: 100%;
     height: 80px;
-    margin-right: 1%;
+    margin-right: 5px;
 }
 
 #recommended_title {
@@ -94,7 +93,6 @@
     align-items: center;
     justify-content: flex-end;
     padding-right: 20px;
-    width: 100%;
 }
 
 #week_text {
@@ -102,13 +100,13 @@
     font-weight: 500;
     font-family: Pretendard;
     color: #444444;
-    margin-top: 2%;
+    margin-top: 5.7px;
     white-space: nowrap;
 }
 
 .review_div {
     display: flex;
-    width: 51%;
+    width: 809px;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -116,37 +114,39 @@
 
 .mainBody {
     width: 100%;
+    height: 117px;
 }
 
 .search_div {
-    width: 51%;
+    width: 809px;
+    height: 53px;
     display: flex;
     justify-content: space-between;
 }
 
 .filter_div {
     display: flex;
-    margin-top: 1%;
-    width: 5%;
+    margin-top: 8px;
+    width: 40px;
     align-items: flex-end;
 }
 
 .review_list_div {
-    width: 51%;
-    margin-top: 1%;
+    width: 809px;
+    margin-top: 15.5px;
 }
 
 .review_item_div {
-    margin-bottom: 1%;
+    margin-bottom: 8px;
     border-radius: 15px;
     border: 1px solid #D4D4D4;
-    padding-top: 0.5%;
-    padding-bottom: 0.5%;
+    padding-top: 4px;
+    padding-bottom: 4px;
 }
 
 #advertisement_img {
     width: 100%;
-    height: 100%;
+    height: 414px;
     object-fit: fill;
 }
 
@@ -155,7 +155,7 @@
     display: flex;
     bottom: 10%;
     right: 15%;
-    padding: 1%;
+    padding: 15.5px;
     width: 1.5%;
     background: linear-gradient(180deg, #D0ABF0 0%, #D69FE0 100%);
     box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.2);

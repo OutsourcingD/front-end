@@ -12,27 +12,31 @@
 #review_image {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    height: 35vh;
+    height: 324px;
     object-fit: cover;
 }
 
 #description {
     align-content: flex-start;
     color: #FFF;
-    margin-left: 4%;
+    margin-left: 8px;
     margin-top: 0;
-    font-size: 88%;
-    width: 120%;
-    word-wrap: break-word;
+    font-size: 14px;
+    width: 298px;
+    height: 36px;
+    font-weight: 400;
     text-align: left;
 }
 
 #review_title {
     align-content: flex-start;
-    font-size: 140%;
+    font-size: 22px;
+    font-weight: 700;
     color: #FFF;
-    margin-left: 3%;
-    margin-bottom: 1%;
+    width: 298px;
+    text-align: start;
+    margin-left: 6px;
+    margin-bottom: 2px;
     margin-top: 0;
 }
 
@@ -40,30 +44,29 @@
     display: inline-block;
     text-align: center;
     flex-direction: column;
-    margin-top: 3%;
-    width: 49%;
+    margin-top: 24px;
+    width: 396px;
 }
 
 .review_text_div_ {
-    width: 50%;
+    width: 3960x;
     display: flex;
     position: absolute;
     align-items: flex-start;
-    bottom: 4%;
+    bottom: 14px;
     flex-direction: column;
     background: rgba(0, 0, 0, 0.37);
     filter: blur(50px);
-    margin-left: 2%;
 }
 
 .review_text_div {
-    width: 50%;
+    width: 198px;
     display: flex;
     position: absolute;
     align-items: flex-start;
-    bottom: 4%;
+    bottom: 14px;
     flex-direction: column;
-    margin-left: 2%;
+    margin-left: 8px;
 }
 
 .hospital_rate_info_div {
@@ -76,28 +79,28 @@
 }
 
 #hospital_name {
-    margin-bottom: 1%;
-    font-size: 110%;
-    margin-left: 2%;
-    margin-top: 3%;
+    margin-bottom: 5px;
+    font-size: 22px;
+    margin-left: 14px;
+    margin-top: 10px;
     font-weight: 700;
-    margin-bottom: 1%;
     text-align: start;
 }
 
 .rate_start_div {
     display: flex;
-    align-items: flex-start; /* 수직으로 상단 정렬 */
+    align-items: center; /* 수직으로 상단 정렬 */
     justify-content: flex-start; /* 수평으로 좌측 정렬 */
     flex-direction: row;
-    padding-left: 2%;
-    margin-bottom: 3%;
+    padding-left: 8px;
+    margin-bottom: 12px;
 }
 
 #hospital_rate {
-    margin-top: 1%;
-    margin-bottom: 1%;
-    margin-right: 1%;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-right: 7px;
+    font-size: 14px;
 }
 
 #surgery_part {
@@ -106,12 +109,15 @@
     margin-right: 1%;
     color: #DDB0E3;
     font-weight: 600;
+    font-size: 14px;
 }
 
 #doctor_name {
-    margin-top: 1%;
-    margin-bottom: 1%;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-size: 14px;
     font-weight: 600;
+    color: #222222;
 }
 
 .hospital_info_div {
