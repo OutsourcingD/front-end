@@ -5,12 +5,12 @@
     justify-content: center;
     flex-direction: column;
     border-top: 1px solid #d4d4d4;
-    margin-top: 0.5%;
+    margin-top: 5px;
 }
 
 .mypage_title_div {
-    margin-top: 2%;
-    width: 40%;
+    margin-top: 30px;
+    width: 619px;
     justify-content: space-between;
     display: flex;
 }
@@ -71,24 +71,23 @@
 }
 
 .mypage_body {
-    margin-top: 2%;
-    width: 40%;
+    margin-top: 25px;
+    width: 619px;
     display: flex;
     flex-direction: column;
-    margin-bottom: 1%;
-    
+    margin-bottom: 10px;    
 }
 
 .my_review_items_div {
-    margin-left: 0.5%;
+    margin-left: 3.1px;
 }
 
 .mypage_review_div{
-    margin-bottom: 3%;
+    margin-bottom: 18.6px;
 }
 
 .mypage_comment_div {
-    margin-bottom: 3%;
+    margin-bottom: 18.6px;
 }
 
 #my_page_sub_title {
@@ -106,15 +105,15 @@
 }
 
 .mypage_review_header_div {
-    margin-bottom: 1%;
+    margin-bottom: 6.2px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
 .mypage_bottom {
-    width: 40%;
-    margin-bottom: 3%;
+    width: 619px;
+    margin-bottom: 46.5px;
 }
 
 .promotion_div {
