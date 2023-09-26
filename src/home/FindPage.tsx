@@ -16,14 +16,14 @@ const FindPage = () => {
   return (
     <div className="find_page_div">
       <div className="find_page_title_div">
-        {isId ? <h1>Find Id Page</h1> : <h1>Find PWD Page</h1>}
+        {isId ? <p id="find_id_sub_title">Find Id Page</p> : <p id="find_id_sub_title">Find PWD Page</p>}
         <div className="find_div">
           <div className="find_page_head_div">
             <div
               className={isId ? "find_id_container" : "find_id_container_click"}
               onClick={() => setIsId(true)}
             >
-              <p>아이디 찾기</p>
+              <p id="find_id_page_input_title">아이디 찾기</p>
             </div>
             <div
               className={
@@ -31,7 +31,7 @@ const FindPage = () => {
               }
               onClick={() => setIsId(false)}
             >
-              <p>비밀번호 찾기</p>
+              <p id="find_id_page_input_title">비밀번호 찾기</p>
             </div>
           </div>
           {
