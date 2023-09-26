@@ -1,12 +1,15 @@
 .inquery_div {
     width: 100%;
+    height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
     border-top: 1px solid #D4D4D4;
-    padding-top: 3%;
-    margin-top: 0.5%;
     flex-direction: column;
+}
+
+.inquery_wrapper {
+    margin-top: 60px;
+    width: 700px;
 }
 
 .inquery_title_div {
@@ -31,46 +34,44 @@
 
 .inquery_input_div {
     width: 700px;
-    margin-top: 0.7%;
-    margin-left: 200px;
+    margin-top: 4px;
 }
 
 #inquery_input {
     display: flex;
     border: none;
     outline: none;
-    font-size: 80%;
-    width: 97%;
-    padding-left: 2%;
-    height: 100px;
+    font-size: 14px;
+    width: 700px;
+    padding-left: 14px;
+    height: 200px;
     border-radius: 15px;
     border: 1px solid #D4D4D4;
-    padding-top: 2%;
+    padding-top: 14px;
 }
 
 #inquery_input::placeholder {
     font-size: 14px;
     font-weight: 400;
-    color: #444444;
+    color: #999999;
 }
 
 .inquery_button_div {
     display: flex;
     background-color: #DFB1E4;
     margin-top: 40px;
-    margin-left: 200px;
     width: 700px;
-    height: 25px;
+    height: 40px;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    padding-top: 0.5%;
-    padding-bottom: 0.5%;
+    padding-top: 3.5px;
+    padding-bottom: 3.5px;
 }
 
 #inquery_button {
     color: white;
-    font-size: 0.9vw;
+    font-size: 15px;
     font-weight: 700;
 }
 
