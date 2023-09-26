@@ -29,7 +29,7 @@ function MyPageInfo() {
           </div>
         </div>
         <div className="my_info_sub_title_div">
-          <p id="my_info_sub_title">이름</p>
+          <p id="my_info_sub_title_name">이름</p>
           <form id="form_tag">
             <input
               id="input_tag"
@@ -39,7 +39,7 @@ function MyPageInfo() {
           </form>
         </div>
         <div className="my_info_sub_title_div">
-          <p id="my_info_sub_title">이메일</p>
+          <p id="my_info_sub_title_name">이메일</p>
           <form id="form_tag">
             <input
               id="input_tag"
@@ -49,7 +49,7 @@ function MyPageInfo() {
           </form>
         </div>
         <div className="my_info_sub_title_div">
-          <p id="my_info_sub_title">새 비밀번호</p>
+          <p id="my_info_sub_title_name">새 비밀번호</p>
           <form id="form_tag">
             <input
               id="input_tag"
@@ -59,7 +59,7 @@ function MyPageInfo() {
           </form>
         </div>
         <div className="my_info_sub_title_div">
-          <p id="my_info_sub_title">새 비밀번호 확인</p>
+          <p id="my_info_sub_title_name">새 비밀번호 확인</p>
           <form id="form_tag">
             <input
               id="input_tag"
@@ -69,7 +69,7 @@ function MyPageInfo() {
           </form>
         </div>
         <div className="my_info_sub_title_div">
-          <p id="my_info_sub_title">전화번호</p>
+          <p id="my_info_sub_title_name">전화번호</p>
           <form id="form_tag">
             <input
               id="input_tag"
@@ -79,11 +79,14 @@ function MyPageInfo() {
           </form>
         </div>
         <div className="my_info_sub_title_div">
-          <p id="my_info_sub_title">성별</p>
+          <p id="my_info_sub_title_name">성별</p>
           <div className="gender_button">
             <img id="man_button" src="/male.png" alt="man"/>
             <img id="woman_button" src="/female.png" alt="woman" />
           </div>
+        </div>
+        <div className="mypage_info_edit_button_div">
+          <p id="mypage_info_edit_button_text">edit</p>
         </div>
       </div>
     </div>

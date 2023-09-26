@@ -48,3 +48,4 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ## TODO
 - recommend/review 변경
 - mypage 나의 문의 내역
+- mypage/info 중복확인 버튼 텍스트로 변경
