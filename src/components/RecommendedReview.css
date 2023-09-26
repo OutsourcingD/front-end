@@ -1,14 +1,14 @@
 .recommed_div {
     width: 100%;
     border-top: 1px solid #D4D4D4;
-    margin-top: 0.5%;
+    margin-top: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .recommend_title_div {
-    margin-top: 3%;
+    margin-top: 46px;
     width: 809px;
     display: flex;
     align-items: center;
@@ -17,21 +17,20 @@
 
 #recommend_title {
     font-weight: 700;
-    font-size: 1.5vw;
+    font-size: 32px;
+    color: #202020;
+    margin-bottom: 20px;
 }
 
 .hot_div {
-    margin-left: 1%;
+    margin-left: 5px;
 }
 
 #hot {
-    width: 2vw;
+    width: 40px;
+    margin-bottom: 20px;
 }
 
-.dropbox_div {
-    width: 51%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin-top: 1.1%;
+.search_div {
+    margin-top: 10px
 }

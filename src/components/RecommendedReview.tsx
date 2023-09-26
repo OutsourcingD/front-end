@@ -13,7 +13,7 @@ function RecommendedReview() {
   useEffect(() => {
     axios({
       method: 'get', // or 'post', 'put', etc.
-      url: `${process.env.REACT_APP_SERVER_URL}/review/recommendation?pages=0`,
+      url: `${process.env.REACT_APP_SERVER_URL}/review/recommendation/all?pages=0`,
       headers: {
         Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
       }
@@ -31,10 +31,6 @@ function RecommendedReview() {
         </div>
       </div>
       <Category />
-      <div className="dropbox_div">
-        <p>Doctors</p>
-        <DropBox />
-      </div>
       <div className="search_div">
         <Search page={0} onSearch={(value) => console.log("")} onSearchResult={() => console.log("")}/>
       </div>
