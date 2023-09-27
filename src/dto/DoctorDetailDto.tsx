@@ -13,4 +13,6 @@ export type DoctorDetailDto = {
   location: string;
   avgRate: number;
   createdAt: string;
+  doctorName: string;
+  hospitalName: string;
 };
