@@ -71,7 +71,7 @@ const ReviewItem = (props: ReviewResponseDto) => {
                         <img src="/Show.png" alt="" id="view_icon" />
                     </div>
                     <div className="view_info_div">
-                        <p id="comment_number">{props.viewCount}</p>
+                        <p id="view_number">{props.viewCount}</p>
                     </div>
                 </div>
                 {/* 댓글 수 */}

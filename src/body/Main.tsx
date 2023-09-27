@@ -15,6 +15,7 @@ import { ReviewResponseDto } from "../dto/ReviewDto";
 import Pagination from "react-js-pagination";
 import { useNavigate } from "react-router-dom";
 import { ReviewDetailDto } from "../dto/ReviewDetailDto";
+import "../Test.css"
 
 function Main() {
   const settings = {

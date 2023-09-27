@@ -46,7 +46,7 @@ function RecommendReviewPage() {
 
   return (
     <div className="recommend_all_div">
-      <div className="recommend_title_div">
+      <div className="recommend_all_page_title_div">
         <p id="recommend_title">8월 2주차 커뮤니티 추천 후기글</p>
         <div className="hot_div">
           <img id="hot_image" src="/hot.png" alt="추천 후기" />

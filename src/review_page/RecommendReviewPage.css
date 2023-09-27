@@ -1,24 +1,34 @@
 .recommend_all_div {
     width: 100%;
     border-top: 1px solid #D4D4D4;
-    margin-top: 0.5%;
+    margin-top: 7.9px;
     display: flex;
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
 }
 
+.recommend_all_page_title_div {
+    margin-top: 46px;
+    width: 809px;
+    display: flex;
+    justify-content: flex-start;
+}
+
 .hot_div {
     display: flex;
     align-items: center;   
     margin-left: 1%; 
+    height: 48px;
 }
 
 #hot_image {
-    width: 50%;
+    width: 100%;
+    height: 100%;
 }
 
 .recommend_all_item {
+    background-color: red;
     width: 51%;
     display: flex;
     flex-direction: row;

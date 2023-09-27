@@ -7,7 +7,7 @@ import PwdSettingPage from "./PwdSettingPage";
 
 const FindPage = () => {
   const [isId, setIsId] = React.useState<boolean>(true);
-  const [isSubmit, setIsSubmit] = React.useState<boolean>(true);
+  const [isSubmit, setIsSubmit] = React.useState<boolean>(false);
 
   const handleEmail = (email: string) => {
     
