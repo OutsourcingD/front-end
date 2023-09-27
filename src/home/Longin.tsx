@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
+import Footer from "../bottom/Footer";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -61,6 +62,10 @@ function Login() {
             <p id="sign_up" onClick={signUpHandler}>회원가입</p>
         </div>
       </div>
+      <div style={{height: "40%"}}>
+
+      </div>
+      <Footer />
     </div>
   );
 }

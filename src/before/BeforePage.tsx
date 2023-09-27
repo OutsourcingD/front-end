@@ -5,6 +5,7 @@ import Search from "../components/Search";
 import BeforeItem from "../components/BeforeItem";
 import Pagination from "react-js-pagination";
 import BeforeCategory from "../components/BeforeCategory";
+import Footer from "../bottom/Footer";
 
 function BeforePage() {
     const before_list = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -42,6 +43,7 @@ function BeforePage() {
                     onChange={(page) => setPage(page)}
                 />
             </div>
+            <Footer />
         </div>
     );
 }

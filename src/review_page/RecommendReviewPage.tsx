@@ -6,6 +6,7 @@ import "./RecommendReviewPage.css";
 import { ReviewResponseDto } from "../dto/ReviewDto";
 import ReviewItem from "../components/ReviewItem";
 import axios from "axios";
+import Footer from "../bottom/Footer";
 
 function RecommendReviewPage() {
   const [page, setPage] = React.useState(1);
@@ -92,6 +93,7 @@ function RecommendReviewPage() {
         nextPageText={"›"}
         onChange={(page) => setPage(page)}
       />
+      <Footer />
     </div>
   );
 }

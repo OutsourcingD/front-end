@@ -5,6 +5,7 @@ import DoctorItem from "../components/DoctorItem";
 import Pagination from "react-js-pagination";
 import axios from "axios";
 import { DoctorResponseDto } from "../dto/DoctorResponseDto";
+import Footer from "../bottom/Footer";
 
 function Doctor() {
     const [doctor_list, setDoctorList] = useState<DoctorResponseDto[]>([]);
@@ -52,6 +53,7 @@ function Doctor() {
                     onChange={(page) => setPage(page)}
                 />
             </div>
+            <Footer />
         </div>
     );
 }

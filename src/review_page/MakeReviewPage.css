@@ -4,8 +4,8 @@
     border-top: 1px solid #D4D4D4;
     margin-top: 2px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
@@ -14,6 +14,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 70px;
 }
 
 .make_review_title_div {

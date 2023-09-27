@@ -4,6 +4,7 @@ import "./ReviewPage.css";
 import axios from "axios";
 import { ReviewDetailDto } from "../dto/ReviewDetailDto";
 import Slider from "react-slick";
+import Footer from "../bottom/Footer";
 
 function ReviewPage() {
   const location = useLocation();
@@ -105,6 +106,7 @@ function ReviewPage() {
 
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

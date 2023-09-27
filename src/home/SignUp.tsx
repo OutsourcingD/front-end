@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./SignUp.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Footer from "../bottom/Footer";
 
 function SignUp() {
   const [duplicated, setDuplicated] = useState(0);
@@ -438,6 +439,7 @@ function SignUp() {
           <p id="signup_button_text">agree and signup</p>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

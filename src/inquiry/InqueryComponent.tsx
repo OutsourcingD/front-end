@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./InqueryComponent.css";
+import Footer from "../bottom/Footer";
 
 function InqueryComponent() {
     const [value, setText] = useState("");
@@ -39,6 +40,7 @@ function InqueryComponent() {
                     <p id="inquery_button">등록하기</p>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 }

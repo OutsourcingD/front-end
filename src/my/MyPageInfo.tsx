@@ -1,5 +1,6 @@
 import React from "react";
 import "./MyPageInfo.css";
+import Footer from "../bottom/Footer";
 
 function MyPageInfo() {
   return (
@@ -89,6 +90,7 @@ function MyPageInfo() {
           <p id="mypage_info_edit_button_text">edit</p>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

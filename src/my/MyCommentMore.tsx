@@ -2,6 +2,7 @@ import React from "react";
 import "./MyCommentMore.css";
 import MyCommentItem from "./MyCommentItem";
 import Pagination from "react-js-pagination";
+import Footer from "../bottom/Footer";
 
 function MyRecommendReview() {
   const my_review_list = [
@@ -37,6 +38,7 @@ function MyRecommendReview() {
         nextPageText={"›"}
         onChange={handlePageChange}
       />
+      <Footer />
     </div>
   );
 }

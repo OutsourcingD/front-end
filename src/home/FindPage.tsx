@@ -4,6 +4,7 @@ import FindIdPageItem from "./FindIdPageItem";
 import FindPwdPage from "./FindPwdPage";
 import IdInfoPage from "./IdInfoPage";
 import PwdSettingPage from "./PwdSettingPage";
+import Footer from "../bottom/Footer";
 
 const FindPage = () => {
   const [isId, setIsId] = React.useState<boolean>(true);
@@ -45,6 +46,7 @@ const FindPage = () => {
           }
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

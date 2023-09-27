@@ -5,6 +5,7 @@ import HospitalItem from "../components/HospitalItem";
 import Pagination from "react-js-pagination";
 import axios from "axios";
 import { HospitalResponseDto } from "../dto/HospitalResponseDto";
+import Footer from "../bottom/Footer";
 
 function Hospital() {
     const [hospitalList, setHospitalList] = useState<HospitalResponseDto[]>([]);
@@ -66,6 +67,7 @@ function Hospital() {
                     onChange={(page) => setPage(page)}
                 />
             </div>
+            <Footer />
         </div>
     );
 }

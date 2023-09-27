@@ -4,8 +4,8 @@ import MakeReviewItem from "./MakeReviewItem";
 import MakeBeforeItem from "./MakeBeforeItem";
 import Wysiwyg from "../components/ContentInput";
 import { EditorState, convertToRaw } from "draft-js";
-import { Editor } from "react-draft-wysiwyg";
 import draftjsToHtml from "draftjs-to-html";
+import Footer from "../bottom/Footer";
 
 interface ReviewProps {
     checkBox: boolean;
@@ -89,29 +89,15 @@ const MakeReviewPage = ({ checkBox }: ReviewProps) => {
                 {!isReview ? (
                     <>
                         <MakeReviewItem />
-                        <Editor
-                            placeholder="게시글을 작성해주세요"
-                            editorState={editorState}
-                            onEditorStateChange={updateTextDescription}
-                            toolbar={{
-                                image: { uploadCallback: uploadCallback },
-                            }}
-                            localization={{ locale: "ko" }}
-                            editorStyle={{
-                                height: "400px",
-                                width: "100%",
-                                border: "3px solid lightgray",
-                                padding: "20px",
-                                position: "relative",
-                                
-                            }}
-                            wrapperStyle={{}}
-                        />
+                        <div style={{width: "705px"}}>
+                        <Wysiwyg />
+                        </div>
                     </>
                 ) : (
                     <MakeBeforeItem />
                 )}
             </div>
+            <Footer />
         </div>
     );
 };
