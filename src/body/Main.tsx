@@ -37,7 +37,7 @@ function Main() {
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(0);
     const [isSearch, setIsSearch] = React.useState(false); // 검색 여부 [true: 검색, false: 검색x]
-    const [searchValue, setSearchValue] = React.useState("");
+    const [searchValue, setSearchValue] = React.useState(" ");
     const navigate = useNavigate();
     const [type, setType] = React.useState(0); //0: 날짜 순, 1: 조회수 별, 2: 댓글 수 별
     const [category, setCategory] = React.useState(0); //0: 전체, 1: 지방, 2: 리프팅, 3: 피부, 4: 지방흡입, 5: 유방, 6: 코, 7: 안면, 8: 윤곽, 9: 의사, 10: 병원
@@ -144,6 +144,8 @@ function Main() {
         let weekNumberOfMonth = currentWeek - weekOfFirstDay + 1;
 
         setWeek(weekNumberOfMonth);
+
+        localStorage.removeItem("selected");
     }, []);
 
     useEffect(() => {
@@ -204,9 +206,8 @@ function Main() {
     }, [category]);
 
     useEffect(() => {
-        console.log("doctors", doctors);
-        console.log("hospitals", hospitals);
-    }, [doctors, hospitals]);
+      console.log(searchValue)
+    }, [searchValue]);
 
     return (
         <div className="main">
@@ -309,7 +310,7 @@ function Main() {
             </div>
             {/*d 후기 리스트 섹션 */}
             <div className="review_list_div">
-                {reviewList.map((review, index) => {
+                {category < 9 ? reviewList.map((review, index) => {
                     return (
                         <div
                             key={"des" + index}
@@ -333,7 +334,7 @@ function Main() {
                             />
                         </div>
                     );
-                })}
+                }) : <div>docotr</div>}
             </div>
             {/* pagenation 섹션 */}
             <Pagination
