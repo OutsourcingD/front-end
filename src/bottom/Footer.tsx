@@ -16,13 +16,13 @@ function Footer() {
       </div>
       <div className="footer_info_div">
         <p id="inquiry">상호명: K-Surgery-forum</p>
-        <p id="inquiry">사업자 등록번호: 000-00-00000</p>
-        <p id="inquiry">사업장 소재지: 서울시 강남구 OO동 OO-OO</p>
+        <p id="inquiry">사업자 등록번호: 178-88-02857</p>
+        <p id="inquiry">사업장 소재지: 서울시동작구 사당로22나길 30, 1층</p>
       </div>
 
       <div className="footer_top_div">
-        <p id="inquiry">대표자: 김철수</p>
-        <p id="inquiry">Email: ksurgeryforum@gmail.com</p>
+        <p id="inquiry">대표자: 박지영</p>
+        <p id="inquiry">Email: surgery-forum23@naver.com</p>
         <p id="inquiry">전화번호: 0000-0000</p>
       </div>
     </div>
