@@ -21,6 +21,7 @@ jobs:
       - name: Build React app
         run: |
           yarn install
+          yarn add @babel/plugin-proposal-private-property-in-object -D
           yarn build
 
       - name: Copy files to server
