@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import "./Search.css";
 import axios from "axios";
 import { ReviewResponseDto } from "../dto/ReviewDto";
+import { SearchResponseDto } from "../dto/SearchResultDto";
 
 interface SearchProps {
   page: number;
+  category: number;
   onSearch: (value: string) => void;
-  onSearchResult: (value: ReviewResponseDto[]) => void;
+  onSearchResult: (value: SearchResponseDto[]) => void;
 }
 
 const Search = (props: SearchProps) => {
@@ -19,25 +21,24 @@ const Search = (props: SearchProps) => {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    props.onSearch(value); // form 제출 시 검색 값을 Main으로 보냅니다.
-
     axios({
       method: "get", // or 'post', 'put', etc.
-      url: `${process.env.REACT_APP_SERVER_URL}/review/search?query=${value}&pages=${0}`,
+      url: `${process.env.REACT_APP_SERVER_URL}/review/search?type=${0}&query=${value}&category=${props.category}&pages=${0}`,
       headers: {
         Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
       },
     }).then((res) => {
       props.onSearchResult(res.data);
+      console.log(res.data)
     });
   };
 
   function onclick() {
     props.onSearch(value); // form 제출 시 검색 값을 Main으로 보냅니다.
-
+    
     axios({
       method: "get", // or 'post', 'put', etc.
-      url: `${process.env.REACT_APP_SERVER_URL}/review/search?query=${value}&pages=${0}`,
+      url: `${process.env.REACT_APP_SERVER_URL}/review/search?type=${0}&query=${value}&category=${props.category}&pages=${0}`,
       headers: {
         Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
       },

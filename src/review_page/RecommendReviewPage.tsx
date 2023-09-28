@@ -16,6 +16,11 @@ function RecommendReviewPage() {
   >([]);
   const [isSearch, setIsSearch] = React.useState(false); // 검색 여부 [true: 검색, false: 검색x]
   const [searchValue, setSearchValue] = React.useState("");
+  const [category, setCategory] = React.useState(0);
+
+    const onCategory = (value: number) => {
+        setCategory(value);
+    };
 
   const handleSearch = (value: string) => {
     setSearchValue(value);
@@ -53,9 +58,11 @@ function RecommendReviewPage() {
           <img id="hot_image" src="/hot.png" alt="추천 후기" />
         </div>
       </div>
-      <Category />
+      <Category 
+        onCategory={onCategory}
+      />
       <div className="search_div">
-        <Search page={page} onSearch={handleSearch} onSearchResult={handleSearchResult}/>
+        <Search page={page} onSearch={handleSearch} onSearchResult={handleSearchResult} category={category}/>
       </div>
       <div className="review_list_div">
         {recommendReviewItems.map((review, index) => {

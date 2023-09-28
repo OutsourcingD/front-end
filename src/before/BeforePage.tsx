@@ -11,6 +11,7 @@ function BeforePage() {
     const before_list = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(1);
+    const [category, setCategory] = React.useState(0);
 
     return (
         <div className="doctor_div">
@@ -23,9 +24,10 @@ function BeforePage() {
                 </div>
                 <div className="hospital_page_search_div">
                     <Search
+                        category={category}
                         page={0}
                         onSearch={(value) => console.log("")}
-                        onSearchResult={() => console.log("")}
+                        onSearchResult={(value) => console.log("")}
                     />
                 </div>
                 <div className="hospital_item_div">

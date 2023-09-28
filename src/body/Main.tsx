@@ -16,6 +16,7 @@ import Pagination from "react-js-pagination";
 import { useNavigate } from "react-router-dom";
 import { ReviewDetailDto } from "../dto/ReviewDetailDto";
 import "../Test.css"
+import { SearchResponseDto } from "../dto/SearchResultDto";
 
 function Main() {
   const settings = {
@@ -35,6 +36,7 @@ function Main() {
   const navigate = useNavigate();
   const [reviewDetail, setReviewDetail] = React.useState<ReviewDetailDto>(); 
   const [type, setType] = React.useState(0); //0: 날짜 순, 1: 조회수 별, 2: 댓글 수 별
+  const [category, setCategory] = React.useState(0); //0: 전체, 1: 지방, 2: 리프팅, 3: 피부, 4: 지방흡입, 5: 유방, 6: 코, 7: 안면, 8: 윤곽, 9: 의사, 10: 병원
 
   const handlePageChange = (page: React.SetStateAction<number>) => {
     setPage(page);
@@ -46,9 +48,10 @@ function Main() {
     setPage(1);
   };
 
-  const handleSearchResult = (value: ReviewResponseDto[]) => {
+  const handleSearchResult = (value: SearchResponseDto[]) => {
     setReviewList(value);
-    setTotalPages(value[0].totalPages);
+    console.log(value)
+    //setTotalPages(value[0].totalPages);
   };
 
   const getBanners = async () => {
@@ -116,6 +119,10 @@ function Main() {
     /* 추천 후기 페이지로 이동 후 useEffect에서 axios 요청 */
   };
 
+  const onCategory = (value: number) => {
+    setCategory(value);
+  };
+
   useEffect(() => {
     getBanners();
     getRecommendedReviews();
@@ -142,7 +149,7 @@ function Main() {
       </div>
       {/* 카테고리 섹션 */}
       <div className="mainBody">
-        <Category />
+        <Category onCategory={onCategory}/>
       </div>
       {/* 후기 섹션 */}
       <div className="recommend_review">
@@ -192,7 +199,7 @@ function Main() {
       </div>
       {/* 검색 섹션 */}
       <div className="search_div">
-        <Search page={page} onSearch={handleSearch} onSearchResult={handleSearchResult}/>
+        <Search page={page} onSearch={handleSearch} onSearchResult={handleSearchResult} category={category}/>
         <div className="filter_div">
           <img src="filter.png" alt="filter" id="filter" />
         </div>

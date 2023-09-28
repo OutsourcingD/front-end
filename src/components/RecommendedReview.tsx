@@ -13,6 +13,11 @@ function RecommendedReview() {
     const [reviewList, setReviewList] = React.useState<ReviewResponseDto[]>([]);
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(2);
+    const [category, setCategory] = React.useState(0);
+
+    const onCategory = (value: number) => {
+        setCategory(value);
+    };
 
     const handlePageChange = (page: React.SetStateAction<number>) => {
         setPage(page);
@@ -38,12 +43,15 @@ function RecommendedReview() {
                     <img src="/hot.png" alt="hot" id="hot" />
                 </div>
             </div>
-            <Category />
+            <Category 
+                onCategory={onCategory}
+            />
             <div className="search_div">
                 <Search
+                    category={category}
                     page={0}
                     onSearch={(value) => console.log("")}
-                    onSearchResult={() => console.log("")}
+                    onSearchResult={(value) => console.log("")}
                 />
             </div>
             {/*d 후기 리스트 섹션 */}

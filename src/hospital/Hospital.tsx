@@ -12,6 +12,7 @@ function Hospital() {
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(1);
     const [isSearch, setIsSearch] = React.useState(false); // 검색 여부 [true: 검색, false: 검색x]
+    const [category, setCategory] = React.useState(0);
 
     const getHospitalList = async () => {
         await axios({
@@ -45,9 +46,10 @@ function Hospital() {
                 </div>
                 <div className="hospital_page_search_div">
                     <Search
+                        category={category}
                         page={0}
                         onSearch={(value) => console.log("")}
-                        onSearchResult={() => console.log("")}
+                        onSearchResult={(value) => console.log("")}
                     />
                 </div>
                 <div className="hospital_item_div">

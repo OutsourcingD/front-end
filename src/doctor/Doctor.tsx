@@ -11,6 +11,7 @@ function Doctor() {
     const [doctor_list, setDoctorList] = useState<DoctorResponseDto[]>([]);
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(1);
+    const [category, setCategory] = React.useState(0);
 
     useEffect(() => {
         axios({
@@ -33,9 +34,10 @@ function Doctor() {
                 </div>
                 <div className="hospital_page_search_div">
                     <Search
+                        category={category}
                         page={0}
                         onSearch={(value) => console.log("")}
-                        onSearchResult={() => console.log("")}
+                        onSearchResult={(value) => console.log("")}
                     />
                 </div>
                 <div className="hospital_item_div">
