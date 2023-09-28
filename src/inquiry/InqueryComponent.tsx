@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import "./InqueryComponent.css";
 import Footer from "../bottom/Footer";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function InqueryComponent() {
     const [value, setText] = useState("");
     const [isSubmit, setIsSubmit] = useState(false);
+    const navigate = useNavigate();
 
     const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setText(e.target.value);
@@ -12,7 +15,36 @@ function InqueryComponent() {
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setIsSubmit(true);
+
+        axios({
+            method: "post", // or 'post', 'put', etc.
+            url: `${process.env.REACT_APP_SERVER_URL}/inquiry`,
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+            data: {
+                content: value,
+            },
+        }).then((res) => {
+            alert("문의가 등록되었습니다.")
+            navigate("/");
+        });
+    };
+
+    const sendInquery = () => {
+        axios({
+            method: "post", // or 'post', 'put', etc.
+            url: `${process.env.REACT_APP_SERVER_URL}/inquiry`,
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+            data: {
+                content: value,
+            },
+        }).then((res) => {
+            alert("문의가 등록되었습니다.")
+            navigate("/");
+        });
     };
 
     return (
@@ -36,7 +68,7 @@ function InqueryComponent() {
                         />
                     </form>
                 </div>
-                <div className="inquery_button_div">
+                <div className="inquery_button_div" onClick={sendInquery}>
                     <p id="inquery_button">등록하기</p>
                 </div>
             </div>
