@@ -15,6 +15,7 @@ const Search = (props: SearchProps) => {
   const [value, setText] = useState("");
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    props.onSearch(e.target.value);
     setText(e.target.value);
   };
 
@@ -29,13 +30,10 @@ const Search = (props: SearchProps) => {
       },
     }).then((res) => {
       props.onSearchResult(res.data);
-      console.log(res.data)
     });
   };
 
-  function onclick() {
-    props.onSearch(value); // form 제출 시 검색 값을 Main으로 보냅니다.
-    
+  function onclick() {    
     axios({
       method: "get", // or 'post', 'put', etc.
       url: `${process.env.REACT_APP_SERVER_URL}/review/search?type=${0}&query=${value}&category=${props.category}&pages=${0}`,
