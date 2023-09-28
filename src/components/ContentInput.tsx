@@ -38,12 +38,13 @@ const Wysiwyg = () => {
     <div
       style={{
         width: "100%",
+        height: "100%",
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
       }}
     >
-      <div style={{ width: "100%" }}>
+      <div style={{ width: "100%", height: "100%" }}>
         <Box sx={{ m: 2 }}>
           <ToastEditor
             ref={editorRef}

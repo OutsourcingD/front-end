@@ -3,6 +3,7 @@
     height: 100vh;
     border-right: 1px solid #d4d4d4;
     padding-top: 30px;
+    background-color: white;
   }
   
   #side_menu_item_click {

@@ -4,6 +4,7 @@ import MyReviewItem from "./MyReviewItem";
 import MyCommentItem from "./MyCommentItem";
 import MyInqueryItem from "./MyInqueryItem";
 import AdItem from "../components/AdItem";
+import Footer from "../bottom/Footer";
 
 function MyPage() {
   const items = [1, 2, 3, 4];
@@ -91,6 +92,7 @@ function MyPage() {
           <AdItem />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

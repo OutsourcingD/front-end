@@ -4,6 +4,7 @@ import "./ReviewPage.css";
 import axios from "axios";
 import { ReviewDetailDto } from "../dto/ReviewDetailDto";
 import Slider from "react-slick";
+import Footer from "../bottom/Footer";
 
 function ReviewPage() {
   const location = useLocation();
@@ -66,7 +67,7 @@ function ReviewPage() {
             <p id="post_delete_button">삭제</p>
           </div>
         </div>
-        <div style={{width: "86%", marginTop: "1%", marginBottom: "3%"}}>
+        <div style={{width: "696.29px", marginTop: "8px", marginBottom: "14px"}}>
             <hr style={{width: "100%"}}/>
         </div>
         <div className="review_detail_image_div">
@@ -97,14 +98,15 @@ function ReviewPage() {
         <div className="review_info">
           <p>tag</p>
         </div>
-        <div style={{display: "flex", flexDirection: "row", width: "86%", marginTop: "1%", marginBottom: "3%"}}>
-          <p style={{flex: "1"}}>리뷰 정보</p>
+        <div style={{display: "flex", flexDirection: "row", width: "696.29px", marginTop: "10px", marginBottom: "30px"}}>
+          <p style={{flex: "1", whiteSpace: "nowrap"}}>리뷰 정보</p>
           <hr style={{flex: "10", border: "none", borderTop: "1px solid #D4D4D4"}}/>
         </div>
         <div className="review_comment">
 
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

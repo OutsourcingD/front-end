@@ -1,0 +1,54 @@
+.etc_manage_page_index_div {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    background: #f5f5f5;
+    border-bottom: 1px solid #d4d4d4;
+    align-items: center;
+}
+
+#etc_manage_page_sequence {
+    margin-left: 20px;
+}
+
+#etc_manage_page_title {
+    margin-left: 30px;
+}
+
+#etc_manage_page_id {
+    margin-left: 130px;
+}
+
+#etc_manage_page_action {
+    margin-left: 180px;
+}
+
+#etc_manage_page_sequence_data {
+    margin-left: 20px;
+    white-space: nowrap;
+}
+
+#etc_manage_page_title_data {
+    margin-left: 5px;
+    white-space: nowrap;
+}
+
+#etc_manage_page_id_data {
+    white-space: nowrap;
+}
+
+.etc_manage_page_action_button {
+    width: 40px;
+    height: 30px;
+    border: 1px solid #D4D4D4;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#etc_manage_page_action_data {
+    white-space: nowrap;
+    margin-right: 20px;
+}

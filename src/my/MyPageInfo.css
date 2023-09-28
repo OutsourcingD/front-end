@@ -1,56 +1,59 @@
 .mypage_info_div {
     width: 100%;
+    height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
     border-top: 1px solid #d4d4d4;
-    margin-top: 0.5%;
+    margin-top: 2px;
 }
 
 .mypage_info_name_div {
-    width: 30%;
-    margin-top: 3%;
+    width: 464px;
+    margin-top: 46.4px;
     display: flex;
     justify-content: flex-start;
 }
 
 .mypage_info_profile_div {
-    margin-top: 1%;
-    width: 30%;
+    margin-top: 15.5px;
+    width: 464px;
     display: flex;
     justify-content: flex-start;
 }
 
 #profile_img {
-    width: 15%;
+    width: 100px;
 }
 
 .mypage_info_body {
-    width: 30%;
-    margin-top: 1%;
-    display: flex;
-    justify-content: flex-start;
-}
-
-.mypage_info_body {
-    width: 30%;
-    margin-top: 1%;
+    width: 464px;
+    margin-top: 15.47px;
     display: flex;
     flex-direction: column;
+    margin-bottom: 55px;
 }
 
 .my_info_sub_title_div {
-    margin-bottom: 2%;
+    width: 468px;
+    margin-bottom: 9px;
 }
 
 #my_info_sub_title {
-    font-weight: 800;
-    font-size: 0.8vw;
+    font-weight: 700;
+    font-size: 18px;
+    color: #222222;
+}
+
+#my_info_sub_title_name {
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 18px;
+    color: #222222;
 }
 
 #form_tag {
-    margin-bottom: 1%;
+    margin-bottom: 5px;
 }
 
 #input_tag {
@@ -58,20 +61,24 @@
     outline: none;
     border-bottom: 1px solid #d4d4d4;
     width: 100%;
-    color: #C1C1C1;
+    color: #222222;
     padding-top: 3%;
     padding-bottom: 2%;
-    font-size: 0.7vw;
-    font-weight: 400;
+    font-size: 15px;
+    font-weight: 500;
     display: flex;
     justify-content: flex-end;
+}
+
+#input_tag::placeholder {
+    color: #C1C1C1;
 }
 
 .nickname_div {
     width: 100%;
     display: flex;
     flex-direction: row;
-    margin-top: 1%;
+    margin-top: 4.6px;
     justify-content: space-between;
 }
 
@@ -81,39 +88,57 @@
 }
 
 #form_nickname {
-    width: 84%;
+    width: 380.75px;
 }
 
 .check_nickname {
     border-radius: 10px;
     background-color: #F5F5F5;
     display: flex;
-    align-items: flex-end;
-    padding-left: 3%;
-    padding-right: 3%;
-    padding-top: 2%;
-    padding-bottom: 2%;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 39px;
+    margin-left: 4px;
 }
 
 #check_nickname {
     color: #D4D4D4;
     white-space: nowrap;
-    font-size: 0.7vw;
+    font-size: 15px;
+    font-weight: 500;
 }
 
 .gender_button {
-    margin-top: 2%;
+    margin-top: 9.4px;
     display: flex;
     flex-direction: row;
 }
 
 #man_button {
-    width: 8%;
-    height: 8%;
-    margin-right: 2%;
+    width: 40px;
+    height: 40px;
+    margin-right: 9.4px;
 }
 
 #woman_button {
-    width: 8%;
-    height: 8%;
+    width: 40px;
+    height: 40px;
+}
+
+.mypage_info_edit_button_div {
+    background: #DFB1E4;
+    border-radius: 8px;
+    width: 472px;
+    height: 48px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#mypage_info_edit_button_text {
+    font-weight: 700;
+    font-size: 15px;
+    color: #FFFFFF;
 }

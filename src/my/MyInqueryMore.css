@@ -5,24 +5,24 @@
     justify-content: center;
     flex-direction: column;
     border-top: 1px solid #d4d4d4;
-    margin-top: 0.5%;
+    margin-top: 2px;
 }
 
 .my_recommend_review_header {
-    margin-top: 2%;
-    width: 40%;
+    margin-top: 31px;
+    width: 619px;
     justify-content: space-between;
     display: flex;
 }
 
 #my_recommend_review_title {
     font-weight: 700;
-    font-size: 1.5vw;
+    font-size: 32px;
     white-space: nowrap;
-    margin-right: 5%;
+    color: #222222;
 }
 
 .my_review_item_list_div {
-    width: 40%;
-    margin-top: 1%;
+    width: 619px;
+    margin-top: 10px;
 }

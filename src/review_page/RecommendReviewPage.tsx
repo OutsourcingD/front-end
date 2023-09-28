@@ -6,6 +6,7 @@ import "./RecommendReviewPage.css";
 import { ReviewResponseDto } from "../dto/ReviewDto";
 import ReviewItem from "../components/ReviewItem";
 import axios from "axios";
+import Footer from "../bottom/Footer";
 
 function RecommendReviewPage() {
   const [page, setPage] = React.useState(1);
@@ -15,6 +16,11 @@ function RecommendReviewPage() {
   >([]);
   const [isSearch, setIsSearch] = React.useState(false); // 검색 여부 [true: 검색, false: 검색x]
   const [searchValue, setSearchValue] = React.useState("");
+  const [category, setCategory] = React.useState(0);
+
+    const onCategory = (value: number) => {
+        setCategory(value);
+    };
 
   const handleSearch = (value: string) => {
     setSearchValue(value);
@@ -46,15 +52,17 @@ function RecommendReviewPage() {
 
   return (
     <div className="recommend_all_div">
-      <div className="recommend_title_div">
+      <div className="recommend_all_page_title_div">
         <p id="recommend_title">8월 2주차 커뮤니티 추천 후기글</p>
         <div className="hot_div">
           <img id="hot_image" src="/hot.png" alt="추천 후기" />
         </div>
       </div>
-      <Category />
+      <Category 
+        onCategory={onCategory}
+      />
       <div className="search_div">
-        <Search page={page} onSearch={handleSearch} onSearchResult={handleSearchResult}/>
+        <Search page={page} onSearch={handleSearch} onSearchResult={handleSearchResult} category={category}/>
       </div>
       <div className="review_list_div">
         {recommendReviewItems.map((review, index) => {
@@ -92,6 +100,7 @@ function RecommendReviewPage() {
         nextPageText={"›"}
         onChange={(page) => setPage(page)}
       />
+      <Footer />
     </div>
   );
 }

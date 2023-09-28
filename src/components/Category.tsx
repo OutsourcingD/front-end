@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import "./Category.css";
 
-function Category() {
+interface CategoryProps {
+    onCategory: (value: number) => void;
+}
+
+function Category(props: CategoryProps) {
     const [categoryNumber, setCotegoryNumber] = useState(0);
 
     const handleCategory = (nav: number) => {
         setCotegoryNumber(nav);
+        props.onCategory(nav);
     }
 
     return (

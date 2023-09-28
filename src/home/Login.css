@@ -1,16 +1,20 @@
 .login_container {
+    box-sizing: border-box;
     width: 100%;
+    height: 100vh;
     border-top: 1px solid #666666;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .login_wrapper {
     display: flex;
-    width: 30%;
-    margin-top: 4%;
-    padding-top: 2%;
-    padding-bottom: 2%;
+    width: 466px;
+    height: 345px;
+    margin-top: 62px;
+    padding-top: 31px;
+    padding-bottom: 31px;
     border: 1px solid #c4c4c4;
     justify-content: center;
     flex-direction: column;
@@ -19,47 +23,47 @@
 }
 
 .login_item_div {
-    width: 70%;
-    margin-bottom: 3%;
+    width: 85px;
+    margin-bottom: 15px;
     display: flex;
     justify-content: center;
 }
 
 .login_id_input_div {
-    width: 70%;
-    margin-bottom: 3%;
+    width: 326.2px;
+    margin-bottom: 20px;
     border-bottom: 1px solid #c4c4c4;
 }
 
 .pwd_id_input_div {
-    width: 70%;
-    margin-bottom: 3%;
+    width: 326.2px;
+    margin-bottom: 20px;
     border-bottom: 1px solid #c4c4c4;
 }
 
 .login_button_item_div {
-    width: 70%;
-    margin-bottom: 3%;
-    margin-top: 1%;
+    width: 326.2px;
+    margin-bottom: 15px;
+    margin-top: 5px;
     background-color: #DFB1E4;
     border-radius: 10px;
-    padding-top: 3%;
-    padding-bottom: 3%;
+    padding-top: 15px;
+    padding-bottom: 15px;
     text-align: center;
 }
 
 .login_more_div {
-    width: 70%;
-    margin-bottom: 4%;
+    width: 326.2px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 4%;
+    margin-top: 20px;
 }
 
 #login_item_title {
-    font-size: 2.1vw;
-    font-weight: 900;
+    font-size: 32px;
+    font-weight: 700;
     color: #DFB1E4;
 }
 
@@ -70,12 +74,18 @@
     background-repeat: no-repeat;
     background-position: 5px center;
     position:relative;
-    background-size: 10%;
-    font-size: 0.9vw;
-    margin-bottom: 2%;
-    margin-top: 6%;
+    background-size: 18px;
+    margin-bottom: 10px;
+    margin-top: 10px;
     text-align: left;
-    padding-left: 10%;
+    padding-left: 30px;
+    width: 100%;
+    font-size: 15px;
+    color: #222222;
+}
+
+#login_id_input::placeholder {
+    color: #888888;
 }
 
 #login_pwd_input {
@@ -85,23 +95,30 @@
     background-repeat: no-repeat;
     background-position: 5px center;
     position:relative;
-    background-size: 10%;
-    font-size: 0.9vw;
-    margin-bottom: 2%;
-    margin-top: 6%;
-    padding-left: 10%;
+    background-size: 18px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    text-align: left;
+    padding-left: 30px;
+    width: 100%;
+    font-size: 15px;
+    color: #222222;
+}
+
+#login_pwd_input::placeholder {
+    color: #888888;
 }
 
 #login_item_text {
     color: white;
-    font-size: 0.9vw;
+    font-size: 15px;
     font-weight: 600;
 }
 
 #find_id {
-    font-size: 0.8vw;
+    font-size: 14px;
     color: #666666;
-    padding-right: 2%;
+    padding-right: 6.5px;
     border-right: 1px solid #c4c4c4;
     font-weight: 500;
 }
@@ -111,9 +128,9 @@
 }
 
 #sign_up {
-    font-size: 0.8vw;
+    font-size: 14px;
     color: #666666;
-    padding-left: 2%;
+    margin-left: 6.5px;
     font-weight: 500;
 }
 
