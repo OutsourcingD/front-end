@@ -107,7 +107,7 @@ function Header() {
                         <div className="chatDiv">
                             <div className="chat_icon_div">
                                 <img
-                                    src="/send.png"
+                                    src="/Send.png"
                                     id="chat_icon"
                                     alt="chatting_page"
                                 />
