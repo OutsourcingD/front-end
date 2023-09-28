@@ -18,6 +18,8 @@ import { ReviewDetailDto } from "../dto/ReviewDetailDto";
 import "../Test.css";
 import { SearchResponseDto } from "../dto/SearchResultDto";
 import { formatISO, getISOWeek, set } from "date-fns";
+import { ReviewHospitalInfoDto } from "../dto/Hospitals";
+import { ReviewDoctorInfoDto } from "../dto/Doctors";
 
 function Main() {
     const settings = {
@@ -37,12 +39,15 @@ function Main() {
     const [isSearch, setIsSearch] = React.useState(false); // 검색 여부 [true: 검색, false: 검색x]
     const [searchValue, setSearchValue] = React.useState("");
     const navigate = useNavigate();
-    const [reviewDetail, setReviewDetail] = React.useState<ReviewDetailDto>();
     const [type, setType] = React.useState(0); //0: 날짜 순, 1: 조회수 별, 2: 댓글 수 별
     const [category, setCategory] = React.useState(0); //0: 전체, 1: 지방, 2: 리프팅, 3: 피부, 4: 지방흡입, 5: 유방, 6: 코, 7: 안면, 8: 윤곽, 9: 의사, 10: 병원
     const [week, setWeek] = React.useState(0); //0: 전체, 1: 1주차, 2: 2주차, 3: 3주차, 4: 4주차
     const [month, setMonth] = React.useState(0); //0: 전체, 1: 1월, 2: 2월, 3: 3월, 4: 4월, 5: 5월, 6: 6월, 7: 7월, 8: 8월, 9: 9월, 10: 10월, 11: 11월, 12: 12월
     const [isSubmit, seyIsSubmit] = React.useState(false);
+    const [hospitals, setHospitals] = React.useState<ReviewHospitalInfoDto[]>(
+        []
+    );
+    const [doctors, setDoctors] = React.useState<ReviewDoctorInfoDto[]>([]);
 
     const handlePageChange = (page: React.SetStateAction<number>) => {
         setPage(page);
@@ -86,38 +91,27 @@ function Main() {
         });
     };
 
-    const getReviewList = async () => {
-        await axios({
-            method: "get", // or 'post', 'put', etc.
-            url: `${
-                process.env.REACT_APP_SERVER_URL
-            }/review?type=${type}&pages=${page - 1}`,
-            withCredentials: true,
-            headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-            },
-        }).then((res) => {
-            setReviewList(res.data);
-
-            setTotalPages(res.data[0].totalPages);
-        });
-    };
-
     const getSearchReviewList = async () => {
-        await axios({
-            method: "get", // or 'post', 'put', etc.
-            url: `${
-                process.env.REACT_APP_SERVER_URL
-            }/review/search?type=${0}&query=${searchValue}&category=${category}&pages=${page - 1}`,
-            withCredentials: true,
-            headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-            },
-        }).then((res) => {
-            setReviewList(res.data);
+        if (category < 9) {
+            await axios({
+                method: "get", // or 'post', 'put', etc.
+                url: `${
+                    process.env.REACT_APP_SERVER_URL
+                }/review/search?type=${0}&query=${searchValue}&category=${category}&pages=${
+                    page - 1
+                }`,
+                withCredentials: true,
+                headers: {
+                    Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                },
+            }).then((res) => {
+                setReviewList(res.data);
 
-            setTotalPages(res.data[0].totalPages);
-        });
+                setTotalPages(res.data[0].totalPages);
+            });
+        } else {
+            console.log("카테고리 에러");
+        }
     };
 
     const makeReviewButtonClick = () => {
@@ -179,28 +173,40 @@ function Main() {
                 );
             });
         } else if (9 === category || category === 10) {
-            axios({
-                method: "get", // or 'post', 'put', etc.
-                url: `${
-                    process.env.REACT_APP_SERVER_URL
-                }/review/search?type=${0}&query=${searchValue}&pages=${
-                    page - 1
-                }`,
-                withCredentials: true,
-                headers: {
-                    Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-                },
-            }).then((res) => {
-                setReviewList(res.data);
-
-                setTotalPages(
-                    res.data[0] === undefined ? 1 : res.data[0].totalPages
-                );
-            });
+            category === 9
+                ? axios({
+                      method: "get",
+                      url: `${
+                          process.env.REACT_APP_SERVER_URL
+                      }/review/search/doctor?type=${0}&query=${searchValue}`,
+                      withCredentials: true,
+                      headers: {
+                          Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                      },
+                  }).then((res) => {
+                      setDoctors(res.data);
+                  })
+                : axios({
+                      method: "get",
+                      url: `${
+                          process.env.REACT_APP_SERVER_URL
+                      }/review/search/hospital?type=${0}&query=${searchValue}`,
+                      withCredentials: true,
+                      headers: {
+                          Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                      },
+                  }).then((res) => {
+                      setHospitals(res.data);
+                  });
         } else {
             alert("카테고리 에러");
         }
     }, [category]);
+
+    useEffect(() => {
+        console.log("doctors", doctors);
+        console.log("hospitals", hospitals);
+    }, [doctors, hospitals]);
 
     return (
         <div className="main">
