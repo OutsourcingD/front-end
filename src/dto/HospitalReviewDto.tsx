@@ -1,10 +1,11 @@
 export type HospitalReviewDto = {
-  id: number;
-  title: string;
-  doctorName: string;
-  partList: string[];
-  createdAt: string;
-  viewCount: number;
-  commentCount: number;
-  totalPages: number;
+    hospitalId: number;
+    hospitalName: string;
+    hospitalProfile: string;
+    location: string;
+    partList: string[];
+    totalCommentCount: number;
+    totalElements: number;
+    totalLikeCount: number;
+    totalViewCount: number;
 };

@@ -12,11 +12,10 @@ function HospitalDetailPage() {
     const queryParams = new URLSearchParams(location.search);
     const [hospitalDetail, setHospitalDetail] =
         React.useState<HospitalDetailDto | null>(null);
-    const [hospitalReview, setHospitalReview] =
-        React.useState<HospitalDetailDto | null>(null);
+    const [hospitalReviewList, setHospitalReview] =
+        React.useState<HospitalDetailDto[]>([]);
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(1);
-    const items = [1, 2, 3, 4, 5, 6, 7, 8];
 
     const settings = {
         infinite: true,
@@ -33,6 +32,8 @@ function HospitalDetailPage() {
     useEffect(() => {
         const hospitalId = queryParams.get("hospitalId");
 
+        console.log(hospitalId);
+
         /* hospital detail */
         axios({
             method: "get", // or 'post', 'put', etc.
@@ -43,13 +44,18 @@ function HospitalDetailPage() {
         }).then((res) => {
             setHospitalDetail(res.data);
         });
-    }, []);
 
-    useEffect(() => {
-        hospitalDetail === null
-            ? console.log("hello")
-            : console.log("병원 후기 없음");
-    }, [hospitalDetail]);
+        // 연관 후기
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/hospital/review?hospitalId=${hospitalId}&pages=${page - 1}`,
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            setHospitalReview(res.data);
+        });
+    }, []);
 
     return (
         <div className="hospital_detail_div">
@@ -65,7 +71,7 @@ function HospitalDetailPage() {
                 </div>
                 <div className="hospital_detail_title_div">
                     <p id="hospital_detail_title">{hospitalDetail?.title}</p>
-                    <p id="hospital_detail_description">소개글</p>
+                    <p id="hospital_detail_description">{hospitalDetail?.introduction}</p>
                 </div>
                 <div className="review_detail_image_div">
                     <Slider {...settings}>
@@ -116,19 +122,19 @@ function HospitalDetailPage() {
                 <div className="hospital_detail_hospital_info_div">
                     <div className="hospital_info_profile_div">
                         <img
-                            src="/hospital_profile.png"
-                            alt="da"
+                            src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMTgy/MDAxNjA0MjI4ODc1NDMw.Ex906Mv9nnPEZGCh4SREknadZvzMO8LyDzGOHMKPdwAg.ZAmE6pU5lhEdeOUsPdxg8-gOuZrq_ipJ5VhqaViubI4g.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%95%98%EB%8A%98%EC%83%89.jpg?type=w800"
+                            alt={hospitalDetail?.hospitalName}
                             id="hospital_profile_picture"
                         />
                     </div>
                     <div className="hospital_info_profile_text_div">
-                        <p id="hospital_info_name">아이디 성형외과</p>
+                        <p id="hospital_info_name">{hospitalDetail?.hospitalName}</p>
                         <p id="hospital_info_location">
-                            서울시 역삼동 OO동 00-00
+                            {hospitalDetail?.location}
                         </p>
                     </div>
                     <div className="hospital_info_avg_div">
-                        <p>0</p>
+                        <p>{hospitalDetail?.avgRage}</p>
                     </div>
                 </div>
                 <div
@@ -150,17 +156,16 @@ function HospitalDetailPage() {
                     />
                 </div>
                 <div className="hospital_review_div">
-                    {items.map((item) => {
+                    {hospitalReviewList.length !== 0 ? hospitalReviewList.map((item) => {
                         return (
                             <div className="hospital_detail_page_review_item">
                                 <div className="hospital_detail_page_review_list_left_div">
                                     <div className="hospital_detail_page_review_list_title_div">
                                         <p id="hospital_detail_review_title">
-                                            아름다운 성형외과에서 윤곽수술 받은
-                                            3개월차 후기
+                                            {item.title}
                                         </p>
                                         <p id="hospital_detail_review_date">
-                                            2023.08.23
+                                            {item.createdAt}
                                         </p>
                                     </div>
                                     <div className="hospital_detail_page_review_list_doctor_info_div">
@@ -169,7 +174,7 @@ function HospitalDetailPage() {
                                                 원장님
                                             </p>
                                             <p id="hospital_detail_review_index_data">
-                                                김철수 원장님
+                                                {hospitalDetail?.hospitalName} 원장님
                                             </p>
                                         </div>
                                         <div className="hospital_detail_page_review_list_doctor_info_right">
@@ -177,7 +182,15 @@ function HospitalDetailPage() {
                                                 부위
                                             </p>
                                             <p id="hospital_detail_review_index_data">
-                                                윤곽 수술
+                                                {
+                                                    item.partList.map(
+                                                        (part, index) => {
+                                                            return (
+                                                                index === item.partList.length - 1 ? part : part + ", "
+                                                            );
+                                                        }
+                                                    )
+                                                }
                                             </p>
                                         </div>
                                     </div>
@@ -206,7 +219,7 @@ function HospitalDetailPage() {
                                 </div>
                             </div>
                         );
-                    })}
+                    }) : <p>연관 후기 없음....</p>}
                     <Pagination
                         activePage={page}
                         itemsCountPerPage={10}
