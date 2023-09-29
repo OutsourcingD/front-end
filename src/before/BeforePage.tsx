@@ -24,10 +24,10 @@ function BeforePage() {
                 </div>
                 <div className="hospital_page_search_div">
                     <Search
+                        parent={2}
                         category={category}
                         page={0}
                         onSearch={(value) => console.log("")}
-                        onSearchResult={(value) => console.log("")}
                     />
                 </div>
                 <div className="hospital_item_div">

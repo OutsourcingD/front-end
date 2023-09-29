@@ -63,6 +63,10 @@ function Main() {
         setTotalPages(value[0] !== undefined ? value[0].totalPages : 1);
     };
 
+    const handleDocHosSearchResult = (value: DocsHosDto[]) => {
+        setDocHosReviewList(value);
+    };
+
     const getBanners = async () => {
         //배너 이미지 가져오기
         await axios({
@@ -179,13 +183,14 @@ function Main() {
     }, [page, type]);
 
     useEffect(() => {
+        setSearchValue(" ");
+        setFilter("filter");
         if (category < 9) {
             axios({
                 method: "get", // or 'post', 'put', etc.
                 url: `${
                     process.env.REACT_APP_SERVER_URL
-                }/review/search?type=${type}&query=${searchValue}&category=${category}&pages=${
-                    page - 1
+                }/review/search?type=${0}&query=${" "}&category=${category}&pages=${0
                 }`,
                 withCredentials: true,
                 headers: {
@@ -201,7 +206,7 @@ function Main() {
         } else if (9 === category || category === 10) {
             axios({
                 method: "get", // or 'post', 'put', etc.
-                url: `${process.env.REACT_APP_SERVER_URL}/review/search/doc-hos?sortType=${type}&type=${category}&query=${searchValue}`,
+                url: `${process.env.REACT_APP_SERVER_URL}/review/search/doc-hos?sortType=${0}&type=${category}&query=${" "}`,
                 withCredentials: true,
                 headers: {
                     Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
@@ -213,10 +218,6 @@ function Main() {
             alert("category error");
         }
     }, [category]);
-
-    useEffect(() => {
-        console.log(docHosReviewList);
-    }, [docHosReviewList]);
 
     return (
         <div className="main">
@@ -308,9 +309,11 @@ function Main() {
             {/* 검색 섹션 */}
             <div className="search_div">
                 <Search
+                    parent={0}
                     page={page}
                     onSearch={handleSearch}
                     onSearchResult={handleSearchResult}
+                    onDoctorSearchResult={handleDocHosSearchResult}
                     category={category}
                 />
                 <div

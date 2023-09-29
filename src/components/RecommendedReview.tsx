@@ -48,10 +48,10 @@ function RecommendedReview() {
             />
             <div className="search_div">
                 <Search
+                    parent={1}
                     category={category}
                     page={0}
                     onSearch={(value) => console.log("")}
-                    onSearchResult={(value) => console.log("")}
                 />
             </div>
             {/*d 후기 리스트 섹션 */}
