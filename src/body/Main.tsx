@@ -17,9 +17,8 @@ import { useNavigate } from "react-router-dom";
 import "../Test.css";
 import { SearchResponseDto } from "../dto/SearchResultDto";
 import { getISOWeek } from "date-fns";
-import { ReviewHospitalInfoDto } from "../dto/Hospitals";
-import { ReviewDoctorInfoDto } from "../dto/Doctors";
-import { DoctorReviewDto } from "../components/DoctorReviewDto";
+import DocsHosReviewItem from "../review_page/DocsHosReviewItem";
+import { DocsHosDto } from "../dto/DocsHosDto";
 
 function Main() {
     const settings = {
@@ -45,7 +44,9 @@ function Main() {
     const [month, setMonth] = React.useState(0); //0: 전체, 1: 1월, 2: 2월, 3: 3월, 4: 4월, 5: 5월, 6: 6월, 7: 7월, 8: 8월, 9: 9월, 10: 10월, 11: 11월, 12: 12월
     const [isFilter, setIsFilter] = React.useState(false); // 필터 여부 [true: 필터, false: 필터x
     const [filter, setFilter] = React.useState("filter");
-    const [docHosReviewList, setDocHosReviewList] = React.useState<DoctorReviewDto[]>([]); // 의사, 병원 후기 리스트
+    const [docHosReviewList, setDocHosReviewList] = React.useState<
+        DocsHosDto[]
+    >([]); // 의사, 병원 후기 리스트
 
     const handlePageChange = (page: React.SetStateAction<number>) => {
         setPage(page);
@@ -108,7 +109,16 @@ function Main() {
                 setTotalPages(res.data[0].totalPages);
             });
         } else {
-            console.log("카테고리 에러");
+            axios({
+                method: "get", // or 'post', 'put', etc.
+                url: `${process.env.REACT_APP_SERVER_URL}/review/search/doc-hos?sortType=${type}&type=${category}&query=${searchValue}`,
+                withCredentials: true,
+                headers: {
+                    Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                },
+            }).then((res) => {
+                setDocHosReviewList(res.data);
+            });
         }
     };
 
@@ -125,20 +135,16 @@ function Main() {
     };
 
     const filterHandle = (value: number) => {
-        if(value === 0) {
+        if (value === 0) {
             setType(0);
             setFilter("latest");
-        } 
-        else if(value === 1) {
+        } else if (value === 1) {
             setType(1);
             setFilter("comment");
-        }
-        else if(value === 2) {
+        } else if (value === 2) {
             setType(2);
             setFilter("view");
-        }
-        else 
-        {
+        } else {
             alert("필터 에러");
         }
         setIsFilter(false);
@@ -195,19 +201,16 @@ function Main() {
         } else if (9 === category || category === 10) {
             axios({
                 method: "get", // or 'post', 'put', etc.
-                url: `${
-                    process.env.REACT_APP_SERVER_URL
-                }/review/search/doc-hos?sortType=${type}&type=${category}&query=${searchValue}`,
+                url: `${process.env.REACT_APP_SERVER_URL}/review/search/doc-hos?sortType=${type}&type=${category}&query=${searchValue}`,
                 withCredentials: true,
                 headers: {
                     Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
                 },
             }).then((res) => {
                 setDocHosReviewList(res.data);
-                
             });
         } else {
-            alert("카테고리 에러");
+            alert("category error");
         }
     }, [category]);
 
@@ -354,35 +357,35 @@ function Main() {
             </div>
             {/*d 후기 리스트 섹션 */}
             <div className="review_list_div">
-                {category < 9 ? (
-                    reviewList.map((review, index) => {
-                        return (
-                            <div
-                                key={"des" + index}
-                                className="review_item_div"
-                                onClick={() => handleReview(review.reviewId)}
-                            >
-                                <ReviewItem
-                                    key={review.reviewId}
-                                    commentCount={review.commentCount}
-                                    createdAt={review.createdAt}
-                                    doctorName={review.doctorName}
-                                    hospitalName={review.hospitalName}
-                                    part={review.part}
-                                    profile={review.profile}
-                                    reviewId={review.reviewId}
-                                    title={review.title}
-                                    viewCount={review.viewCount}
-                                    likeCount={review.likeCount}
-                                    nickname={review.nickname}
-                                    totalPages={review.totalPages}
-                                />
-                            </div>
-                        );
-                    })
-                ) : (
-                    <div>docotr</div>
-                )}
+                {category < 9
+                    ? reviewList.map((review, index) => {
+                          return (
+                              <div
+                                  key={"des" + index}
+                                  className="review_item_div"
+                                  onClick={() => handleReview(review.reviewId)}
+                              >
+                                  <ReviewItem
+                                      key={review.reviewId}
+                                      commentCount={review.commentCount}
+                                      createdAt={review.createdAt}
+                                      doctorName={review.doctorName}
+                                      hospitalName={review.hospitalName}
+                                      part={review.part}
+                                      profile={review.profile}
+                                      reviewId={review.reviewId}
+                                      title={review.title}
+                                      viewCount={review.viewCount}
+                                      likeCount={review.likeCount}
+                                      nickname={review.nickname}
+                                      totalPages={review.totalPages}
+                                  />
+                              </div>
+                          );
+                      })
+                    : docHosReviewList.map((review, index) => {
+                          return <DocsHosReviewItem key={review.id} {...review} />;
+                      })}
             </div>
             {/* pagenation 섹션 */}
             <Pagination
