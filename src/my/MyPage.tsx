@@ -5,9 +5,11 @@ import MyCommentItem from "./MyCommentItem";
 import MyInqueryItem from "./MyInqueryItem";
 import AdItem from "../components/AdItem";
 import Footer from "../bottom/Footer";
+import { useNavigate } from "react-router-dom";
 
 function MyPage() {
   const items = [1, 2, 3, 4];
+  const navigate = useNavigate();
 
   return (
     <div className="mypage_div">
@@ -19,11 +21,11 @@ function MyPage() {
           </div>
           <div className="modify_mypage_button_div">
             <p id="mypage_sir">님</p>
-            <img src="/setting1.png" alt="setting" id="mypage_setting_button" />
+            <img src="/setting1.png" alt="setting" id="mypage_setting_button" onClick={() => navigate("/mypage/info")} />
           </div>
         </div>
         <div className="mypage_title_right_div">
-          <div className="write_review_button">
+          <div className="write_review_button" onClick={() => navigate("/review/make")}>
             <img src="/write_review.png" alt="write_review" id="write_review" />
           </div>
         </div>
@@ -33,7 +35,7 @@ function MyPage() {
         <div className="mypage_review_div">
           <div className="mypage_review_header_div">
             <p id="my_page_sub_title">나의 후기</p>
-            <p id="my_page_more">더보기</p>
+            <p id="my_page_more" onClick={() => navigate("/mypage/review/more")}>더보기</p>
           </div>
           <div className="my_review_items_div">
             {items.map((item, index) => {
@@ -53,7 +55,7 @@ function MyPage() {
           {/* 나의 댓글 헤더 부분 */}
           <div className="mypage_review_header_div">
             <p id="my_page_sub_title">나의 댓글</p>
-            <p id="my_page_more">더보기</p>
+            <p id="my_page_more" onClick={() => navigate("/mypage/comment/more")}>더보기</p>
           </div>
           <div className="my_review_items_div">
             {items.map((item, index) => {
@@ -70,7 +72,7 @@ function MyPage() {
           {/* 나의 문의 내역 헤더 부분 */}
           <div className="mypage_review_header_div">
             <p id="my_page_sub_title">나의 문의 내역</p>
-            <p id="my_page_more">더보기</p>
+            <p id="my_page_more" onClick={() => navigate("/mypage/inquery/more")}>더보기</p>
           </div>
           <div className="my_review_items_div">
             {items.map((item, index) => {

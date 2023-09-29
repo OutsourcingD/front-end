@@ -14,12 +14,12 @@ import { RecommendedReviewDto } from "../dto/RecommendedReviewDto";
 import { ReviewResponseDto } from "../dto/ReviewDto";
 import Pagination from "react-js-pagination";
 import { useNavigate } from "react-router-dom";
-import { ReviewDetailDto } from "../dto/ReviewDetailDto";
 import "../Test.css";
 import { SearchResponseDto } from "../dto/SearchResultDto";
-import { formatISO, getISOWeek, set } from "date-fns";
+import { getISOWeek } from "date-fns";
 import { ReviewHospitalInfoDto } from "../dto/Hospitals";
 import { ReviewDoctorInfoDto } from "../dto/Doctors";
+import { DoctorReviewDto } from "../components/DoctorReviewDto";
 
 function Main() {
     const settings = {
@@ -37,17 +37,15 @@ function Main() {
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(0);
     const [isSearch, setIsSearch] = React.useState(false); // 검색 여부 [true: 검색, false: 검색x]
-    const [searchValue, setSearchValue] = React.useState("");
+    const [searchValue, setSearchValue] = React.useState(" ");
     const navigate = useNavigate();
     const [type, setType] = React.useState(0); //0: 날짜 순, 1: 조회수 별, 2: 댓글 수 별
     const [category, setCategory] = React.useState(0); //0: 전체, 1: 지방, 2: 리프팅, 3: 피부, 4: 지방흡입, 5: 유방, 6: 코, 7: 안면, 8: 윤곽, 9: 의사, 10: 병원
     const [week, setWeek] = React.useState(0); //0: 전체, 1: 1주차, 2: 2주차, 3: 3주차, 4: 4주차
     const [month, setMonth] = React.useState(0); //0: 전체, 1: 1월, 2: 2월, 3: 3월, 4: 4월, 5: 5월, 6: 6월, 7: 7월, 8: 8월, 9: 9월, 10: 10월, 11: 11월, 12: 12월
-    const [isSubmit, seyIsSubmit] = React.useState(false);
-    const [hospitals, setHospitals] = React.useState<ReviewHospitalInfoDto[]>(
-        []
-    );
-    const [doctors, setDoctors] = React.useState<ReviewDoctorInfoDto[]>([]);
+    const [isFilter, setIsFilter] = React.useState(false); // 필터 여부 [true: 필터, false: 필터x
+    const [filter, setFilter] = React.useState("filter");
+    const [docHosReviewList, setDocHosReviewList] = React.useState<DoctorReviewDto[]>([]); // 의사, 병원 후기 리스트
 
     const handlePageChange = (page: React.SetStateAction<number>) => {
         setPage(page);
@@ -97,7 +95,7 @@ function Main() {
                 method: "get", // or 'post', 'put', etc.
                 url: `${
                     process.env.REACT_APP_SERVER_URL
-                }/review/search?type=${0}&query=${searchValue}&category=${category}&pages=${
+                }/review/search?type=${type}&query=${searchValue}&category=${category}&pages=${
                     page - 1
                 }`,
                 withCredentials: true,
@@ -126,6 +124,26 @@ function Main() {
         setCategory(value);
     };
 
+    const filterHandle = (value: number) => {
+        if(value === 0) {
+            setType(0);
+            setFilter("latest");
+        } 
+        else if(value === 1) {
+            setType(1);
+            setFilter("comment");
+        }
+        else if(value === 2) {
+            setType(2);
+            setFilter("view");
+        }
+        else 
+        {
+            alert("필터 에러");
+        }
+        setIsFilter(false);
+    };
+
     useEffect(() => {
         const today = new Date();
         const monthNumber = today.getMonth() + 1; // JavaScript에서 월은 0부터 시작하므로, 실제 월을 얻기 위해선 +1을 해야 합니다.
@@ -144,13 +162,15 @@ function Main() {
         let weekNumberOfMonth = currentWeek - weekOfFirstDay + 1;
 
         setWeek(weekNumberOfMonth);
+
+        localStorage.removeItem("selected");
     }, []);
 
     useEffect(() => {
         getBanners();
         getRecommendedReviews();
         getSearchReviewList();
-    }, [page]);
+    }, [page, type]);
 
     useEffect(() => {
         if (category < 9) {
@@ -158,7 +178,7 @@ function Main() {
                 method: "get", // or 'post', 'put', etc.
                 url: `${
                     process.env.REACT_APP_SERVER_URL
-                }/review/search?type=${0}&query=${searchValue}&category=${category}&pages=${
+                }/review/search?type=${type}&query=${searchValue}&category=${category}&pages=${
                     page - 1
                 }`,
                 withCredentials: true,
@@ -173,40 +193,27 @@ function Main() {
                 );
             });
         } else if (9 === category || category === 10) {
-            category === 9
-                ? axios({
-                      method: "get",
-                      url: `${
-                          process.env.REACT_APP_SERVER_URL
-                      }/review/search/doctor?type=${0}&query=${searchValue}`,
-                      withCredentials: true,
-                      headers: {
-                          Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-                      },
-                  }).then((res) => {
-                      setDoctors(res.data);
-                  })
-                : axios({
-                      method: "get",
-                      url: `${
-                          process.env.REACT_APP_SERVER_URL
-                      }/review/search/hospital?type=${0}&query=${searchValue}`,
-                      withCredentials: true,
-                      headers: {
-                          Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-                      },
-                  }).then((res) => {
-                      setHospitals(res.data);
-                  });
+            axios({
+                method: "get", // or 'post', 'put', etc.
+                url: `${
+                    process.env.REACT_APP_SERVER_URL
+                }/review/search/doc-hos?sortType=${type}&type=${category}&query=${searchValue}`,
+                withCredentials: true,
+                headers: {
+                    Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                },
+            }).then((res) => {
+                setDocHosReviewList(res.data);
+                
+            });
         } else {
             alert("카테고리 에러");
         }
     }, [category]);
 
     useEffect(() => {
-        console.log("doctors", doctors);
-        console.log("hospitals", hospitals);
-    }, [doctors, hospitals]);
+        console.log(docHosReviewList);
+    }, [docHosReviewList]);
 
     return (
         <div className="main">
@@ -215,7 +222,7 @@ function Main() {
                 <Slider {...settings}>
                     {imageList.map((image, index) => {
                         return (
-                            <div key={image.bannerId}>
+                            <div key={image.bannerId} className="ad_item_div">
                                 <a
                                     href={image.bannerLink}
                                     target="_blank"
@@ -303,37 +310,79 @@ function Main() {
                     onSearchResult={handleSearchResult}
                     category={category}
                 />
-                <div className="filter_div">
-                    <img src="filter.png" alt="filter" id="filter" />
+                <div
+                    className="filter_div"
+                    onClick={() => setIsFilter(!isFilter)}
+                >
+                    <div className="filter_header">
+                        <div className="filter_wrapper">
+                            <div className="filter_cotainer">
+                                <img
+                                    src="filter.png"
+                                    alt="filter"
+                                    id="filter"
+                                />
+                            </div>
+                            <p>{filter}</p>
+                        </div>
+                        {isFilter ? (
+                            <div className="filter_text">
+                                <div className="filter_item_div">
+                                    <p
+                                        id="filter_item1"
+                                        onClick={() => filterHandle(0)}
+                                    >
+                                        latest
+                                    </p>
+                                    <p
+                                        id="filter_item2"
+                                        onClick={() => filterHandle(1)}
+                                    >
+                                        comment
+                                    </p>
+                                    <p
+                                        id="filter_item3"
+                                        onClick={() => filterHandle(2)}
+                                    >
+                                        view
+                                    </p>
+                                </div>
+                            </div>
+                        ) : null}
+                    </div>
                 </div>
             </div>
             {/*d 후기 리스트 섹션 */}
             <div className="review_list_div">
-                {reviewList.map((review, index) => {
-                    return (
-                        <div
-                            key={"des" + index}
-                            className="review_item_div"
-                            onClick={() => handleReview(review.reviewId)}
-                        >
-                            <ReviewItem
-                                key={review.reviewId}
-                                commentCount={review.commentCount}
-                                createdAt={review.createdAt}
-                                doctorName={review.doctorName}
-                                hospitalName={review.hospitalName}
-                                part={review.part}
-                                profile={review.profile}
-                                reviewId={review.reviewId}
-                                title={review.title}
-                                viewCount={review.viewCount}
-                                likeCount={review.likeCount}
-                                nickname={review.nickname}
-                                totalPages={review.totalPages}
-                            />
-                        </div>
-                    );
-                })}
+                {category < 9 ? (
+                    reviewList.map((review, index) => {
+                        return (
+                            <div
+                                key={"des" + index}
+                                className="review_item_div"
+                                onClick={() => handleReview(review.reviewId)}
+                            >
+                                <ReviewItem
+                                    key={review.reviewId}
+                                    commentCount={review.commentCount}
+                                    createdAt={review.createdAt}
+                                    doctorName={review.doctorName}
+                                    hospitalName={review.hospitalName}
+                                    part={review.part}
+                                    profile={review.profile}
+                                    reviewId={review.reviewId}
+                                    title={review.title}
+                                    viewCount={review.viewCount}
+                                    likeCount={review.likeCount}
+                                    nickname={review.nickname}
+                                    totalPages={review.totalPages}
+                                />
+                            </div>
+                        );
+                    })
+                ) : (
+                    <div>docotr</div>
+                )}
             </div>
             {/* pagenation 섹션 */}
             <Pagination
