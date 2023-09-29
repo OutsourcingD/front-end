@@ -3,8 +3,6 @@ import { DoctorReviewDto } from "../components/DoctorReviewDto";
 import "./DocsHosReviewItem.css";
 
 const DocsHosReviewItem = (props: DoctorReviewDto) => {
-    const item = ["nose", "lifting", "face", "breast"]
-
     return (
         <div className="docs_hos_review_item_div">
             <div className="docs_hos_review_item_left_div">
@@ -17,7 +15,7 @@ const DocsHosReviewItem = (props: DoctorReviewDto) => {
                         {props.doctorName !== props.hospitalName ? <p id="docs_hos_name">{props.hospitalName}</p> : null}
                     </div>
                     <div className="docs_review_number_div">
-                        <p id="docs_review_number">{24} reviews</p>
+                        <p id="docs_review_number">{props.totalElements} reviews</p>
                     </div>
                 </div>
             </div>
