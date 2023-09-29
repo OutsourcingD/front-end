@@ -24,7 +24,6 @@ function Hospital() {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },
         }).then((res) => {
-            console.log(res.data);
             setHospitalList(res.data);
             setTotalPages(res.data[0].totalPages);
         });
@@ -33,10 +32,6 @@ function Hospital() {
     useEffect(() => {
         !isSearch ? getHospitalList() : console.log("검색x");
     }, [page]);
-
-    useEffect(() => {
-        console.log(hospitalList);
-    }, [hospitalList]);
 
     return (
         <div className="hospital_div">
