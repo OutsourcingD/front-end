@@ -356,7 +356,7 @@ function Main() {
                 </div>
             </div>
             {/*d 후기 리스트 섹션 */}
-            <div className="review_list_div">
+            <div className={category < 9 ? "review_list_div" : "docs_hos_review_list_div"}>
                 {category < 9
                     ? reviewList.map((review, index) => {
                           return (
@@ -388,15 +388,19 @@ function Main() {
                       })}
             </div>
             {/* pagenation 섹션 */}
-            <Pagination
-                activePage={page}
-                itemsCountPerPage={10}
-                totalItemsCount={totalPages * 10}
-                pageRangeDisplayed={10}
-                prevPageText={"‹"}
-                nextPageText={"›"}
-                onChange={handlePageChange}
-            />
+            {
+                category < 9 ?
+                <Pagination
+                    activePage={page}
+                    itemsCountPerPage={10}
+                    totalItemsCount={totalPages * 10}
+                    pageRangeDisplayed={10}
+                    prevPageText={"‹"}
+                    nextPageText={"›"}
+                    onChange={handlePageChange}
+                />
+                : null
+            }
             {/* 후기 만들기 floating button */}
             <div
                 className="make_review_button_div"
