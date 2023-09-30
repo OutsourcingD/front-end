@@ -12,6 +12,17 @@ function Doctor() {
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(1);
     const [category, setCategory] = React.useState(0);
+    const [searchValue, setSearchValue] = React.useState("");
+
+    const handleSearch = (value: string) => {
+        setSearchValue(value);
+        setPage(1);
+    };
+
+    const handleSearchResult = (value: DoctorResponseDto[]) => {
+        setDoctorList(value);
+        setTotalPages(value[0] !== undefined ? value[0].totalPages : 1);
+    };
 
     useEffect(() => {
         axios({
@@ -34,10 +45,11 @@ function Doctor() {
                 </div>
                 <div className="hospital_page_search_div">
                     <Search
-                        parent={1}
+                        parent={3}
                         category={category}
                         page={0}
-                        onSearch={(value) => console.log("")}
+                        onSearch={handleSearch}
+                        onDoctorPageSearchResult={handleSearchResult}
                     />
                 </div>
                 <div className="hospital_item_div">

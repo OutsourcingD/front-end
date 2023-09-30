@@ -122,7 +122,7 @@ function HospitalDetailPage() {
                 <div className="hospital_detail_hospital_info_div">
                     <div className="hospital_info_profile_div">
                         <img
-                            src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMTgy/MDAxNjA0MjI4ODc1NDMw.Ex906Mv9nnPEZGCh4SREknadZvzMO8LyDzGOHMKPdwAg.ZAmE6pU5lhEdeOUsPdxg8-gOuZrq_ipJ5VhqaViubI4g.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%95%98%EB%8A%98%EC%83%89.jpg?type=w800"
+                            src={hospitalDetail?.mainImage}
                             alt={hospitalDetail?.hospitalName}
                             id="hospital_profile_picture"
                         />
@@ -158,7 +158,7 @@ function HospitalDetailPage() {
                 <div className="hospital_review_div">
                     {hospitalReviewList.length !== 0 ? hospitalReviewList.map((item) => {
                         return (
-                            <div className="hospital_detail_page_review_item">
+                            <div className="hospital_detail_page_review_item" onClick={() => console.log(item.hospitalId)}>
                                 <div className="hospital_detail_page_review_list_left_div">
                                     <div className="hospital_detail_page_review_list_title_div">
                                         <p id="hospital_detail_review_title">

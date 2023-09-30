@@ -7,7 +7,7 @@ import { ReviewResponseDto } from "../dto/ReviewDto";
 import ReviewItem from "../components/ReviewItem";
 import axios from "axios";
 import Footer from "../bottom/Footer";
-import { getISOWeek } from "date-fns";
+import { getISOWeek, set } from "date-fns";
 import { GoPencil } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
 
@@ -40,7 +40,7 @@ function RecommendReviewPage() {
 
     const handleSearchResult = (value: ReviewResponseDto[]) => {
         setRecommendReviewItems(value);
-        setTotalPages(value[0].totalPages);
+        setTotalPages(value[0] !== undefined ? value[0].totalPages : 1);
     };
 
     const getRecommendReviewList = async () => {
@@ -48,7 +48,22 @@ function RecommendReviewPage() {
             method: "get", // or 'post', 'put', etc.
             url: `${
                 process.env.REACT_APP_SERVER_URL
-            }/review/recommendation/all?pages=${page - 1}`,
+            }/review/recommendation/search?pages=${page - 1}&query=${searchValue}&part=${category}`,
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            setRecommendReviewItems(res.data);
+            setTotalPages(res.data[0].totalPages);
+        });
+    };
+
+    const handleCategory = async () => {
+        await axios({
+            method: "get", // or 'post', 'put', etc.
+            url: `${
+                process.env.REACT_APP_SERVER_URL
+            }/review/recommendation/search?pages=${0}&query=${searchValue}&part=${category}`,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },
@@ -62,9 +77,18 @@ function RecommendReviewPage() {
         navigate("/review/make");
     };
 
+    const handleReview = (reviewId: number) => {
+        navigate(`/review?reviewId=${reviewId}`);
+    }
+
     useEffect(() => {
-        !isSearch ? getRecommendReviewList() : alert("검색x");
+        getRecommendReviewList();
     }, [page]);
+
+    useEffect(() => {
+        handleCategory();
+        setPage(1);
+    }, [category]);
 
     useEffect(() => {
         const today = new Date();
@@ -99,7 +123,7 @@ function RecommendReviewPage() {
             <Category onCategory={onCategory} />
             <div className="search_div">
                 <Search
-                    parent={3}
+                    parent={1}
                     page={page}
                     onSearch={handleSearch}
                     onSearchResult={handleSearchResult}
@@ -112,7 +136,7 @@ function RecommendReviewPage() {
                         <div
                             key={"des" + index}
                             className="review_item_div"
-                            onClick={() => console.log(review.reviewId)}
+                            onClick={() => handleReview(review.reviewId)}
                         >
                             <ReviewItem
                                 key={review.reviewId}
