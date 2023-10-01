@@ -14,7 +14,6 @@ import { MyCommentDto } from "../dto/MyCommentDto";
 import { MyInqueryDto } from "../dto/MyInqueryDto";
 
 function MyPage() {
-    const items = [1, 2, 3, 4];
     const [banners, setBanners] = React.useState<BannerDto[]>([]);
     const [myReviewItems, setMyReviewItems] = React.useState<MyReviewDto[]>([]);
     const [myCommentItems, setMyCommentItems] = React.useState<MyCommentDto[]>([]);

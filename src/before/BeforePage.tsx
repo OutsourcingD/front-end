@@ -1,17 +1,49 @@
 import React from "react";
 import "./BeforePage.css";
-import Category from "../components/Category";
-import Search from "../components/Search";
 import BeforeItem from "../components/BeforeItem";
 import Pagination from "react-js-pagination";
 import BeforeCategory from "../components/BeforeCategory";
 import Footer from "../bottom/Footer";
+import { BeforeAfterResponseDto } from "../dto/BeforeAfterResponseDto";
+import axios from "axios";
 
 function BeforePage() {
-    const before_list = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(1);
     const [category, setCategory] = React.useState(0);
+    const [beforeAfterList, setBeforeAfterList] = React.useState<BeforeAfterResponseDto[]>([]);
+
+    const handlePageChange = (page: React.SetStateAction<number>) => {
+        setPage(page);
+    };
+
+    const handleCategory = (value: number) => {
+        setCategory(value);
+        console.log(value)
+    };
+
+    const handleCategoryResult = (value: BeforeAfterResponseDto[]) => {
+        setBeforeAfterList(value);
+    };
+
+    React.useEffect(() => {
+        axios({
+            method: "get", // or 'post', 'put', etc.
+            url: `${process.env.REACT_APP_SERVER_URL}/review/before-after?part=${category}&pages=${
+                page - 1
+            }`,
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            setBeforeAfterList(res.data);
+            setTotalPages(res.data[0] !== undefined ? res.data[0].totalPages : 1);
+        });
+    }, [page]);
+
+    React.useEffect(() => {
+        setPage(1);
+    }, [category]);
 
     return (
         <div className="doctor_div">
@@ -20,19 +52,11 @@ function BeforePage() {
                     <p id="hospital_page_recommend_title">Before & After</p>
                 </div>
                 <div className="before_category_div">
-                    <BeforeCategory />
-                </div>
-                <div className="hospital_page_search_div">
-                    <Search
-                        parent={2}
-                        category={category}
-                        page={0}
-                        onSearch={(value) => console.log("")}
-                    />
+                    <BeforeCategory onCategory={handleCategory} onCategoryResult={handleCategoryResult}/>
                 </div>
                 <div className="hospital_item_div">
-                    {before_list.map((item, index) => {
-                        return <BeforeItem />;
+                    {beforeAfterList.map((item, index) => {
+                        return <BeforeItem key={index} {...item} />;
                     })}
                 </div>
                 <Pagination
@@ -42,7 +66,7 @@ function BeforePage() {
                     pageRangeDisplayed={10}
                     prevPageText={"‹"}
                     nextPageText={"›"}
-                    onChange={(page) => setPage(page)}
+                    onChange={handlePageChange}
                 />
             </div>
             <Footer />
