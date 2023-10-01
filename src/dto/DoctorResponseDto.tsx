@@ -4,4 +4,5 @@ export type DoctorResponseDto = {
   name: string;
   postId: number;
   totalPages: number;
+  docotrId: number;
 };

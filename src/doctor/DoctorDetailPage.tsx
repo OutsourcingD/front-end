@@ -7,6 +7,7 @@ import Pagination from "react-js-pagination";
 import Footer from "../bottom/Footer";
 import { DoctorDetailDto } from "../dto/DoctorDetailDto";
 import { DoctorReviewDto } from "../dto/DoctorReview";
+import { set } from "date-fns";
 
 function DoctorDetailPage() {
     const location = useLocation();
@@ -15,7 +16,6 @@ function DoctorDetailPage() {
         React.useState<DoctorDetailDto | null>(null);
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(1);
-    const items = [1, 2, 3, 4, 5, 6, 7, 8];
     const [doctorReviews, setDoctorReviews] = React.useState<DoctorReviewDto[]>(
         []
     );
@@ -57,8 +57,13 @@ function DoctorDetailPage() {
             },
         }).then((res) => {
             setDoctorReviews(res.data);
+            setTotalPages(res.data.length !== 0 ? res.data[0].totalPages : 1);
         });
     }, []);
+
+    useEffect(() => {
+        console.log(doctorReviews)
+    }, [doctorReviews]);
 
     return (
         <div className="hospital_detail_div">

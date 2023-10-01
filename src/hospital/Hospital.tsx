@@ -11,8 +11,6 @@ function Hospital() {
     const [hospitalList, setHospitalList] = useState<HospitalResponseDto[]>([]);
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(1);
-    const [isSearch, setIsSearch] = React.useState(false); // 검색 여부 [true: 검색, false: 검색x]
-    const [category, setCategory] = React.useState(0);
 
     const getHospitalList = async () => {
         await axios({
@@ -30,7 +28,7 @@ function Hospital() {
     };
 
     useEffect(() => {
-        !isSearch ? getHospitalList() : console.log("검색x");
+        getHospitalList()
     }, [page]);
 
     return (
@@ -42,7 +40,7 @@ function Hospital() {
                 <div className="hospital_page_search_div">
                     <Search
                         parent={2}
-                        category={category}
+                        category={0}
                         page={0}
                         onSearch={(value) => console.log("")}
                     />

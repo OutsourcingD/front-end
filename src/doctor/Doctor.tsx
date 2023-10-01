@@ -27,7 +27,7 @@ function Doctor() {
     useEffect(() => {
         axios({
             method: "get", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/doctor?pages=${page - 1}`,
+            url: `${process.env.REACT_APP_SERVER_URL}/doctor/search?pages=0&title=${searchValue}`,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },
