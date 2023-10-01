@@ -16,7 +16,9 @@ function DoctorDetailPage() {
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(1);
     const items = [1, 2, 3, 4, 5, 6, 7, 8];
-    const [doctorReviews, setDoctorReviews] = React.useState<DoctorReviewDto[]>([]);
+    const [doctorReviews, setDoctorReviews] = React.useState<DoctorReviewDto[]>(
+        []
+    );
 
     const settings = {
         infinite: true,
@@ -47,7 +49,9 @@ function DoctorDetailPage() {
         /* hospital detail */
         axios({
             method: "get", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/doctor/review?doctorId=${doctorId}&pages=${page - 1}`,
+            url: `${
+                process.env.REACT_APP_SERVER_URL
+            }/doctor/review?doctorId=${doctorId}&pages=${page - 1}`,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },
@@ -55,10 +59,6 @@ function DoctorDetailPage() {
             setDoctorReviews(res.data);
         });
     }, []);
-
-    useEffect(() => {
-      console.log(doctorReviews.length)
-    }, [doctorReviews]);
 
     return (
         <div className="hospital_detail_div">
@@ -74,7 +74,9 @@ function DoctorDetailPage() {
                 </div>
                 <div className="hospital_detail_title_div">
                     <p id="hospital_detail_title">{doctorDetail?.doctorName}</p>
-                    <p id="hospital_detail_description">소개글</p>
+                    <p id="hospital_detail_description">
+                        {doctorDetail?.introduction}
+                    </p>
                 </div>
                 <div className="review_detail_image_div">
                     <Slider {...settings}>
@@ -113,7 +115,7 @@ function DoctorDetailPage() {
                         marginBottom: "3%",
                     }}
                 >
-                    <p style={{ flex: "1" }}>병원 정보</p>
+                    <p style={{ flex: "1" }}>원장 정보</p>
                     <hr
                         style={{
                             flex: "10",
@@ -125,19 +127,21 @@ function DoctorDetailPage() {
                 <div className="hospital_detail_hospital_info_div">
                     <div className="hospital_info_profile_div">
                         <img
-                            src="/hospital_profile.png"
+                            src={doctorDetail?.mainImage}
                             alt="da"
                             id="hospital_profile_picture"
                         />
                     </div>
                     <div className="hospital_info_profile_text_div">
-                        <p id="hospital_info_name">{doctorDetail?.hospitalName}</p>
+                        <p id="hospital_info_name">
+                            {doctorDetail?.doctorName}
+                        </p>
                         <p id="hospital_info_location">
                             {doctorDetail?.location}
                         </p>
                     </div>
                     <div className="hospital_info_avg_div">
-                        <p>0</p>
+                        <p>{doctorDetail?.avgRate}</p>
                     </div>
                 </div>
                 <div
@@ -149,7 +153,7 @@ function DoctorDetailPage() {
                         marginBottom: "10px",
                     }}
                 >
-                    <p style={{width: "79px" }}>연관 후기</p>
+                    <p style={{ width: "79px" }}>연관 후기</p>
                     <hr
                         style={{
                             width: "785px",
@@ -159,63 +163,75 @@ function DoctorDetailPage() {
                     />
                 </div>
                 <div className="hospital_review_div">
-                    {items.map((item) => {
-                        return (
-                            <div className="hospital_detail_page_review_item">
-                                <div className="hospital_detail_page_review_list_left_div">
-                                    <div className="hospital_detail_page_review_list_title_div">
-                                        <p id="hospital_detail_review_title">
-                                            아름다운 성형외과에서 윤곽수술 받은
-                                            3개월차 후기
-                                        </p>
-                                        <p id="hospital_detail_review_date">
-                                            2023.08.23
-                                        </p>
-                                    </div>
-                                    <div className="hospital_detail_page_review_list_doctor_info_div">
-                                        <div className="hospital_detail_page_review_list_doctor_info_left">
-                                            <p id="hospital_detail_review_index_title">
-                                                원장님
+                    {doctorReviews.length === 0 ? (
+                        <p>연관 후기 없음....</p>
+                    ) : (
+                        doctorReviews.map((item) => {
+                            return (
+                                <div className="hospital_detail_page_review_item">
+                                    <div className="hospital_detail_page_review_list_left_div">
+                                        <div className="hospital_detail_page_review_list_title_div">
+                                            <p id="hospital_detail_review_title">
+                                                {item.title}
                                             </p>
-                                            <p id="hospital_detail_review_index_data">
-                                                김철수 원장님
+                                            <p id="hospital_detail_review_date">
+                                                {item.createdAt}
                                             </p>
                                         </div>
-                                        <div className="hospital_detail_page_review_list_doctor_info_right">
-                                            <p id="hospital_detail_review_index_title">
-                                                부위
+                                        <div className="hospital_detail_page_review_list_doctor_info_div">
+                                            <div className="hospital_detail_page_review_list_doctor_info_left">
+                                                <p id="hospital_detail_review_index_title">
+                                                    원장님
+                                                </p>
+                                                <p id="hospital_detail_review_index_data">
+                                                    {item.doctorName} 원장님
+                                                </p>
+                                            </div>
+                                            <div className="hospital_detail_page_review_list_doctor_info_right">
+                                                <p id="hospital_detail_review_index_title">
+                                                    부위
+                                                </p>
+                                                <p id="hospital_detail_review_index_data">
+                                                    {item.partList.map(
+                                                        (part, index) => {
+                                                            return index ===
+                                                                item.partList
+                                                                    .length -
+                                                                    1
+                                                                ? part
+                                                                : part + ", ";
+                                                        }
+                                                    )}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="hospital_detail_page_review_list_right_div">
+                                        <div className="hospital_detail_review_info">
+                                            <img
+                                                src="/view.png"
+                                                alt=""
+                                                id="hospital_detail_view"
+                                            />
+                                            <p id="hospital_detail_review_info_data">
+                                                {item.viewCount}
                                             </p>
-                                            <p id="hospital_detail_review_index_data">
-                                                윤곽 수술
+                                        </div>
+                                        <div className="hospital_detail_review_info">
+                                            <img
+                                                src="/chat.png"
+                                                alt=""
+                                                id="hospital_detail_commend"
+                                            />
+                                            <p id="hospital_detail_review_info_data">
+                                                {item.commentCount}
                                             </p>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="hospital_detail_page_review_list_right_div">
-                                    <div className="hospital_detail_review_info">
-                                        <img
-                                            src="/view.png"
-                                            alt=""
-                                            id="hospital_detail_view"
-                                        />
-                                        <p id="hospital_detail_review_info_data">
-                                            2,302
-                                        </p>
-                                    </div>
-                                    <div className="hospital_detail_review_info">
-                                        <img
-                                            src="/chat.png"
-                                            alt=""
-                                            id="hospital_detail_commend"
-                                        />
-                                        <p id="hospital_detail_review_info_data">
-                                            138
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        );
-                    })}
+                            );
+                        })
+                    )}
                     <Pagination
                         activePage={page}
                         itemsCountPerPage={10}
