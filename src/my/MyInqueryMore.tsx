@@ -24,7 +24,13 @@ function MyRecommendReview() {
         {my_review_list.map((item, index) => {
           return (
             <div key={index}>
-              <MyInqueryItem />
+              <MyInqueryItem 
+                id={index}
+                content="string;"
+                answer="string;"
+                createdAt="string;"
+                totalPages={index}
+              />
             </div>
           );
         })}

@@ -119,3 +119,9 @@
 .promotion_div {
     width: 100%;
 }
+
+#mypage_advertisement_img {
+    width: 100%;
+    height: 164px;
+    object-fit: fill;
+}

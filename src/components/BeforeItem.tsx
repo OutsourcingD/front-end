@@ -1,7 +1,7 @@
 import React from "react";
 import "./BeforeItem.css";
 
-function BeforeItem() {
+const BeforeItem = () => {
     return (
         <div className="before_item_div_">
             <div className="before_img_div">

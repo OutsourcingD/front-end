@@ -24,7 +24,7 @@ function MyRecommendReview() {
         {my_review_list.map((item, index) => {
           return (
             <div key={index}>
-              <MyCommentItem />
+              <MyCommentItem title="id" />
             </div>
           );
         })}
