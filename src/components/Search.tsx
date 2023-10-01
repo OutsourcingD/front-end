@@ -16,7 +16,7 @@ interface SearchProps {
 }
 
 const Search = (props: SearchProps) => {
-    const [value, setText] = useState("");
+    const [value, setText] = useState(" ");
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         props.onSearch(e.target.value);
@@ -181,6 +181,10 @@ const Search = (props: SearchProps) => {
             });
         }
     }
+
+    useEffect(() => {
+        setText("");
+    }, [props.category]);
 
     return (
         <div className="search_input_div">

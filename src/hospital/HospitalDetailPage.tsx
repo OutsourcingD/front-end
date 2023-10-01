@@ -6,6 +6,8 @@ import "./HospitalDetailPage.css";
 import Slider from "react-slick";
 import Pagination from "react-js-pagination";
 import Footer from "../bottom/Footer";
+import { HospitalReviewDto } from "../dto/HospitalReviewDto";
+import { useNavigate } from "react-router-dom";
 
 function HospitalDetailPage() {
     const location = useLocation();
@@ -13,9 +15,10 @@ function HospitalDetailPage() {
     const [hospitalDetail, setHospitalDetail] =
         React.useState<HospitalDetailDto | null>(null);
     const [hospitalReviewList, setHospitalReview] =
-        React.useState<HospitalDetailDto[]>([]);
+        React.useState<HospitalReviewDto[]>([]);
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(1);
+    const navigate = useNavigate();
 
     const settings = {
         infinite: true,
@@ -27,6 +30,10 @@ function HospitalDetailPage() {
 
     const handlePageChange = (page: React.SetStateAction<number>) => {
         setPage(page);
+    };
+
+    const handleReview = (reviewId: number) => {
+        navigate(`/review?reviewId=${reviewId}`);
     };
 
     useEffect(() => {
@@ -158,7 +165,7 @@ function HospitalDetailPage() {
                 <div className="hospital_review_div">
                     {hospitalReviewList.length !== 0 ? hospitalReviewList.map((item) => {
                         return (
-                            <div className="hospital_detail_page_review_item" onClick={() => console.log(item.hospitalId)}>
+                            <div className="hospital_detail_page_review_item" onClick={() => handleReview(item.reviewId)}>
                                 <div className="hospital_detail_page_review_list_left_div">
                                     <div className="hospital_detail_page_review_list_title_div">
                                         <p id="hospital_detail_review_title">
@@ -174,7 +181,7 @@ function HospitalDetailPage() {
                                                 원장님
                                             </p>
                                             <p id="hospital_detail_review_index_data">
-                                                {hospitalDetail?.hospitalName} 원장님
+                                                {item.doctorName} 원장님
                                             </p>
                                         </div>
                                         <div className="hospital_detail_page_review_list_doctor_info_right">
@@ -203,7 +210,7 @@ function HospitalDetailPage() {
                                             id="hospital_detail_view"
                                         />
                                         <p id="hospital_detail_review_info_data">
-                                            2,302
+                                            {item.viewCount}
                                         </p>
                                     </div>
                                     <div className="hospital_detail_review_info">
@@ -213,7 +220,7 @@ function HospitalDetailPage() {
                                             id="hospital_detail_commend"
                                         />
                                         <p id="hospital_detail_review_info_data">
-                                            138
+                                            {item.commentCount}
                                         </p>
                                     </div>
                                 </div>

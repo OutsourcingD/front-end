@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import Pagination from "react-js-pagination";
 import Footer from "../bottom/Footer";
 import { DoctorDetailDto } from "../dto/DoctorDetailDto";
+import { DoctorReviewDto } from "../dto/DoctorReview";
 
 function DoctorDetailPage() {
     const location = useLocation();
@@ -15,6 +16,7 @@ function DoctorDetailPage() {
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(1);
     const items = [1, 2, 3, 4, 5, 6, 7, 8];
+    const [doctorReviews, setDoctorReviews] = React.useState<DoctorReviewDto[]>([]);
 
     const settings = {
         infinite: true,
@@ -31,7 +33,7 @@ function DoctorDetailPage() {
     useEffect(() => {
         const doctorId = queryParams.get("doctorId");
 
-        /* hospital detail */
+        /* doctor detail */
         axios({
             method: "get", // or 'post', 'put', etc.
             url: `${process.env.REACT_APP_SERVER_URL}/doctor/detail?postId=${doctorId}`,
@@ -41,13 +43,22 @@ function DoctorDetailPage() {
         }).then((res) => {
             setDoctorDetail(res.data);
         });
+
+        /* hospital detail */
+        axios({
+            method: "get", // or 'post', 'put', etc.
+            url: `${process.env.REACT_APP_SERVER_URL}/doctor/review?doctorId=${doctorId}&pages=${page - 1}`,
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            setDoctorReviews(res.data);
+        });
     }, []);
 
     useEffect(() => {
-      doctorDetail === null
-            ? console.log("hello")
-            : console.log("병원 후기 없음");
-    }, [doctorDetail]);
+      console.log(doctorReviews.length)
+    }, [doctorReviews]);
 
     return (
         <div className="hospital_detail_div">
@@ -120,9 +131,9 @@ function DoctorDetailPage() {
                         />
                     </div>
                     <div className="hospital_info_profile_text_div">
-                        <p id="hospital_info_name">아이디 성형외과</p>
+                        <p id="hospital_info_name">{doctorDetail?.hospitalName}</p>
                         <p id="hospital_info_location">
-                            서울시 역삼동 OO동 00-00
+                            {doctorDetail?.location}
                         </p>
                     </div>
                     <div className="hospital_info_avg_div">
