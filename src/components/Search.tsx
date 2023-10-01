@@ -4,6 +4,7 @@ import axios from "axios";
 import { SearchResponseDto } from "../dto/SearchResultDto";
 import { DocsHosDto } from "../dto/DocsHosDto";
 import { DoctorResponseDto } from "../dto/DoctorResponseDto";
+import { HospitalResponseDto } from "../dto/HospitalResponseDto";
 
 interface SearchProps {
     page: number;
@@ -13,6 +14,7 @@ interface SearchProps {
     onSearchResult?: (value: SearchResponseDto[]) => void;
     onDoctorSearchResult?: (value: DocsHosDto[]) => void;
     onDoctorPageSearchResult?: (value: DoctorResponseDto[]) => void;
+    onHospitalSearchResult?: (value: HospitalResponseDto[]) => void;
 }
 
 const Search = (props: SearchProps) => {
@@ -89,7 +91,20 @@ const Search = (props: SearchProps) => {
                 });
             }
         }
-        else if(props.parent === 3) {
+        else if(props.parent === 2) {
+            axios({
+                method: "get",
+                url: `${process.env.REACT_APP_SERVER_URL}/hospital/search?pages=0&title=${value}`,
+                headers: {
+                    Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                },
+            }).then((res) => {
+                if (props.onHospitalSearchResult) {
+                    props.onHospitalSearchResult(res.data);
+                    props.onSearch(value);
+                }
+            });
+        } else if(props.parent === 3) {
             axios({
                 method: "get",
                 url: `${process.env.REACT_APP_SERVER_URL}/doctor/search?pages=0&title=${value}`,

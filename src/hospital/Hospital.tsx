@@ -11,13 +11,24 @@ function Hospital() {
     const [hospitalList, setHospitalList] = useState<HospitalResponseDto[]>([]);
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(1);
+    const [searchValue, setSearchValue] = React.useState(" ");
+
+    const handleSearch = (value: string) => {
+        setSearchValue(value);
+        setPage(1);
+    };
+
+    const handleSearchResult = (value: HospitalResponseDto[]) => {
+        setHospitalList(value);
+        setTotalPages(value[0] !== undefined ? value[0].totalPages : 1);
+    };
 
     const getHospitalList = async () => {
         await axios({
             method: "get", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/hospital?pages=${
+            url: `${process.env.REACT_APP_SERVER_URL}/hospital/search?pages=${
                 page - 1
-            }`,
+            }&title=${searchValue}`,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },
@@ -42,7 +53,8 @@ function Hospital() {
                         parent={2}
                         category={0}
                         page={0}
-                        onSearch={(value) => console.log("")}
+                        onSearch={handleSearch}
+                        onHospitalSearchResult={handleSearchResult}
                     />
                 </div>
                 <div className="hospital_item_div">

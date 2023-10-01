@@ -1,13 +1,12 @@
 import axios from "axios";
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../hospital/HospitalDetailPage.css";
 import Slider from "react-slick";
 import Pagination from "react-js-pagination";
 import Footer from "../bottom/Footer";
 import { DoctorDetailDto } from "../dto/DoctorDetailDto";
 import { DoctorReviewDto } from "../dto/DoctorReview";
-import { set } from "date-fns";
 
 function DoctorDetailPage() {
     const location = useLocation();
@@ -19,6 +18,11 @@ function DoctorDetailPage() {
     const [doctorReviews, setDoctorReviews] = React.useState<DoctorReviewDto[]>(
         []
     );
+    const navigate = useNavigate();
+
+    const handleReview = (reviewId: number) => {
+        navigate(`/review?reviewId=${reviewId}`);
+    };
 
     const settings = {
         infinite: true,
@@ -173,7 +177,7 @@ function DoctorDetailPage() {
                     ) : (
                         doctorReviews.map((item) => {
                             return (
-                                <div className="hospital_detail_page_review_item">
+                                <div className="hospital_detail_page_review_item" onClick={() => handleReview(item.reviewId)}>
                                     <div className="hospital_detail_page_review_list_left_div">
                                         <div className="hospital_detail_page_review_list_title_div">
                                             <p id="hospital_detail_review_title">

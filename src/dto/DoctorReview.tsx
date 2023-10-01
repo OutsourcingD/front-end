@@ -7,4 +7,5 @@ export type DoctorReviewDto = {
     commentCount: number;
     viewCount: number;
     totalPages: number;
+    reviewId: number;
 };
