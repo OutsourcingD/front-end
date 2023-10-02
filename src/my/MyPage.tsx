@@ -3,7 +3,6 @@ import "./MyPage.css";
 import MyReviewItem from "./MyReviewItem";
 import MyCommentItem from "./MyCommentItem";
 import MyInqueryItem from "./MyInqueryItem";
-import AdItem from "../components/AdItem";
 import Footer from "../bottom/Footer";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";

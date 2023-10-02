@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import Footer from "../bottom/Footer";
+import axios from "axios";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -19,7 +20,22 @@ function Login() {
   }
 
   const loginHandler = () => {
-    emailRegEx.test(email) ? alert("로그인") : alert("이메일 형식이 올바르지 않습니다.");
+    emailRegEx.test(email) ? 
+      axios({
+        method: "post",
+        url: `${process.env.REACT_APP_SERVER_URL}/login`,
+        data: {
+          userId: email,
+          password: pwd
+        }
+      }).then((res) => {
+        localStorage.setItem("access_token", res.data.accessToken);
+        localStorage.setItem("refresh_token", res.data.refreshToken);
+        localStorage.setItem("member_id", res.data.memberId);
+        localStorage.setItem("flvnsfl", res.data.flvnsfl);
+        navigate("/");
+      })
+    : alert("이메일 형식이 올바르지 않습니다.");
   }
 
   const signUpHandler = () => {
@@ -33,7 +49,7 @@ function Login() {
           <p id="login_item_title">로그인</p>
         </div>
         <div className="login_id_input_div">
-          <form>
+          <form onSubmit={(e) => {e.preventDefault(); loginHandler()}}>
             <input
               id="login_id_input"
               placeholder="아이디"
@@ -44,7 +60,7 @@ function Login() {
           </form>
         </div>
         <div className="pwd_id_input_div">
-          <form>
+          <form onSubmit={(e) => e.preventDefault()}>
             <input
               id="login_pwd_input"
               placeholder="비밀번호"

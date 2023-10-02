@@ -7,7 +7,7 @@ import { ReviewResponseDto } from "../dto/ReviewDto";
 import ReviewItem from "../components/ReviewItem";
 import axios from "axios";
 import Footer from "../bottom/Footer";
-import { getISOWeek, set } from "date-fns";
+import { getISOWeek } from "date-fns";
 import { GoPencil } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
 import { DocsHosDto } from "../dto/DocsHosDto";
