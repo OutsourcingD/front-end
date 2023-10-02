@@ -4,6 +4,10 @@ import { Editor } from "react-draft-wysiwyg";
 import { EditorState, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftjsToHtml from "draftjs-to-html";
+import Slider from "react-slick";
+import axios from "axios";
+import { BeforeDto } from "./dto/BeforeDetailDto";
+import "./components/BeforeDetail.css"
 
 const Container = styled.div`
   width: 100%;
@@ -25,6 +29,7 @@ const Viewer = styled.div`
 const Test = () => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [htmlString, setHtmlString] = useState("");
+  const [beforeDetail, setBeforeDetail] = React.useState<BeforeDto>();
 
   const updateTextDescription = async (state: EditorState) => {
     await setEditorState(state);
@@ -37,30 +42,60 @@ const Test = () => {
     console.log("이미지 업로드");
   };
 
+  const settings = {
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: false,
+};
+
+React.useEffect(() => {
+    axios({
+        method: "get",
+        url: `${process.env.REACT_APP_SERVER_URL}/review/before-after/detail?id=${1}`,
+        headers: {
+            Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+        },
+    }).then((res) => {
+        setBeforeDetail(res.data);
+    });
+}, []);
+
   return (
-    <>
+      <>
       <div>draft</div>
-      <Container>
-        <Editor
-          placeholder="게시글을 작성해주세요"
-          editorState={editorState}
-          onEditorStateChange={updateTextDescription}
-          toolbar={{
-            image: { uploadCallback: uploadCallback },
-          }}
-          localization={{ locale: "ko" }}
-          editorStyle={{
-            height: "400px",
-            width: "100%",
-            border: "3px solid lightgray",
-            padding: "20px",
-          }}
-        />
-      </Container>
-      <RowBox>
-        <Viewer dangerouslySetInnerHTML={{ __html: htmlString }} />
-        <Viewer>{htmlString}</Viewer>
-      </RowBox>
+      <div className="before_detail_body_div">
+                <div className="before_detail_top_body">
+                {beforeDetail !== undefined &&
+                            beforeDetail?.beforeAfterVo.map((item, index) => {
+                                return (
+                                    <div className="before_detail_image_item_div">
+                                        <div className="before_detail_image_div">
+                                            <img
+                                                src={
+                                                    beforeDetail
+                                                        ?.beforeAfterVo[0]
+                                                        .beforeImg
+                                                }
+                                                alt=""
+                                            />
+                                        </div>
+                                        <div className="before_detail_image_div">
+                                            <img
+                                                src={
+                                                    beforeDetail
+                                                        ?.beforeAfterVo[0]
+                                                        .afterImg
+                                                }
+                                                alt=""
+                                            />
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                </div>
+      
+    </div>
     </>
   );
 };

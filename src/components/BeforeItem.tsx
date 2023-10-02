@@ -1,26 +1,37 @@
 import React from "react";
 import "./BeforeItem.css";
 import { BeforeAfterResponseDto } from "../dto/BeforeAfterResponseDto";
+import { BeforeDto } from "../dto/BeforeDetailDto";
+import axios from "axios";
 
-const BeforeItem = (props: BeforeAfterResponseDto) => {
+interface BeforeItemProps {
+    item: BeforeAfterResponseDto;
+    onClick: (id: number) => void;
+}
+
+const BeforeItem = (props: BeforeItemProps) => {
+    const onClick = (id: number) => {
+        props.onClick(id);
+    };
+
     return (
-        <div className="before_item_div_">
+        <div className="before_item_div_" onClick={() => onClick(props.item.id)}>
             <div className="before_img_div">
-                <img id="before_img" src={props.beforeAfterVo.beforeImg} alt=""/>
+                <img id="before_img" src={props.item.beforeAfterVo.beforeImg} alt=""/>
                 <div className="review_text_div_">
-                    <p id="before_title">{props.beforeAfterVo.beforeAfterPeriod} before</p>
+                    <p id="before_title">{props.item.beforeAfterVo.beforeAfterPeriod} before</p>
                 </div>
                 <div className="review_text_div">
-                    <p id="before_title">{props.beforeAfterVo.beforeAfterPeriod} Before</p>
+                    <p id="before_title">{props.item.beforeAfterVo.beforeAfterPeriod} Before</p>
                 </div>
             </div>
             <div className="after_img_div">
-                <img id="after_img" src={props.beforeAfterVo.afterImg} alt="" />
+                <img id="after_img" src={props.item.beforeAfterVo.afterImg} alt="" />
                 <div className="review_text_div_">
-                    <p id="before_title">{props.beforeAfterVo.beforeAfterPeriod} After</p>
+                    <p id="before_title">{props.item.beforeAfterVo.beforeAfterPeriod} After</p>
                 </div>
                 <div className="review_text_div">
-                    <p id="before_title">{props.beforeAfterVo.beforeAfterPeriod} After</p>
+                    <p id="before_title">{props.item.beforeAfterVo.beforeAfterPeriod} After</p>
                 </div>
             </div>
         </div>

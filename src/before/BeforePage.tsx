@@ -6,12 +6,15 @@ import BeforeCategory from "../components/BeforeCategory";
 import Footer from "../bottom/Footer";
 import { BeforeAfterResponseDto } from "../dto/BeforeAfterResponseDto";
 import axios from "axios";
+import BeforeDetail from "../components/BeforeDetail";
 
 function BeforePage() {
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(1);
     const [category, setCategory] = React.useState(0);
     const [beforeAfterList, setBeforeAfterList] = React.useState<BeforeAfterResponseDto[]>([]);
+    const [isClick, setIsClick] = React.useState(false);
+    const [beforeItemId, setBeforeItemId] = React.useState(0);
 
     const handlePageChange = (page: React.SetStateAction<number>) => {
         setPage(page);
@@ -24,6 +27,11 @@ function BeforePage() {
 
     const handleCategoryResult = (value: BeforeAfterResponseDto[]) => {
         setBeforeAfterList(value);
+    };
+
+    const handleBeforeAfter = (id: number) => {
+        setIsClick(true);
+        setBeforeItemId(id);
     };
 
     React.useEffect(() => {
@@ -46,7 +54,8 @@ function BeforePage() {
     }, [category]);
 
     return (
-        <div className="doctor_div">
+        <div className="doctor_div" onClick={() => setIsClick(!isClick)}>
+            {isClick ? <div className="before_page_div_disabled"></div> : null}
             <div className="hospital_container">
                 <div className="hospital_page_recommend_title_div">
                     <p id="hospital_page_recommend_title">Before & After</p>
@@ -56,9 +65,12 @@ function BeforePage() {
                 </div>
                 <div className="hospital_item_div">
                     {beforeAfterList.map((item, index) => {
-                        return <BeforeItem key={index} {...item} />;
+                        return <BeforeItem key={index} item={item} onClick={handleBeforeAfter} />;
                     })}
                 </div>
+                {isClick ? <BeforeDetail 
+                    id={beforeItemId}
+                /> : null}
                 <Pagination
                     activePage={page}
                     itemsCountPerPage={10}
