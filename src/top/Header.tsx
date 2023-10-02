@@ -18,6 +18,7 @@ function Header() {
     const [selected, setSelected] = useState(0);
     const [more, setMore] = useState(false);
     const [name, setName] = useState("");
+    const [profile, setProfile] = useState("");
 
     const dropdownRef = React.useRef<HTMLDivElement | null>(null); // 참조 생성
 
@@ -76,7 +77,7 @@ function Header() {
     useEffect(() => {
         const accessToken = localStorage.getItem("access_token")
         const refreshToken = localStorage.getItem("refresh_token")
-        const memberIdString = localStorage.getItem("member_id")
+        const memberIdString = localStorage.getItem("user_id")
         let memberId = 0
 
         console.log(accessToken?.length, " ", refreshToken?.length, " ", memberIdString?.length)
@@ -103,6 +104,7 @@ function Header() {
             },
         }).then((res) => {
             setName(res.data.nickname);
+            setProfile(res.data.profile);
         });
     }, []);
 
@@ -166,7 +168,7 @@ function Header() {
                     <>
                         <div className="profile_container" onClick={onClick}>
                             <img
-                                src="/logo/profile.png"
+                                src={profile}
                                 alt="profile"
                                 id="profile"
                             />

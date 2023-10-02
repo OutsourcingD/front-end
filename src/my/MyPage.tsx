@@ -59,18 +59,19 @@ function MyPage() {
         }).then((res) => {
           setMyCommentItems(res.data);
         });
+        
+        //my inquery api
+        axios({
+          method: "get",
+          url: `${process.env.REACT_APP_SERVER_URL}/inquiry`,
+          headers: {
+            Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+          },
+        }).then((res) => {
+          setMyInqueryItems(res.data);
+        });
     }, []);
 
-    //my inquery api
-    axios({
-      method: "get",
-      url: `${process.env.REACT_APP_SERVER_URL}/inquiry`,
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-      },
-    }).then((res) => {
-      setMyInqueryItems(res.data);
-    });
 
     return (
         <div className="mypage_div">
@@ -86,14 +87,14 @@ function MyPage() {
                             src="/setting1.png"
                             alt="setting"
                             id="mypage_setting_button"
-                            onClick={() => navigate("/mypage/info")}
+                            onClick={() => navigate(`/mypage/info?id=${localStorage.getItem("user_id")}`)}
                         />
                     </div>
                 </div>
                 <div className="mypage_title_right_div">
                     <div
                         className="write_review_button"
-                        onClick={() => navigate("/review/make")}
+                        onClick={() => navigate(`/review/make?id=${localStorage.getItem("user_id")}`)}
                     >
                         <img
                             src="/write_review.png"
@@ -110,7 +111,7 @@ function MyPage() {
                         <p id="my_page_sub_title">나의 후기</p>
                         <p
                             id="my_page_more"
-                            onClick={() => navigate("/mypage/review/more")}
+                            onClick={() => navigate(`/mypage/review/more?id=${localStorage.getItem("user_id")}`)}
                         >
                             더보기
                         </p>
@@ -135,7 +136,7 @@ function MyPage() {
                         <p id="my_page_sub_title">나의 댓글</p>
                         <p
                             id="my_page_more"
-                            onClick={() => navigate(`/mypage/comment/more?id=${"김철수"}`)}
+                            onClick={() => navigate(`/mypage/comment/more?id=${localStorage.getItem("user_id")}`)}
                         >
                             더보기
                         </p>
@@ -157,7 +158,7 @@ function MyPage() {
                         <p id="my_page_sub_title">나의 문의 내역</p>
                         <p
                             id="my_page_more"
-                            onClick={() => navigate("/mypage/inquery/more")}
+                            onClick={() => navigate(`/mypage/inquery/more?id=${localStorage.getItem("user_id")}`)}
                         >
                             더보기
                         </p>
