@@ -39,7 +39,7 @@ function MyRecommendReview() {
         {myCommentList.length !== 0 ? myCommentList.map((item, index) => {
           return (
             <div key={index}>
-              <MyCommentItem title="id" />
+              <MyCommentItem title={item.content} reviewId={item.reviewId} />
             </div>
           );
         }): <p>작성한 댓글 없음...</p>}

@@ -3,4 +3,5 @@ export type MyCommentResponseDto = {
     createdAt: string;
     updatedAt: string;
     totalPages: number;
+    reviewId: number;
 };

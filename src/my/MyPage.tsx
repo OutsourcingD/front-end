@@ -121,6 +121,7 @@ function MyPage() {
                             return index < 4 ? (
                                 <div key={index}>
                                     <MyReviewItem
+                                        reviewId={item.reviewId}
                                         title={item.title}
                                         date={item.createdAt}
                                     />
@@ -145,7 +146,7 @@ function MyPage() {
                         {myCommentItems.map((item, index) => (
                           index < 4 ?
                           <div key={index}>
-                            <MyCommentItem title={item.content} />
+                            <MyCommentItem title={item.content} reviewId={item.reviewId}/>
                           </div>
                           :null
                         ))}

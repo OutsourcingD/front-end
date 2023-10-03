@@ -32,10 +32,6 @@ function MyRecommendReview() {
     });
   }, [page]);
 
-  const handleReview = (id: number) => {
-    navigate(`/review/${id}`);
-  };
-
   return (
     <div className="my_recommend_review_div" >
       <div className="my_recommend_review_header">
@@ -46,6 +42,7 @@ function MyRecommendReview() {
           return (
             <div key={index}>
               <MyReviewItem
+                reviewId={item.reviewId}
                 title={item.title}
                 date={item.createdAt}
               />

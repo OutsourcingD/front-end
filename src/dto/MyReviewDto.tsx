@@ -3,4 +3,5 @@ export type MyReviewDto = {
     createdAt: string;
     childCount: number;
     totalPages: number;
+    reviewId: number;
 };
