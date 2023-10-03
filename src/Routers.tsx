@@ -21,6 +21,7 @@ import DoctorDetailPage from "./doctor/DoctorDetailPage";
 import HospitalDetailPage from "./hospital/HospitalDetailPage";
 import FindPage from "./home/FindPage";
 import AdminPage from "./my/AdminPage";
+import MakeNthReviewPage from "./review_page/MakeNthReviewPage";
 
 function Routers () {
     return (
@@ -42,6 +43,7 @@ function Routers () {
                 <Route path="/review/make" element={<MakeReviewPage checkBox={true} />} />
                 <Route path="/recommend/review/all" element={<RecommendReviewPage />} />
                 <Route path="/review" element={<ReviewPage />} />
+                <Route path="/review/write" element={<MakeNthReviewPage />} />
                 <Route path="/doctor/detail" element={<DoctorDetailPage />} />
                 <Route path="/hospital/detail" element={<HospitalDetailPage />} />
                 <Route path="/login/find" element={<FindPage />} />
