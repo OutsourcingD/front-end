@@ -64,6 +64,7 @@
 #login_item_title {
     font-size: 32px;
     font-weight: 700;
+    white-space: nowrap;
     color: #DFB1E4;
 }
 
