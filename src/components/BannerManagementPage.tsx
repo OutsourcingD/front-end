@@ -1,10 +1,30 @@
 import React from "react";
 import "./BannerManagementPage.css";
 import { IoMdAddCircleOutline } from "react-icons/io";
+import axios from "axios";
+import { BannerDto } from "../dto/BannerDto";
 
 const BannerManagementPage = () => {
-    const [bannerList, setBannerList] = React.useState([]);
-    const item = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const [topBannerList, setTopBannerList] = React.useState<BannerDto[]>([]);
+    const [bottomBannerList, setBottomBannerList] = React.useState<BannerDto[]>([]);
+
+    const getBanner = async (location: number) => {
+        //1: 상단, 3: 하단
+        await axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/banner?location=${location}`,
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            location === 1 ? setTopBannerList(res.data) : setBottomBannerList(res.data);
+        });
+    }
+
+    React.useEffect(() => {
+        getBanner(1);
+        getBanner(3);
+    }, []);
 
     return (
         <div className="banner_management_page_div">
@@ -24,7 +44,7 @@ const BannerManagementPage = () => {
                                 <p id="index_ability">기능</p>
                             </div>
                         </div>
-                        {item.map((item, index) => {
+                        {topBannerList.map((item, index) => {
                             return (
                                 <div className="admin_page_banner_items_div">
                                     <p id="admin_page_banner_item_index">
@@ -32,20 +52,20 @@ const BannerManagementPage = () => {
                                     </p>
                                     <div className="admin_page_banner_image_div">
                                         <img
-                                            src="https://hospital-image-bucket-1.s3.ap-northeast-2.amazonaws.com/banner/left/Mask%20group2.png"
-                                            alt="banner"
+                                            src={item.bannerImg}
+                                            alt={item.hospital_name}
                                             id="admin_page_banner_image"
                                         />
                                     </div>
                                     <div className="admin_page_banner_edit_buttons_div">
                                         <div className="admin_page_banner_delete_button_div">
                                             <p id="admin_page_banner_button_delete">
-                                                삭제
+                                                delete
                                             </p>
                                         </div>
                                         <div className="admin_page_banner_edit_button_div">
                                             <p id="admin_page_banner_button_edit">
-                                                수정
+                                                edit
                                             </p>
                                         </div>
                                     </div>
@@ -65,7 +85,7 @@ const BannerManagementPage = () => {
                                 <p id="index_ability">기능</p>
                             </div>
                         </div>
-                        {item.map((item, index) => {
+                        {bottomBannerList.map((item, index) => {
                             return (
                                 <div className="admin_page_banner_items_div">
                                     <p id="admin_page_banner_item_index">
@@ -73,20 +93,20 @@ const BannerManagementPage = () => {
                                     </p>
                                     <div className="admin_page_banner_image_div">
                                         <img
-                                            src="https://hospital-image-bucket-1.s3.ap-northeast-2.amazonaws.com/banner/left/Mask%20group2.png"
-                                            alt="banner"
+                                            src={item.bannerImg}
+                                            alt={item.hospital_name}
                                             id="admin_page_banner_image"
                                         />
                                     </div>
                                     <div className="admin_page_banner_edit_buttons_div">
                                         <div className="admin_page_banner_delete_button_div">
                                             <p id="admin_page_banner_button_delete">
-                                                삭제
+                                                delete
                                             </p>
                                         </div>
                                         <div className="admin_page_banner_edit_button_div">
                                             <p id="admin_page_banner_button_edit">
-                                                수정
+                                                edit
                                             </p>
                                         </div>
                                     </div>
