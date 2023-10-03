@@ -24,7 +24,7 @@ jobs:
           cat .env
       - name: Npm Install
         run: |
-          npm install
+          npm install --legacy-peer-deps # Add the --legacy-peer-deps option here.
       - name: Npm Build
         run: |
           npm run build
