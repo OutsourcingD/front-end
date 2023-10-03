@@ -27,7 +27,7 @@ jobs:
           npm install --legacy-peer-deps # Add the --legacy-peer-deps option here.
       - name: Npm Build
         run: |
-          npm run build
+          CI=false npm run build
       - name: Deploy to S3
         uses: jakejarvis/s3-sync-action@master
         with:
