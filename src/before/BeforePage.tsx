@@ -22,17 +22,17 @@ function BeforePage() {
 
     const handleCategory = (value: number) => {
         setCategory(value);
-        console.log(value)
     };
 
     const handleCategoryResult = (value: BeforeAfterResponseDto[]) => {
         setBeforeAfterList(value);
     };
 
-    const handleBeforeAfter = (id: number) => {
+    const handleBeforeAfter = React.useCallback((id: number) => {
         setIsClick(true);
         setBeforeItemId(id);
-    };
+        console.log("before: ", id);
+    }, []);
 
     React.useEffect(() => {
         axios({
@@ -53,9 +53,13 @@ function BeforePage() {
         setPage(1);
     }, [category]);
 
+    React.useEffect(() => {
+        console.log(isClick)
+    }, [isClick]);
+
     return (
-        <div className="doctor_div" onClick={() => setIsClick(!isClick)}>
-            {isClick ? <div className="before_page_div_disabled"></div> : null}
+        <div className="doctor_div" onClick={() => setIsClick(false)}>
+            {isClick === true ? <div className="before_page_div_disabled"></div> : null}
             <div className="hospital_container">
                 <div className="hospital_page_recommend_title_div">
                     <p id="hospital_page_recommend_title">Before & After</p>
@@ -68,7 +72,7 @@ function BeforePage() {
                         return <BeforeItem key={index} item={item} onClick={handleBeforeAfter} />;
                     })}
                 </div>
-                {isClick ? <BeforeDetail 
+                {isClick === true ? <BeforeDetail 
                     id={beforeItemId}
                 /> : null}
                 <Pagination

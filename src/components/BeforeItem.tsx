@@ -10,12 +10,13 @@ interface BeforeItemProps {
 }
 
 const BeforeItem = (props: BeforeItemProps) => {
-    const onClick = (id: number) => {
+    const onClick = (event: React.MouseEvent<HTMLDivElement>, id: number) => {
+        event.stopPropagation(); // Add this line
         props.onClick(id);
     };
 
     return (
-        <div className="before_item_div_" onClick={() => onClick(props.item.id)}>
+        <div className="before_item_div_" onClick={(event) => onClick(event, props.item.id)}>
             <div className="before_img_div">
                 <img id="before_img" src={props.item.beforeAfterVo.beforeImg} alt=""/>
                 <div className="review_text_div_">
