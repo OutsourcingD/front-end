@@ -80,7 +80,6 @@ function Header() {
         const memberIdString = localStorage.getItem("user_id")
         let memberId = 0
 
-        console.log(accessToken?.length, " ", refreshToken?.length, " ", memberIdString?.length)
         memberIdString !== null ? memberId = Number(memberIdString) : memberId = 0;
 
         if (memberId !== 0 && accessToken !== null && refreshToken !== null) {

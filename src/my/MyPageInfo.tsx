@@ -43,7 +43,8 @@ function MyPageInfo() {
     const handleEdit = () => {
         const formData = new FormData();
 
-        formData.append("nickname", nickname);
+        if(profileFile !== null) formData.append("profileImg", profileFile);
+        if(nickname.length !== 0) formData.append("nickname", nickname);
         if (name.length !== 0) formData.append("name", name);
         if (pwd.length !== 0 && pwd === pwdCheck)
             formData.append("password", pwd);
@@ -67,9 +68,8 @@ function MyPageInfo() {
                     },
                 })
                 .then((res) => {
-                    localStorage.setItem("profile", res.data.name);
                     localStorage.setItem("nickname", res.data.nickname);
-                    console.log(res.data);
+                    alert("회원정보가 수정되었습니다.");
                 });
         }
         else {
@@ -135,15 +135,20 @@ function MyPageInfo() {
                 : res.data.gender === 1
                 ? setGender(1)
                 : setGender(2);
+
         });
     }, []);
+
+    React.useEffect(() => {
+        console.log("profile file: ", profileFile)
+    }, [profileFile]);
 
     return (
         <div className="mypage_info_div">
             <div className="mypage_info_wrapper">
                 {/* 이름 */}
                 <div className="mypage_info_name_div">
-                    <p id="mypage_name">김철수</p>
+                    <p id="mypage_name">{defaultNickname}</p>
                 </div>
                 {/* 프로필 이미지 입력 */}
                 <div className="mypage_info_signup_input_div">
