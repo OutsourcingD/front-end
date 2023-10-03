@@ -35,3 +35,12 @@
     justify-content: space-between;
     flex-wrap: wrap;
 }
+
+#recommend_all_page_title {
+    font-weight: 700;
+    font-size: 32px;
+    color: #202020;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}

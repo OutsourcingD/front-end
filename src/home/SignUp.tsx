@@ -52,7 +52,7 @@ function SignUp() {
 
   const pushCode = async (email: string) => {
     await axios
-      .post(`${process.env.REACT_APP_SERVER_URL}/email/signup`, {
+      .post(`${process.env.REACT_APP_SERVER_URL}/email/signup-verification`, {
         email: email,
       })
       .then((res) => {
@@ -107,7 +107,7 @@ function SignUp() {
   const checkDuplicatedNickname = async (nickname: string) => {
     await axios
       .get(
-        `${process.env.REACT_APP_SERVER_URL}/member/check-duplicated?name=${nickname}`,
+        `${process.env.REACT_APP_SERVER_URL}/non-member/check-duplicated?name=${nickname}`,
         {
           headers: {
             Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
@@ -141,6 +141,8 @@ function SignUp() {
         .then((res) => {
           localStorage.setItem("access_token", res.data.accessToken);
           localStorage.setItem("refresh_token", res.data.refreshToken);
+          localStorage.setItem("user_id", res.data.memberId);
+          localStorage.setItem("profile", res.data.name);
           navagate("/");
         });
     } else {

@@ -1,10 +1,22 @@
 import React from "react";
 import "./MyCommentItem.css";
+import { useNavigate } from "react-router-dom";
 
-function MyCommentItem() {
+interface MyCommentItemProps {
+    title: string;
+    reviewId: number;
+}
+
+const MyCommentItem = (props: MyCommentItemProps) => {
+    const navigate = useNavigate();
+
+    const onClick = (id: number) => {
+        navigate(`/review?reviewId=${id}`);
+    }
+
     return (
-        <div className="mycomment_div">
-            <p id="my_comment_title">Lorem ipsum dolor sit amet, consecteuer adipiscing elit.</p>
+        <div className="mycomment_div" onClick={() => onClick(props.reviewId)}>
+            <p id="my_comment_title">{props.title}</p>
         </div>
     );
 }

@@ -4,10 +4,6 @@ import { DoctorResponseDto } from "../dto/DoctorResponseDto";
 import { useNavigate } from "react-router-dom";
 
 const DoctorItem = (props : DoctorResponseDto) => {
-    React.useEffect(() => {
-        console.log(props.hospitalName);
-    }, []);
-
     const naviagte = useNavigate();
 
     const onClick = (id: number) => {

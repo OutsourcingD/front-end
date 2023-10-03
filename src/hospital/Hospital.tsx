@@ -11,32 +11,36 @@ function Hospital() {
     const [hospitalList, setHospitalList] = useState<HospitalResponseDto[]>([]);
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(1);
-    const [isSearch, setIsSearch] = React.useState(false); // 검색 여부 [true: 검색, false: 검색x]
-    const [category, setCategory] = React.useState(0);
+    const [searchValue, setSearchValue] = React.useState(" ");
+
+    const handleSearch = (value: string) => {
+        setSearchValue(value);
+        setPage(1);
+    };
+
+    const handleSearchResult = (value: HospitalResponseDto[]) => {
+        setHospitalList(value);
+        setTotalPages(value[0] !== undefined ? value[0].totalPages : 1);
+    };
 
     const getHospitalList = async () => {
         await axios({
             method: "get", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/hospital?pages=${
+            url: `${process.env.REACT_APP_SERVER_URL}/hospital/search?pages=${
                 page - 1
-            }`,
+            }&title=${searchValue}`,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },
         }).then((res) => {
-            console.log(res.data);
             setHospitalList(res.data);
             setTotalPages(res.data[0].totalPages);
         });
     };
 
     useEffect(() => {
-        !isSearch ? getHospitalList() : console.log("검색x");
+        getHospitalList()
     }, [page]);
-
-    useEffect(() => {
-        console.log(hospitalList);
-    }, [hospitalList]);
 
     return (
         <div className="hospital_div">
@@ -46,10 +50,11 @@ function Hospital() {
                 </div>
                 <div className="hospital_page_search_div">
                     <Search
-                        category={category}
+                        parent={2}
+                        category={0}
                         page={0}
-                        onSearch={(value) => console.log("")}
-                        onSearchResult={(value) => console.log("")}
+                        onSearch={handleSearch}
+                        onHospitalSearchResult={handleSearchResult}
                     />
                 </div>
                 <div className="hospital_item_div">

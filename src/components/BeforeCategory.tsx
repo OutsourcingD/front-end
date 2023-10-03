@@ -1,12 +1,32 @@
 import React, { useState } from "react";
 import "./BeforeCategory.css";
+import axios from "axios";
+import { BeforeAfterResponseDto } from "../dto/BeforeAfterResponseDto";
 
-function BeforeCategory() {
+interface BeforeCategoryProps {
+    onCategory: (value: number) => void;
+    onCategoryResult: (value: BeforeAfterResponseDto[]) => void;
+};
+
+const BeforeCategory = (props: BeforeCategoryProps) => {
     const [categoryNumber, setCotegoryNumber] = useState(0);
 
     const handleCategory = (nav: number) => {
         setCotegoryNumber(nav);
+        props.onCategory(nav);
     }
+
+    React.useEffect(() => {
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/review/before-after?part=${categoryNumber}&pages=0`,
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            props.onCategoryResult(res.data);
+        });
+    }, [categoryNumber]);
 
     return (
         <div className="b_category">
@@ -33,12 +53,6 @@ function BeforeCategory() {
             </div>
             <div className="b_categoryDiv" onClick={() => handleCategory(8)}>
                 { categoryNumber === 8 ? <img id="b_con_white" src="/category/Contouring_white.png" alt="contouring" sizes="5%" /> : <img id="b_con" src="/category/contouring.png" alt="contouring" sizes="5%" /> }
-            </div>
-            <div className="b_categoryDiv" onClick={() => handleCategory(9)}>
-                { categoryNumber === 9 ? <img id="b_doctor_white" src="/category/Doctors_white.png" alt="doctor" sizes="5%" /> : <img id="b_doctor" src="/category/doctors.png" alt="doctor" sizes="5%" /> }
-            </div>
-            <div className="b_categoryDiv" onClick={() => handleCategory(10)}>
-                { categoryNumber === 10 ? <img id="b_hospital_white" src="/category/Plasticsurgery_white.png" alt="hospital" sizes="5%" /> : <img id="b_hospital" src="/category/surgery.png" alt="hospital" sizes="5%" /> }
             </div>
             </div>
     );

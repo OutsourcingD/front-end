@@ -12,17 +12,28 @@ function Doctor() {
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(1);
     const [category, setCategory] = React.useState(0);
+    const [searchValue, setSearchValue] = React.useState("");
+
+    const handleSearch = (value: string) => {
+        setSearchValue(value);
+        setPage(1);
+    };
+
+    const handleSearchResult = (value: DoctorResponseDto[]) => {
+        setDoctorList(value);
+        setTotalPages(value[0] !== undefined ? value[0].totalPages : 1);
+    };
 
     useEffect(() => {
         axios({
             method: "get", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/doctor?pages=${page - 1}`,
+            url: `${process.env.REACT_APP_SERVER_URL}/doctor/search?pages=0&title=${searchValue}`,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },
         }).then((res) => {
             setDoctorList(res.data);
-            console.log(res.data);
+            setTotalPages(res.data[0].totalPages);
         });
     }, [page]);
 
@@ -34,10 +45,11 @@ function Doctor() {
                 </div>
                 <div className="hospital_page_search_div">
                     <Search
+                        parent={3}
                         category={category}
                         page={0}
-                        onSearch={(value) => console.log("")}
-                        onSearchResult={(value) => console.log("")}
+                        onSearch={handleSearch}
+                        onDoctorPageSearchResult={handleSearchResult}
                     />
                 </div>
                 <div className="hospital_item_div">

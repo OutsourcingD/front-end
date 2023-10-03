@@ -11,4 +11,9 @@ export type HospitalDetailDto = {
     content: string;
     location: string;
     avgRage: number;
+    createdAt: string;
+    hospitalId: number;
+    hospitalName: string;
+    introduction: string;
+    mainImage: string;
 }

@@ -6,17 +6,19 @@ import "./HospitalDetailPage.css";
 import Slider from "react-slick";
 import Pagination from "react-js-pagination";
 import Footer from "../bottom/Footer";
+import { HospitalReviewDto } from "../dto/HospitalReviewDto";
+import { useNavigate } from "react-router-dom";
 
 function HospitalDetailPage() {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const [hospitalDetail, setHospitalDetail] =
         React.useState<HospitalDetailDto | null>(null);
-    const [hospitalReview, setHospitalReview] =
-        React.useState<HospitalDetailDto | null>(null);
+    const [hospitalReviewList, setHospitalReview] =
+        React.useState<HospitalReviewDto[]>([]);
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(1);
-    const items = [1, 2, 3, 4, 5, 6, 7, 8];
+    const navigate = useNavigate();
 
     const settings = {
         infinite: true,
@@ -30,8 +32,14 @@ function HospitalDetailPage() {
         setPage(page);
     };
 
+    const handleReview = (reviewId: number) => {
+        navigate(`/review?reviewId=${reviewId}`);
+    };
+
     useEffect(() => {
         const hospitalId = queryParams.get("hospitalId");
+
+        console.log(hospitalId);
 
         /* hospital detail */
         axios({
@@ -43,13 +51,18 @@ function HospitalDetailPage() {
         }).then((res) => {
             setHospitalDetail(res.data);
         });
-    }, []);
 
-    useEffect(() => {
-        hospitalDetail === null
-            ? console.log("hello")
-            : console.log("병원 후기 없음");
-    }, [hospitalDetail]);
+        // 연관 후기
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/hospital/review?hospitalId=${hospitalId}&pages=${page - 1}`,
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            setHospitalReview(res.data);
+        });
+    }, []);
 
     return (
         <div className="hospital_detail_div">
@@ -65,7 +78,7 @@ function HospitalDetailPage() {
                 </div>
                 <div className="hospital_detail_title_div">
                     <p id="hospital_detail_title">{hospitalDetail?.title}</p>
-                    <p id="hospital_detail_description">소개글</p>
+                    <p id="hospital_detail_description">{hospitalDetail?.introduction}</p>
                 </div>
                 <div className="review_detail_image_div">
                     <Slider {...settings}>
@@ -116,19 +129,19 @@ function HospitalDetailPage() {
                 <div className="hospital_detail_hospital_info_div">
                     <div className="hospital_info_profile_div">
                         <img
-                            src="/hospital_profile.png"
-                            alt="da"
+                            src={hospitalDetail?.mainImage}
+                            alt={hospitalDetail?.hospitalName}
                             id="hospital_profile_picture"
                         />
                     </div>
                     <div className="hospital_info_profile_text_div">
-                        <p id="hospital_info_name">아이디 성형외과</p>
+                        <p id="hospital_info_name">{hospitalDetail?.hospitalName}</p>
                         <p id="hospital_info_location">
-                            서울시 역삼동 OO동 00-00
+                            {hospitalDetail?.location}
                         </p>
                     </div>
                     <div className="hospital_info_avg_div">
-                        <p>0</p>
+                        <p>{hospitalDetail?.avgRage}</p>
                     </div>
                 </div>
                 <div
@@ -150,17 +163,16 @@ function HospitalDetailPage() {
                     />
                 </div>
                 <div className="hospital_review_div">
-                    {items.map((item) => {
+                    {hospitalReviewList.length !== 0 ? hospitalReviewList.map((item) => {
                         return (
-                            <div className="hospital_detail_page_review_item">
+                            <div className="hospital_detail_page_review_item" onClick={() => handleReview(item.reviewId)}>
                                 <div className="hospital_detail_page_review_list_left_div">
                                     <div className="hospital_detail_page_review_list_title_div">
                                         <p id="hospital_detail_review_title">
-                                            아름다운 성형외과에서 윤곽수술 받은
-                                            3개월차 후기
+                                            {item.title}
                                         </p>
                                         <p id="hospital_detail_review_date">
-                                            2023.08.23
+                                            {item.createdAt}
                                         </p>
                                     </div>
                                     <div className="hospital_detail_page_review_list_doctor_info_div">
@@ -169,7 +181,7 @@ function HospitalDetailPage() {
                                                 원장님
                                             </p>
                                             <p id="hospital_detail_review_index_data">
-                                                김철수 원장님
+                                                {item.doctorName} 원장님
                                             </p>
                                         </div>
                                         <div className="hospital_detail_page_review_list_doctor_info_right">
@@ -177,7 +189,15 @@ function HospitalDetailPage() {
                                                 부위
                                             </p>
                                             <p id="hospital_detail_review_index_data">
-                                                윤곽 수술
+                                                {
+                                                    item.partList.map(
+                                                        (part, index) => {
+                                                            return (
+                                                                index === item.partList.length - 1 ? part : part + ", "
+                                                            );
+                                                        }
+                                                    )
+                                                }
                                             </p>
                                         </div>
                                     </div>
@@ -190,7 +210,7 @@ function HospitalDetailPage() {
                                             id="hospital_detail_view"
                                         />
                                         <p id="hospital_detail_review_info_data">
-                                            2,302
+                                            {item.viewCount}
                                         </p>
                                     </div>
                                     <div className="hospital_detail_review_info">
@@ -200,13 +220,13 @@ function HospitalDetailPage() {
                                             id="hospital_detail_commend"
                                         />
                                         <p id="hospital_detail_review_info_data">
-                                            138
+                                            {item.commentCount}
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         );
-                    })}
+                    }) : <p>연관 후기 없음....</p>}
                     <Pagination
                         activePage={page}
                         itemsCountPerPage={10}

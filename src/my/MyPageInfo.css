@@ -1,11 +1,25 @@
 .mypage_info_div {
     width: 100%;
-    height: 100vh;
     display: flex;
     align-items: center;
     flex-direction: column;
     border-top: 1px solid #d4d4d4;
     margin-top: 2px;
+}
+
+.mypage_info_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 464px;
+}
+
+.mypage_info_signup_input_div {
+    position: relative;
+    margin-top: 10px;
+    width: 109px;
+    height: 109px;
+    display: inline-block;
 }
 
 .mypage_info_name_div {
@@ -31,7 +45,7 @@
     margin-top: 15.47px;
     display: flex;
     flex-direction: column;
-    margin-bottom: 55px;
+    margin-bottom: 50px;
 }
 
 .my_info_sub_title_div {
@@ -40,6 +54,12 @@
 }
 
 #my_info_sub_title {
+    font-weight: 700;
+    font-size: 18px;
+    color: #222222;
+}
+
+#my_info_sub_title_password_name {
     font-weight: 700;
     font-size: 18px;
     color: #222222;
@@ -60,8 +80,23 @@
     border: none;
     outline: none;
     border-bottom: 1px solid #d4d4d4;
-    width: 100%;
+    width: 97%;
     color: #222222;
+    padding-top: 3%;
+    padding-bottom: 2%;
+    font-size: 15px;
+    font-weight: 500;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#input_tag:disabled {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #d4d4d4;
+    width: 97%;
+    color: #222222;
+    background-color: white;
     padding-top: 3%;
     padding-bottom: 2%;
     font-size: 15px;
@@ -92,8 +127,9 @@
 }
 
 .check_nickname {
-    border-radius: 10px;
+    border-radius: 8px;
     background-color: #F5F5F5;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.11);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -102,11 +138,58 @@
     margin-left: 4px;
 }
 
+.check_nickname_active {
+    border-radius: 8px;
+    background-color: #DFB1E4;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.11);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 39px;
+    margin-left: 4px;
+}
+
+.my_info_nickname_container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 #check_nickname {
     color: #D4D4D4;
     white-space: nowrap;
     font-size: 15px;
+    font-weight: 700;
+}
+
+#check_nickname_active {
+    color: white;
+    white-space: nowrap;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+#check_nickname_result_ok {
     font-weight: 500;
+    font-size: 15px;
+    color: #4EC777;
+    margin-left: 10px;
+    display: flex;
+}
+
+#check_nickname_result_false {
+    font-weight: 500;
+    font-size: 15px;
+    color: #E95454;
+    margin-left: 10px;
+}
+
+.my_info_password_container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .gender_button {

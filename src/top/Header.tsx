@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const HeaderDiv = styled.div``;
 
@@ -15,12 +16,11 @@ function Header() {
     const [isLogin, setIsLogin] = useState(false);
     const navigate = useNavigate();
     const [selected, setSelected] = useState(0);
+    const [more, setMore] = useState(false);
+    const [name, setName] = useState("");
+    const [profile, setProfile] = useState("");
 
-    useEffect(() => {
-        localStorage.getItem("selected")
-            ? setSelected(Number(localStorage.getItem("selected")))
-            : setSelected(0);
-    }, []);
+    const dropdownRef = React.useRef<HTMLDivElement | null>(null); // 참조 생성
 
     const movePage = (page: number) => {
         if (page === 0) {
@@ -45,18 +45,77 @@ function Header() {
     };
 
     const onClick = () => {
+        //navigate("/mypage");
+        setMore(!more);
+    };
+
+    const mypageClick = () => {
         navigate("/mypage");
     };
 
+    const logoutClick = () => {
+        setIsLogin(false);
+        localStorage.clear();
+    };
+
     useEffect(() => {
-        {
-            /*localStorage.getItem("access_token")  ? setIsLogin(true) : setIsLogin(false);*/
+        function handleClickOutside(event: MouseEvent) {
+            if (
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target as HTMLDivElement)
+            ) {
+                setMore(false); // 외부 클릭 시 more 상태 변경
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
+    useEffect(() => {
+        const accessToken = localStorage.getItem("access_token")
+        const refreshToken = localStorage.getItem("refresh_token")
+        const memberIdString = localStorage.getItem("user_id")
+        let memberId = 0
+
+        memberIdString !== null ? memberId = Number(memberIdString) : memberId = 0;
+
+        if (memberId !== 0 && accessToken !== null && refreshToken !== null) {
+            setIsLogin(true);
+        }
+        else {
+            setIsLogin(false);
         }
     }, []);
 
     useEffect(() => {
-        localStorage.getItem("selected") === null ? setSelected(0) : setSelected(Number(localStorage.getItem("selected")));
+        localStorage.getItem("selected")
+            ? setSelected(Number(localStorage.getItem("selected")))
+            : setSelected(0);
+
+        axios({
+            method: "get", // or 'post', 'put', etc.
+            url: `${process.env.REACT_APP_SERVER_URL}/member/info`,
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            setName(res.data.nickname);
+            setProfile(res.data.profile);
+        });
+    }, []);
+
+    useEffect(() => {
+        localStorage.getItem("selected") === null
+            ? setSelected(0)
+            : setSelected(Number(localStorage.getItem("selected")));
     }, [selected]);
+
+    useEffect(() => {
+        console.log(isLogin);
+    }, [isLogin]);
 
     return (
         <HeaderDiv className="header">
@@ -91,31 +150,7 @@ function Header() {
                 </Menu>
             </LeftDiv>
             <RightDiv className="right">
-                {isLogin === false ? (
-                    <>
-                        <div className="profile_container" onClick={onClick}>
-                            <img
-                                src="/logo/profile.png"
-                                alt="profile"
-                                id="profile"
-                            />
-                        </div>
-                        <div className="nameDiv" onClick={onClick}>
-                            <p id="name">지승언</p>
-                            <p id="name_">님</p>
-                        </div>
-                        <div className="chatDiv">
-                            <div className="chat_icon_div">
-                                <img
-                                    src="/Send.png"
-                                    id="chat_icon"
-                                    alt="chatting_page"
-                                />
-                            </div>
-                            <p id="chat">chat box</p>
-                        </div>
-                    </>
-                ) : (
+                {!isLogin ? (
                     <>
                         <div
                             className="login_div"
@@ -126,6 +161,51 @@ function Header() {
                                 alt="login"
                                 id="header_login"
                             />
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <div className="profile_container" onClick={onClick}>
+                            <img
+                                src={profile}
+                                alt="profile"
+                                id="profile"
+                            />
+                        </div>
+                        <div className="nameDiv" onClick={onClick}>
+                            <div className="header_my_name_info">
+                                <p id="name">{name}</p>
+                                <p id="name_">Sir</p>
+                            </div>
+                            {more ? (
+                                <div
+                                    className="mypage_more_drop_box"
+                                    ref={dropdownRef}
+                                >
+                                    <div
+                                        className="header_logout_div"
+                                        onClick={logoutClick}
+                                    >
+                                        <p id="header_logout">log out</p>
+                                    </div>
+                                    <div
+                                        className="header_logout_div"
+                                        onClick={mypageClick}
+                                    >
+                                        <p id="header_logout">my page</p>
+                                    </div>
+                                </div>
+                            ) : null}
+                        </div>
+                        <div className="chatDiv">
+                            <div className="chat_icon_div">
+                                <img
+                                    src="/Send.png"
+                                    id="chat_icon"
+                                    alt="chatting_page"
+                                />
+                            </div>
+                            <p id="chat">chat box</p>
                         </div>
                     </>
                 )}
