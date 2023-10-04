@@ -1,15 +1,27 @@
 import React from "react";
 import "./AddAdminId.css";
 import Pagination from "react-js-pagination";
+import axios from "axios";
+
+interface Props {
+    userId: string;
+}
 
 const AddAdminId = () => {
     const item = [1, 2, 3, 4, 5, 6, 7, 8];
-    const [page, setPage] = React.useState(1);
-    const [totalPages, setTotalPages] = React.useState(2);
+    const [adminIdList, setAdminIdList] = React.useState<Props[]>([]);
 
-    const handlePageChange = (page: React.SetStateAction<number>) => {
-        setPage(page);
-    };
+    React.useEffect(() => {
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin`,
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            setAdminIdList(res.data);
+        });
+    }, []);
 
     return (
         <div className="check_user_ip_page">
@@ -29,20 +41,22 @@ const AddAdminId = () => {
                         <p id="admin_action">action</p>
                     </div>
                     <div className="add_admin_items">
-                        {item.map((item, index) => {
+                        {adminIdList.map((item, index) => {
                             return (
                                 <div className="add_admin_item">
-                                    <p id="add_admin_item_sequence">1</p>
-                                    <p id="add_admin_item_id">
-                                        kimculsoo@gmail.com
-                                    </p>
+                                    <div className="add_admin_item_div">
+                                        <p id="add_admin_item_sequence">{index}</p>
+                                        <p id="add_admin_item_id">
+                                            {item.userId}
+                                        </p>
+                                    </div>
                                     <div className="admin_page_buttons_div">
-                                        <div className="doctor_edit_item_button_div">
+                                        <div className="admin_add_item_edit_button_div">
                                             <p id="doctor_item_button_edit">
                                                 edit
                                             </p>
                                         </div>
-                                        <div className="doctor_edit_item_button_div">
+                                        <div className="admin_add_item_button_div">
                                             <p id="doctor_item_button_delete">
                                                 delete
                                             </p>
@@ -52,15 +66,6 @@ const AddAdminId = () => {
                             );
                         })}
                     </div>
-                    <Pagination
-                        activePage={page}
-                        itemsCountPerPage={10}
-                        totalItemsCount={totalPages * 10}
-                        pageRangeDisplayed={10}
-                        prevPageText={"‹"}
-                        nextPageText={"›"}
-                        onChange={handlePageChange}
-                    />
                 </div>
                 <div className="add_admin_page_add_div">
                     <p id="admin_list">관리자아이디 추가</p>
