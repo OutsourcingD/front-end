@@ -185,6 +185,10 @@
     color: #E95454;
 }
 
+#doctor_item_button_delete:focus, #doctor_item_button_delete:hover {
+    cursor: pointer;
+}
+
 .doctor_items_div {
     margin-bottom: 40px;
 }

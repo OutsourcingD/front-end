@@ -1,5 +1,5 @@
 import React from "react";
-import "./SideMenu.css"
+import "./SideMenu.css";
 
 interface SideMenuProps {
     menuHandler: (menu: number) => void;
@@ -15,7 +15,7 @@ const SideMenu = (props: SideMenuProps) => {
 
     return (
         <>
-        <div className="side_menu">
+            <div className="side_menu">
                 <div
                     className={
                         menu === 0 ? "menu_item_div_click" : "menu_item_div"
@@ -331,7 +331,43 @@ const SideMenu = (props: SideMenuProps) => {
                         기타 후기 관리
                     </p>
                 </div>
-            </div></>
+                <div
+                    className={
+                        menu === 9 ? "menu_item_div_click" : "menu_item_div"
+                    }
+                    onClick={() => onClickMenu(9)}
+                >
+                    <div
+                        style={
+                            menu === 9
+                                ? {
+                                      width: "7px",
+                                      height: "55px",
+                                      backgroundColor: "#DFB1E4",
+                                      position: "absolute",
+                                      left: "0",
+                                  }
+                                : {
+                                      width: "7px",
+                                      height: "55px",
+                                      backgroundColor: "white",
+                                      position: "absolute",
+                                      left: "0",
+                                  }
+                        }
+                    ></div>
+                    <p
+                        id={
+                            menu === 9
+                                ? "side_menu_item_click"
+                                : "side_menu_item"
+                        }
+                    >
+                        회원 삭제
+                    </p>
+                </div>
+            </div>
+        </>
     );
 };
 

@@ -1,6 +1,5 @@
 import React from "react";
 import "./AddAdminId.css";
-import Pagination from "react-js-pagination";
 import axios from "axios";
 
 interface Props {
@@ -8,8 +7,22 @@ interface Props {
 }
 
 const AddAdminId = () => {
-    const item = [1, 2, 3, 4, 5, 6, 7, 8];
     const [adminIdList, setAdminIdList] = React.useState<Props[]>([]);
+    const [id, setId] = React.useState("");
+
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin`,
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            console.log(res.data)
+        });
+    };
 
     React.useEffect(() => {
         axios({
@@ -45,17 +58,12 @@ const AddAdminId = () => {
                             return (
                                 <div className="add_admin_item">
                                     <div className="add_admin_item_div">
-                                        <p id="add_admin_item_sequence">{index}</p>
+                                        <p id="add_admin_item_sequence">{index + 1}</p>
                                         <p id="add_admin_item_id">
                                             {item.userId}
                                         </p>
                                     </div>
                                     <div className="admin_page_buttons_div">
-                                        <div className="admin_add_item_edit_button_div">
-                                            <p id="doctor_item_button_edit">
-                                                edit
-                                            </p>
-                                        </div>
                                         <div className="admin_add_item_button_div">
                                             <p id="doctor_item_button_delete">
                                                 delete
@@ -72,11 +80,13 @@ const AddAdminId = () => {
                     <div className="add_id_form_div">
                         <p id="admin_label">관리자 아이디</p>
                         <div className="add_id_form_container">
-                            <form className="add_id_form">
+                            <form className="add_id_form" onSubmit={onSubmit}>
                                 <input
                                     type="text"
                                     placeholder="추가할 이메일을 입력해주세요"
                                     id="add_id_input"
+                                    value={id}
+                                    onChange={(e) => setId(e.target.value)}
                                 />
                             </form>
                         </div>

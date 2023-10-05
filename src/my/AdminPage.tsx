@@ -11,6 +11,7 @@ import AddAdminId from "../components/AddAdminId";
 import InqueryManagement from "../components/InqueryManagement";
 import EtcReviewManagement from "../components/EtcReviewManagement";
 import Footer from "../bottom/Footer";
+import DeleteMember from "../components/DeleteMember";
 
 function AdminPage() {
     const [menu, setMenu] = React.useState(0);
@@ -24,6 +25,7 @@ function AdminPage() {
         <AddAdminId />,
         <InqueryManagement />,
         <EtcReviewManagement />,
+        <DeleteMember />,
     ];
 
     const onClickMenu = (menu: number) => {
