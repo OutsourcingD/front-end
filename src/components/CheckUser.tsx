@@ -1,15 +1,63 @@
 import React from "react";
 import "./CheckUser.css";
 import Pagination from "react-js-pagination";
+import axios from "axios";
+
+interface CheckUserIpProps {
+    userId: string;
+    isBanned: boolean;
+}
 
 const CheckUser = () => {
     const item = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const [page, setPage] = React.useState(1);
+    const [id, setId] = React.useState("");
+    const [items, setItems] = React.useState<CheckUserIpProps[]>([]);
     const [totalPages, setTotalPages] = React.useState(2);
 
     const handlePageChange = (page: React.SetStateAction<number>) => {
         setPage(page);
     };
+
+    const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/member/whole-info`,
+            params: {
+                pages: page - 1,
+                userId: id,
+            },
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            setItems(res.data);
+            setTotalPages(res.data.length === 0 ? 1 : res.data[0].totalPages);
+        });
+    };
+
+    const onClick = () => {
+        console.log("id");
+    };
+
+    React.useEffect(() => {
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/member/whole-info`,
+            params: {
+                pages: page - 1,
+                userId: id,
+            },
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            setItems(res.data);
+            setTotalPages(res.data.length === 0 ? 1 : res.data[0].totalPages);
+        });
+    }, [page]);
 
     return (
         <div className="check_user_ip_page">
@@ -17,17 +65,23 @@ const CheckUser = () => {
                 <div className="check_user_ip_title_div">
                     <p id="change_review_title">Check User & Block User Id</p>
                     <div className="check_user_ip_search_div">
-                        <form id="doctor_edit_page_search_form">
+                        <form
+                            id="doctor_edit_page_search_form"
+                            onSubmit={handleSearch}
+                        >
                             <input
                                 type="text"
                                 id="doctor_edit_page_search_input"
                                 placeholder="원하는 게시글을 검색하세요."
+                                value={id}
+                                onChange={(e) => setId(e.target.value)}
                             />
                         </form>
                         <img
                             src="/search.png"
                             alt="search"
                             id="doctor_edit_page_search_button"
+                            onClick={onClick}
                         />
                     </div>
                 </div>
@@ -40,16 +94,25 @@ const CheckUser = () => {
                             <p id="check_user_location">차단 여부</p>
                         </div>
                         <div className="check_user_ip_items_div">
-                            {item.map((item, index) => {
-                                return (
-                                    <div className="check_user_item_div">
-                                        <p id="check_user_page_id">Kimchulsoo@nave.com</p>
-                                        <div className="block_button_div">
-                                            <p id="block_button_text">no ban</p>
-                                        </div>
-                                    </div>
-                                );
-                            })}
+                            {items.length < 10 && items.length !== 0
+                                ? items.map((item, index) => {
+                                      return (
+                                          <div
+                                              className="check_user_item_div"
+                                              key={index}
+                                          >
+                                              <p id="check_user_page_id">
+                                                  {item.userId}
+                                              </p>
+                                              <div className="block_button_div">
+                                                  <p id={item.isBanned ? "block_button_ban_text" : "block_button_text"}>
+                                                      {item.isBanned ? "no ban" : "ban"}
+                                                  </p>
+                                              </div>
+                                          </div>
+                                      );
+                                  })
+                                : null}
                         </div>
                     </div>
                     <div className="check_user_left_div">
@@ -58,16 +121,25 @@ const CheckUser = () => {
                             <p id="check_user_location">차단 여부</p>
                         </div>
                         <div className="check_user_ip_items_div">
-                            {item.map((item, index) => {
-                                return (
-                                    <div className="check_user_item_div">
-                                        <p id="check_user_page_id">Kimchulsoo@nave.com</p>
-                                        <div className="block_button_div">
-                                            <p id="block_button_text">no ban</p>
-                                        </div>
-                                    </div>
-                                );
-                            })}
+                            {items.length >= 10 && items.length < 20 && items.length !== 0
+                                ? items.map((item, index) => {
+                                      return (
+                                          <div
+                                              className="check_user_item_div"
+                                              key={index}
+                                          >
+                                              <p id="check_user_page_id">
+                                                  {item.userId}
+                                              </p>
+                                              <div className="block_button_div">
+                                                <p id={item.isBanned ? "block_button_ban_text" : "block_button_text"}>
+                                                      {item.isBanned ? "no ban" : "ban"}
+                                                  </p>
+                                              </div>
+                                          </div>
+                                      );
+                                  })
+                                : null}
                         </div>
                     </div>
                 </div>

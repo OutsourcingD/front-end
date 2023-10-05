@@ -56,3 +56,9 @@
     font-size: 14px;
     color: #E95454;
 }
+
+#block_button_ban_text {
+    font-weight: 500;
+    font-size: 14px;
+    color: #444444;
+}

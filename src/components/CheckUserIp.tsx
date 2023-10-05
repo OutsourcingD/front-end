@@ -12,7 +12,6 @@ interface CheckUserIpProps {
 }
 
 const CheckUserIp = () => {
-    const item = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(2);
     const [id, setUserId] = React.useState("");
