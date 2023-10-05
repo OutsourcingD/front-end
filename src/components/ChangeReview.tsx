@@ -12,7 +12,7 @@ const ChangeReview = () => {
         method: "get",
         url: `${process.env.REACT_APP_SERVER_URL}/admin/review/order`,
         headers: {
-            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
         },
     }).then((res) => {
         setDefaultSort(res.data.recommendReview);

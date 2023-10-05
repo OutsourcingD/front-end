@@ -2,15 +2,87 @@ import React from "react";
 import "./DoctorEdit.css";
 import Pagination from "react-js-pagination";
 import { IoMdAddCircleOutline } from "react-icons/io";
+import axios from "axios";
+
+interface HospitalEditProps {
+    hospitalId: number;
+    title: string;
+}
+
+interface DoctorEditProps {
+    doctorId: number;
+    title: string;
+}
 
 const DoctorEdit = () => {
-    const item = [1, 2, 3, 4, 5, 6, 7, 8];
-    const [page, setPage] = React.useState(1);
-    const [totalPages, setTotalPages] = React.useState(2);
+    const [doctorItems, setDoctorItems] = React.useState<DoctorEditProps[]>([]);
+    const [hospitalItems, setHospitalItems] = React.useState<HospitalEditProps[]>([]);
+    const [doctorSearchValue, setDoctorSearchValue] = React.useState<string>(" ");
+    const [hospitalSearchValue, setHospitalSearchValue] = React.useState<string>(" ");
+    const [hospitalPage, setHospitalPage] = React.useState(1);
+    const [doctorPage, setDoctorPage] = React.useState(1);
+    const [hospitalTotalPages, setHospitalTotalPages] = React.useState(2);
+    const [doctorTotalPages, setDoctorTotalPages] = React.useState(2);
 
-    const handlePageChange = (page: React.SetStateAction<number>) => {
-        setPage(page);
-      };
+    const handleHospitalPageChange = (page: React.SetStateAction<number>) => {
+        setHospitalPage(page);
+    };
+
+    const handleDoctorPageChange = (page: React.SetStateAction<number>) => {
+        setDoctorPage(page);
+    }
+
+    const getHospitals = async () => {
+        await axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/hospital-info`,
+            params: {
+                pages: hospitalPage - 1,
+                hospitalName: hospitalSearchValue,
+            },
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            setHospitalItems(res.data);
+            setHospitalTotalPages(res.data[0].totalPages);
+        });
+    }
+
+    const getDoctors = async () => {
+        await axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/doctor-info`,
+            params: {
+                pages: doctorPage - 1,
+                doctorName: doctorSearchValue,
+            },
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            setDoctorItems(res.data);
+            setDoctorTotalPages(res.data[0].totalPages);
+        });
+    }
+
+    React.useEffect(() => {
+        getHospitals();
+    }, [hospitalPage]);
+
+    React.useEffect(() => {
+        getDoctors();
+    }, [doctorPage]);
+
+    React.useEffect(() => {
+        getHospitals();
+        setHospitalPage(1);
+    }, [hospitalSearchValue]);
+
+    React.useEffect(() => {
+        getDoctors();
+        setDoctorPage(1);
+    }, [doctorSearchValue]);
 
     return (
         <div className="doctor_edit_page">
@@ -46,14 +118,14 @@ const DoctorEdit = () => {
                         </div>
                     </div>
                     <div className="doctor_items_div">
-                        {item.map((item, index) => {
+                        {hospitalItems.map((item, index) => {
                             return (
                                 <>
                                     <div className="doctor_edit_item_div">
                                         <div className="doctor_edit_item_left_div">
-                                            <p id="doctor_page_sequence">1</p>
+                                            <p id="doctor_page_sequence">{index}</p>
                                             <p id="doctor_page_item_title">
-                                                beautiful mind plastic surgery
+                                                {item.title}
                                             </p>
                                         </div>
                                         <div className="doctor_edit_item_right_div">
@@ -74,13 +146,13 @@ const DoctorEdit = () => {
                         })}
                     </div>
                     <Pagination
-                        activePage={page}
+                        activePage={hospitalPage}
                         itemsCountPerPage={10}
-                        totalItemsCount={totalPages * 10}
+                        totalItemsCount={hospitalTotalPages * 10}
                         pageRangeDisplayed={10}
                         prevPageText={"‹"}
                         nextPageText={"›"}
-                        onChange={handlePageChange}
+                        onChange={handleHospitalPageChange}
                     />
                 </div>
                 <div className="doctor_edit_body">
@@ -111,14 +183,14 @@ const DoctorEdit = () => {
                         </div>
                     </div>
                     <div className="doctor_items_div">
-                        {item.map((item, index) => {
+                        {doctorItems.map((item, index) => {
                             return (
                                 <>
                                     <div className="doctor_edit_item_div">
                                         <div className="doctor_edit_item_left_div">
-                                            <p id="doctor_page_sequence">1</p>
+                                            <p id="doctor_page_sequence">{index}</p>
                                             <p id="doctor_page_item_title">
-                                                beautiful mind plastic surgery
+                                                {item.title}
                                             </p>
                                         </div>
                                         <div className="doctor_edit_item_right_div">
@@ -139,19 +211,21 @@ const DoctorEdit = () => {
                         })}
                     </div>
                     <Pagination
-                        activePage={page}
+                        activePage={doctorPage}
                         itemsCountPerPage={10}
-                        totalItemsCount={totalPages * 10}
+                        totalItemsCount={doctorTotalPages * 10}
                         pageRangeDisplayed={10}
                         prevPageText={"‹"}
                         nextPageText={"›"}
-                        onChange={handlePageChange}
+                        onChange={handleDoctorPageChange}
                     />
                 </div>
             </div>
             <div className="doctor_edit_page_add_button_div">
-                <p id="doctor_edit_page_add_button_text">add hospital • doctor post</p>
-                <IoMdAddCircleOutline size="20px"/>
+                <p id="doctor_edit_page_add_button_text">
+                    add hospital • doctor post
+                </p>
+                <IoMdAddCircleOutline size="20px" />
             </div>
         </div>
     );
