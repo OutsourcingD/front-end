@@ -15,7 +15,7 @@
 }
 
 .check_user_ip_search_div {
-    margin-right: 25px;
+    margin-right: 35px;
     width: 250px;
     height: 25px;
     display: flex;
@@ -34,7 +34,7 @@
 
 .check_user_ip_body_div {
     width: 1068.75px;
-    height: 550px;
+    height: 620px;
     margin-left: 20px;
     margin-top: 20px;
     background: #ffffff;
@@ -46,12 +46,12 @@
 
 .check_user_body {
     width: 1015.31px;
+    height: 480px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-top: 30px;
     margin-left: 30px;
-    margin-bottom: 30px;
 }
 
 .check_user_left_div {
@@ -64,6 +64,8 @@
 .check_user_ip_index_div {
     width: 100%;
     height: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     display: flex;
     flex-direction: row;
     background: #f5f5f5;
@@ -116,6 +118,7 @@
 }
 
 #access_date_data {
+    width: 72px;
     margin-left: 20px;
     font-weight: 400;
     font-size: 14px;
@@ -123,6 +126,7 @@
 }
 
 #user_ip_data {
+    width: 102px;
     margin-left: 20px;
     font-weight: 400;
     font-size: 14px;
@@ -130,6 +134,7 @@
 }
 
 #check_user_ip_id_data {
+    width: 180px;
     margin-left: 20px;
     font-weight: 400;
     font-size: 14px;
@@ -137,7 +142,6 @@
 }
 
 #check_user_ip_location_data {
-    margin-left: 40px;
     font-weight: 400;
     font-size: 14px;
     color: #444444;

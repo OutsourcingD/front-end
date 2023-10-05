@@ -71,6 +71,10 @@
     height: 20px;
 }
 
+#doctor_edit_page_search_button:focus {
+    cursor: pointer;
+}
+
 .doctor_edit_index_div {
     display: flex;
     flex-direction: row;
