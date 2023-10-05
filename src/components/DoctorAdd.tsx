@@ -2,15 +2,149 @@ import React from "react";
 import "./DoctorEdit.css";
 import Pagination from "react-js-pagination";
 import { IoMdAddCircleOutline } from "react-icons/io";
+import axios from "axios";
+
+interface HospitalEditProps {
+    hospitalId: number;
+    title: string;
+}
+
+interface DoctorEditProps {
+    doctorId: number;
+    title: string;
+}
 
 const DoctorAdd = () => {
-    const item = [1, 2, 3, 4, 5, 6, 7, 8];
-    const [page, setPage] = React.useState(1);
-    const [totalPages, setTotalPages] = React.useState(2);
+    const [doctorItems, setDoctorItems] = React.useState<DoctorEditProps[]>([]);
+    const [hospitalItems, setHospitalItems] = React.useState<HospitalEditProps[]>([]);
+    const [doctorSearchValue, setDoctorSearchValue] = React.useState<string>("");
+    const [hospitalSearchValue, setHospitalSearchValue] = React.useState<string>("");
+    const [hospitalPage, setHospitalPage] = React.useState(1);
+    const [doctorPage, setDoctorPage] = React.useState(1);
+    const [hospitalTotalPages, setHospitalTotalPages] = React.useState(2);
+    const [doctorTotalPages, setDoctorTotalPages] = React.useState(2);
 
-    const handlePageChange = (page: React.SetStateAction<number>) => {
-        setPage(page);
-      };
+    const handleDoctorPageChange = (page: React.SetStateAction<number>) => {
+        setDoctorPage(page);
+    }
+
+    const getHospitals = async () => {
+        await axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/hospital-info`,
+            params: {
+                pages: hospitalPage - 1,
+                hospitalName: hospitalSearchValue,
+            },
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            setHospitalItems(res.data);
+            setHospitalTotalPages(res.data[0].totalPages);
+        });
+    }
+
+    const getDoctors = async () => {
+        await axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/doctor-info`,
+            params: {
+                pages: doctorPage - 1,
+                doctorName: doctorSearchValue,
+            },
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            setDoctorItems(res.data);
+            setDoctorTotalPages(res.data[0].totalPages);
+        });
+    }
+
+    const handleHospitalSearch = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        
+        await axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/hospital-info`,
+            params: {
+                pages: hospitalPage - 1,
+                hospitalName: hospitalSearchValue,
+            },
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            setHospitalItems(res.data);
+            setHospitalTotalPages(res.data[0].totalPages);
+            setHospitalPage(1);
+        });
+    };
+
+    const handleHospitalSearchButton = async () => {
+        await axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/hospital-info`,
+            params: {
+                pages: hospitalPage - 1,
+                hospitalName: hospitalSearchValue,
+            },
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            setHospitalItems(res.data);
+            setHospitalTotalPages(res.data[0].totalPages);
+            setHospitalPage(1);
+        });
+    }
+
+    const handleDoctorSearch = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        await axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/doctor-info`,
+            params: {
+                pages: doctorPage - 1,
+                doctorName: doctorSearchValue,
+            },
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            setDoctorItems(res.data);
+            setDoctorTotalPages(res.data[0].totalPages);
+            setDoctorPage(1);
+        });
+    };
+
+    const handleDoctorSearchButton = async () => {
+        await axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/doctor-info`,
+            params: {
+                pages: doctorPage - 1,
+                doctorName: doctorSearchValue,
+            },
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            setDoctorItems(res.data);
+            setDoctorTotalPages(res.data[0].totalPages);
+            setDoctorPage(1);
+        });
+    };
+
+    React.useEffect(() => {
+        getHospitals();
+    }, [hospitalPage]);
+
+    React.useEffect(() => {
+        getDoctors();
+    }, [doctorPage]);
 
     return (
         <div className="doctor_edit_page">
@@ -22,17 +156,20 @@ const DoctorAdd = () => {
                     <div className="docotr_edit_title_div">
                         <p id="banner_management_item_title">병원 목록</p>
                         <div className="doctor_edit_page_search">
-                            <form id="doctor_edit_page_search_form">
+                            <form id="doctor_edit_page_search_form" onSubmit={(e) => handleHospitalSearch(e)}>
                                 <input
                                     type="text"
                                     id="doctor_edit_page_search_input"
                                     placeholder="원하는 게시글을 검색하세요."
+                                    value={hospitalSearchValue}
+                                    onChange={(e) => setHospitalSearchValue(e.target.value)}
                                 />
                             </form>
                             <img
                                 src="/search.png"
                                 alt="search"
                                 id="doctor_edit_page_search_button"
+                                onClick={() => handleHospitalSearchButton()}
                             />
                         </div>
                     </div>
@@ -46,14 +183,14 @@ const DoctorAdd = () => {
                         </div>
                     </div>
                     <div className="doctor_items_div">
-                        {item.map((item, index) => {
+                        {hospitalItems.map((item, index) => {
                             return (
                                 <>
                                     <div className="doctor_edit_item_div">
                                         <div className="doctor_edit_item_left_div">
-                                            <p id="doctor_page_sequence">1</p>
+                                            <p id="doctor_page_sequence">{index + 1}</p>
                                             <p id="doctor_page_item_title">
-                                                beautiful mind plastic surgery
+                                                {item.title}
                                             </p>
                                         </div>
                                         <div className="doctor_edit_item_right_div">
@@ -74,30 +211,33 @@ const DoctorAdd = () => {
                         })}
                     </div>
                     <Pagination
-                        activePage={page}
+                        activePage={hospitalPage}
                         itemsCountPerPage={10}
-                        totalItemsCount={totalPages * 10}
+                        totalItemsCount={hospitalTotalPages * 10}
                         pageRangeDisplayed={10}
                         prevPageText={"‹"}
                         nextPageText={"›"}
-                        onChange={handlePageChange}
+                        onChange={handleDoctorPageChange}
                     />
                 </div>
                 <div className="doctor_edit_body">
                     <div className="docotr_edit_title_div">
                         <p id="banner_management_item_title">원장 목록</p>
                         <div className="doctor_edit_page_search">
-                            <form id="doctor_edit_page_search_form">
+                            <form id="doctor_edit_page_search_form" onSubmit={(e) => handleDoctorSearch(e)}>
                                 <input
                                     type="text"
                                     id="doctor_edit_page_search_input"
                                     placeholder="원하는 게시글을 검색하세요."
+                                    value={doctorSearchValue}
+                                    onChange={(e) => setDoctorSearchValue(e.target.value)}
                                 />
                             </form>
                             <img
                                 src="/search.png"
                                 alt="search"
                                 id="doctor_edit_page_search_button"
+                                onClick={() => handleDoctorSearchButton()}
                             />
                         </div>
                     </div>
@@ -111,14 +251,14 @@ const DoctorAdd = () => {
                         </div>
                     </div>
                     <div className="doctor_items_div">
-                        {item.map((item, index) => {
+                        {doctorItems.map((item, index) => {
                             return (
                                 <>
                                     <div className="doctor_edit_item_div">
                                         <div className="doctor_edit_item_left_div">
-                                            <p id="doctor_page_sequence">1</p>
+                                            <p id="doctor_page_sequence">{index + 1}</p>
                                             <p id="doctor_page_item_title">
-                                                beautiful mind plastic surgery
+                                                {item.title}
                                             </p>
                                         </div>
                                         <div className="doctor_edit_item_right_div">
@@ -139,13 +279,13 @@ const DoctorAdd = () => {
                         })}
                     </div>
                     <Pagination
-                        activePage={page}
+                        activePage={doctorPage}
                         itemsCountPerPage={10}
-                        totalItemsCount={totalPages * 10}
+                        totalItemsCount={doctorTotalPages * 10}
                         pageRangeDisplayed={10}
                         prevPageText={"‹"}
                         nextPageText={"›"}
-                        onChange={handlePageChange}
+                        onChange={(e) => handleDoctorPageChange(e)}
                     />
                 </div>
             </div>
