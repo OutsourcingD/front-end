@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import "./Header.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const HeaderDiv = styled.div``;
@@ -19,6 +19,7 @@ function Header() {
     const [more, setMore] = useState(false);
     const [name, setName] = useState("");
     const [profile, setProfile] = useState("");
+    const location = useLocation();
 
     const dropdownRef = React.useRef<HTMLDivElement | null>(null); // 참조 생성
 
@@ -79,16 +80,17 @@ function Header() {
         const refreshToken = localStorage.getItem("refresh_token")
         const memberIdString = localStorage.getItem("user_id")
         let memberId = 0
-
+        
         memberIdString !== null ? memberId = Number(memberIdString) : memberId = 0;
+        console.log(memberId)
 
-        if (memberId !== 0 && accessToken !== null && refreshToken !== null) {
+        if (accessToken !== null && refreshToken !== null) {
             setIsLogin(true);
         }
         else {
             setIsLogin(false);
         }
-    }, []);
+    }, [location]);
 
     useEffect(() => {
         localStorage.getItem("selected")
