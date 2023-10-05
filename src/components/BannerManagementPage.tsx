@@ -46,7 +46,7 @@ const BannerManagementPage = () => {
                         </div>
                         {topBannerList.map((item, index) => {
                             return (
-                                <div className="admin_page_banner_items_div">
+                                <div className="admin_page_banner_items_div" key={item.bannerId}>
                                     <p id="admin_page_banner_item_index">
                                         {index + 1}
                                     </p>
@@ -87,7 +87,7 @@ const BannerManagementPage = () => {
                         </div>
                         {bottomBannerList.map((item, index) => {
                             return (
-                                <div className="admin_page_banner_items_div">
+                                <div className="admin_page_banner_items_div" key={item.bannerId}>
                                     <p id="admin_page_banner_item_index">
                                         {index + 1}
                                     </p>
