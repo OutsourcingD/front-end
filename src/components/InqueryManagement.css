@@ -1,5 +1,4 @@
 .check_user_index_left_div {
-    width: 146.19px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -48,19 +47,22 @@
     font-weight: 500;
     color: #222222;
     margin-left: 20px;
+    width: 74px;
+    white-space: nowrap;
 }
 
 #inquery_id {
     font-size: 14px;
     font-weight: 500;
     color: #222222;
+    margin-left: 35px;
 }
 
 #inquery_id_data {
     font-size: 14px;
     font-weight: 500;
     color: #222222;
-    margin-left: 20px;
+    margin-left: 30px;
 }
 
 #inquery_answer {
@@ -99,9 +101,9 @@
 .inquery_action_div {
     border: 1px solid #D4D4D4;
     border-radius: 20px;
-    width: 60px;
+    width: 80px;
     height: 28px;
-    margin-right: 30px;
+    margin-right: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
