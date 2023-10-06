@@ -38,7 +38,6 @@ jobs:
         run: |
           echo "${{ secrets.SECRET_KEY }}" > ssh_key
           chmod 400 ssh_key
-          scp -o "StrictHostKeyChecking no" -i ssh_key ./back-end/server/build/libs/*.jar ${{ secrets.USERNAME }}@${{ secrets.SERVER_HOST }}:/root/surgery-front
           ssh -i ssh_key -o "StrictHostKeyChecking no" ${{ secrets.USERNAME }}@${{ secrets.SERVER_HOST }} "docker compose down && docker compose build && docker compose up -d"
     
   deploy_cloud_front:
