@@ -12,6 +12,11 @@ const RightDiv = styled.div``;
 
 const Menu = styled.p``;
 
+interface Props {
+    authorityName: string;
+    role: string;
+}
+
 function Header() {
     const [isLogin, setIsLogin] = useState(false);
     const navigate = useNavigate();
@@ -51,7 +56,21 @@ function Header() {
     };
 
     const mypageClick = () => {
-        navigate("/mypage");
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/auth/check`,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        }).then((res) => {
+            res.data.map((item: Props) => {
+                if (item.authorityName === "ROLE_USER") {
+                    navigate(`/mypage?id=${localStorage.getItem("member_id")}`);
+                } else if (item.authorityName === "ROLE_ADMIN") {
+                    navigate("/admin");
+                }
+            });
+        });
     };
 
     const logoutClick = () => {
@@ -82,7 +101,6 @@ function Header() {
         let memberId = 0
         
         memberIdString !== null ? memberId = Number(memberIdString) : memberId = 0;
-        console.log(memberId)
 
         if (accessToken !== null && refreshToken !== null) {
             setIsLogin(true);
@@ -114,10 +132,6 @@ function Header() {
             ? setSelected(0)
             : setSelected(Number(localStorage.getItem("selected")));
     }, [selected]);
-
-    useEffect(() => {
-        console.log(isLogin);
-    }, [isLogin]);
 
     return (
         <HeaderDiv className="header">

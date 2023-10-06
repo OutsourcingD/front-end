@@ -142,6 +142,50 @@ const DoctorEdit = () => {
         });
     };
 
+    const HospitalDeleteHandler = (index: number) => {
+        axios({
+            method: "delete",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/post/delete`,
+            params: {
+                postId: hospitalItems[index].hospitalId,
+            },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        }).then((res) => {
+            const newItems = [...hospitalItems];
+            newItems.splice(index, 1);
+            setHospitalItems(newItems);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403)
+                alert(`This is not admin ID.: ${err.response.status}`);
+            else
+                alert(`Contact to developer. ${err.response.status}`);
+        });
+    };
+
+    const DoctorDeleteHandler = (index: number) => {    
+        axios({
+            method: "delete",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/post/delete`,
+            params: {
+                postId: doctorItems[index].doctorId,
+            },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        }).then((res) => {
+            const newItems = [...doctorItems];
+            newItems.splice(index, 1);
+            setDoctorItems(newItems);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403)
+                alert(`This is not admin ID.: ${err.response.status}`);
+            else
+                alert(`Contact to developer. ${err.response.status}`);
+        });
+    };
+
     React.useEffect(() => {
         getHospitals();
     }, [hospitalPage]);
@@ -203,7 +247,7 @@ const DoctorEdit = () => {
                                                     edit
                                                 </p>
                                             </div>
-                                            <div className="doctor_edit_item_button_div">
+                                            <div className="doctor_edit_item_button_div" onClick={() => HospitalDeleteHandler(index)}>
                                                 <p id="doctor_item_button_delete">
                                                     delete
                                                 </p>
@@ -271,7 +315,7 @@ const DoctorEdit = () => {
                                                     edit
                                                 </p>
                                             </div>
-                                            <div className="doctor_edit_item_button_div">
+                                            <div className="doctor_edit_item_button_div" onClick={() => DoctorDeleteHandler(index)}>
                                                 <p id="doctor_item_button_delete">
                                                     delete
                                                 </p>
