@@ -16,34 +16,56 @@
 }
 
 #etc_manage_page_sequence {
+    font-size: 14px;
+    font-weight: 500;
+    color: #222222;
     margin-left: 20px;
 }
 
 #etc_manage_page_title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #222222;
     margin-left: 30px;
 }
 
 #etc_manage_page_id {
+    font-size: 14px;
+    font-weight: 500;
+    color: #222222;
     margin-left: 120px;
 }
 
 #etc_manage_page_action {
+    font-size: 14px;
+    font-weight: 500;
+    color: #222222;
     margin-left: 180px;
 }
 
 #etc_manage_page_sequence_data {
+    font-size: 14px;
+    font-weight: 400;
+    color: #444444;
+    opacity: 0.2;
     width: 33px;
     margin-left: 25px;
     white-space: nowrap;
 }
 
 #etc_manage_page_title_data {
+    font-size: 14px;
+    font-weight: 400;
+    color: #222222;
     width: 125px;
     margin-left: 25px;
     white-space: nowrap;
 }
 
 #etc_manage_page_id_data {
+    font-size: 14px;
+    font-weight: 400;
+    color: #222222;
     width: 170px;
     margin-left: 15px;
     white-space: nowrap;
@@ -60,7 +82,14 @@
     align-items: center;
 }
 
+.etc_manage_page_action_button:hover {
+    cursor: pointer;
+}
+
 #etc_manage_page_action_data {
+    font-size: 14px;
+    font-weight: 500;
+    color: #444444;
     white-space: nowrap;
 }
 

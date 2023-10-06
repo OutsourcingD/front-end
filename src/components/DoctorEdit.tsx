@@ -41,7 +41,7 @@ const DoctorEdit = () => {
                 hospitalName: hospitalSearchValue,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setHospitalItems(res.data);
@@ -58,7 +58,7 @@ const DoctorEdit = () => {
                 doctorName: doctorSearchValue,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setDoctorItems(res.data);
@@ -77,7 +77,7 @@ const DoctorEdit = () => {
                 hospitalName: hospitalSearchValue,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setHospitalItems(res.data);
@@ -95,7 +95,7 @@ const DoctorEdit = () => {
                 hospitalName: hospitalSearchValue,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setHospitalItems(res.data);
@@ -115,7 +115,7 @@ const DoctorEdit = () => {
                 doctorName: doctorSearchValue,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
             },
         }).then((res) => {
             setDoctorItems(res.data);
@@ -180,10 +180,10 @@ const DoctorEdit = () => {
                     <div className="doctor_edit_index_div">
                         <div className="doctor_edit_left_index_div">
                             <p id="doctor_edit_page_index_no">No.</p>
-                            <p id="doctor_edit_page_index_title">글제목</p>
+                            <p id="doctor_edit_page_index_title">Title</p>
                         </div>
                         <div className="doctor_edit_right_index_div">
-                            <p id="doctor_edit_page_index_detail">기능</p>
+                            <p id="doctor_edit_page_index_detail">Action</p>
                         </div>
                     </div>
                     <div className="doctor_items_div">
