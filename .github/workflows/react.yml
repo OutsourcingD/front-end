@@ -31,7 +31,7 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SECRET_KEY }}
-          source: "./*"
+          source: "./build/*"
           target: "/root/surgery-front/"
     
   deploy_cloud_front:
