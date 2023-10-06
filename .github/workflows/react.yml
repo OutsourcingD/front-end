@@ -33,6 +33,13 @@ jobs:
           key: ${{ secrets.SECRET_KEY }}
           source: "./build/*"
           target: "/root/surgery-front/"
+
+      - name: Run React Container
+        run: |
+          echo "${{ secrets.SECRET_KEY }}" > ssh_key
+          chmod 400 ssh_key
+          scp -o "StrictHostKeyChecking no" -i ssh_key ./back-end/server/build/libs/*.jar ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}:/root/surgery-front
+          ssh -i ssh_key -o "StrictHostKeyChecking no" ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }} "docker compose down && docker compose build && docker compose up -d"
     
   deploy_cloud_front:
     runs-on: ubuntu-latest      
