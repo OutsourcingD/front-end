@@ -36,7 +36,14 @@ const ChangeReview = () => {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
-            console.log(res.data)
+            if(res.status === 200) {
+                alert("change success");
+                setDefaultSort(sort);
+                setIsSubmit(false);
+            }
+            else {
+                alert("change fail");
+            }
         });
     }
   }

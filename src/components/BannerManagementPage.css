@@ -141,6 +141,10 @@
     margin-bottom: 5px;
 }
 
+.admin_page_banner_delete_button_div:hover, .admin_page_banner_edit_button_div {
+    cursor: pointer;
+}
+
 #admin_page_banner_button_delete {
     font-weight: 500;
     font-size: 14px;

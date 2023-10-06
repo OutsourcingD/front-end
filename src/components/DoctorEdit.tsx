@@ -165,7 +165,7 @@ const DoctorEdit = () => {
                                     type="text"
                                     value={hospitalSearchValue}
                                     id="doctor_edit_page_search_input"
-                                    placeholder="원하는 게시글을 검색하세요."
+                                    placeholder="Search the Hospital Title."
                                     onChange={(e) => setHospitalSearchValue(e.target.value)}
                                 />
                             </form>

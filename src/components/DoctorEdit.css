@@ -71,6 +71,10 @@
     height: 20px;
 }
 
+#doctor_edit_page_search_button:hover {
+    cursor: pointer;
+}
+
 #doctor_edit_page_search_button:focus {
     cursor: pointer;
 }
@@ -172,6 +176,10 @@
     justify-content: center;
     align-items: center;
     
+}
+
+.doctor_edit_item_button_div:hover {
+    cursor: pointer;
 }
 
 #doctor_item_button_edit {

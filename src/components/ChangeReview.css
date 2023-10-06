@@ -48,6 +48,10 @@
     margin-right: 5px;
 }
 
+#change_review_page_check_box:hover {
+    cursor: pointer;
+}
+
 #change_review_page_lable {
     white-space: nowrap;
     font-weight: 500;
@@ -77,6 +81,10 @@
     justify-content: center;
     align-items: center;
     margin-right: 20px;
+}
+
+.review_page_submit_button_div:hover, .review_page_submit_button_active_div:hover {
+    cursor: pointer;
 }
 
 #review_page_submit_button_text {

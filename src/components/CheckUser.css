@@ -51,6 +51,10 @@
     justify-content: center;
 }
 
+.block_button_div:hover {
+    cursor: pointer;
+}
+
 #block_button_text {
     font-weight: 500;
     font-size: 14px;
