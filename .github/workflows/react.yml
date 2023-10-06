@@ -4,7 +4,40 @@ on:
     branches:
       - master
 jobs:
-  build:
+  deploy_production:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+
+      - name: Build React app
+        run: |
+          yarn install
+          CI=false yarn build
+          
+      - name: Create env file
+        run: |
+          touch .env
+          echo REACT_APP_API_ENDPOINT=${{ secrets.REACT_APP_SERVER_URL }}
+                REACT_APP_ACCESS_TOKEN=${{ secrets.REACT_APP_ACCESS_TOKEN }} >> .env
+          cat .env
+
+      - name: Copy files to server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SECRET_KEY }}
+          source: "./build/*"
+          target: "/root/surgery-front/"
+    
+  deploy_cloud_front:
     runs-on: ubuntu-latest      
     strategy:
       matrix:
