@@ -27,6 +27,10 @@ const DoctorAdd = () => {
     const handleDoctorPageChange = (page: React.SetStateAction<number>) => {
         setDoctorPage(page);
     }
+    
+    const handleHospitalPageChange = (page: React.SetStateAction<number>) => {
+        setHospitalPage(page);
+    }
 
     const getHospitals = async () => {
         await axios({
@@ -138,6 +142,50 @@ const DoctorAdd = () => {
         });
     };
 
+    const handledeleteHospitalButton = (index: number) => {
+        axios({
+            method: "delete",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/hospital-info/delete`,
+            params: {
+                hospitalId: hospitalItems[index].hospitalId,
+            },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        }).then((res) => {
+            const newItems = [...hospitalItems];
+            newItems.splice(index, 1);
+            setHospitalItems(newItems);
+        }).catch((err) => {
+            if(err.response.status === 403 || err.response.status === 401)
+                alert("This is not admin ID.");
+            else
+                alert("Contact the administrator.");
+        });
+    };
+
+    const handledeleteDoctorButton = (index: number) => {
+        axios({
+            method: "delete",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/doctor-info/delete`,
+            params: {
+                doctorId: doctorItems[index].doctorId,
+            },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        }).then((res) => {
+            const newItems = [...doctorItems];
+            newItems.splice(index, 1);
+            setDoctorItems(newItems);
+        }).catch((err) => {
+            if(err.response.status === 403 || err.response.status === 401)
+                alert("This is not admin ID.");
+            else
+                alert("Contact the administrator.");
+        });
+    };
+
     React.useEffect(() => {
         getHospitals();
     }, [hospitalPage]);
@@ -199,7 +247,7 @@ const DoctorAdd = () => {
                                                     edit
                                                 </p>
                                             </div>
-                                            <div className="doctor_edit_item_button_div">
+                                            <div className="doctor_edit_item_button_div" onClick={() => handledeleteHospitalButton(index)}>
                                                 <p id="doctor_item_button_delete">
                                                     delete
                                                 </p>
@@ -217,7 +265,7 @@ const DoctorAdd = () => {
                         pageRangeDisplayed={10}
                         prevPageText={"‹"}
                         nextPageText={"›"}
-                        onChange={handleDoctorPageChange}
+                        onChange={handleHospitalPageChange}
                     />
                 </div>
                 <div className="doctor_edit_body">
@@ -267,7 +315,7 @@ const DoctorAdd = () => {
                                                     edit
                                                 </p>
                                             </div>
-                                            <div className="doctor_edit_item_button_div">
+                                            <div className="doctor_edit_item_button_div" onClick={() => handledeleteDoctorButton(index)}>
                                                 <p id="doctor_item_button_delete">
                                                     delete
                                                 </p>
