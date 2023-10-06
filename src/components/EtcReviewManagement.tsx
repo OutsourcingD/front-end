@@ -1,15 +1,79 @@
 import React from "react";
 import Pagination from "react-js-pagination";
 import "./EtcReviewManagement.css";
+import axios from "axios";
+
+interface EtcReviewManagementProps {
+    createdAt: string;
+    reviewId: number;
+    title: string;
+    totalPages: number;
+    userId: string;
+}
 
 const EtcReviewManagement = () => {
-    const item = [1, 2, 3, 4, 5, 6, 7, 8];
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(2);
+    const [id, setId] = React.useState("");
+    const [etcList, setEtcList] = React.useState<EtcReviewManagementProps[]>([]);
 
     const handlePageChange = (page: React.SetStateAction<number>) => {
         setPage(page);
     };
+
+    const onClick = () => {
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/review-info`,
+            params: {
+                pages: page - 1,
+                userId: id,
+            },
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            setEtcList(res.data);
+            setTotalPages(res.data.length === 0 ? 1 : res.data[0].totalPages);
+        });
+    };
+
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/review-info`,
+            params: {
+                pages: page - 1,
+                userId: id,
+            },
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            setEtcList(res.data);
+            setTotalPages(res.data.length === 0 ? 1 : res.data[0].totalPages);
+        });
+    };
+
+    React.useEffect(() => {
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/review-info`,
+            params: {
+                pages: page - 1,
+                userId: id,
+            },
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            setEtcList(res.data);
+            setTotalPages(res.data.length === 0 ? 1 : res.data[0].totalPages);
+            console.log(res.data.length)
+        });
+    }, [page]);
 
     return (
         <div className="check_user_ip_page">
@@ -17,24 +81,30 @@ const EtcReviewManagement = () => {
                 <div className="check_user_ip_title_div">
                     <p id="change_review_title">Manage Etc Review</p>
                     <div className="check_user_ip_search_div">
-                        <form id="doctor_edit_page_search_form">
+                        <form
+                            id="doctor_edit_page_search_form"
+                            onSubmit={onSubmit}
+                        >
                             <input
                                 type="text"
                                 id="doctor_edit_page_search_input"
-                                placeholder="원하는 게시글을 검색하세요."
+                                placeholder="Search the user email."
+                                value={id}
+                                onChange={(e) => setId(e.target.value)}
                             />
                         </form>
                         <img
                             src="/search.png"
                             alt="search"
                             id="doctor_edit_page_search_button"
+                            onClick={() => onClick()}
                         />
                     </div>
                 </div>
             </div>
             <div className="check_user_ip_body_div">
                 <div className="inquery_page_body">
-                    <div className="check_user_left_div">
+                    <div className="etc_management_page_left_div">
                         <div className="etc_manage_page_index_div">
                             <p id="etc_manage_page_sequence">No.</p>
                             <p id="etc_manage_page_title">title</p>
@@ -42,62 +112,58 @@ const EtcReviewManagement = () => {
                             <p id="etc_manage_page_action">action</p>
                         </div>
                         <div className="inquery_items_div">
-                            {item.map((item, index) => {
+                            {etcList.length !== 0 ?etcList.map((item, index) => {
                                 return (
-                                    <div className="inquery_item_div">
+                                    index < 10 ?
+                                    <div className="etc_page_item_div">
                                         <p id="etc_manage_page_sequence_data">
-                                            1
+                                            {index + 1}
                                         </p>
-                                        <p id="etc_manage_page_title_data">
-                                            미인 성형외과 후기
+                                        <p title={item.title} id="etc_manage_page_title_data">
+                                            {item.title.substring(0, 10)}
                                         </p>
-                                        <p id="etc_manage_page_id_data">
-                                            kimchulsoo@gmail.com
+                                        <p title={item.userId} id="etc_manage_page_id_data">
+                                            {item.userId.substring(0, 20)}
                                         </p>
                                         <div className="etc_manage_page_action_button">
                                             <p id="etc_manage_page_action_data">
-                                                답변
+                                                edit
                                             </p>
                                         </div>
-                                    </div>
+                                    </div> : null
                                 );
-                            })}
+                            }) : null}
                         </div>
                     </div>
-                    <div className="check_user_left_div">
-                        <div className="inquery_management_index_div">
-                            <div className="check_user_index_left_div">
-                                <p id="inquery_date">날짜</p>
-                                <p id="inquery_id">아이디</p>
-                            </div>
-                            <div className="check_user_index_right_div">
-                                <p id="inquery_answer">답변 여부</p>
-                                <p id="inquery_action">기능</p>
-                            </div>
+                    <div className="etc_management_page_left_div">
+                        <div className="etc_manage_page_index_div">
+                            <p id="etc_manage_page_sequence">No.</p>
+                            <p id="etc_manage_page_title">title</p>
+                            <p id="etc_manage_page_id">id</p>
+                            <p id="etc_manage_page_action">action</p>
                         </div>
                         <div className="inquery_items_div">
-                            {item.map((item, index) => {
+                            {etcList.length !== 0 ?etcList.map((item, index) => {
                                 return (
-                                    <div className="inquery_item_div">
-                                        <div className="check_user_index_left_div">
-                                            <p id="inquery_date">2023.08.11</p>
-                                            <p id="inquery_id_data">
-                                                kimchulsoo@gmail.com
+                                    index >= 10 && index < 20?
+                                    <div className="etc_page_item_div">
+                                        <p id="etc_manage_page_sequence_data">
+                                            {index + 1 + 10}
+                                        </p>
+                                        <p title={item.title} id="etc_manage_page_title_data">
+                                            {item.title.substring(0, 10)}
+                                        </p>
+                                        <p title={item.userId} id="etc_manage_page_id_data">
+                                            {item.userId.substring(0, 20)}
+                                        </p>
+                                        <div className="etc_manage_page_action_button">
+                                            <p id="etc_manage_page_action_data">
+                                                edit
                                             </p>
                                         </div>
-                                        <div className="check_user_index_right_div">
-                                            <p id="inquery_answer_data">
-                                                미답변
-                                            </p>
-                                            <div className="inquery_action_div">
-                                                <p id="inquery_action_data">
-                                                    답변
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </div> : null
                                 );
-                            })}
+                            }) : null}
                         </div>
                     </div>
                 </div>

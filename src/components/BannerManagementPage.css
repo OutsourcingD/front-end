@@ -18,7 +18,7 @@
 }
 
 .banner_management_left_div {
-    width: 576px;
+    width: 600px;
     height: 645px;
     margin-left: 40px;
     margin-top: 10px;
@@ -48,7 +48,7 @@
 .index_div {
     background: #F5F5F5;
     border-bottom: 1px solid #D4D4D4;
-    width: 535.67px;
+    width: 570px;
     margin-left: 20px;
     display: flex;
     flex-direction: row;
@@ -61,7 +61,7 @@
 .index_left_div {
     display: flex;
     flex-direction: row;
-    width: 120px;
+    width: 150px;
     justify-content: space-between;
 }
 
@@ -82,11 +82,11 @@
     font-size: 14px;
     color: #222222;
     font-weight: 500;
-    margin-right: 40px;
+    margin-right: 45px;
 }
 
 .admin_page_banner_items_div {
-    width: 535.7px;
+    width: 570px;
     height: 80px;
     margin-left: 20px;
     border-bottom: 1px solid #D4D4D4;
@@ -96,12 +96,12 @@
 }
 
 #admin_page_banner_item_index {
-    margin-left: 20px;
+    margin-left: 50px;
 }
 
 .admin_page_banner_image_div {
     width: 300px;
-    margin-left: 55px;
+    margin-left: 50px;
     height: 71px;
 }
 

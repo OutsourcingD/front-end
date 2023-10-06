@@ -72,7 +72,7 @@ const CheckUser = () => {
                             <input
                                 type="text"
                                 id="doctor_edit_page_search_input"
-                                placeholder="원하는 게시글을 검색하세요."
+                                placeholder="Search the Post title."
                                 value={id}
                                 onChange={(e) => setId(e.target.value)}
                             />
@@ -90,8 +90,8 @@ const CheckUser = () => {
                 <div className="check_user_body">
                     <div className="check_user_left_div">
                         <div className="check_user_index_div">
-                            <p id="check_user_id">유저 아이디</p>
-                            <p id="check_user_location">차단 여부</p>
+                            <p id="check_user_id">User Id</p>
+                            <p id="check_user_location">Blocking status</p>
                         </div>
                         <div className="check_user_ip_items_div">
                             {items.length < 10 && items.length !== 0
@@ -117,8 +117,8 @@ const CheckUser = () => {
                     </div>
                     <div className="check_user_left_div">
                         <div className="check_user_index_div">
-                            <p id="check_user_id">유저 아이디</p>
-                            <p id="check_user_location">차단 여부</p>
+                            <p id="check_user_id">User Id</p>
+                            <p id="check_user_location">Blocking status</p>
                         </div>
                         <div className="check_user_ip_items_div">
                             {items.length >= 10 && items.length < 20 && items.length !== 0

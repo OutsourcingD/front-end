@@ -8,6 +8,13 @@
     align-items: center;
 }
 
+.etc_management_page_left_div {
+    display: flex;
+    flex-direction: column;
+    width: 487.33px;
+    height: 500px;
+}
+
 #etc_manage_page_sequence {
     margin-left: 20px;
 }
@@ -17,7 +24,7 @@
 }
 
 #etc_manage_page_id {
-    margin-left: 130px;
+    margin-left: 120px;
 }
 
 #etc_manage_page_action {
@@ -25,22 +32,27 @@
 }
 
 #etc_manage_page_sequence_data {
-    margin-left: 20px;
+    width: 33px;
+    margin-left: 25px;
     white-space: nowrap;
 }
 
 #etc_manage_page_title_data {
-    margin-left: 5px;
+    width: 125px;
+    margin-left: 25px;
     white-space: nowrap;
 }
 
 #etc_manage_page_id_data {
+    width: 170px;
+    margin-left: 15px;
     white-space: nowrap;
 }
 
 .etc_manage_page_action_button {
-    width: 40px;
+    width: 50px;
     height: 30px;
+    margin-left: 25px;
     border: 1px solid #D4D4D4;
     border-radius: 20px;
     display: flex;
@@ -50,5 +62,13 @@
 
 #etc_manage_page_action_data {
     white-space: nowrap;
-    margin-right: 20px;
+}
+
+.etc_page_item_div {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #d4d4d4;
+    align-items: center;
 }

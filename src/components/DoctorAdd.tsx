@@ -149,18 +149,18 @@ const DoctorAdd = () => {
     return (
         <div className="doctor_edit_page">
             <div className="change_review_container">
-                <p id="change_review_title">병원 • 원장 정보 등록</p>
+                <p id="change_review_title">Add Hospital • Doctor Info</p>
             </div>
             <div className="doctor_edit_body_container">
                 <div className="doctor_edit_body">
                     <div className="docotr_edit_title_div">
-                        <p id="banner_management_item_title">병원 목록</p>
+                        <p id="banner_management_item_title">Hospital List</p>
                         <div className="doctor_edit_page_search">
                             <form id="doctor_edit_page_search_form" onSubmit={(e) => handleHospitalSearch(e)}>
                                 <input
                                     type="text"
                                     id="doctor_edit_page_search_input"
-                                    placeholder="원하는 게시글을 검색하세요."
+                                    placeholder="Search the Hospital Title."
                                     value={hospitalSearchValue}
                                     onChange={(e) => setHospitalSearchValue(e.target.value)}
                                 />
@@ -176,10 +176,10 @@ const DoctorAdd = () => {
                     <div className="doctor_edit_index_div">
                         <div className="doctor_edit_left_index_div">
                             <p id="doctor_edit_page_index_no">No.</p>
-                            <p id="doctor_edit_page_index_title">글제목</p>
+                            <p id="doctor_edit_page_index_title">Title</p>
                         </div>
                         <div className="doctor_edit_right_index_div">
-                            <p id="doctor_edit_page_index_detail">기능</p>
+                            <p id="doctor_edit_page_index_detail">Action</p>
                         </div>
                     </div>
                     <div className="doctor_items_div">
@@ -222,13 +222,13 @@ const DoctorAdd = () => {
                 </div>
                 <div className="doctor_edit_body">
                     <div className="docotr_edit_title_div">
-                        <p id="banner_management_item_title">원장 목록</p>
+                        <p id="banner_management_item_title">Doctor List</p>
                         <div className="doctor_edit_page_search">
                             <form id="doctor_edit_page_search_form" onSubmit={(e) => handleDoctorSearch(e)}>
                                 <input
                                     type="text"
                                     id="doctor_edit_page_search_input"
-                                    placeholder="원하는 게시글을 검색하세요."
+                                    placeholder="Search the Doctor Title."
                                     value={doctorSearchValue}
                                     onChange={(e) => setDoctorSearchValue(e.target.value)}
                                 />
@@ -244,10 +244,10 @@ const DoctorAdd = () => {
                     <div className="doctor_edit_index_div">
                         <div className="doctor_edit_left_index_div">
                             <p id="doctor_edit_page_index_no">No.</p>
-                            <p id="doctor_edit_page_index_title">글제목</p>
+                            <p id="doctor_edit_page_index_title">Title</p>
                         </div>
                         <div className="doctor_edit_right_index_div">
-                            <p id="doctor_edit_page_index_detail">기능</p>
+                            <p id="doctor_edit_page_index_detail">Action</p>
                         </div>
                     </div>
                     <div className="doctor_items_div">

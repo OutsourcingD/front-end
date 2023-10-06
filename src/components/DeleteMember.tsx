@@ -116,7 +116,7 @@ const DeleteMember = () => {
             </div>
             <div className="add_admin_page_div">
                 <div className="add_admin_id_div">
-                    <p id="admin_list">관리자아이디 목록</p>
+                    <p id="admin_list">Admin Id List</p>
                     <div className="add_admin_page_index_div">
                         <div className="admin_left_div">
                             <p id="admin_no">No.</p>
@@ -165,7 +165,7 @@ const DeleteMember = () => {
                             <form className="add_id_form" onSubmit={onSubmit}>
                                 <input
                                     type="text"
-                                    placeholder="Input Member E-Mail"
+                                    placeholder="Search the amdin email."
                                     id="add_id_input"
                                     value={id}
                                     onChange={(e) => setId(e.target.value)}

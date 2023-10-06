@@ -88,7 +88,7 @@ const InqueryManagement = () => {
                             <input
                                 type="text"
                                 id="doctor_edit_page_search_input"
-                                placeholder="원하는 게시글을 검색하세요."
+                                placeholder="Search the user email."
                                 value={id}
                                 onChange={(e) => setId(e.target.value)}
                             />
@@ -107,12 +107,12 @@ const InqueryManagement = () => {
                     <div className="check_user_left_div">
                         <div className="inquery_management_index_div">
                             <div className="check_user_index_left_div">
-                                <p id="inquery_date">날짜</p>
-                                <p id="inquery_id">아이디</p>
+                                <p id="inquery_date">Date</p>
+                                <p id="inquery_id">User Id</p>
                             </div>
                             <div className="check_user_index_right_div">
-                                <p id="inquery_answer">답변 여부</p>
-                                <p id="inquery_action">기능</p>
+                                <p id="inquery_answer">Answer</p>
+                                <p id="inquery_action">action</p>
                             </div>
                         </div>
                         <div className="inquery_items_div">
@@ -128,7 +128,7 @@ const InqueryManagement = () => {
                                         </div>
                                         <div className="check_user_index_right_div">
                                             <p id={item.answer === null ? "inquery_answer_data" : "inquery_answer_data_click"}>
-                                                {item.answer === null ? "미답변" : "답변완료"}
+                                                {item.answer === null ? "Yet" : "Done"}
                                             </p>
                                             <div className="inquery_action_div">
                                                 <p id="inquery_action_data">
@@ -145,12 +145,12 @@ const InqueryManagement = () => {
                     <div className="check_user_left_div">
                         <div className="inquery_management_index_div">
                             <div className="check_user_index_left_div">
-                                <p id="inquery_date">날짜</p>
-                                <p id="inquery_id">아이디</p>
+                                <p id="inquery_date">Date</p>
+                                <p id="inquery_id">User Id</p>
                             </div>
                             <div className="check_user_index_right_div">
-                                <p id="inquery_answer">답변 여부</p>
-                                <p id="inquery_action">기능</p>
+                                <p id="inquery_answer">Answer</p>
+                                <p id="inquery_action">Action</p>
                             </div>
                         </div>
                         <div className="inquery_items_div">
@@ -166,7 +166,7 @@ const InqueryManagement = () => {
                                         </div>
                                         <div className="check_user_index_right_div">
                                             <p id={item.answer === null ? "inquery_answer_data" : "inquery_answer_data_click"}>
-                                                {item.answer === null ? "미답변" : "답변완료"}
+                                                {item.answer === null ? "Yet" : "Done"}
                                             </p>
                                             <div className="inquery_action_div">
                                                 <p id="inquery_action_data">

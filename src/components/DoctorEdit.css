@@ -108,12 +108,15 @@
 #doctor_edit_page_index_title {
     font-weight: 500;
     font-size: 14px;
+    margin-right: 10px;
     white-space: nowrap;
 }
 
 #doctor_edit_page_index_detail {
     font-weight: 500;
     font-size: 14px;
+    margin-right: 20px;
+    text-align: center;
 }
 
 .doctor_edit_item_div {

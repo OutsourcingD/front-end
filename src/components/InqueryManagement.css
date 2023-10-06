@@ -6,12 +6,13 @@
 
 .inquery_page_body {
     width: 1015.31px;
+    height: 450px;;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-top: 30px;
     margin-left: 30px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .check_user_index_right_div {
@@ -74,6 +75,7 @@
 #inquery_answer_data {
     font-size: 14px;
     font-weight: 500;
+    margin-left: 15px;
     color: #E95454;
     display: flex;
     align-items: center;
@@ -82,6 +84,7 @@
 #inquery_answer_data_click {
     font-size: 14px;
     font-weight: 500;
+    margin-left: 15px;
     color: #54D888;
 }
 
@@ -89,13 +92,7 @@
     font-size: 14px;
     font-weight: 500;
     color: #222222;
-    margin-right: 50px;
-}
-
-.inquery_item_div {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
+    margin-right: 40px;
 }
 
 .inquery_action_div {

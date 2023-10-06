@@ -45,7 +45,7 @@ const AddAdminId = () => {
             </div>
             <div className="add_admin_page_div">
                 <div className="add_admin_id_div">
-                    <p id="admin_list">관리자아이디 목록</p>
+                    <p id="admin_list">Admin Id List</p>
                     <div className="add_admin_page_index_div">
                         <div className="admin_left_div">
                             <p id="admin_no">No.</p>
@@ -76,14 +76,14 @@ const AddAdminId = () => {
                     </div>
                 </div>
                 <div className="add_admin_page_add_div">
-                    <p id="admin_list">관리자아이디 추가</p>
+                    <p id="admin_list">Add Adminstrator Id</p>
                     <div className="add_id_form_div">
-                        <p id="admin_label">관리자 아이디</p>
+                        <p id="admin_label">Admin Id</p>
                         <div className="add_id_form_container">
                             <form className="add_id_form" onSubmit={onSubmit}>
                                 <input
                                     type="text"
-                                    placeholder="추가할 이메일을 입력해주세요"
+                                    placeholder="Please enter an email to add."
                                     id="add_id_input"
                                     value={id}
                                     onChange={(e) => setId(e.target.value)}

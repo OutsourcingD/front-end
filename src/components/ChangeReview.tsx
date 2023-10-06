@@ -44,32 +44,32 @@ const ChangeReview = () => {
   return (
     <div className="change_review_page_div">
       <div className="change_review_container">
-        <p id="change_review_title">추천 후기 정렬 변경</p>
+        <p id="change_review_title">Change Sorting Review method</p>
       </div>
       <div className="change_review_button_box">
         <div style={{display: "flex", flexDirection: "row"}}>
-          <p id="change_review_button_sub_ttile">정렬방식</p>
+          <p id="change_review_button_sub_ttile">Sorting method</p>
           <img
             src={sort !== 0 ? "/checkbox.png" : "/checkbox_pupple.png"}
             alt=""
             id="change_review_page_check_box"
             onClick={() => setSort(0)}
           />
-          <p id="change_review_page_lable">조회수순</p>
+          <p id="change_review_page_lable">Number of View</p>
           <img
             src={sort !== 1 ? "/checkbox.png" : "/checkbox_pupple.png"}
             alt=""
             id="change_review_page_check_box"
             onClick={() => setSort(1)}
           />
-          <p id="change_review_page_lable">좋아요수순</p>
+          <p id="change_review_page_lable">Number of Like</p>
           <img
             src={sort !== 2 ? "/checkbox.png" : "/checkbox_pupple.png"}
             alt=""
             id="change_review_page_check_box"
             onClick={() => setSort(2)}
           />
-          <p id="change_review_page_lable">댓글 많은 순</p>
+          <p id="change_review_page_lable">Number of Comment</p>
         </div>
         <div
           className={
@@ -86,7 +86,7 @@ const ChangeReview = () => {
                 : "review_page_submit_button_active_text"
             }
           >
-            등록
+            Save
           </p>
         </div>
       </div>

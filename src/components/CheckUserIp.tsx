@@ -90,7 +90,7 @@ const CheckUserIp = () => {
                             <input
                                 type="text"
                                 id="doctor_edit_page_search_input"
-                                placeholder="원하는 게시글을 검색하세요."
+                                placeholder="Search the user email."
                                 value={id}
                                 onChange={(e) => setUserId(e.target.value)}
                             />
@@ -108,10 +108,10 @@ const CheckUserIp = () => {
                 <div className="check_user_body">
                     <div className="check_user_left_div">
                         <div className="check_user_ip_index_div">
-                            <p id="access_date">접속 날짜</p>
-                            <p id="user_ip">유저 IP</p>
-                            <p id="check_user_ip_id">아이디</p>
-                            <p id="check_user_ip_location">위치 정보</p>
+                            <p id="access_date">Access Date</p>
+                            <p id="user_ip">User IP</p>
+                            <p id="check_user_ip_id">User Id</p>
+                            <p id="check_user_ip_location">Location</p>
                         </div>
                         <div className="check_user_ip_items_div">
                             {userIps.length !== 0

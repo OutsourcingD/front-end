@@ -30,18 +30,18 @@ const BannerManagementPage = () => {
         <div className="banner_management_page_div">
             <div>
                 <div className="banner_management_page_title_div">
-                    <p id="banner_management_page_title">배너 리스트</p>
+                    <p id="banner_management_page_title">Banner List</p>
                 </div>
                 <div className="banner_management_container">
                     <div className="banner_management_left_div">
-                        <p id="banner_management_item_title">상단 배너</p>
+                        <p id="banner_management_item_title">Top Banner</p>
                         <div className="index_div">
                             <div className="index_left_div">
-                                <p id="index_sequence">순서</p>
-                                <p id="index_image">이미지</p>
+                                <p id="index_sequence">Sequence</p>
+                                <p id="index_image">image</p>
                             </div>
                             <div className="index_right_div">
-                                <p id="index_ability">기능</p>
+                                <p id="index_ability">Action</p>
                             </div>
                         </div>
                         {topBannerList.map((item, index) => {
@@ -75,14 +75,14 @@ const BannerManagementPage = () => {
                     </div>
 
                     <div className="banner_management_left_div">
-                        <p id="banner_management_item_title">하단 배너</p>
+                        <p id="banner_management_item_title">Bottom Banner</p>
                         <div className="index_div">
                             <div className="index_left_div">
-                                <p id="index_sequence">순서</p>
-                                <p id="index_image">이미지</p>
+                                <p id="index_sequence">Sequence</p>
+                                <p id="index_image">Image</p>
                             </div>
                             <div className="index_right_div">
-                                <p id="index_ability">기능</p>
+                                <p id="index_ability">Action</p>
                             </div>
                         </div>
                         {bottomBannerList.map((item, index) => {

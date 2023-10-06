@@ -90,6 +90,7 @@
 }
 
 #access_date {
+    white-space: nowrap;
     margin-left: 20px;
     font-weight: 500;
     font-size: 14px;
@@ -97,13 +98,15 @@
 }
 
 #user_ip {
-    margin-left: 40px;
+    white-space: nowrap;
+    margin-left: 20px;
     font-weight: 500;
     font-size: 14px;
     color: #222222;
 }
 
 #check_user_ip_id {
+    white-space: nowrap;
     margin-left: 80px;
     font-weight: 500;
     font-size: 14px;
@@ -111,7 +114,8 @@
 }
 
 #check_user_ip_location {
-    margin-left: 140px;
+    white-space: nowrap;
+    margin-left: 110px;
     font-weight: 500;
     font-size: 14px;
     color: #222222;
@@ -120,6 +124,7 @@
 #access_date_data {
     width: 72px;
     margin-left: 20px;
+    margin-right: 10px;
     font-weight: 400;
     font-size: 14px;
     color: #444444;

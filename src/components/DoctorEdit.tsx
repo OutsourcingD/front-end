@@ -153,12 +153,12 @@ const DoctorEdit = () => {
     return (
         <div className="doctor_edit_page">
             <div className="change_review_container">
-                <p id="change_review_title">병원 • 원장 게시글</p>
+                <p id="change_review_title">Edit Hospital • Doctor Post</p>
             </div>
             <div className="doctor_edit_body_container">
                 <div className="doctor_edit_body">
                     <div className="docotr_edit_title_div">
-                        <p id="banner_management_item_title">병원 게시글</p>
+                        <p id="banner_management_item_title">Hospital Post List</p>
                         <div className="doctor_edit_page_search">
                             <form id="doctor_edit_page_search_form" onSubmit={(event) => handleHospitalSearch(event)}>
                                 <input
@@ -226,13 +226,13 @@ const DoctorEdit = () => {
                 </div>
                 <div className="doctor_edit_body">
                     <div className="docotr_edit_title_div">
-                        <p id="banner_management_item_title">원장 게시글</p>
+                        <p id="banner_management_item_title">Doctor Post List</p>
                         <div className="doctor_edit_page_search">
                             <form id="doctor_edit_page_search_form" onSubmit={(event) => handleDoctorSearch(event)}>
                                 <input
                                     type="text"
                                     id="doctor_edit_page_search_input"
-                                    placeholder="원하는 게시글을 검색하세요."
+                                    placeholder="Search the Doctor Title."
                                     value={doctorSearchValue}
                                     onChange={(e) => setDoctorSearchValue(e.target.value)}
                                 />
@@ -248,10 +248,10 @@ const DoctorEdit = () => {
                     <div className="doctor_edit_index_div">
                         <div className="doctor_edit_left_index_div">
                             <p id="doctor_edit_page_index_no">No.</p>
-                            <p id="doctor_edit_page_index_title">글제목</p>
+                            <p id="doctor_edit_page_index_title">Title</p>
                         </div>
                         <div className="doctor_edit_right_index_div">
-                            <p id="doctor_edit_page_index_detail">기능</p>
+                            <p id="doctor_edit_page_index_detail">Action</p>
                         </div>
                     </div>
                     <div className="doctor_items_div">
