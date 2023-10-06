@@ -5,13 +5,15 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import axios from "axios";
 
 interface HospitalEditProps {
-    hospitalId: number;
+    postId: number;
     title: string;
+    type: number;
 }
 
 interface DoctorEditProps {
-    doctorId: number;
+    postId: number;
     title: string;
+    type: number;
 }
 
 const DoctorEdit = () => {
@@ -35,10 +37,10 @@ const DoctorEdit = () => {
     const getHospitals = async () => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/hospital-info`,
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/hospital`,
             params: {
                 pages: hospitalPage - 1,
-                hospitalName: hospitalSearchValue,
+                query: hospitalSearchValue,
             },
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -52,10 +54,10 @@ const DoctorEdit = () => {
     const getDoctors = async () => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/doctor-info`,
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/doctor`,
             params: {
                 pages: doctorPage - 1,
-                doctorName: doctorSearchValue,
+                query: doctorSearchValue,
             },
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -71,10 +73,10 @@ const DoctorEdit = () => {
         
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/hospital-info`,
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/hospital`,
             params: {
                 pages: hospitalPage - 1,
-                hospitalName: hospitalSearchValue,
+                query: hospitalSearchValue,
             },
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -89,10 +91,10 @@ const DoctorEdit = () => {
     const handleHospitalSearchButton = async () => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/hospital-info`,
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/hospital`,
             params: {
                 pages: hospitalPage - 1,
-                hospitalName: hospitalSearchValue,
+                query: hospitalSearchValue,
             },
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -109,10 +111,10 @@ const DoctorEdit = () => {
 
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/doctor-info`,
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/doctor`,
             params: {
                 pages: doctorPage - 1,
-                doctorName: doctorSearchValue,
+                query: doctorSearchValue,
             },
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -127,10 +129,10 @@ const DoctorEdit = () => {
     const handleDoctorSearchButton = async () => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/doctor-info`,
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/doctor`,
             params: {
                 pages: doctorPage - 1,
-                doctorName: doctorSearchValue,
+                query: doctorSearchValue,
             },
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
@@ -147,7 +149,7 @@ const DoctorEdit = () => {
             method: "delete",
             url: `${process.env.REACT_APP_SERVER_URL}/admin/post/delete`,
             params: {
-                postId: hospitalItems[index].hospitalId,
+                postId: hospitalItems[index].postId,
             },
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -169,7 +171,7 @@ const DoctorEdit = () => {
             method: "delete",
             url: `${process.env.REACT_APP_SERVER_URL}/admin/post/delete`,
             params: {
-                postId: doctorItems[index].doctorId,
+                postId: doctorItems[index].postId,
             },
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -234,7 +236,7 @@ const DoctorEdit = () => {
                         {hospitalItems.map((item, index) => {
                             return (
                                 <>
-                                    <div className="doctor_edit_item_div" key={item.hospitalId}>
+                                    <div className="doctor_edit_item_div" key={item.postId}>
                                         <div className="doctor_edit_item_left_div">
                                             <p id="doctor_page_sequence">{index + 1}</p>
                                             <p id="doctor_page_item_title">
@@ -302,7 +304,7 @@ const DoctorEdit = () => {
                         {doctorItems.map((item, index) => {
                             return (
                                 <>
-                                    <div className="doctor_edit_item_div" key={item.doctorId}>
+                                    <div className="doctor_edit_item_div" key={item.postId}>
                                         <div className="doctor_edit_item_left_div">
                                             <p id="doctor_page_sequence">{index + 1}</p>
                                             <p id="doctor_page_item_title">
