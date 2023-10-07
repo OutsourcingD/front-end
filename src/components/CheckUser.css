@@ -33,6 +33,10 @@
     border-bottom: 1px solid #d4d4d4;
 }
 
+.check_user_item_div:hover {
+    cursor: pointer;
+}
+
 #check_user_page_id {
     font-weight: 400;
     font-size: 14px;
@@ -45,14 +49,92 @@
     border-radius: 20px;
     width: 70px;
     height: 25px;
-    margin-right: 20px;
+    margin-right: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.block_button_div:hover {
+    cursor: pointer;
 }
 
 #block_button_text {
     font-weight: 500;
     font-size: 14px;
     color: #E95454;
+}
+
+#block_button_ban_text {
+    font-weight: 500;
+    font-size: 14px;
+    color: #444444;
+}
+
+.user_detail_div {
+    position: absolute;
+    width: 808px;
+    height: 347px;
+    background: #FFFFFF;
+    border: 1px solid #D4D4D4;
+    box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.08);
+    border-radius: 15px;
+    left: 450px;
+    top: 170px;
+    z-index: 10;
+}
+
+.user_detail_top_left_div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.user_detail_top_left_info_div {
+    display: flex;
+    flex-direction: row;
+}
+
+.user_detail_top_left_password_div {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.user_detail_left_div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+.user_detail_right_div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+#user_detail_exit_button {
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.user_detail_email_div {
+    width: 290px;
+}
+
+#user_detail_email {
+    font-weight: 600;
+    font-size: 18px;
+    color: #444444;
+    margin-bottom: 5px;
+}
+
+#user_detail_email_data {
+    font-weight: 400;
+    font-size: 14px;
+    color: #444444;
 }

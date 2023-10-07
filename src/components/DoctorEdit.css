@@ -19,7 +19,7 @@
 
 .doctor_edit_body {
     width: 576px;
-    height: 615px;
+    height: 715px;
     margin-left: 25px;
     margin-top: 10px;
     background: #ffffff;
@@ -71,6 +71,14 @@
     height: 20px;
 }
 
+#doctor_edit_page_search_button:hover {
+    cursor: pointer;
+}
+
+#doctor_edit_page_search_button:focus {
+    cursor: pointer;
+}
+
 .doctor_edit_index_div {
     display: flex;
     flex-direction: row;
@@ -104,12 +112,15 @@
 #doctor_edit_page_index_title {
     font-weight: 500;
     font-size: 14px;
+    margin-right: 10px;
     white-space: nowrap;
 }
 
 #doctor_edit_page_index_detail {
     font-weight: 500;
     font-size: 14px;
+    margin-right: 20px;
+    text-align: center;
 }
 
 .doctor_edit_item_div {
@@ -167,6 +178,10 @@
     
 }
 
+.doctor_edit_item_button_div:hover {
+    cursor: pointer;
+}
+
 #doctor_item_button_edit {
     font-weight: 500;
     font-size: 14px;
@@ -179,6 +194,10 @@
     font-size: 14px;
     white-space: nowrap;
     color: #E95454;
+}
+
+#doctor_item_button_delete:focus, #doctor_item_button_delete:hover {
+    cursor: pointer;
 }
 
 .doctor_items_div {

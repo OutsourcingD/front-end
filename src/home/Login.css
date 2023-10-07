@@ -52,6 +52,10 @@
     text-align: center;
 }
 
+.login_button_item_div:hover {
+    cursor: pointer;
+}
+
 .login_more_div {
     width: 326.2px;
     margin-bottom: 20px;
@@ -64,6 +68,7 @@
 #login_item_title {
     font-size: 32px;
     font-weight: 700;
+    white-space: nowrap;
     color: #DFB1E4;
 }
 
@@ -125,6 +130,7 @@
 
 #find_id:hover {
     color: black;
+    cursor: pointer;
 }
 
 #sign_up {
@@ -136,4 +142,5 @@
 
 #sign_up:hover {
     color: black;
+    cursor: pointer;
 }

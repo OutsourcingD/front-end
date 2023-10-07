@@ -2,34 +2,221 @@ import React from "react";
 import "./DoctorEdit.css";
 import Pagination from "react-js-pagination";
 import { IoMdAddCircleOutline } from "react-icons/io";
+import axios from "axios";
+
+interface HospitalEditProps {
+    postId: number;
+    title: string;
+    type: number;
+}
+
+interface DoctorEditProps {
+    postId: number;
+    title: string;
+    type: number;
+}
 
 const DoctorEdit = () => {
-    const item = [1, 2, 3, 4, 5, 6, 7, 8];
-    const [page, setPage] = React.useState(1);
-    const [totalPages, setTotalPages] = React.useState(2);
+    const [doctorItems, setDoctorItems] = React.useState<DoctorEditProps[]>([]);
+    const [hospitalItems, setHospitalItems] = React.useState<HospitalEditProps[]>([]);
+    const [doctorSearchValue, setDoctorSearchValue] = React.useState<string>("");
+    const [hospitalSearchValue, setHospitalSearchValue] = React.useState<string>("");
+    const [hospitalPage, setHospitalPage] = React.useState(1);
+    const [doctorPage, setDoctorPage] = React.useState(1);
+    const [hospitalTotalPages, setHospitalTotalPages] = React.useState(2);
+    const [doctorTotalPages, setDoctorTotalPages] = React.useState(2);
 
-    const handlePageChange = (page: React.SetStateAction<number>) => {
-        setPage(page);
-      };
+    const handleHospitalPageChange = (page: React.SetStateAction<number>) => {
+        setHospitalPage(page);
+    };
+
+    const handleDoctorPageChange = (page: React.SetStateAction<number>) => {
+        setDoctorPage(page);
+    }
+
+    const getHospitals = async () => {
+        await axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/hospital`,
+            params: {
+                pages: hospitalPage - 1,
+                query: hospitalSearchValue,
+            },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        }).then((res) => {
+            setHospitalItems(res.data);
+            setHospitalTotalPages(res.data[0].totalPages);
+        });
+    }
+
+    const getDoctors = async () => {
+        await axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/doctor`,
+            params: {
+                pages: doctorPage - 1,
+                query: doctorSearchValue,
+            },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        }).then((res) => {
+            setDoctorItems(res.data);
+            setDoctorTotalPages(res.data[0].totalPages);
+        });
+    }
+
+    const handleHospitalSearch = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/hospital`,
+            params: {
+                pages: hospitalPage - 1,
+                query: hospitalSearchValue,
+            },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        }).then((res) => {
+            setHospitalItems(res.data);
+            setHospitalTotalPages(res.data[0].totalPages);
+            setHospitalPage(1);
+        });
+    };
+
+    const handleHospitalSearchButton = async () => {
+        await axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/hospital`,
+            params: {
+                pages: hospitalPage - 1,
+                query: hospitalSearchValue,
+            },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        }).then((res) => {
+            setHospitalItems(res.data);
+            setHospitalTotalPages(res.data[0].totalPages);
+            setHospitalPage(1);
+        });
+    }
+
+    const handleDoctorSearch = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        await axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/doctor`,
+            params: {
+                pages: doctorPage - 1,
+                query: doctorSearchValue,
+            },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+        }).then((res) => {
+            setDoctorItems(res.data);
+            setDoctorTotalPages(res.data[0].totalPages);
+            setDoctorPage(1);
+        });
+    };
+
+    const handleDoctorSearchButton = async () => {
+        await axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/doctor`,
+            params: {
+                pages: doctorPage - 1,
+                query: doctorSearchValue,
+            },
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            setDoctorItems(res.data);
+            setDoctorTotalPages(res.data[0].totalPages);
+            setDoctorPage(1);
+        });
+    };
+
+    const HospitalDeleteHandler = (index: number) => {
+        axios({
+            method: "delete",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/post/delete`,
+            params: {
+                postId: hospitalItems[index].postId,
+            },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        }).then((res) => {
+            const newItems = [...hospitalItems];
+            newItems.splice(index, 1);
+            setHospitalItems(newItems);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403)
+                alert(`This is not admin ID.: ${err.response.status}`);
+            else
+                alert(`Contact to developer. ${err.response.status}`);
+        });
+    };
+
+    const DoctorDeleteHandler = (index: number) => {    
+        axios({
+            method: "delete",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/post/delete`,
+            params: {
+                postId: doctorItems[index].postId,
+            },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        }).then((res) => {
+            const newItems = [...doctorItems];
+            newItems.splice(index, 1);
+            setDoctorItems(newItems);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403)
+                alert(`This is not admin ID.: ${err.response.status}`);
+            else
+                alert(`Contact to developer. ${err.response.status}`);
+        });
+    };
+
+    React.useEffect(() => {
+        getHospitals();
+    }, [hospitalPage]);
+
+    React.useEffect(() => {
+        getDoctors();
+    }, [doctorPage]);
 
     return (
         <div className="doctor_edit_page">
             <div className="change_review_container">
-                <p id="change_review_title">병원 • 원장 게시글</p>
+                <p id="change_review_title">Edit Hospital • Doctor Post</p>
             </div>
             <div className="doctor_edit_body_container">
                 <div className="doctor_edit_body">
                     <div className="docotr_edit_title_div">
-                        <p id="banner_management_item_title">병원 게시글</p>
+                        <p id="banner_management_item_title">Hospital Post List</p>
                         <div className="doctor_edit_page_search">
-                            <form id="doctor_edit_page_search_form">
+                            <form id="doctor_edit_page_search_form" onSubmit={(event) => handleHospitalSearch(event)}>
                                 <input
                                     type="text"
+                                    value={hospitalSearchValue}
                                     id="doctor_edit_page_search_input"
-                                    placeholder="원하는 게시글을 검색하세요."
+                                    placeholder="Search the Hospital Title."
+                                    onChange={(e) => setHospitalSearchValue(e.target.value)}
                                 />
                             </form>
                             <img
+                                onClick={() => handleHospitalSearchButton()}
                                 src="/search.png"
                                 alt="search"
                                 id="doctor_edit_page_search_button"
@@ -39,21 +226,21 @@ const DoctorEdit = () => {
                     <div className="doctor_edit_index_div">
                         <div className="doctor_edit_left_index_div">
                             <p id="doctor_edit_page_index_no">No.</p>
-                            <p id="doctor_edit_page_index_title">글제목</p>
+                            <p id="doctor_edit_page_index_title">Title</p>
                         </div>
                         <div className="doctor_edit_right_index_div">
-                            <p id="doctor_edit_page_index_detail">기능</p>
+                            <p id="doctor_edit_page_index_detail">Action</p>
                         </div>
                     </div>
                     <div className="doctor_items_div">
-                        {item.map((item, index) => {
+                        {hospitalItems.map((item, index) => {
                             return (
                                 <>
-                                    <div className="doctor_edit_item_div">
+                                    <div className="doctor_edit_item_div" key={item.postId}>
                                         <div className="doctor_edit_item_left_div">
-                                            <p id="doctor_page_sequence">1</p>
+                                            <p id="doctor_page_sequence">{index + 1}</p>
                                             <p id="doctor_page_item_title">
-                                                beautiful mind plastic surgery
+                                                {item.title}
                                             </p>
                                         </div>
                                         <div className="doctor_edit_item_right_div">
@@ -62,7 +249,7 @@ const DoctorEdit = () => {
                                                     edit
                                                 </p>
                                             </div>
-                                            <div className="doctor_edit_item_button_div">
+                                            <div className="doctor_edit_item_button_div" onClick={() => HospitalDeleteHandler(index)}>
                                                 <p id="doctor_item_button_delete">
                                                     delete
                                                 </p>
@@ -74,51 +261,54 @@ const DoctorEdit = () => {
                         })}
                     </div>
                     <Pagination
-                        activePage={page}
+                        activePage={hospitalPage}
                         itemsCountPerPage={10}
-                        totalItemsCount={totalPages * 10}
+                        totalItemsCount={hospitalTotalPages * 10}
                         pageRangeDisplayed={10}
                         prevPageText={"‹"}
                         nextPageText={"›"}
-                        onChange={handlePageChange}
+                        onChange={handleHospitalPageChange}
                     />
                 </div>
                 <div className="doctor_edit_body">
                     <div className="docotr_edit_title_div">
-                        <p id="banner_management_item_title">원장 게시글</p>
+                        <p id="banner_management_item_title">Doctor Post List</p>
                         <div className="doctor_edit_page_search">
-                            <form id="doctor_edit_page_search_form">
+                            <form id="doctor_edit_page_search_form" onSubmit={(event) => handleDoctorSearch(event)}>
                                 <input
                                     type="text"
                                     id="doctor_edit_page_search_input"
-                                    placeholder="원하는 게시글을 검색하세요."
+                                    placeholder="Search the Doctor Title."
+                                    value={doctorSearchValue}
+                                    onChange={(e) => setDoctorSearchValue(e.target.value)}
                                 />
                             </form>
                             <img
                                 src="/search.png"
                                 alt="search"
                                 id="doctor_edit_page_search_button"
+                                onClick={() => handleDoctorSearchButton()}
                             />
                         </div>
                     </div>
                     <div className="doctor_edit_index_div">
                         <div className="doctor_edit_left_index_div">
                             <p id="doctor_edit_page_index_no">No.</p>
-                            <p id="doctor_edit_page_index_title">글제목</p>
+                            <p id="doctor_edit_page_index_title">Title</p>
                         </div>
                         <div className="doctor_edit_right_index_div">
-                            <p id="doctor_edit_page_index_detail">기능</p>
+                            <p id="doctor_edit_page_index_detail">Action</p>
                         </div>
                     </div>
                     <div className="doctor_items_div">
-                        {item.map((item, index) => {
+                        {doctorItems.map((item, index) => {
                             return (
                                 <>
-                                    <div className="doctor_edit_item_div">
+                                    <div className="doctor_edit_item_div" key={item.postId}>
                                         <div className="doctor_edit_item_left_div">
-                                            <p id="doctor_page_sequence">1</p>
+                                            <p id="doctor_page_sequence">{index + 1}</p>
                                             <p id="doctor_page_item_title">
-                                                beautiful mind plastic surgery
+                                                {item.title}
                                             </p>
                                         </div>
                                         <div className="doctor_edit_item_right_div">
@@ -127,7 +317,7 @@ const DoctorEdit = () => {
                                                     edit
                                                 </p>
                                             </div>
-                                            <div className="doctor_edit_item_button_div">
+                                            <div className="doctor_edit_item_button_div" onClick={() => DoctorDeleteHandler(index)}>
                                                 <p id="doctor_item_button_delete">
                                                     delete
                                                 </p>
@@ -139,19 +329,21 @@ const DoctorEdit = () => {
                         })}
                     </div>
                     <Pagination
-                        activePage={page}
+                        activePage={doctorPage}
                         itemsCountPerPage={10}
-                        totalItemsCount={totalPages * 10}
+                        totalItemsCount={doctorTotalPages * 10}
                         pageRangeDisplayed={10}
                         prevPageText={"‹"}
                         nextPageText={"›"}
-                        onChange={handlePageChange}
+                        onChange={handleDoctorPageChange}
                     />
                 </div>
             </div>
             <div className="doctor_edit_page_add_button_div">
-                <p id="doctor_edit_page_add_button_text">add hospital • doctor post</p>
-                <IoMdAddCircleOutline size="20px"/>
+                <p id="doctor_edit_page_add_button_text">
+                    add hospital • doctor post
+                </p>
+                <IoMdAddCircleOutline size="20px" />
             </div>
         </div>
     );

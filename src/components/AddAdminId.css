@@ -86,6 +86,15 @@
     margin-left: 25px;
     border-bottom: 1px solid #D4D4D4;
     height: 40px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add_admin_item_div {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #D4D4D4;
+    height: 40px;
     align-items: center;
 }
 
@@ -105,11 +114,10 @@
 }
 
 .admin_page_buttons_div {
-    margin-left: 145px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    width: 130px;
+    width: 110px;
+    margin-right: 50px;
 }
 
 .add_id_form_div {
@@ -153,6 +161,10 @@
     filter: drop-shadow(0px 4px 11px rgba(0, 0, 0, 0.08));
 }
 
+.add_admin_add_button_div:focus, .add_admin_add_button_div:hover {
+    cursor: pointer;
+}
+
 .add_admin_add_button_wrapper {
     width: 90%;
     display: flex;
@@ -163,4 +175,35 @@
 #add_admin_add_button_text {
     color: white;
     font-size: 14px;
+}
+
+#add_admin_add_button_text:focus, #add_admin_add_button_text:hover {
+    cursor: pointer;
+}
+
+.admin_add_item_edit_button_div {
+    border: 1px solid #D4D4D4;
+    border-radius: 20px;
+    width: 60px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    
+}
+
+.admin_add_item_button_div {
+    border: 1px solid #D4D4D4;
+    border-radius: 20px;
+    width: 60px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.admin_add_item_button_div:focus, .admin_add_item_button_div:hover {
+    cursor: pointer;
 }

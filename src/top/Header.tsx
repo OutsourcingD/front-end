@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import "./Header.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const HeaderDiv = styled.div``;
@@ -12,6 +12,11 @@ const RightDiv = styled.div``;
 
 const Menu = styled.p``;
 
+interface Props {
+    authorityName: string;
+    role: string;
+}
+
 function Header() {
     const [isLogin, setIsLogin] = useState(false);
     const navigate = useNavigate();
@@ -19,6 +24,7 @@ function Header() {
     const [more, setMore] = useState(false);
     const [name, setName] = useState("");
     const [profile, setProfile] = useState("");
+    const location = useLocation();
 
     const dropdownRef = React.useRef<HTMLDivElement | null>(null); // 참조 생성
 
@@ -50,7 +56,21 @@ function Header() {
     };
 
     const mypageClick = () => {
-        navigate("/mypage");
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/auth/check`,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        }).then((res) => {
+            res.data.map((item: Props) => {
+                if (item.authorityName === "ROLE_USER") {
+                    navigate(`/mypage?id=${localStorage.getItem("member_id")}`);
+                } else if (item.authorityName === "ROLE_ADMIN") {
+                    navigate("/admin");
+                }
+            });
+        });
     };
 
     const logoutClick = () => {
@@ -79,16 +99,16 @@ function Header() {
         const refreshToken = localStorage.getItem("refresh_token")
         const memberIdString = localStorage.getItem("user_id")
         let memberId = 0
-
+        
         memberIdString !== null ? memberId = Number(memberIdString) : memberId = 0;
 
-        if (memberId !== 0 && accessToken !== null && refreshToken !== null) {
+        if (accessToken !== null && refreshToken !== null) {
             setIsLogin(true);
         }
         else {
             setIsLogin(false);
         }
-    }, []);
+    }, [location]);
 
     useEffect(() => {
         localStorage.getItem("selected")
@@ -112,10 +132,6 @@ function Header() {
             ? setSelected(0)
             : setSelected(Number(localStorage.getItem("selected")));
     }, [selected]);
-
-    useEffect(() => {
-        console.log(isLogin);
-    }, [isLogin]);
 
     return (
         <HeaderDiv className="header">

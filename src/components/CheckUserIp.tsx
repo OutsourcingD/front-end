@@ -1,15 +1,81 @@
 import React from "react";
 import "./CheckUserIp.css";
 import Pagination from "react-js-pagination";
+import axios from "axios";
+
+interface CheckUserIpProps {
+    createdAt: string;
+    userId?: string;
+    location?: string;
+    ipAddress?: string;
+    totalPages: number;
+}
 
 const CheckUserIp = () => {
-    const item = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(2);
+    const [id, setUserId] = React.useState("");
+    const [userIps, setUserIps] = React.useState<CheckUserIpProps[]>([]);
 
     const handlePageChange = (page: React.SetStateAction<number>) => {
         setPage(page);
     };
+
+    const handleUserId = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/member-ip`,
+            params: {
+                pages: page - 1,
+                userId: id,
+            },
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            console.log(res.data.length);
+            setUserIps(res.data);
+            setTotalPages(res.data.length === 0 ? 1 : res.data[0].totalPages);
+            setPage(1);
+        });
+    };
+
+    const onClick = () => {
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/member-ip`,
+            params: {
+                pages: page - 1,
+                userId: id,
+            },
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            setUserIps(res.data);
+            setTotalPages(res.data.length === 0 ? 1 : res.data[0].totalPages);
+            setPage(1);
+        });
+    };
+
+    React.useEffect(() => {
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/member-ip`,
+            params: {
+                pages: page - 1,
+                userId: id,
+            },
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            setUserIps(res.data);
+            setTotalPages(res.data.length === 0 ? 1 : res.data[0].totalPages);
+        });
+    }, [page]);
 
     return (
         <div className="check_user_ip_page">
@@ -17,17 +83,23 @@ const CheckUserIp = () => {
                 <div className="check_user_ip_title_div">
                     <p id="change_review_title">Check User Ip</p>
                     <div className="check_user_ip_search_div">
-                        <form id="doctor_edit_page_search_form">
+                        <form
+                            id="doctor_edit_page_search_form"
+                            onSubmit={handleUserId}
+                        >
                             <input
                                 type="text"
                                 id="doctor_edit_page_search_input"
-                                placeholder="원하는 게시글을 검색하세요."
+                                placeholder="Search the user email."
+                                value={id}
+                                onChange={(e) => setUserId(e.target.value)}
                             />
                         </form>
                         <img
                             src="/search.png"
                             alt="search"
                             id="doctor_edit_page_search_button"
+                            onClick={onClick}
                         />
                     </div>
                 </div>
@@ -36,50 +108,62 @@ const CheckUserIp = () => {
                 <div className="check_user_body">
                     <div className="check_user_left_div">
                         <div className="check_user_ip_index_div">
-                            <p id="access_date">접속 날짜</p>
-                            <p id="user_ip">유저 IP</p>
-                            <p id="check_user_ip_id">아이디</p>
-                            <p id="check_user_ip_location">위치 정보</p>
+                            <p id="access_date">Access Date</p>
+                            <p id="user_ip">User IP</p>
+                            <p id="check_user_ip_id">User Id</p>
+                            <p id="check_user_ip_location">Location</p>
                         </div>
                         <div className="check_user_ip_items_div">
-                            {item.map((item, index) => {
-                                return (
-                                    <div className="check_user_ip_item_div">
-                                        <p id="access_date_data">2023.08.11</p>
-                                        <p id="user_ip_data">221.112.222.222</p>
-                                        <p id="check_user_ip_id_data">
-                                            kimchulsoo@gmail.com
-                                        </p>
-                                        <p id="check_user_ip_location_data">
-                                            KR
-                                        </p>
-                                    </div>
-                                );
-                            })}
+                            {userIps.length !== 0
+                                ? userIps.map((item, index) => {
+                                      return index < 10 ? (
+                                          <div className="check_user_ip_item_div">
+                                              <p id="access_date_data">
+                                                  {item.createdAt}
+                                              </p>
+                                              <p id="user_ip_data">
+                                                  {item.ipAddress}
+                                              </p>
+                                              <p id="check_user_ip_id_data">
+                                                  {item.userId}
+                                              </p>
+                                              <p id="check_user_ip_location_data">
+                                                  {item.location}
+                                              </p>
+                                          </div>
+                                      ) : null;
+                                  })
+                                : null}
                         </div>
                     </div>
                     <div className="check_user_left_div">
                         <div className="check_user_ip_index_div">
-                            <p id="access_date">접속 날짜</p>
-                            <p id="user_ip">유저 IP</p>
-                            <p id="check_user_ip_id">아이디</p>
-                            <p id="check_user_ip_location">위치 정보</p>
+                            <p id="access_date">Access Date</p>
+                            <p id="user_ip">User IP</p>
+                            <p id="check_user_ip_id">User Id</p>
+                            <p id="check_user_ip_location">Location</p>
                         </div>
                         <div className="check_user_ip_items_div">
-                            {item.map((item, index) => {
-                                return (
-                                    <div className="check_user_ip_item_div">
-                                        <p id="access_date_data">2023.08.11</p>
-                                        <p id="user_ip_data">221.112.222.222</p>
-                                        <p id="check_user_ip_id_data">
-                                            kimchulsoo@gmail.com
-                                        </p>
-                                        <p id="check_user_ip_location_data">
-                                            KR
-                                        </p>
-                                    </div>
-                                );
-                            })}
+                            {userIps.length < 10
+                                ? userIps.map((item, index) => {
+                                      return index < 20 && 10 <= index ? (
+                                          <div className="check_user_ip_item_div">
+                                              <p id="access_date_data">
+                                                  {item.createdAt}
+                                              </p>
+                                              <p id="user_ip_data">
+                                                  {item.ipAddress}
+                                              </p>
+                                              <p id="check_user_ip_id_data">
+                                                  {item.userId}
+                                              </p>
+                                              <p id="check_user_ip_location_data">
+                                                  {item.location}
+                                              </p>
+                                          </div>
+                                      ) : null;
+                                  })
+                                : null}
                         </div>
                     </div>
                 </div>

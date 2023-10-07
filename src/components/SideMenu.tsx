@@ -1,5 +1,5 @@
 import React from "react";
-import "./SideMenu.css"
+import "./SideMenu.css";
 
 interface SideMenuProps {
     menuHandler: (menu: number) => void;
@@ -15,7 +15,7 @@ const SideMenu = (props: SideMenuProps) => {
 
     return (
         <>
-        <div className="side_menu">
+            <div className="side_menu">
                 <div
                     className={
                         menu === 0 ? "menu_item_div_click" : "menu_item_div"
@@ -48,7 +48,7 @@ const SideMenu = (props: SideMenuProps) => {
                                 : "side_menu_item"
                         }
                     >
-                        배너관리
+                        Manage Banner
                     </p>
                 </div>
                 <div
@@ -83,7 +83,7 @@ const SideMenu = (props: SideMenuProps) => {
                                 : "side_menu_item"
                         }
                     >
-                        추천후기변경
+                        Change Sort Way
                     </p>
                 </div>
                 <div
@@ -118,7 +118,7 @@ const SideMenu = (props: SideMenuProps) => {
                                 : "side_menu_item"
                         }
                     >
-                        병원 원장정보 변경
+                        Manage Dr Post
                     </p>
                 </div>
                 <div
@@ -153,7 +153,7 @@ const SideMenu = (props: SideMenuProps) => {
                                 : "side_menu_item"
                         }
                     >
-                        병원 원장정보 등록
+                        Add DR. Info
                     </p>
                 </div>
                 <div
@@ -188,7 +188,7 @@ const SideMenu = (props: SideMenuProps) => {
                                 : "side_menu_item"
                         }
                     >
-                        유저 IP 확인
+                        Check User Ip
                     </p>
                 </div>
                 <div
@@ -223,7 +223,7 @@ const SideMenu = (props: SideMenuProps) => {
                                 : "side_menu_item"
                         }
                     >
-                        회원가입 정보 확인
+                        Check User Info
                     </p>
                 </div>
                 <div
@@ -258,7 +258,7 @@ const SideMenu = (props: SideMenuProps) => {
                                 : "side_menu_item"
                         }
                     >
-                        관리자 아이디 추가
+                        Add Admin Id
                     </p>
                 </div>
                 <div
@@ -293,7 +293,7 @@ const SideMenu = (props: SideMenuProps) => {
                                 : "side_menu_item"
                         }
                     >
-                        문의글 관리
+                        Manage Inquiry
                     </p>
                 </div>
                 <div
@@ -328,10 +328,46 @@ const SideMenu = (props: SideMenuProps) => {
                                 : "side_menu_item"
                         }
                     >
-                        기타 후기 관리
+                        Manage Etc
                     </p>
                 </div>
-            </div></>
+                <div
+                    className={
+                        menu === 9 ? "menu_item_div_click" : "menu_item_div"
+                    }
+                    onClick={() => onClickMenu(9)}
+                >
+                    <div
+                        style={
+                            menu === 9
+                                ? {
+                                      width: "7px",
+                                      height: "55px",
+                                      backgroundColor: "#DFB1E4",
+                                      position: "absolute",
+                                      left: "0",
+                                  }
+                                : {
+                                      width: "7px",
+                                      height: "55px",
+                                      backgroundColor: "white",
+                                      position: "absolute",
+                                      left: "0",
+                                  }
+                        }
+                    ></div>
+                    <p
+                        id={
+                            menu === 9
+                                ? "side_menu_item_click"
+                                : "side_menu_item"
+                        }
+                    >
+                        Delete User
+                    </p>
+                </div>
+            </div>
+        </>
     );
 };
 

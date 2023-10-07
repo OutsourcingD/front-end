@@ -1,5 +1,4 @@
 .check_user_index_left_div {
-    width: 146.19px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -7,12 +6,13 @@
 
 .inquery_page_body {
     width: 1015.31px;
+    height: 450px;;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-top: 30px;
     margin-left: 30px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .check_user_index_right_div {
@@ -48,19 +48,22 @@
     font-weight: 500;
     color: #222222;
     margin-left: 20px;
+    width: 74px;
+    white-space: nowrap;
 }
 
 #inquery_id {
     font-size: 14px;
     font-weight: 500;
     color: #222222;
+    margin-left: 35px;
 }
 
 #inquery_id_data {
     font-size: 14px;
     font-weight: 500;
     color: #222222;
-    margin-left: 20px;
+    margin-left: 30px;
 }
 
 #inquery_answer {
@@ -72,6 +75,7 @@
 #inquery_answer_data {
     font-size: 14px;
     font-weight: 500;
+    margin-left: 15px;
     color: #E95454;
     display: flex;
     align-items: center;
@@ -80,29 +84,161 @@
 #inquery_answer_data_click {
     font-size: 14px;
     font-weight: 500;
+    margin-left: 15px;
     color: #54D888;
+    display: flex;
+    align-items: center;
 }
 
 #inquery_action {
     font-size: 14px;
     font-weight: 500;
     color: #222222;
-    margin-right: 50px;
-}
-
-.inquery_item_div {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
+    margin-right: 40px;
 }
 
 .inquery_action_div {
     border: 1px solid #D4D4D4;
     border-radius: 20px;
-    width: 60px;
+    width: 80px;
     height: 28px;
-    margin-right: 30px;
+    margin-right: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.inquery_action_div:hover {
+    cursor: pointer;
+}
+
+.inquiry_manage_page_more_div {
+    position: absolute;
+    width: 1200px;
+    height: 700px;
+    background: #FFFFFF;
+    border: 1px solid #D4D4D4;
+    box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.08);
+    border-radius: 15px;
+    left: 350px;
+    top: 70px;
+    z-index: 10;
+}
+
+#inquiry_mage_page_more_title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #444444;
+    white-space: nowrap;
+    margin-right: 10px;
+}
+
+#inquiry_mage_page_more_answer_div {
+    font-size: 18px;
+    font-weight: 600;
+    color: #444444;
+    white-space: nowrap;
+    margin-right: 10px;
+    margin-top: 30px;
+}
+
+#inquiry_mage_page_more_id {
+    font-weight: 500;
+    font-size: 15px;
+    width: 930px;
+    color: #999999;
+}
+
+#inquiry_mage_page_more_content {
+    font-weight: 500;
+    font-size: 15px;
+    width: 1130px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: #999999;
+}
+
+.inquiry_manage_more_top_container {
+    display: flex;
+    flex-direction: row;
+}
+
+.inquiry_manage_page_more_top_div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.inquiry_manage_page_more_bottom_div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.answer_input_div {
+    display: flex;
+    flex-direction: column;
+}
+
+#admin_inuery {
+    width: 1130px;
+    height: 200px;
+    border: 1px solid #D4D4D4;
+    border-radius: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    outline: none;
+    padding: 10px 10px;
+}
+
+#admin_inquery::placeholder {
+    font-size: 14px;
+    font-weight: 400;
+    color: #999999;
+}
+
+.admin_inquiry_buttons_div {
+    width: 1150px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.admin_inquiry_cancle_div {
+    cursor: pointer;
+    border: 1px solid #D4D4D4;
+    border-radius: 20px;
+    width: 70px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin_inquiry_save_div {
+    cursor: pointer;
+    background: #DFB1E4;
+    border-radius: 20px;
+    width: 70px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0px 4px 11px rgba(0, 0, 0, 0.09));
+    margin-left: 10px;
+}
+
+#admin_inquiry_cancel {
+    font-size: 14px;
+    font-weight: 700;
+    color: #444444;
+}
+
+#admin_inquiry_save {
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFFFFF;
 }
