@@ -2,6 +2,7 @@ import React from "react";
 import "./CheckUser.css";
 import Pagination from "react-js-pagination";
 import axios from "axios";
+import { UserDetailDto } from "../dto/UserDetailDto";
 
 interface CheckUserIpProps {
     userId: string;
@@ -13,6 +14,9 @@ const CheckUser = () => {
     const [id, setId] = React.useState("");
     const [items, setItems] = React.useState<CheckUserIpProps[]>([]);
     const [totalPages, setTotalPages] = React.useState(2);
+    const [isLeftClick, setIsLeftClick] = React.useState(false);
+    const [isRightClick, setIsRightClick] = React.useState(false);
+    const [detail, setDetail] = React.useState<UserDetailDto>({} as UserDetailDto);
 
     const handlePageChange = (page: React.SetStateAction<number>) => {
         setPage(page);
@@ -80,6 +84,56 @@ const CheckUser = () => {
         });
     };
 
+    const onLeftClick = (useId: string) => {
+        setIsLeftClick(true);
+        
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/member/detail`,
+            params: {
+                userId: useId,
+            },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        }).then((res) => {
+            setDetail(res.data);
+            console.log(res.data)
+        }).catch((err) => {
+            if(err.response.status === 403 || err.response.status === 401) {
+                alert("This is not admin ID.");
+            }
+            else {
+                alert("Contact to developer.");
+            }
+        })
+    }
+
+    const onRightClick = (useId: string) => {
+        setIsLeftClick(true);
+        
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/member/detail`,
+            params: {
+                userId: useId,
+            },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        }).then((res) => {
+            setDetail(res.data);
+            console.log(res.data)
+        }).catch((err) => {
+            if(err.response.status === 403 || err.response.status === 401) {
+                alert("This is not admin ID.");
+            }
+            else {
+                alert("Contact to developer.");
+            }
+        })
+    }
+
     React.useEffect(() => {
         axios({
             method: "get",
@@ -99,6 +153,7 @@ const CheckUser = () => {
 
     return (
         <div className="check_user_ip_page">
+            {isLeftClick || isRightClick ? <div className="before_page_div_disabled"></div> : null}
             <div className="check_user_ip_div">
                 <div className="check_user_ip_title_div">
                     <p id="change_review_title">Check User & Block User Id</p>
@@ -138,11 +193,12 @@ const CheckUser = () => {
                                           <div
                                               className="check_user_item_div"
                                               key={index}
+                                              onClick={() => onLeftClick(item.userId)}
                                           >
                                               <p id="check_user_page_id">
                                                   {item.userId}
                                               </p>
-                                              <div className="block_button_div" onClick={() => handleBlock(index)}>
+                                              <div className="block_button_div" onClick={(e) => {e.stopPropagation(); handleBlock(index)}}>
                                                   <p id={item.isBanned ? "block_button_ban_text" : "block_button_text"}>
                                                       {item.isBanned ? "no ban" : "ban"}
                                                   </p>
@@ -152,6 +208,51 @@ const CheckUser = () => {
                                   })
                                 : null}
                         </div>
+                        {
+                            isLeftClick ?
+                                <div className="user_detail_div">
+                                    <div className="user_detail_left_div">
+                                        <div className="user_detail_top_left_div">
+                                            <div className="user_detail_top_left_info_div">
+                                                <div className="user_detail_email_div">
+                                                    <p id="user_detail_email">user id</p>
+                                                    <p id="user_detail_email_data">{detail.userId}</p>
+                                                </div>
+                                                <div className="user_detail_email_div">
+                                                    <p id="user_detail_email">name</p>
+                                                    <p id="user_detail_email_data">{detail.name}</p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p id="user_detail_exit_button" onClick={() => {setIsLeftClick(false); setIsRightClick(false)}}>X</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="user_detail_right_div">
+                                        <div className="user_detail_top_left_password_div">
+                                            <div className="user_detail_email_div">
+                                                <p id="user_detail_email">password</p>
+                                                <p id="user_detail_email_data">{detail.password.length > 30 ? detail.password.substring(0, 30) + "..." : detail.password.substring(0, 30)}</p>
+                                            </div>
+                                            <div className="user_detail_email_div">
+                                                <p id="user_detail_email">phone</p>
+                                                <p id="user_detail_email_data">{detail.phoneNumber}</p>
+                                            </div>
+                                        </div>
+                                        <div className="user_detail_top_left_info_div">
+                                            <div className="user_detail_email_div">
+                                                <p id="user_detail_email">nickname</p>
+                                                <p id="user_detail_email_data">{detail.nickname}</p>
+                                            </div>
+                                            <div className="user_detail_email_div">
+                                                <p id="user_detail_email">gender</p>
+                                                <p id="user_detail_email_data">{detail.gender ? "male" : !detail.gender ? "female" : null}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            : null
+                        }
                     </div>
                     <div className="check_user_left_div">
                         <div className="check_user_index_div">
@@ -165,11 +266,12 @@ const CheckUser = () => {
                                           <div
                                               className="check_user_item_div"
                                               key={index}
+                                              onClick={() => onRightClick(item.userId)}
                                           >
                                               <p id="check_user_page_id">
                                                   {item.userId}
                                               </p>
-                                              <div className="block_button_div">
+                                              <div className="block_button_div" onClick={(e) => {e.stopPropagation(); handleBlock(index)}}>
                                                 <p id={item.isBanned ? "block_button_ban_text" : "block_button_text"}>
                                                       {item.isBanned ? "no ban" : "ban"}
                                                   </p>
@@ -179,6 +281,51 @@ const CheckUser = () => {
                                   })
                                 : null}
                         </div>
+                        {
+                            isLeftClick ?
+                                <div className="user_detail_div">
+                                    <div className="user_detail_left_div">
+                                        <div className="user_detail_top_left_div">
+                                            <div className="user_detail_top_left_info_div">
+                                                <div className="user_detail_email_div">
+                                                    <p id="user_detail_email">user id</p>
+                                                    <p id="user_detail_email_data">{detail.userId}</p>
+                                                </div>
+                                                <div className="user_detail_email_div">
+                                                    <p id="user_detail_email">name</p>
+                                                    <p id="user_detail_email_data">{detail.name.length === 0 ? "N/A" : detail.name}</p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p id="user_detail_exit_button" onClick={() => {setIsLeftClick(false); setIsRightClick(false)}}>X</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="user_detail_right_div">
+                                        <div className="user_detail_top_left_password_div">
+                                            <div className="user_detail_email_div">
+                                                <p id="user_detail_email">password</p>
+                                                <p id="user_detail_email_data">{detail.password.length > 30 ? detail.password.substring(0, 30) + "..." : detail.password.substring(0, 30)}</p>
+                                            </div>
+                                            <div className="user_detail_email_div">
+                                                <p id="user_detail_email">phone</p>
+                                                <p id="user_detail_email_data">{detail.phoneNumber.length === 0 ? "N/A" : detail.phoneNumber}</p>
+                                            </div>
+                                        </div>
+                                        <div className="user_detail_top_left_info_div">
+                                            <div className="user_detail_email_div">
+                                                <p id="user_detail_email">nickname</p>
+                                                <p id="user_detail_email_data">{detail.nickname}</p>
+                                            </div>
+                                            <div className="user_detail_email_div">
+                                                <p id="user_detail_email">gender</p>
+                                                <p id="user_detail_email_data">{detail.gender ? "male" : !detail.gender ? "female" : "N/A"}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            : null
+                        }
                     </div>
                 </div>
 
