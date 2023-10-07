@@ -41,7 +41,7 @@ function AdminPage() {
             method: "get",
             url: `${process.env.REACT_APP_SERVER_URL}/auth/check`,
             headers: {
-                Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },  
         }).then((res) => {
             let admin = false;

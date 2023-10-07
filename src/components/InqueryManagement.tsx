@@ -289,9 +289,9 @@ const InqueryManagement = () => {
                                             </form>
                                             <div className="admin_inquiry_buttons_div">
                                                 <div className="admin_inquiry_cancle_div">
-                                                    <p id="admin_inquiry_cancel">cancel</p>
+                                                    <p id="admin_inquiry_cancel" onClick={(e) => {e.stopPropagation(); setIsLeftClick(false); setIsRightClick(false)}}>cancel</p>
                                                 </div>
-                                                <div className="admin_inquiry_save_div" onClick={() => onSave(inquiryDetail.id)}>
+                                                <div className="admin_inquiry_save_div" onClick={(e) => {e.stopPropagation();onSave(inquiryDetail.id)}}>
                                                     <p id="admin_inquiry_save">save</p>
                                                 </div>
                                             </div>
