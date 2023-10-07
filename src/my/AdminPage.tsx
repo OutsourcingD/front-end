@@ -12,6 +12,13 @@ import InqueryManagement from "../components/InqueryManagement";
 import EtcReviewManagement from "../components/EtcReviewManagement";
 import Footer from "../bottom/Footer";
 import DeleteMember from "../components/DeleteMember";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+interface Props {
+    authorityName: string;
+    role: string;
+}
 
 function AdminPage() {
     const [menu, setMenu] = React.useState(0);
@@ -27,6 +34,33 @@ function AdminPage() {
         <EtcReviewManagement />,
         <DeleteMember />,
     ];
+    const navigate = useNavigate();
+    
+    React.useEffect(() => {
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/auth/check`,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },  
+        }).then((res) => {
+            let admin = false;
+
+            console.log(res.data);
+
+            res.data.map((item: Props) => {
+                if (item.authorityName !== "ROLE_ADMIN") {
+                    console.log("관리자가 아닙니다.")
+                    admin = true;
+                }
+            });
+
+            if(!admin)
+                navigate("/");
+        }).catch((err) => {  
+            navigate("/");
+        });
+    }, []);
 
     const onClickMenu = (menu: number) => {
         setMenu(menu);
