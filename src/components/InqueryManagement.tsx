@@ -11,11 +11,23 @@ interface InqueryManagementProps {
     createdAt: string;
 }
 
+interface InqueryDetailProps {
+    id: number;
+    userId: string;
+    answer: string;
+    content: string;
+}
+
 const InqueryManagement = () => {
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(2);
     const [id, setId] = React.useState("");
     const [inquiryList, setInquiryList] = React.useState<InqueryManagementProps[]>([]);
+    const [isLeftClick, setIsLeftClick] = React.useState(false);
+    const [isRightClick, setIsRightClick] = React.useState(false);
+    const [content, setContent] = React.useState("");
+    const [inquiryDetail, setInquiryDetail] = React.useState<InqueryDetailProps>({} as InqueryDetailProps);
+    const [inquiryIndex, setInquiryIndex] = React.useState(0);
 
     const handlePageChange = (page: React.SetStateAction<number>) => {
         setPage(page);
@@ -61,6 +73,85 @@ const InqueryManagement = () => {
         });
     }
 
+    const onSave = (id: number) => {
+        axios({
+            method: "post",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/inquiry-answer/edit`,
+            data: {
+                id: id,
+                answer: content,
+            },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        }).then((res) => {
+            alert("Success");
+            setIsLeftClick(false);
+            setIsRightClick(false);
+            const newItems = [...inquiryList];
+            newItems[inquiryIndex].answer = content;
+            setInquiryList(newItems);
+        }).catch((err) => {
+            if (err.response.status === 401 || err.response.status === 403) {
+                alert("This id is not admin id.");
+            }
+            else 
+            {
+                alert("Contact to developer." + err.response.status)
+            }
+        });
+    }
+
+    const leftAnswerClick = (id: number) => {
+        setIsLeftClick(true);
+
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/inquiry/detail`,
+            params: {
+                id: id,
+            },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        }).then((res) => {
+            setInquiryDetail(res.data);
+        }).catch((err) => {
+            if (err.response.status === 401 || err.response.status === 403) {
+                alert("This id is not admin id.");
+            }
+            else 
+            {
+                alert("Contact to developer." + err.response.status)
+            }
+        })
+    };
+
+    const rightAnswerClick = (userId: string) => {
+        setIsRightClick(true);
+
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/admin/inquiry/detail`,
+            params: {
+                id: id,
+            },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        }).then((res) => {
+            setInquiryDetail(res.data);
+        }).catch((err) => {
+            if (err.response.status === 401 || err.response.status === 403) {
+                alert("This id is not admin id.");
+            }
+            else 
+            {
+                alert("Contact to developer." + err.response.status)
+            }
+        })
+    };
+
     React.useEffect(() => {
         axios({
             method: "get",
@@ -80,6 +171,7 @@ const InqueryManagement = () => {
 
     return (
         <div className="check_user_ip_page">
+            {isLeftClick || isRightClick ? <div className="before_page_div_disabled"></div> : null}
             <div className="check_user_ip_div">
                 <div className="check_user_ip_title_div">
                     <p id="change_review_title">Check User & Block User Id</p>
@@ -130,7 +222,7 @@ const InqueryManagement = () => {
                                             <p id={item.answer === null ? "inquery_answer_data" : "inquery_answer_data_click"}>
                                                 {item.answer === null ? "Yet" : "Done"}
                                             </p>
-                                            <div className="inquery_action_div">
+                                            <div className="inquery_action_div" onClick={() => {setInquiryIndex(index); leftAnswerClick(item.id)}}>
                                                 <p id="inquery_action_data">
                                                     answer
                                                 </p>
@@ -168,7 +260,7 @@ const InqueryManagement = () => {
                                             <p id={item.answer === null ? "inquery_answer_data" : "inquery_answer_data_click"}>
                                                 {item.answer === null ? "Yet" : "Done"}
                                             </p>
-                                            <div className="inquery_action_div">
+                                            <div className="inquery_action_div" onClick={() => {setInquiryIndex(index); rightAnswerClick(item.userId)}}>
                                                 <p id="inquery_action_data">
                                                     answer
                                                 </p>
@@ -177,6 +269,36 @@ const InqueryManagement = () => {
                                     </div> : null
                                 );
                             }): null}
+                            {
+                                isLeftClick || isRightClick ?
+                                <div className="inquiry_manage_page_more_div">
+                                    <div className="inquiry_manage_page_more_top_div">
+                                        <div className="inquiry_manage_more_top_container">
+                                            <p id="inquiry_mage_page_more_title">User Id</p>
+                                            <p id="inquiry_mage_page_more_id">{inquiryDetail.userId}</p>
+                                        </div>
+                                        <p id="user_detail_exit_button" onClick={() => {setIsLeftClick(false); setIsRightClick(false)}}>X</p>
+                                    </div>
+                                    <div className="inquiry_manage_page_more_bottom_div">
+                                        <p id="inquiry_mage_page_more_title">Inquery content</p>
+                                        <p id="inquiry_mage_page_more_content">{inquiryDetail.content}</p>
+                                        <p id="inquiry_mage_page_more_answer_div">Answer</p>
+                                        <div className="answer_input_div">
+                                            <form onSubmit={(e) => e.preventDefault()}>
+                                                <textarea id="admin_inuery" value={content} placeholder="문의하고 싶은 내용을 입력해주세요. 빠른시일 내에 관리자가 답변 해드립니다." onChange={(e) => setContent(e.target.value)} />
+                                            </form>
+                                            <div className="admin_inquiry_buttons_div">
+                                                <div className="admin_inquiry_cancle_div">
+                                                    <p id="admin_inquiry_cancel">cancel</p>
+                                                </div>
+                                                <div className="admin_inquiry_save_div" onClick={() => onSave(inquiryDetail.id)}>
+                                                    <p id="admin_inquiry_save">save</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> : null
+                            }
                         </div>
                     </div>
                 </div>

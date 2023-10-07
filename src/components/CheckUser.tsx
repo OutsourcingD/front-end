@@ -232,7 +232,7 @@ const CheckUser = () => {
                                         <div className="user_detail_top_left_password_div">
                                             <div className="user_detail_email_div">
                                                 <p id="user_detail_email">password</p>
-                                                <p id="user_detail_email_data">{detail.password.length > 30 ? detail.password.substring(0, 30) + "..." : detail.password.substring(0, 30)}</p>
+                                                <p id="user_detail_email_data">{detail ? detail.password : "error"}</p>
                                             </div>
                                             <div className="user_detail_email_div">
                                                 <p id="user_detail_email">phone</p>
@@ -293,7 +293,7 @@ const CheckUser = () => {
                                                 </div>
                                                 <div className="user_detail_email_div">
                                                     <p id="user_detail_email">name</p>
-                                                    <p id="user_detail_email_data">{detail.name.length === 0 ? "N/A" : detail.name}</p>
+                                                    <p id="user_detail_email_data">{detail.name === null ? "N/A" : detail.name}</p>
                                                 </div>
                                             </div>
                                             <div>
@@ -305,11 +305,11 @@ const CheckUser = () => {
                                         <div className="user_detail_top_left_password_div">
                                             <div className="user_detail_email_div">
                                                 <p id="user_detail_email">password</p>
-                                                <p id="user_detail_email_data">{detail.password.length > 30 ? detail.password.substring(0, 30) + "..." : detail.password.substring(0, 30)}</p>
+                                                <p id="user_detail_email_data">{detail.password ? detail.password : "error"}</p>
                                             </div>
                                             <div className="user_detail_email_div">
                                                 <p id="user_detail_email">phone</p>
-                                                <p id="user_detail_email_data">{detail.phoneNumber.length === 0 ? "N/A" : detail.phoneNumber}</p>
+                                                <p id="user_detail_email_data">{detail.phoneNumber === null ? "N/A" : detail.phoneNumber}</p>
                                             </div>
                                         </div>
                                         <div className="user_detail_top_left_info_div">
@@ -319,7 +319,7 @@ const CheckUser = () => {
                                             </div>
                                             <div className="user_detail_email_div">
                                                 <p id="user_detail_email">gender</p>
-                                                <p id="user_detail_email_data">{detail.gender ? "male" : !detail.gender ? "female" : "N/A"}</p>
+                                                <p id="user_detail_email_data">{detail.gender === undefined ? "N/A" : detail.gender ===  "true" ? "male" : "female"}</p>
                                             </div>
                                         </div>
                                     </div>
