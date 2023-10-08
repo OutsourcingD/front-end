@@ -32,7 +32,7 @@ jobs:
           username: ${{ secrets.SERVER_TEST_USERNAME }}
           key: ${{ secrets.TEST_SECRET_KEY }}
           source: "./build/*"
-          target: "/ubuntu/surgery-front/"
+          target: "/home/ubuntu/surgery-front/"
 
       - name: Run React Container
         run: |
