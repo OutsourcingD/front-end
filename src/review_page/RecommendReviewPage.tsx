@@ -211,7 +211,7 @@ function RecommendReviewPage() {
                         </div>
                     );
                 }) : docHosReviewList.map((review, index) => {
-                    return <DocsHosReviewItem key={review.id} {...review} />;
+                    return <DocsHosReviewItem key={review.id} dto={review} type={category === 9 ? 0 : 1} />;
                 })}
             </div>
             <Pagination
