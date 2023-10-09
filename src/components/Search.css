@@ -1,5 +1,5 @@
 .search_input_div {
-    margin-top: 3%;
+    margin-top: 24.26px;
     border-radius: 25px;
     border: double 2.5px transparent;
     background-image: linear-gradient(white, white), 
@@ -10,7 +10,8 @@
     flex-direction: row;
      /* Add this line */
      box-shadow: 0 0 8px rgba(250, 193, 236, .7);
-     width: 51%;
+     width: 417.58px;
+     height: 24px;
      justify-content: space-between;
      display: flex;
     flex-direction: row;
@@ -19,20 +20,27 @@
 #search_input {
     border: none;
     outline: none;
-    margin-top: 1.5%;
-    margin-bottom: 1%;
-    margin-left: 3%;
+    margin-top: 6px;
+    margin-bottom: 4px;
+    margin-left: 12px;
     padding: 0;
     width: 100%;
 }
 
 .search_button_div {
-    width: 5.1%;
-    margin-right: 0.2%;
-    margin-top: 0.3%;
+    width: 20.22px;
+    height: 20.22px;
+    margin-right: 2px;
+    margin-top: 2px;
+    cursor: pointer;
 }
 
 #search_form {
     width: 100%;
     justify-content: flex-start;
+}
+
+#search_button {
+    width: 100%;
+    height: 100%;
 }

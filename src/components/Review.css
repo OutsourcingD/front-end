@@ -46,6 +46,7 @@
     flex-direction: column;
     margin-top: 24px;
     width: 396px;
+    cursor: pointer;
 }
 
 .review_text_div_ {

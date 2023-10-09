@@ -7,11 +7,13 @@
 .category > div {
     display: inline-block;
     width: 81px;
+    cursor: pointer;
 }
 
 .categoryDiv {
     width: 81px;
     height: 90px;
+    cursor: pointer;
 }
 
 img {

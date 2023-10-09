@@ -134,6 +134,7 @@
     display: flex;
     margin-top: 8px;
     align-items: flex-end;
+    cursor: pointer;
 }
 
 .filter_wrapper {
