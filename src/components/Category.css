@@ -20,3 +20,29 @@ img {
     width: 100%;
     object-fit: fill;
 }
+
+@media (max-width:860px) { 
+    .category {
+        width: 94%;
+    }
+
+    .category > div {
+        width: 72px;
+    }
+
+    .categoryDiv {
+        width: 72px;
+    }
+} 
+
+@media (max-width:399px) { 
+
+    .category > div {
+        width: 56px;
+    }
+
+    .categoryDiv {
+        width: 56px;
+        height: 72px;
+    }
+} 
