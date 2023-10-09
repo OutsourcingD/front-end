@@ -1,6 +1,7 @@
 import React, { useId } from "react";
 import "./AddAdminId.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
     userId: string;
@@ -9,6 +10,7 @@ interface Props {
 const AddAdminId = () => {
     const [adminIdList, setAdminIdList] = React.useState<Props[]>([]);
     const [id, setId] = React.useState("");
+    const navigate = useNavigate();
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>, userId: string) => {
         e.preventDefault();
@@ -36,13 +38,18 @@ const AddAdminId = () => {
             newItems.push({userId}); // 복사본의 특정 요소만 업데이트합니다.
             setAdminIdList(newItems); // 그리고 복사본으로 상태를 업데이트합니다.
         }).catch((err) => {
-            if(err.response.status === 401 || err.response.status === 403)
+            if(err.response.status === 401 || err.response.status === 403) {
                 alert("This is not admin ID.");
-            else if(err.response.status === 404)
+                navigate("/login");
+            }
+            else if(err.response.status === 404) {
                 alert(`${userId} is not exist.`);
+                navigate("/");
+            }
             else
             {
                 alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
             }
         });
     };
@@ -64,12 +71,13 @@ const AddAdminId = () => {
                 setAdminIdList(newItems); // 그리고 복사본으로 상태를 업데이트합니다.
             }
         }).catch((err) => {
-            if(err.status === 401 || err.status === 403)
+            if(err.status === 401 || err.status === 403) {
                 alert("This is not admin ID.");
-            else if(err.status === 400)
-                alert("Contact to developer.");  
-            else 
+                navigate("/login");
+            }
+            else {
                 alert(`Contact to developer2. ${err.status}`);
+            }
         });
     }
 
@@ -83,10 +91,16 @@ const AddAdminId = () => {
         }).then((res) => {
             if(res.status === 200) 
                 setAdminIdList(res.data);
-            else if(res.status === 401 || res.status === 403)
+        }).catch((err) => {
+            if(err.status === 401 || err.status === 403) {
                 alert("This is not admin ID.");
+                navigate("/login");
+            }
             else
-                alert("Contact to developer.");
+            {
+                alert(`Contact to developer2. ${err.status}`);
+                navigate("/");
+            }
         });
     }, []);
 

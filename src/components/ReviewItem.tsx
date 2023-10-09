@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import "./ReviewItem.css";
-import { GrView } from "react-icons/gr";
-import { PiChatTeardropDotsLight } from "react-icons/pi";
 import { ReviewResponseDto } from "../dto/ReviewDto";
 
 const ReviewItem = (props: ReviewResponseDto) => {    

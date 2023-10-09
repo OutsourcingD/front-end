@@ -5,6 +5,7 @@ import { DoctorNameResponseDto } from "../dto/DoctorNameResponseDto";
 import axios from "axios";
 import { HospitalNameResponseDto } from "../dto/HospitalNameResponseDto";
 import "./MakeReviewPage.css";
+import { useNavigate } from "react-router-dom";
 
 function MakeReviewItem() {
     const [isHospitalEtc, setIsHospitalEtc] = React.useState<boolean>(false);
@@ -15,6 +16,7 @@ function MakeReviewItem() {
         React.useState<DoctorNameResponseDto[]>();
     const [hospitalInfo, setHospitalInfo] =
         React.useState<HospitalNameResponseDto[]>();
+    const navigate = useNavigate();
 
     const selectHospital = (e: React.ChangeEvent<HTMLSelectElement>) => {
         if (e.target.value === "etc") {
@@ -52,6 +54,15 @@ function MakeReviewItem() {
             },
         }).then((res) => {
             setHospitalInfo(res.data);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
+            }           
         });
 
         //의사 정보 가져오기
@@ -63,6 +74,15 @@ function MakeReviewItem() {
             },
         }).then((res) => {
             setDoctorInfo(res.data);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
+            }             
         });
     }, []);
     return (

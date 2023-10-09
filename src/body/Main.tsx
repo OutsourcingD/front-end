@@ -78,6 +78,16 @@ function Main() {
             },
         }).then((res) => {
             setImageList(res.data);
+        }).catch((err) => {
+            if(err.response.status === 403 || err.response.status === 401) {
+                alert("Please the login.");
+                navigate("/login")
+            }
+            else
+            {
+                alert("Server Error" + err.response.status);
+                navigate("/");
+            }
         });
     };
 
@@ -91,6 +101,16 @@ function Main() {
             },
         }).then((res) => {
             setRecommendReviews(res.data);
+        }).catch((err) => {
+            if(err.response.status === 403 || err.response.status === 401) {
+                alert("Please the login.");
+                navigate("/login")
+            }
+            else
+            {
+                alert("Server Error" + err.response.status);
+                navigate("/");
+            }
         });
     };
 
@@ -110,7 +130,17 @@ function Main() {
             }).then((res) => {
                 setReviewList(res.data);
 
-                setTotalPages(res.data[0].totalPages);
+                setTotalPages(res.data[0].totalPages === undefined ? 1 : res.data[0].totalPages);
+            }).catch((err) => {
+                if(err.response.status === 403 || err.response.status === 401) {
+                    alert("Please the login.");
+                    navigate("/login")
+                }
+                else
+                {
+                    alert("Server Error" + err.response.status);
+                    navigate("/");
+                }
             });
         } else {
             axios({
@@ -122,6 +152,16 @@ function Main() {
                 },
             }).then((res) => {
                 setDocHosReviewList(res.data);
+            }).catch((err) => {
+                if(err.response.status === 403 || err.response.status === 401) {
+                    alert("Please the login.");
+                    navigate("/login")
+                }
+                else
+                {
+                    alert("Server Error" + err.response.status);
+                    navigate("/");
+                }
             });
         }
     };
@@ -202,6 +242,16 @@ function Main() {
                 setTotalPages(
                     res.data[0] === undefined ? 1 : res.data[0].totalPages
                 );
+            }).catch((err) => {
+                if(err.response.status === 403 || err.response.status === 401) {
+                    alert("Please the login.");
+                    navigate("/login")
+                }
+                else
+                {
+                    alert("Server Error" + err.response.status);
+                    navigate("/");
+                }
             });
         } else if (9 === category || category === 10) {
             axios({
@@ -213,6 +263,16 @@ function Main() {
                 },
             }).then((res) => {
                 setDocHosReviewList(res.data);
+            }).catch((err) => {
+                if(err.response.status === 403 || err.response.status === 401) {
+                    alert("Please the login.");
+                    navigate("/login")
+                }
+                else
+                {
+                    alert("Server Error" + err.response.status);
+                    navigate("/");
+                }
             });
         } else {
             alert("category error");

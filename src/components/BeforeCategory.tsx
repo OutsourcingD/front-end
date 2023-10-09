@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./BeforeCategory.css";
 import axios from "axios";
 import { BeforeAfterResponseDto } from "../dto/BeforeAfterResponseDto";
+import { useNavigate } from "react-router-dom";
 
 interface BeforeCategoryProps {
     onCategory: (value: number) => void;
@@ -10,6 +11,7 @@ interface BeforeCategoryProps {
 
 const BeforeCategory = (props: BeforeCategoryProps) => {
     const [categoryNumber, setCotegoryNumber] = useState(0);
+    const navigate = useNavigate();
 
     const handleCategory = (nav: number) => {
         setCotegoryNumber(nav);
@@ -25,6 +27,19 @@ const BeforeCategory = (props: BeforeCategoryProps) => {
             },
         }).then((res) => {
             props.onCategoryResult(res.data);
+        }).catch((err) => {
+            if(err.status === 401 || err.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else if(err.status === 404) {
+                alert("Contact to developer.");
+                navigate("/");
+            }
+            else {
+                alert(`Contact to developer2. ${err.status}`);
+                navigate("/");
+            }
         });
     }, [categoryNumber]);
 

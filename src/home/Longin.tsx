@@ -40,6 +40,15 @@ function Login() {
                   localStorage.setItem("member_id", res.data.memberId);
                   localStorage.setItem("flvnsfl", res.data.flvnsfl);
                   navigate("/");
+              }).catch((err) => {
+                if(err.response.status === 401 || err.response.status === 403) {
+                    alert("This is not admin ID.");
+                    navigate("/login");
+                }
+                else {
+                    alert(`Contact to developer. ${err.response.status}`);
+                    navigate("/");
+                }        
               })
             : alert("Invalid email format.");
     };

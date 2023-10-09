@@ -55,7 +55,14 @@ const DoctorEdit = () => {
             },
         }).then((res) => {
             setHospitalItems(res.data);
-            setHospitalTotalPages(res.data[0].totalPages);
+            setHospitalTotalPages(res.data !== null && res.data !== undefined ? res.data[0].totalPages : 1);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+            }
         });
     };
 
@@ -72,7 +79,14 @@ const DoctorEdit = () => {
             },
         }).then((res) => {
             setDoctorItems(res.data);
-            setDoctorTotalPages(res.data[0].totalPages);
+            setDoctorTotalPages(res.data !== null && res.data !== undefined ? res.data[0].totalPages : 1);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+            }
         });
     };
 
@@ -93,8 +107,15 @@ const DoctorEdit = () => {
             },
         }).then((res) => {
             setHospitalItems(res.data);
-            setHospitalTotalPages(res.data[0].totalPages);
+            setHospitalTotalPages(res.data !== null && res.data !== undefined ? res.data[0].totalPages : 1);
             setHospitalPage(1);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+            }
         });
     };
 
@@ -111,8 +132,15 @@ const DoctorEdit = () => {
             },
         }).then((res) => {
             setHospitalItems(res.data);
-            setHospitalTotalPages(res.data[0].totalPages);
+            setHospitalTotalPages(res.data !== null && res.data !== undefined ? res.data[0].totalPages : 1);
             setHospitalPage(1);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+            }
         });
     };
 
@@ -131,8 +159,15 @@ const DoctorEdit = () => {
             },
         }).then((res) => {
             setDoctorItems(res.data);
-            setDoctorTotalPages(res.data[0].totalPages);
+            setDoctorTotalPages(res.data !== null && res.data !== undefined ? res.data[0].totalPages : 1);
             setDoctorPage(1);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+            }
         });
     };
 
@@ -149,8 +184,15 @@ const DoctorEdit = () => {
             },
         }).then((res) => {
             setDoctorItems(res.data);
-            setDoctorTotalPages(res.data[0].totalPages);
+            setDoctorTotalPages(res.data !== null && res.data !== undefined ? res.data[0].totalPages : 1);
             setDoctorPage(1);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+            }
         });
     };
 
@@ -172,7 +214,7 @@ const DoctorEdit = () => {
             })
             .catch((err) => {
                 if (err.response.status === 401 || err.response.status === 403)
-                    alert(`This is not admin ID.: ${err.response.status}`);
+                    alert(`This is not admin ID.`);
                 else alert(`Contact to developer. ${err.response.status}`);
             });
     };

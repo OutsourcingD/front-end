@@ -70,6 +70,15 @@ function Header() {
                     navigate("/admin");
                 }
             });
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
+            }          
         });
     };
 
@@ -124,6 +133,15 @@ function Header() {
         }).then((res) => {
             setName(res.data.nickname);
             setProfile(res.data.profile);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
+            }          
         });
     }, []);
 
