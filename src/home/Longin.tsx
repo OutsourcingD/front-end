@@ -42,12 +42,11 @@ function Login() {
                   navigate("/");
               }).catch((err) => {
                 if(err.response.status === 401 || err.response.status === 403) {
-                    alert("This is not admin ID.");
-                    navigate("/login");
+                    alert("Check the ID or Password.");
                 }
                 else {
                     alert(`Contact to developer. ${err.response.status}`);
-                    navigate("/");
+                    navigate("/login");
                 }        
               })
             : alert("Invalid email format.");

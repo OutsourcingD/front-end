@@ -36,16 +36,10 @@ function Hospital() {
             },
         }).then((res) => {
             setHospitalList(res.data);
-            setTotalPages(res.data[0].totalPages);
+            setTotalPages(res.data !== undefined && res.data.length !== 0 ? res.data[0].totalPages : 1);
         }).catch((err) => {
-            if(err.response.status === 401 || err.response.status === 403) {
-                alert("This is not admin ID.");
-                navigate("/login");
-            }
-            else {
-                alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
-            }           
+            alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");      
         });
     };
 

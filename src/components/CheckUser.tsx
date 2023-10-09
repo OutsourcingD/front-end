@@ -125,9 +125,11 @@ const CheckUser = () => {
         }).catch((err) => {
             if(err.response.status === 403 || err.response.status === 401) {
                 alert("This is not admin ID.");
+                navigate("/login");
             }
             else {
                 alert("Contact to developer.");
+                navigate("/");
             }
         })
     }
@@ -150,9 +152,11 @@ const CheckUser = () => {
         }).catch((err) => {
             if(err.response.status === 403 || err.response.status === 401) {
                 alert("This is not admin ID.");
+                navigate("/login");
             }
             else {
                 alert("Contact to developer.");
+                navigate("/");
             }
         })
     }

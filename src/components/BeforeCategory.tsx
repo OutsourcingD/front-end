@@ -28,18 +28,8 @@ const BeforeCategory = (props: BeforeCategoryProps) => {
         }).then((res) => {
             props.onCategoryResult(res.data);
         }).catch((err) => {
-            if(err.status === 401 || err.status === 403) {
-                alert("This is not admin ID.");
-                navigate("/login");
-            }
-            else if(err.status === 404) {
-                alert("Contact to developer.");
-                navigate("/");
-            }
-            else {
-                alert(`Contact to developer2. ${err.status}`);
-                navigate("/");
-            }
+            alert(`Contact to developer2. ${err.status}`);
+            navigate("/");
         });
     }, [categoryNumber]);
 

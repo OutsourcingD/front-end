@@ -58,7 +58,7 @@ function MyPage() {
             setMyReviewItems(res.data);
         }).catch((err) => {
             if(err.response.status === 401 || err.response.status === 403) {
-                alert("This is not admin ID.");
+                alert("Login require.");
                 navigate("/login");
             }
             else {
@@ -78,7 +78,7 @@ function MyPage() {
           setMyCommentItems(res.data);
         }).catch((err) => {
             if(err.response.status === 401 || err.response.status === 403) {
-                alert("This is not admin ID.");
+                alert("Login require.");
                 navigate("/login");
             }
             else {
@@ -98,7 +98,7 @@ function MyPage() {
           setMyInqueryItems(res.data);
         }).catch((err) => {
             if(err.response.status === 401 || err.response.status === 403) {
-                alert("This is not admin ID.");
+                alert("Login require.");
                 navigate("/login");
             }
             else {

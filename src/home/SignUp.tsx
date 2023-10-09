@@ -61,6 +61,8 @@ function SignUp() {
             )
             .then((res) => {
                 localStorage.setItem("code", res.data);
+            }).catch((err) => {
+                alert(`Contact to developer. ${err.response.status}`);  
             });
 
         setCount(120);
@@ -101,16 +103,7 @@ function SignUp() {
                     : setCodeVerified(2);
             })
             .catch((err) => {
-                if (
-                    err.response.status === 401 ||
-                    err.response.status === 403
-                ) {
-                    alert("This is not admin ID.");
-                    navigate("/login");
-                } else {
-                    alert(`Contact to developer. ${err.response.status}`);
-                    navigate("/");
-                }
+                alert(`Contact to developer. ${err.response.status}`);
             });
     };
 
@@ -136,16 +129,7 @@ function SignUp() {
                 setDuplicated(res.data ? 2 : 1);
             })
             .catch((err) => {
-                if (
-                    err.response.status === 401 ||
-                    err.response.status === 403
-                ) {
-                    alert("This is not admin ID.");
-                    navigate("/login");
-                } else {
-                    alert(`Contact to developer. ${err.response.status}`);
-                    navigate("/");
-                }
+                alert(`Contact to developer. ${err.response.status}`);
             });
     };
 
@@ -183,16 +167,7 @@ function SignUp() {
                     navagate("/");
                 })
                 .catch((err) => {
-                    if (
-                        err.response.status === 401 ||
-                        err.response.status === 403
-                    ) {
-                        alert("This is not admin ID.");
-                        navigate("/login");
-                    } else {
-                        alert(`Contact to developer. ${err.response.status}`);
-                        navigate("/");
-                    }
+                    alert(`Contact to developer. ${err.response.status}`);
                 });
         } else {
             alert("필수 정보를 입력하세요.");

@@ -59,7 +59,7 @@ const InqueryManagement = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
+                navigate("/admin");
             }   
         });
     }
@@ -87,7 +87,7 @@ const InqueryManagement = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
+                navigate("/admin");
             }      
         });
     }
@@ -113,10 +113,12 @@ const InqueryManagement = () => {
         }).catch((err) => {
             if (err.response.status === 401 || err.response.status === 403) {
                 alert("This id is not admin id.");
+                navigate("/login");
             }
             else 
             {
                 alert("Contact to developer." + err.response.status)
+                navigate("/admin");
             }
         });
     }
@@ -138,10 +140,12 @@ const InqueryManagement = () => {
         }).catch((err) => {
             if (err.response.status === 401 || err.response.status === 403) {
                 alert("This id is not admin id.");
+                navigate("/login");
             }
             else 
             {
                 alert("Contact to developer." + err.response.status)
+                navigate("/admin");
             }
         })
     };
@@ -163,10 +167,12 @@ const InqueryManagement = () => {
         }).catch((err) => {
             if (err.response.status === 401 || err.response.status === 403) {
                 alert("This id is not admin id.");
+                navigate("/login");
             }
             else 
             {
                 alert("Contact to developer." + err.response.status)
+                navigate("/admin");
             }
         })
     };
@@ -185,6 +191,15 @@ const InqueryManagement = () => {
         }).then((res) => {
             setInquiryList(res.data);
             setTotalPages(res.data.length === 0 ? 1 : res.data[0].totalPages);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/admin");
+            }   
         });
     }, []);
 

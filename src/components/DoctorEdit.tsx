@@ -4,6 +4,7 @@ import Pagination from "react-js-pagination";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import axios from "axios";
 import DoctorInfoAdd from "./DoctorInfoAdd";
+import { useNavigate } from "react-router-dom";
 
 interface HospitalEditProps {
     postId: number;
@@ -33,6 +34,7 @@ const DoctorEdit = () => {
     const [isLeftClicked, setIsLeftClicked] = React.useState(false);
     const [isRightClicked, setIsRightClicked] = React.useState(false);
     const [category, setCategory] = React.useState<number>(0);
+    const navigate = useNavigate();
 
     const handleHospitalPageChange = (page: React.SetStateAction<number>) => {
         setHospitalPage(page);
@@ -59,9 +61,11 @@ const DoctorEdit = () => {
         }).catch((err) => {
             if(err.response.status === 401 || err.response.status === 403) {
                 alert("This is not admin ID.");
+                navigate("/login");
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
             }
         });
     };
@@ -83,9 +87,11 @@ const DoctorEdit = () => {
         }).catch((err) => {
             if(err.response.status === 401 || err.response.status === 403) {
                 alert("This is not admin ID.");
+                navigate("/login");
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
             }
         });
     };
@@ -112,9 +118,11 @@ const DoctorEdit = () => {
         }).catch((err) => {
             if(err.response.status === 401 || err.response.status === 403) {
                 alert("This is not admin ID.");
+                navigate("/login");
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
             }
         });
     };
@@ -137,9 +145,11 @@ const DoctorEdit = () => {
         }).catch((err) => {
             if(err.response.status === 401 || err.response.status === 403) {
                 alert("This is not admin ID.");
+                navigate("/login");
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
+                navigate("/admin");
             }
         });
     };
@@ -164,9 +174,11 @@ const DoctorEdit = () => {
         }).catch((err) => {
             if(err.response.status === 401 || err.response.status === 403) {
                 alert("This is not admin ID.");
+                navigate("/login");
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
+                navigate("/admin");
             }
         });
     };
@@ -189,9 +201,11 @@ const DoctorEdit = () => {
         }).catch((err) => {
             if(err.response.status === 401 || err.response.status === 403) {
                 alert("This is not admin ID.");
+                navigate("/login");
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
+                navigate("/admin");
             }
         });
     };
@@ -213,9 +227,14 @@ const DoctorEdit = () => {
                 setHospitalItems(newItems);
             })
             .catch((err) => {
-                if (err.response.status === 401 || err.response.status === 403)
+                if (err.response.status === 401 || err.response.status === 403) {
                     alert(`This is not admin ID.`);
-                else alert(`Contact to developer. ${err.response.status}`);
+                    navigate("/login");
+                }
+                else {
+                    alert(`Contact to developer. ${err.response.status}`)
+                    navigate("/admin");
+                };
             });
     };
 
@@ -236,9 +255,14 @@ const DoctorEdit = () => {
                 setDoctorItems(newItems);
             })
             .catch((err) => {
-                if (err.response.status === 401 || err.response.status === 403)
+                if (err.response.status === 401 || err.response.status === 403) {
                     alert(`This is not admin ID.: ${err.response.status}`);
-                else alert(`Contact to developer. ${err.response.status}`);
+                    navigate("/login");
+                }
+                else {
+                    alert(`Contact to developer. ${err.response.status}`);
+                    navigate("/admin");
+                }
             });
     };
 

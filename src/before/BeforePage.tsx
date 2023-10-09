@@ -49,16 +49,9 @@ function BeforePage() {
             setBeforeAfterList(res.data);
             setTotalPages(res.data[0] !== undefined ? res.data[0].totalPages : 1);
         }).catch((err) => {
-            if(err.response.status === 403 || err.response.status === 401) {
-                alert("Please the login.");
-                navigate("/login")
-            }
-            else
-            {
-                alert("Server Error" + err.response.status);
-                navigate("/");
-            }
-        });;
+            alert("Server Error" + err.response.status);
+            navigate("/");
+        });
     }, [page]);
 
     React.useEffect(() => {

@@ -44,7 +44,7 @@ const EtcReviewManagement = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                navigate("/admin");   
             }
         });
     };
@@ -72,7 +72,7 @@ const EtcReviewManagement = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                navigate("/admin");   
             }
         });
     };
@@ -99,7 +99,7 @@ const EtcReviewManagement = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                navigate("/admin");   
             }
         });
     }, [page]);

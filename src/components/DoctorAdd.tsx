@@ -214,9 +214,15 @@ const DoctorAdd = () => {
             setHospitalItems(newItems);
         }).catch((err) => {
             if(err.response.status === 403 || err.response.status === 401)
+            {
                 alert("This is not admin ID.");
+                navigate("/login");
+            }
             else
+            {
                 alert("Contact the administrator.");
+                navigate("/");
+            }
         });
     };
 
