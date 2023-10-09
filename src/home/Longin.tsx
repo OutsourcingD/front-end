@@ -44,6 +44,9 @@ function Login() {
                 if(err.response.status === 401 || err.response.status === 403) {
                     alert("Check the ID or Password.");
                 }
+                else if(err.response.status === 404) {
+                    alert("This ID is not exist.");
+                }
                 else {
                     alert(`Contact to developer. ${err.response.status}`);
                     navigate("/login");
