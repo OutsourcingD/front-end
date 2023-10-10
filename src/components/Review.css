@@ -29,6 +29,10 @@
 }
 
 #review_title {
+    height: 27px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     align-content: flex-start;
     font-size: 22px;
     font-weight: 700;
@@ -73,7 +77,7 @@
 .hospital_rate_info_div {
     display: flex;
     flex-direction: column;
-    border: 1px solid #D4D4D4;
+    border-top: 1px solid #D4D4D4;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     margin-right: 0;
@@ -93,29 +97,23 @@
     align-items: center; /* 수직으로 상단 정렬 */
     justify-content: flex-start; /* 수평으로 좌측 정렬 */
     flex-direction: row;
-    padding-left: 8px;
-    margin-bottom: 12px;
+    margin: 0 0 12px 14px;
 }
 
 #hospital_rate {
-    margin-top: 3px;
-    margin-bottom: 3px;
-    margin-right: 7px;
+    margin: 0 8px 2px 1px;
     font-size: 14px;
 }
 
 #surgery_part {
-    margin-top: 1%;
-    margin-bottom: 1%;
-    margin-right: 1%;
+    margin: 0 8px 4px 0;
     color: #DDB0E3;
     font-weight: 600;
     font-size: 14px;
 }
 
 #doctor_name {
-    margin-top: 4px;
-    margin-bottom: 4px;
+    margin: 0 0 2px;
     font-size: 14px;
     font-weight: 600;
     color: #222222;
@@ -125,3 +123,45 @@
     margin-right: 0;
     width: 100%;
 }
+
+@media (min-width:320px) and (max-width:860px) { 
+    .review_main {
+        width: 49%;
+    }
+
+    .review_text_div {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .review_text_div_ {
+        width: 100%;
+    }
+
+    #review_title {
+        width: 94%;
+        margin-left: 0;
+        padding: 0 0 0 14px;
+        font-size: 20px;
+    }
+
+    #description {
+        width: 94%;
+        margin-left: 0px;
+        padding: 0 0 0 14px;
+    }
+    /* #surgery_part {
+        margin-top: 1%;
+        margin-bottom: 1%;
+        margin-right: 1%;
+        color: #DDB0E3;
+        font-weight: 600;
+        font-size: 14px;
+    } */
+} 
+
+@media (min-width:320px) and (max-width:680px) { 
+    .review_main {
+        width: 100%;
+    }
+} 

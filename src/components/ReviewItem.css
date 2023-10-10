@@ -18,8 +18,8 @@ p {
 .profile_div {
   width: 50px;
   height: 79.32px;
-  margin-left: 15px;
-  margin-right: 15px;
+  margin-left: 16px;
+  margin-right: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,6 +34,11 @@ p {
 }
 
 #review_item_title {
+  height: 17px;
+  width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-weight: 700;
   font-size: 16px;
   margin-top: 0.5px;
@@ -210,3 +215,56 @@ p {
   display: flex;
   align-items: flex-start;
 }
+
+@media (min-width:320px) and (max-width:860px) { 
+  .right_item_div {
+    width: 270px;
+    display: flex;
+    justify-content: flex-start;
+    margin-right: 24px;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .review_item_index_div {
+    margin-top: 8.1px;
+    display: flex;
+    flex-direction: column;
+    width: 160px;
+  }
+
+  .view_info {
+    display: flex;
+    flex-direction: row;
+    height: 55px;
+    width: 50px;
+  }
+
+  .comment_div {
+    display: flex;
+    flex-direction: row;
+    width: 55px;
+    height: 50px;
+    margin-top: 2.1px;
+    margin-left: 7px;
+  }
+
+  #review_item_title {
+    height: 17px;
+    width: 320px;
+  }
+} 
+
+/* @media (min-width:600px) and (max-width:759px) { 
+  #review_item_title {
+    width: 160px;
+    font-size: 14px;
+  }
+} 
+
+@media (min-width:320px) and (max-width:599px) { 
+  #review_item_title {
+    font-size: 13px;
+    width: 100px;
+  }
+}  */
