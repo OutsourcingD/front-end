@@ -44,7 +44,7 @@ function MyRecommendReview() {
   return (
     <div className="my_recommend_review_div" >
       <div className="my_recommend_review_header">
-        <p id="my_recommend_review_title">나의 후기</p>
+        <p id="my_recommend_review_title">My Riviews</p>
       </div>
       <div className="my_review_item_list_div">
         {myReviewList.length !== 0 ? myReviewList.map((item, index) => {
@@ -57,7 +57,7 @@ function MyRecommendReview() {
               />
             </div>
           );
-        }): <p>작성한 리뷰 없음...</p>}
+        }): <p>no review...</p>}
       </div>
       <Pagination
         activePage={page}

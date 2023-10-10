@@ -208,7 +208,7 @@ function SignUp() {
         <div className="signup_div">
             <div className="signup_wrapper">
                 <div className="signup_title_div">
-                    <p id="signup_title">회원 정보를 입력해주세요</p>
+                    <p id="signup_title">Please enter your information</p>
                 </div>
                 {/* 프로필 이미지 입력 */}
                 <div className="signup_input_div">
@@ -234,10 +234,10 @@ function SignUp() {
                 {/* id 입력 섹션 */}
                 <div className="signup_email_div">
                     <div className="signup_email_title_div">
-                        <p id="signup_email_title">이메일</p>
+                        <p id="signup_email_title">email</p>
                         <p id="essential">*</p>
                         {verified ? (
-                            <p id="email_verified">인증되었습니다.</p>
+                            <p id="email_verified">verified</p>
                         ) : null}
                     </div>
                     <div className="email_form_container">
@@ -245,7 +245,7 @@ function SignUp() {
                             <form onSubmit={sendEmail} id="sign_up_form">
                                 <input
                                     id="signup_email_input"
-                                    placeholder="이메일을 입력해주세요"
+                                    placeholder="Enter your email"
                                     type="email"
                                     value={email}
                                     onChange={emailHandler}
@@ -258,11 +258,11 @@ function SignUp() {
                                 className="sign_up_active_button_div"
                                 onClick={() => pushCode(email)}
                             >
-                                <p id="verify_active_button_text">메일 인증</p>
+                                <p id="verify_active_button_text">verify mail</p>
                             </div>
                         ) : (
                             <div className="sign_up_button_div">
-                                <p id="verify_button_text">메일 인증</p>
+                                <p id="verify_button_text">verify mail</p>
                             </div>
                         )}
                     </div>
@@ -270,14 +270,14 @@ function SignUp() {
                 {/* 인증번호 입력 섹션 */}
                 <div className="signup_email_div">
                     <div className="signup_email_title_div">
-                        <p id="signup_email_title">인증번호</p>
+                        <p id="signup_email_title">Authentication code</p>
                         <p id="essential">*</p>
                         {codeVerified === 1 ? (
-                            <p id="email_verified">인증되었습니다.</p>
+                            <p id="email_verified">verified.</p>
                         ) : null}
                         {codeVerified === 2 ? (
                             <p id="email_verified">
-                                인증번호를 다시 입력해주세요.
+                                Enter authentication again.
                             </p>
                         ) : null}
                     </div>
@@ -286,7 +286,7 @@ function SignUp() {
                             <form onSubmit={sendEmail} id="sign_up_form">
                                 <input
                                     id="signup_email_input"
-                                    placeholder="인증번호를 입력해주세요"
+                                    placeholder="Enter an authentication code"
                                     type="text"
                                     value={code}
                                     onChange={codeHandler}
@@ -307,11 +307,11 @@ function SignUp() {
                                 className="sign_up_active_button_div"
                                 onClick={() => checkMailCode(code)}
                             >
-                                <p id="verify_active_button_text">인증 확인</p>
+                                <p id="verify_active_button_text">verify code</p>
                             </div>
                         ) : (
                             <div className="sign_up_button_div">
-                                <p id="verify_button_text">인증 확인</p>
+                                <p id="verify_button_text">verify code</p>
                             </div>
                         )}
                     </div>
@@ -319,11 +319,11 @@ function SignUp() {
                 {/* 비밀번호 입력 섹션 */}
                 <div className="signup_email_div">
                     <div className="signup_email_title_div">
-                        <p id="signup_email_title">비밀번호</p>
+                        <p id="signup_email_title">password</p>
                         <p id="essential">*</p>
                         {password.length >= 8 && password.length <= 16 ? (
                             <p id="email_verified">
-                                사용가능한 비밀번호 입니다.
+                                available.
                             </p>
                         ) : null}
                     </div>
@@ -332,7 +332,7 @@ function SignUp() {
                             <form onSubmit={sendEmail} id="sign_up_form">
                                 <input
                                     id="signup_email_input"
-                                    placeholder="8~16글자의 비밀번호를 입력해주세요"
+                                    placeholder="Enter a password of 8 to 16 characters"
                                     type="password"
                                     value={password}
                                     onChange={passwordHandler}
@@ -344,11 +344,11 @@ function SignUp() {
                 {/* 비밀번호 재입력 섹션 */}
                 <div className="signup_email_div">
                     <div className="signup_email_title_div">
-                        <p id="signup_email_title">비밀번호 확인</p>
+                        <p id="signup_email_title">Check Password</p>
                         <p id="essential">*</p>
                         {rePassword !== password ? (
                             <p id="password_verified">
-                                비밀번호가 일치하지 않습니다.
+                                password mismatch.
                             </p>
                         ) : null}
                     </div>
@@ -357,7 +357,7 @@ function SignUp() {
                             <form onSubmit={sendEmail} id="sign_up_form">
                                 <input
                                     id="signup_email_input"
-                                    placeholder="비밀번호를 입력해주세요"
+                                    placeholder="Enter your password again"
                                     type="password"
                                     value={rePassword}
                                     onChange={repasswordHandler}
@@ -369,13 +369,13 @@ function SignUp() {
                 {/* 닉네임 입력 섹션 */}
                 <div className="signup_email_div">
                     <div className="signup_email_title_div">
-                        <p id="signup_email_title">닉네임</p>
+                        <p id="signup_email_title">Nickname</p>
                         <p id="essential">*</p>
                         {duplicated === 1 ? (
-                            <p id="email_verified">사용 가능한 닉네임입니다.</p>
+                            <p id="email_verified">available nickname.</p>
                         ) : null}
                         {duplicated === 2 ? (
-                            <p id="password_verified">중복된 닉네임입니다.</p>
+                            <p id="password_verified">duplicated nickname.</p>
                         ) : null}
                     </div>
                     <div className="email_form_container">
@@ -383,7 +383,7 @@ function SignUp() {
                             <form onSubmit={sendEmail} id="sign_up_form">
                                 <input
                                     id="signup_email_input"
-                                    placeholder="닉네임을 입력해주세요"
+                                    placeholder="Enter your nickname"
                                     type="text"
                                     value={nickname}
                                     onChange={nicknameHandler}
@@ -398,11 +398,11 @@ function SignUp() {
                                     checkDuplicatedNickname(nickname)
                                 }
                             >
-                                <p id="verify_active_button_text">중복 확인</p>
+                                <p id="verify_active_button_text">check</p>
                             </div>
                         ) : (
                             <div className="sign_up_button_div">
-                                <p id="verify_button_text">중복 확인</p>
+                                <p id="verify_button_text">Check</p>
                             </div>
                         )}
                     </div>
@@ -410,14 +410,14 @@ function SignUp() {
                 {/* 이름 입력 섹션 */}
                 <div className="signup_email_div">
                     <div className="signup_email_title_div">
-                        <p id="signup_email_title">이름</p>
+                        <p id="signup_email_title">Name</p>
                     </div>
                     <div className="email_form_container">
                         <div className="email_form_div">
                             <form onSubmit={sendEmail} id="sign_up_form">
                                 <input
                                     id="signup_email_input"
-                                    placeholder="이름을 입력해주세요"
+                                    placeholder="Enter your name"
                                     type="text"
                                     value={name}
                                     onChange={nameHandler}
@@ -430,14 +430,14 @@ function SignUp() {
                 {/* 전화번호 입력 섹션 */}
                 <div className="signup_email_div">
                     <div className="signup_email_title_div">
-                        <p id="signup_email_title">전화번호</p>
+                        <p id="signup_email_title">Phone number</p>
                     </div>
                     <div className="email_form_container">
                         <div className="email_form_div">
                             <form onSubmit={sendEmail} id="sign_up_form">
                                 <input
                                     id="signup_email_input"
-                                    placeholder="전화번호를 입력해주세요"
+                                    placeholder="Enter your phone number"
                                     type="text"
                                     value={phone_number}
                                     onChange={phoneNumberHandler}
@@ -447,7 +447,7 @@ function SignUp() {
                     </div>
                 </div>
                 {/* 성별 입력 섹션 */}
-                <p id="signup_email_title">성별</p>
+                <p id="signup_email_title">Gender</p>
                 <div className="gender_div">
                     {gender === 1 ? (
                         <div
