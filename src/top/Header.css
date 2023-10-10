@@ -5,6 +5,7 @@
     height: 65px;
     justify-content: space-between;
     overflow-x: hidden;
+    z-index: 10000;
 }
 
 #header_login {
@@ -196,4 +197,75 @@
     font-size: 14px;
     font-weight: 500;
     color: #222222;
+}
+
+.hamburger_div {
+    width: 20px;
+    margin: 0px 10px 0px 10px;
+}
+
+#hamburger {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    cursor: pointer;
+}
+
+#hamburger_close {
+    font-size: 30px;
+    margin: 0px 10px 0px 10px;
+}
+
+.main_disabled {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 65px;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.hamburger_close_div {
+    cursor: pointer;
+}
+
+.hamburger_menu {
+    position: absolute;
+    top: 65px;
+    width: 300px;
+    height: 100%;
+    background-color: #FFFFFF;
+    border-top: 1px solid #D4D4D4;
+    z-index: 10000;
+    padding: 30px 0px 0px 0px;
+}
+
+.hamburger_menu_item {
+    width: 100%;
+    height: 40px;
+    padding: 0px 0px 0px 30px;
+    cursor: pointer;
+}
+
+#hamburger_menu_text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #222222;
+}
+
+@media (max-width: 920px) {
+    .right {
+        margin-right: 15px;
+    }
+
+    .left {
+        width: 696px;
+        margin-left: 0px;
+        padding-top: 11px;
+    }
+
+    #logo {
+        margin-left: 10px;
+        margin-right: 4px;
+    }
 }

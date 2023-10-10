@@ -3,6 +3,7 @@ import styled from "styled-components";
 import "./Header.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import debounce from "lodash/debounce";
 
 const HeaderDiv = styled.div``;
 
@@ -25,8 +26,13 @@ function Header() {
     const [name, setName] = useState("");
     const [profile, setProfile] = useState("");
     const location = useLocation();
-
+    const [width, setWidth] = useState(window.innerWidth);
     const dropdownRef = React.useRef<HTMLDivElement | null>(null); // 참조 생성
+    const [isClick, setIsClick] = useState(false);
+
+    const handleResize = debounce(() => {
+        setWidth(window.innerWidth);
+    }, 200);
 
     const movePage = (page: number) => {
         if (page === 0) {
@@ -87,6 +93,21 @@ function Header() {
         localStorage.clear();
     };
 
+    const handleHamburger = (id: number) => {
+        if (id === 1) {
+            navigate("/hospital");
+            setIsClick(false);
+        } else if (id === 2) {
+            navigate("/doctor");
+            setIsClick(false);
+        } else if (id === 3) {
+            navigate("/before-after");
+            setIsClick(false);
+        } else {
+            alert("잘못된 접근입니다.");
+        }
+    }
+
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
             if (
@@ -146,21 +167,59 @@ function Header() {
     }, []);
 
     useEffect(() => {
+        if(width > 920) setIsClick(false);
+    }, [width]);
+
+    useEffect(() => {
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
+    useEffect(() => {
         localStorage.getItem("selected") === null
             ? setSelected(0)
             : setSelected(Number(localStorage.getItem("selected")));
     }, [selected]);
 
     return (
-        <HeaderDiv className="header">
+        <HeaderDiv className="header"> 
+            {isClick === true ? <div className="main_disabled"></div> : null}
+            {
+                isClick === true ? 
+                <div className="hamburger_menu">
+                    <div className="hamburger_menu_item" onClick={() => handleHamburger(1)}>
+                        <p id="hamburger_menu_text">Hospital info</p>
+                    </div>
+                    <div className="hamburger_menu_item" onClick={() => handleHamburger(2)}>
+                        <p id="hamburger_menu_text">Doctor info</p>
+                    </div>
+                    <div className="hamburger_menu_item" onClick={() => handleHamburger(3)}>
+                        <p id="hamburger_menu_text">Before-After</p>
+                    </div>
+                </div> : null
+            }
             <LeftDiv className="left">
+                {
+                    width <= 920 ? isClick ? 
+                        <div className="hamburger_close_div">
+                            <p id="hamburger_close" onClick={() => setIsClick(false)}>X</p>
+                        </div>
+                     : (
+                        <div className="hamburger_div" onClick={() => setIsClick(true)}>
+                            <img src="/hamburger.png" id="hamburger" alt="" />
+                        </div>
+                    ) : null
+                }
                 <img
                     src="/logo.png"
                     alt="logo"
                     id="logo"
                     onClick={() => movePage(0)}
                 />
-                <Menu
+                {width > 920 ? <><Menu
                     id={
                         selected !== 1
                             ? "menu_hospital"
@@ -181,7 +240,7 @@ function Header() {
                     onClick={() => movePage(3)}
                 >
                     전후사진
-                </Menu>
+                </Menu></> : null}
             </LeftDiv>
             <RightDiv className="right">
                 {!isLogin ? (
