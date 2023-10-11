@@ -216,7 +216,7 @@ p {
   align-items: flex-start;
 }
 
-@media (min-width:320px) and (max-width:860px) { 
+@media (max-width:860px) { 
   .right_item_div {
     width: 270px;
     display: flex;
@@ -255,16 +255,3 @@ p {
   }
 } 
 
-/* @media (min-width:600px) and (max-width:759px) { 
-  #review_item_title {
-    width: 160px;
-    font-size: 14px;
-  }
-} 
-
-@media (min-width:320px) and (max-width:599px) { 
-  #review_item_title {
-    font-size: 13px;
-    width: 100px;
-  }
-}  */
