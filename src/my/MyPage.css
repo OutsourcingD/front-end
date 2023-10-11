@@ -9,13 +9,14 @@
 }
 
 .mypage_title_div {
-    margin-top: 30px;
+    margin-top: 48px;
     width: 619px;
     justify-content: space-between;
     display: flex;
 }
 
 .mypage_title_left_div {
+    padding: 0 0 13px 0;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
@@ -71,7 +72,7 @@
 }
 
 .mypage_body {
-    margin-top: 25px;
+    margin-top: 48px;
     width: 619px;
     display: flex;
     flex-direction: column;
@@ -125,3 +126,30 @@
     height: 164px;
     object-fit: fill;
 }
+
+@media (max-width:640px) { 
+    .mypage_body {
+        width: 90%;
+        margin-top: 32px;
+    }
+
+    .mypage_title_div {
+        width: 90%;
+    }
+
+    .mypage_bottom {
+        width: 90%;
+    }
+
+    #mypage_name {
+        font-size: 24px;
+    }
+
+    #mypage_setting_button {
+        width: 80px;
+    }
+
+    .mypage_sir {
+        margin-right: 4px;
+    }
+} 
