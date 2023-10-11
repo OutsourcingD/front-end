@@ -192,7 +192,7 @@ function MyPage() {
                 <div className="mypage_inquery_div">
                     {/* 나의 문의 내역 헤더 부분 */}
                     <div className="mypage_review_header_div">
-                        <p id="my_page_sub_title">나의 문의 내역</p>
+                        <p id="my_page_sub_title">My Inquiries</p>
                         <p
                             id="my_page_more"
                             onClick={() => navigate(`/mypage/inquery/more?id=${localStorage.getItem("user_id")}`)}
