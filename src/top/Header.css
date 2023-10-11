@@ -8,10 +8,6 @@
     z-index: 10000;
 }
 
-#header_login {
-    width: 120px;
-}
-
 .header_my_name_info {
     display: flex;
     flex-direction: row;
@@ -168,8 +164,8 @@
 
 .login_div {
     display: flex;
-    width: 116px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
 }
 
 .header_logout_div {
@@ -223,10 +219,24 @@
     top: 65px;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1000;
+    overflow: hidden;
 }
 
 .hamburger_close_div {
     cursor: pointer;
+}
+
+.hamburger_sign_in_div {
+    margin: 0px 0px 145px 0;
+    padding: 20px 0 0px 30px;
+    border-top: 1px solid #D4D4D4;
+    cursor: pointer;
+}
+
+#hamburger_sign_in {
+    font-weight: 500;
+    font-size: 14px;
+    color: #666666;
 }
 
 .hamburger_menu {
@@ -238,6 +248,9 @@
     border-top: 1px solid #D4D4D4;
     z-index: 10000;
     padding: 30px 0px 0px 0px;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
 }
 
 .hamburger_menu_item {
@@ -251,6 +264,25 @@
     font-size: 16px;
     font-weight: 600;
     color: #222222;
+}
+
+.sign_in_up_div {
+    height: 20px;
+    text-align: center;
+}
+
+#sign_in_up_text {
+    font-weight: 600;
+    font-size: 14px;
+    color: #222222;
+    white-space: nowrap;
+    margin-left: 5px;
+}
+
+.login_right_div {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
 }
 
 @media (max-width: 920px) {
@@ -267,5 +299,19 @@
     #logo {
         margin-left: 10px;
         margin-right: 4px;
+    }
+}
+
+@media (max-width: 600px) {
+    #logo {
+        width: 70px;
+    }
+
+    .hamburger_div {
+        width: 14px;
+    }
+
+    #hamburger_close {
+        font-size: 20px;
     }
 }

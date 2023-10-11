@@ -184,20 +184,33 @@ function Header() {
             : setSelected(Number(localStorage.getItem("selected")));
     }, [selected]);
 
+    useEffect(() => {
+        if(isClick) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+    }, [isClick])
+
     return (
         <HeaderDiv className="header"> 
             {isClick === true ? <div className="main_disabled"></div> : null}
             {
                 isClick === true ? 
                 <div className="hamburger_menu">
-                    <div className="hamburger_menu_item" onClick={() => handleHamburger(1)}>
-                        <p id="hamburger_menu_text">Hospital info</p>
+                    <div>
+                        <div className="hamburger_menu_item" onClick={() => handleHamburger(1)}>
+                            <p id="hamburger_menu_text">Hospital info</p>
+                        </div>
+                        <div className="hamburger_menu_item" onClick={() => handleHamburger(2)}>
+                            <p id="hamburger_menu_text">Doctor info</p>
+                        </div>
+                        <div className="hamburger_menu_item" onClick={() => handleHamburger(3)}>
+                            <p id="hamburger_menu_text">Before-After</p>
+                        </div>
                     </div>
-                    <div className="hamburger_menu_item" onClick={() => handleHamburger(2)}>
-                        <p id="hamburger_menu_text">Doctor info</p>
-                    </div>
-                    <div className="hamburger_menu_item" onClick={() => handleHamburger(3)}>
-                        <p id="hamburger_menu_text">Before-After</p>
+                    <div className="hamburger_sign_in_div" onClick={() => {navigate("/login"); setIsClick(false)}}>
+                        <p id="hamburger_sign_in">Sign in / up</p>
                     </div>
                 </div> : null
             }
@@ -244,52 +257,61 @@ function Header() {
             </LeftDiv>
             <RightDiv className="right">
                 {!isLogin ? (
-                    <>
+                    <div className="login_right_div">
                         <div
                             className="login_div"
                             onClick={() => navigate("/login")}
                         >
                             <img
-                                src="/login.png"
+                                src="/door.png"
                                 alt="login"
                                 id="header_login"
                             />
                         </div>
-                    </>
+                        <div className="sign_in_up_div" onClick={() => navigate("/login")}>
+                            <p id="sign_in_up_text">Sign in / up</p>
+                        </div>
+                    </div>
                 ) : (
                     <>
-                        <div className="profile_container" onClick={onClick}>
-                            <img
-                                src={profile}
-                                alt="profile"
-                                id="profile"
-                            />
-                        </div>
-                        <div className="nameDiv" onClick={onClick}>
-                            <div className="header_my_name_info">
-                                <p id="name">{name}</p>
-                                <p id="name_">Sir</p>
+                    {
+                        width > 920 ?
+                        <>
+                            <div className="profile_container" onClick={onClick}>
+                                <img
+                                    src={profile}
+                                    alt="profile"
+                                    id="profile"
+                                />
                             </div>
-                            {more ? (
-                                <div
-                                    className="mypage_more_drop_box"
-                                    ref={dropdownRef}
-                                >
-                                    <div
-                                        className="header_logout_div"
-                                        onClick={logoutClick}
-                                    >
-                                        <p id="header_logout">log out</p>
-                                    </div>
-                                    <div
-                                        className="header_logout_div"
-                                        onClick={mypageClick}
-                                    >
-                                        <p id="header_logout">my page</p>
-                                    </div>
+                            <div className="nameDiv" onClick={onClick}>
+                                <div className="header_my_name_info">
+                                    <p id="name">{name}</p>
+                                    <p id="name_">Sir</p>
                                 </div>
-                            ) : null}
-                        </div>
+                                {more ? (
+                                    <div
+                                        className="mypage_more_drop_box"
+                                        ref={dropdownRef}
+                                    >
+                                        <div
+                                            className="header_logout_div"
+                                            onClick={logoutClick}
+                                        >
+                                            <p id="header_logout">log out</p>
+                                        </div>
+                                        <div
+                                            className="header_logout_div"
+                                            onClick={mypageClick}
+                                        >
+                                            <p id="header_logout">my page</p>
+                                        </div>
+                                    </div>
+                                ) : null}
+                            </div>
+                        </>
+                        : null
+                    }
                         <div className="chatDiv">
                             <div className="chat_icon_div">
                                 <img
