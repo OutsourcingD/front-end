@@ -136,6 +136,7 @@
     width: 80px;
     height: 39px;
     margin-left: 4px;
+    cursor: pointer;
 }
 
 .check_nickname_active {
@@ -148,6 +149,7 @@
     width: 80px;
     height: 39px;
     margin-left: 4px;
+    cursor: pointer;
 }
 
 .my_info_nickname_container {
@@ -202,6 +204,7 @@
     width: 40px;
     height: 40px;
     margin-right: 9.4px;
+    cursor: pointer;
 }
 
 #woman_button {
@@ -218,6 +221,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 #mypage_info_edit_button_text {

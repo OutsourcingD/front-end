@@ -10,7 +10,7 @@
 
 .mypage_title_div {
     margin-top: 30px;
-    width: 619px;
+    width: 630px;
     justify-content: space-between;
     display: flex;
 }
@@ -52,15 +52,18 @@
 #mypage_setting_button {
     width: 100px;
     height: fit-content;
+    cursor: pointer;
 }
 
 #write_review {
-    width: 110px;
+    width: 130px;
     height: fit-content;
+    cursor: pointer;
 }
 
 .write_review_button {
     width: 110px;
+    margin-right: 20px;
     display: flex;
     align-items: flex-end;
 }
@@ -102,6 +105,7 @@
     font-size: 16px;
     margin-bottom: 10px;
     color: #DDB0E3;
+    cursor: pointer;
 }
 
 .mypage_review_header_div {
