@@ -50,6 +50,9 @@ function HospitalDetailPage() {
             },
         }).then((res) => {
             setHospitalDetail(res.data);
+        }).catch((err) => {
+            alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");        
         });
 
         // 연관 후기
@@ -61,6 +64,9 @@ function HospitalDetailPage() {
             },
         }).then((res) => {
             setHospitalReview(res.data);
+        }).catch((err) => {
+            alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");          
         });
     }, []);
 

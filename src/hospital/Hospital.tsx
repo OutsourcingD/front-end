@@ -6,12 +6,14 @@ import Pagination from "react-js-pagination";
 import axios from "axios";
 import { HospitalResponseDto } from "../dto/HospitalResponseDto";
 import Footer from "../bottom/Footer";
+import { useNavigate } from "react-router-dom";
 
 function Hospital() {
     const [hospitalList, setHospitalList] = useState<HospitalResponseDto[]>([]);
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(1);
     const [searchValue, setSearchValue] = React.useState(" ");
+    const navigate = useNavigate();
 
     const handleSearch = (value: string) => {
         setSearchValue(value);
@@ -34,7 +36,10 @@ function Hospital() {
             },
         }).then((res) => {
             setHospitalList(res.data);
-            setTotalPages(res.data[0].totalPages);
+            setTotalPages(res.data !== undefined && res.data.length !== 0 ? res.data[0].totalPages : 1);
+        }).catch((err) => {
+            alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");      
         });
     };
 

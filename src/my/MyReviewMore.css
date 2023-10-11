@@ -17,7 +17,7 @@
 
 #my_recommend_review_title {
     font-weight: 700;
-    font-size: 32px;
+    font-size: 36px;
     white-space: nowrap;
     margin-right: 10px;
     color: #222222;
@@ -26,4 +26,10 @@
 .my_review_item_list_div {
     width: 619px;
     margin-top: 5px;
+}
+
+@media (max-width: 920px) {
+    #my_recommend_review_title {
+        font-size: 24px;
+    }
 }

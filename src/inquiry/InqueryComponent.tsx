@@ -28,6 +28,15 @@ function InqueryComponent() {
         }).then((res) => {
             alert("문의가 등록되었습니다.")
             navigate("/");
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
+            }          
         });
     };
 
@@ -44,6 +53,15 @@ function InqueryComponent() {
         }).then((res) => {
             alert("문의가 등록되었습니다.")
             navigate("/");
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
+            }          
         });
     };
 

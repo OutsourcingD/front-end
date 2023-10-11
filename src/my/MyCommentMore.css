@@ -10,20 +10,12 @@
 
 .my_recommend_review_header {
     margin-top: 31px;
-    width: 619px;
+    width: 94%;
     justify-content: space-between;
     display: flex;
 }
 
-#my_recommend_review_title {
-    font-weight: 700;
-    font-size: 32px;
-    white-space: nowrap;
-    margin-right: 10px;
-    color: #222222;
-}
-
 .my_review_item_list_div {
-    width: 619px;
+    width: 94%;
     margin-top: 31px;
 }

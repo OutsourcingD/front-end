@@ -5,6 +5,7 @@ import { SearchResponseDto } from "../dto/SearchResultDto";
 import { DocsHosDto } from "../dto/DocsHosDto";
 import { DoctorResponseDto } from "../dto/DoctorResponseDto";
 import { HospitalResponseDto } from "../dto/HospitalResponseDto";
+import { useNavigate } from "react-router-dom";
 
 interface SearchProps {
     page: number;
@@ -19,6 +20,7 @@ interface SearchProps {
 
 const Search = (props: SearchProps) => {
     const [value, setText] = useState(" ");
+    const navigate = useNavigate();
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         props.onSearch(e.target.value);
@@ -45,6 +47,15 @@ const Search = (props: SearchProps) => {
                         props.onSearchResult(res.data);
                         props.onSearch(value);
                     }
+                }).catch((err) => {
+                    if(err.response.status === 401 || err.response.status === 403) {
+                        alert("This is not admin ID.");
+                        navigate("/login");
+                    }
+                    else {
+                        alert(`Contact to developer. ${err.response.status}`);
+                        navigate("/");
+                    }  
                 });
             } else {
                 axios({
@@ -58,6 +69,15 @@ const Search = (props: SearchProps) => {
                         props.onDoctorSearchResult(res.data);
                         props.onSearch(value);
                     }
+                }).catch((err) => {
+                    if(err.response.status === 401 || err.response.status === 403) {
+                        alert("This is not admin ID.");
+                        navigate("/login");
+                    }
+                    else {
+                        alert(`Contact to developer. ${err.response.status}`);
+                        navigate("/");
+                    }    
                 });
             }
         } else if(props.parent === 1) {
@@ -75,6 +95,15 @@ const Search = (props: SearchProps) => {
                         props.onSearchResult(res.data);
                         props.onSearch(value);
                     }
+                }).catch((err) => {
+                    if(err.response.status === 401 || err.response.status === 403) {
+                        alert("This is not admin ID.");
+                        navigate("/login");
+                    }
+                    else {
+                        alert(`Contact to developer. ${err.response.status}`);
+                        navigate("/");
+                    }      
                 });
             } else {
                 axios({
@@ -88,6 +117,15 @@ const Search = (props: SearchProps) => {
                         props.onDoctorSearchResult(res.data);
                         props.onSearch(value);
                     }
+                }).catch((err) => {
+                    if(err.response.status === 401 || err.response.status === 403) {
+                        alert("This is not admin ID.");
+                        navigate("/login");
+                    }
+                    else {
+                        alert(`Contact to developer. ${err.response.status}`);
+                        navigate("/");
+                    }      
                 });
             }
         }
@@ -103,6 +141,15 @@ const Search = (props: SearchProps) => {
                     props.onHospitalSearchResult(res.data);
                     props.onSearch(value);
                 }
+            }).catch((err) => {
+                if(err.response.status === 401 || err.response.status === 403) {
+                    alert("This is not admin ID.");
+                    navigate("/login");
+                }
+                else {
+                    alert(`Contact to developer. ${err.response.status}`);
+                    navigate("/");
+                }        
             });
         } else if(props.parent === 3) {
             axios({
@@ -116,6 +163,15 @@ const Search = (props: SearchProps) => {
                     props.onDoctorPageSearchResult(res.data);
                     props.onSearch(value);
                 }
+            }).catch((err) => {
+                if(err.response.status === 401 || err.response.status === 403) {
+                    alert("This is not admin ID.");
+                    navigate("/login");
+                }
+                else {
+                    alert(`Contact to developer. ${err.response.status}`);
+                    navigate("/");
+                }          
             });
         }
     };
@@ -135,6 +191,15 @@ const Search = (props: SearchProps) => {
                     if (props.onSearchResult) {
                         props.onSearchResult(res.data);
                     }
+                }).catch((err) => {
+                    if(err.response.status === 401 || err.response.status === 403) {
+                        alert("This is not admin ID.");
+                        navigate("/login");
+                    }
+                    else {
+                        alert(`Contact to developer. ${err.response.status}`);
+                        navigate("/");
+                    }      
                 });
             } else {
                 axios({
@@ -147,6 +212,15 @@ const Search = (props: SearchProps) => {
                     if (props.onDoctorSearchResult) {
                         props.onDoctorSearchResult(res.data);
                     }
+                }).catch((err) => {
+                    if(err.response.status === 401 || err.response.status === 403) {
+                        alert("This is not admin ID.");
+                        navigate("/login");
+                    }
+                    else {
+                        alert(`Contact to developer. ${err.response.status}`);
+                        navigate("/");
+                    }        
                 });
             }
         }
@@ -165,6 +239,15 @@ const Search = (props: SearchProps) => {
                         props.onSearchResult(res.data);
                         props.onSearch(value);
                     }
+                }).catch((err) => {
+                    if(err.response.status === 401 || err.response.status === 403) {
+                        alert("This is not admin ID.");
+                        navigate("/login");
+                    }
+                    else {
+                        alert(`Contact to developer. ${err.response.status}`);
+                        navigate("/");
+                    }        
                 });
             } else {
                 axios({
@@ -178,6 +261,15 @@ const Search = (props: SearchProps) => {
                         props.onDoctorSearchResult(res.data);
                         props.onSearch(value);
                     }
+                }).catch((err) => {
+                    if(err.response.status === 401 || err.response.status === 403) {
+                        alert("This is not admin ID.");
+                        navigate("/login");
+                    }
+                    else {
+                        alert(`Contact to developer. ${err.response.status}`);
+                        navigate("/");
+                    }          
                 });
             }
         }
@@ -193,6 +285,15 @@ const Search = (props: SearchProps) => {
                     props.onDoctorPageSearchResult(res.data);
                     props.onSearch(value);
                 }
+            }).catch((err) => {
+                if(err.response.status === 401 || err.response.status === 403) {
+                    alert("This is not admin ID.");
+                    navigate("/login");
+                }
+                else {
+                    alert(`Contact to developer. ${err.response.status}`);
+                    navigate("/");
+                }          
             });
         }
     }

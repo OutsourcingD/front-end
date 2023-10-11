@@ -36,6 +36,15 @@ function MyPage() {
             },
         }).then((res) => {
             setBanners(res.data);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
+            }          
         });
 
         //my review api
@@ -47,6 +56,15 @@ function MyPage() {
             },
         }).then((res) => {
             setMyReviewItems(res.data);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("Login require.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
+            }          
         });
 
         //my comment api
@@ -58,6 +76,15 @@ function MyPage() {
             },
         }).then((res) => {
           setMyCommentItems(res.data);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("Login require.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
+            }          
         });
         
         //my inquery api
@@ -69,6 +96,15 @@ function MyPage() {
           },
         }).then((res) => {
           setMyInqueryItems(res.data);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("Login require.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
+            }          
         });
     }, []);
 
