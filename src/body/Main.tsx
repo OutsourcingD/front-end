@@ -78,6 +78,8 @@ function Main() {
             },
         }).then((res) => {
             setImageList(res.data);
+        }).catch((err) => {
+            alert("Server Error" + err.response.status);
         });
     };
 
@@ -91,6 +93,8 @@ function Main() {
             },
         }).then((res) => {
             setRecommendReviews(res.data);
+        }).catch((err) => {
+            alert("Server Error" + err.response.status);
         });
     };
 
@@ -110,7 +114,9 @@ function Main() {
             }).then((res) => {
                 setReviewList(res.data);
 
-                setTotalPages(res.data[0].totalPages);
+                setTotalPages(res.data[0].totalPages === undefined ? 1 : res.data[0].totalPages);
+            }).catch((err) => {
+                alert("Server Error" + err.response.status);
             });
         } else {
             axios({
@@ -122,6 +128,8 @@ function Main() {
                 },
             }).then((res) => {
                 setDocHosReviewList(res.data);
+            }).catch((err) => {
+                alert("Server Error" + err.response.status);
             });
         }
     };
@@ -202,6 +210,8 @@ function Main() {
                 setTotalPages(
                     res.data[0] === undefined ? 1 : res.data[0].totalPages
                 );
+            }).catch((err) => {
+                alert("Server Error" + err.response.status);
             });
         } else if (9 === category || category === 10) {
             axios({
@@ -213,6 +223,8 @@ function Main() {
                 },
             }).then((res) => {
                 setDocHosReviewList(res.data);
+            }).catch((err) => {
+                alert("Server Error" + err.response.status);
             });
         } else {
             alert("category error");
@@ -387,7 +399,7 @@ function Main() {
                           );
                       })
                     : docHosReviewList.map((review, index) => {
-                          return <DocsHosReviewItem key={review.id} {...review} />;
+                          return <DocsHosReviewItem key={review.id} dto={review} type={category === 9 ? 0 : 1} />;
                       })}
             </div>
             {/* pagenation 섹션 */}

@@ -53,3 +53,14 @@
     height: 30px;
     color: #337ab7;
   }
+
+  .my_text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 두 줄까지 보여줌 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: 1px solid #D4D4D4;
+    width: 200px; /* Increase the width */
+    height: 42px;
+  }

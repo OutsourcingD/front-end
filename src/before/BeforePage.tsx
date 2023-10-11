@@ -7,6 +7,7 @@ import Footer from "../bottom/Footer";
 import { BeforeAfterResponseDto } from "../dto/BeforeAfterResponseDto";
 import axios from "axios";
 import BeforeDetail from "../components/BeforeDetail";
+import { useNavigate } from "react-router-dom";
 
 function BeforePage() {
     const [page, setPage] = React.useState(1);
@@ -15,6 +16,7 @@ function BeforePage() {
     const [beforeAfterList, setBeforeAfterList] = React.useState<BeforeAfterResponseDto[]>([]);
     const [isClick, setIsClick] = React.useState(false);
     const [beforeItemId, setBeforeItemId] = React.useState(0);
+    const navigate = useNavigate();
 
     const handlePageChange = (page: React.SetStateAction<number>) => {
         setPage(page);
@@ -46,6 +48,9 @@ function BeforePage() {
         }).then((res) => {
             setBeforeAfterList(res.data);
             setTotalPages(res.data[0] !== undefined ? res.data[0].totalPages : 1);
+        }).catch((err) => {
+            alert("Server Error" + err.response.status);
+            navigate("/");
         });
     }, [page]);
 

@@ -2,6 +2,7 @@ import React from "react";
 import "./CheckUserIp.css";
 import Pagination from "react-js-pagination";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 interface CheckUserIpProps {
     createdAt: string;
@@ -16,6 +17,7 @@ const CheckUserIp = () => {
     const [totalPages, setTotalPages] = React.useState(2);
     const [id, setUserId] = React.useState("");
     const [userIps, setUserIps] = React.useState<CheckUserIpProps[]>([]);
+    const navigate = useNavigate();
 
     const handlePageChange = (page: React.SetStateAction<number>) => {
         setPage(page);
@@ -39,6 +41,15 @@ const CheckUserIp = () => {
             setUserIps(res.data);
             setTotalPages(res.data.length === 0 ? 1 : res.data[0].totalPages);
             setPage(1);
+        }).catch((err) => {
+            if(err.response.status === 403 || err.response.status === 401) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");   
+            }
         });
     };
 
@@ -57,6 +68,15 @@ const CheckUserIp = () => {
             setUserIps(res.data);
             setTotalPages(res.data.length === 0 ? 1 : res.data[0].totalPages);
             setPage(1);
+        }).catch((err) => {
+            if(err.response.status === 403 || err.response.status === 401) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");   
+            }
         });
     };
 
@@ -74,6 +94,15 @@ const CheckUserIp = () => {
         }).then((res) => {
             setUserIps(res.data);
             setTotalPages(res.data.length === 0 ? 1 : res.data[0].totalPages);
+        }).catch((err) => {
+            if(err.response.status === 403 || err.response.status === 401) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");   
+            }
         });
     }, [page]);
 

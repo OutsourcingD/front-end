@@ -29,13 +29,22 @@ function MyRecommendReview() {
     }).then((res) => {
       setMyReviewList(res.data);
       setTotalPages(res.data[0] !== undefined ? res.data[0].totalPages : 1);
+    }).catch((err) => {
+      if(err.response.status === 401 || err.response.status === 403) {
+        alert("This is not admin ID.");
+        navigate("/login");
+    }
+    else {
+        alert(`Contact to developer. ${err.response.status}`);
+        navigate("/");
+    }        
     });
   }, [page]);
 
   return (
     <div className="my_recommend_review_div" >
       <div className="my_recommend_review_header">
-        <p id="my_recommend_review_title">나의 후기</p>
+        <p id="my_recommend_review_title">My Riviews</p>
       </div>
       <div className="my_review_item_list_div">
         {myReviewList.length !== 0 ? myReviewList.map((item, index) => {
@@ -48,7 +57,7 @@ function MyRecommendReview() {
               />
             </div>
           );
-        }): <p>작성한 리뷰 없음...</p>}
+        }): <p>no review...</p>}
       </div>
       <Pagination
         activePage={page}

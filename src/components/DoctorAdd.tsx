@@ -3,6 +3,7 @@ import "./DoctorEdit.css";
 import Pagination from "react-js-pagination";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 interface HospitalEditProps {
     hospitalId: number;
@@ -23,6 +24,7 @@ const DoctorAdd = () => {
     const [doctorPage, setDoctorPage] = React.useState(1);
     const [hospitalTotalPages, setHospitalTotalPages] = React.useState(2);
     const [doctorTotalPages, setDoctorTotalPages] = React.useState(2);
+    const navigate = useNavigate();
 
     const handleDoctorPageChange = (page: React.SetStateAction<number>) => {
         setDoctorPage(page);
@@ -45,7 +47,16 @@ const DoctorAdd = () => {
             },
         }).then((res) => {
             setHospitalItems(res.data);
-            setHospitalTotalPages(res.data[0].totalPages);
+            setHospitalTotalPages(res.data !== null && res.data !== undefined ? res.data[0].totalPages : 1);
+        }).catch((err) => {
+            if(err.response.status === 403 || err.response.status === 401) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");   
+            }
         });
     }
 
@@ -62,7 +73,16 @@ const DoctorAdd = () => {
             },
         }).then((res) => {
             setDoctorItems(res.data);
-            setDoctorTotalPages(res.data[0].totalPages);
+            setDoctorTotalPages(res.data !== null && res.data !== undefined ? res.data[0].totalPages : 1);
+        }).catch((err) => {
+            if(err.response.status === 403 || err.response.status === 401) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");   
+            }
         });
     }
 
@@ -81,8 +101,17 @@ const DoctorAdd = () => {
             },
         }).then((res) => {
             setHospitalItems(res.data);
-            setHospitalTotalPages(res.data[0].totalPages);
+            setHospitalTotalPages(res.data !== null && res.data !== undefined ? res.data[0].totalPages : 1);
             setHospitalPage(1);
+        }).catch((err) => {
+            if(err.response.status === 403 || err.response.status === 401) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");   
+            }
         });
     };
 
@@ -99,8 +128,17 @@ const DoctorAdd = () => {
             },
         }).then((res) => {
             setHospitalItems(res.data);
-            setHospitalTotalPages(res.data[0].totalPages);
+            setHospitalTotalPages(res.data !== null && res.data !== undefined ? res.data[0].totalPages : 1);
             setHospitalPage(1);
+        }).catch((err) => {
+            if(err.response.status === 403 || err.response.status === 401) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");   
+            }
         });
     }
 
@@ -119,8 +157,17 @@ const DoctorAdd = () => {
             },
         }).then((res) => {
             setDoctorItems(res.data);
-            setDoctorTotalPages(res.data[0].totalPages);
+            setDoctorTotalPages(res.data !== null && res.data !== undefined ? res.data[0].totalPages : 1);
             setDoctorPage(1);
+        }).catch((err) => {
+            if(err.response.status === 403 || err.response.status === 401) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");   
+            }
         });
     };
 
@@ -137,8 +184,17 @@ const DoctorAdd = () => {
             },
         }).then((res) => {
             setDoctorItems(res.data);
-            setDoctorTotalPages(res.data[0].totalPages);
+            setDoctorTotalPages(res.data.length !== 0 && res.data !== null && res.data !== undefined ? res.data[0].totalPages : 1);
             setDoctorPage(1);
+        }).catch((err) => {
+            if(err.response.status === 403 || err.response.status === 401) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");   
+            }
         });
     };
 
@@ -158,9 +214,15 @@ const DoctorAdd = () => {
             setHospitalItems(newItems);
         }).catch((err) => {
             if(err.response.status === 403 || err.response.status === 401)
+            {
                 alert("This is not admin ID.");
+                navigate("/login");
+            }
             else
+            {
                 alert("Contact the administrator.");
+                navigate("/");
+            }
         });
     };
 

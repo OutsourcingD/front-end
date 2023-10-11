@@ -15,13 +15,6 @@
     display: flex;
 }
 
-#my_recommend_review_title {
-    font-weight: 700;
-    font-size: 32px;
-    white-space: nowrap;
-    color: #222222;
-}
-
 .my_review_item_list_div {
     width: 619px;
     margin-top: 10px;
