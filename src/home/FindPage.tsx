@@ -8,7 +8,7 @@ import Footer from "../bottom/Footer";
 
 const FindPage = () => {
   const [isId, setIsId] = React.useState<boolean>(true);
-  const [isSubmit, setIsSubmit] = React.useState<boolean>(false);
+  const [isSubmit, setIsSubmit] = React.useState<boolean>(true);
 
   const handleEmail = (email: string) => {
     
@@ -24,7 +24,7 @@ const FindPage = () => {
               className={isId ? "find_id_container" : "find_id_container_click"}
               onClick={() => setIsId(true)}
             >
-              <p id="find_id_page_input_title">아이디 찾기</p>
+              <p id="find_id_page_input_title">Find Id</p>
             </div>
             <div
               className={
@@ -32,7 +32,7 @@ const FindPage = () => {
               }
               onClick={() => setIsId(false)}
             >
-              <p id="find_id_page_input_title">비밀번호 찾기</p>
+              <p id="find_id_page_input_title">Find Pwd</p>
             </div>
           </div>
           {

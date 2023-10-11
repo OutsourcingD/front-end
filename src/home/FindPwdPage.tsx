@@ -5,13 +5,13 @@ function FindPwdPage() {
   return (
     <>
       <div className="find_page_email_input_div">
-        <p id="find_id_page_input_title">이메일 주소</p>
+        <p id="find_id_page_input_title">Email</p>
         <div className="find_page_email_container">
           <div className="find_page_email_form_div">
             <form id="find_page_email_form">
               <input
                 id="find_id_page_email_input"
-                placeholder="이메일 주소를 입력해주세요."
+                placeholder="Enter an email."
                 type="email"
               />
             </form>
@@ -22,13 +22,13 @@ function FindPwdPage() {
         </div>
       </div>
       <div className="find_page_email_code_div">
-        <p id="find_id_page_input_title">인증번호</p>
+        <p id="find_id_page_input_title">Authentication code</p>
         <div className="find_page_email_container">
           <div className="find_page_verify_code_form_div">
             <form id="find_page_email_form">
               <input
                 id="find_id_page_email_input"
-                placeholder="인증번호 6자리를 입력해주세요."
+                placeholder="Enter 6 digits of the authentication number."
                 type="email"
               />
             </form>

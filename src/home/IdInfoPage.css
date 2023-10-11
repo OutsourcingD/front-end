@@ -33,3 +33,9 @@
   width: 100px;
   height: 40px;
 }
+
+#join_date {
+  font-size: 15px;
+  font-weight: 500;
+  color: #444444;
+}

@@ -36,6 +36,7 @@
     width: 50%;
     height: 58px;
     color: #DFB1E4;
+    cursor: pointer;
 }
 
 .find_id_container_click {
@@ -48,6 +49,7 @@
     border-right: 1px solid #E7E7E7;
     border-top-left-radius: 15px;
     color: #666666;
+    cursor: pointer;
 }
 
 .find_pwd_container {
@@ -57,6 +59,7 @@
     width: 50%;
     height: 58px;
     color: #DFB1E4;
+    cursor: pointer;
 }
 
 .find_pwd_container_click {
@@ -69,6 +72,7 @@
     border-left: 1px solid #E7E7E7;
     border-top-right-radius: 15px;
     color: #666666;
+    cursor: pointer;
 }
 
 #find_id_sub_title {
@@ -131,6 +135,7 @@
     align-items: stretch;
     width: 90.91px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.11);
+    cursor: pointer;
 }
 
 .find_page_email_container {
