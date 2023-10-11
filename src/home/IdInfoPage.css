@@ -7,7 +7,7 @@
 }
 
 .id_result_text_div {
-  margin-top: 12%;
+  margin-top: 74px;
 }
 
 .id_result_ok_button {
@@ -38,4 +38,10 @@
   font-size: 15px;
   font-weight: 500;
   color: #444444;
+}
+
+@media (max-width: 640px) {
+  .id_result_text_div {
+    margin: 0;
+  }
 }

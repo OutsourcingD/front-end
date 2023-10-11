@@ -168,3 +168,30 @@
     margin-top: 49.2px;
     height: 45px;
 }
+
+@media (max-width: 640px) {
+    .find_div {
+        height: 150px;
+        width: 315px;
+    }
+
+    .find_id_container {
+        height: 38px;
+    }
+
+    .find_id_container_click {
+        height: 38px;
+    }
+
+    .find_pwd_container {
+        height: 38px;
+    }
+
+    .find_pwd_container_click {
+        height: 38px;
+    }
+    
+    #find_id_page_input_title {
+        font-size: 14px;
+    }
+}
