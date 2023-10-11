@@ -2,6 +2,7 @@ import React from "react";
 import "./MyPageInfo.css";
 import Footer from "../bottom/Footer";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function MyPageInfo() {
     const [nickname, setNickname] = React.useState<string>("");
@@ -19,6 +20,7 @@ function MyPageInfo() {
     const [defaultNickname, setDefaultNickname] = React.useState<string>("");
     const [defaultName, setDefaultName] = React.useState<string>("");
     const [defaultPhone, setDefaultPhone] = React.useState<string>("");
+    const navigate = useNavigate();
 
     const nicknameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setNickname(e.target.value);
@@ -70,6 +72,15 @@ function MyPageInfo() {
                 .then((res) => {
                     localStorage.setItem("nickname", res.data.nickname);
                     alert("회원정보가 수정되었습니다.");
+                }).catch((err) => {
+                    if(err.response.status === 401 || err.response.status === 403) {
+                        alert("This is not admin ID.");
+                        navigate("/login");
+                    }
+                    else {
+                        alert(`Contact to developer. ${err.response.status}`);
+                        navigate("/");
+                    }          
                 });
         }
         else {
@@ -83,6 +94,15 @@ function MyPageInfo() {
             url: `${process.env.REACT_APP_SERVER_URL}/non-member/check-duplicated?name=${nickname}`,
         }).then((res) => {
             res.data ? setIsDuplicate(1) : setIsDuplicate(2);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
+            }          
         });
     };
 
@@ -136,6 +156,15 @@ function MyPageInfo() {
                 ? setGender(1)
                 : setGender(2);
 
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
+            }          
         });
     }, []);
 

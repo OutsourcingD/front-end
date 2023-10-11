@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./ReviewPage.css";
 import axios from "axios";
 import { ReviewDetailDto } from "../dto/ReviewDetailDto";
@@ -11,7 +11,6 @@ function ReviewPage() {
   const queryParams = new URLSearchParams(location.search);
   const [reviewDetail, setReviewDetail] =
     React.useState<ReviewDetailDto | null>(null); // 검색 여부 [true: 검색, false: 검색x
-  const [isLoading, setIsLoading] = React.useState();
   const [currentSlide, setCurrentSlide] = React.useState(0);
   const settings = {
     infinite: true,
@@ -20,6 +19,7 @@ function ReviewPage() {
     dots: true,
     afterChange: (current: React.SetStateAction<number>) => setCurrentSlide(current)
   };
+  const navigate = useNavigate();
 
   useEffect(() => {
     const reviewId = queryParams.get("reviewId");
@@ -33,7 +33,17 @@ function ReviewPage() {
         },
       }).then((res) => {
         setReviewDetail(res.data);
-      });
+      }).catch((err) => {
+        if(err.response.status === 403 || err.response.status === 401) {
+            alert("Please the login.");
+            navigate("/login")
+        }
+        else
+        {
+            alert("Server Error" + err.response.status);
+            navigate("/");
+        }
+    });
     }
   }, []);
 

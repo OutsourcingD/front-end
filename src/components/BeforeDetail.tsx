@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "./BeforeDetail.css";
 import axios from "axios";
 import { BeforeDto } from "../dto/BeforeDetailDto";
+import { useNavigate } from "react-router-dom";
 
 interface BeforeDetailProps {
     id: number;
@@ -13,6 +14,7 @@ const BeforeDetail = (props: BeforeDetailProps) => {
     const [maxImage, setMaxImage] = React.useState(0);
     const [first, setFirst] = React.useState(true);
     const [last, setLast] = React.useState(false);
+    const navigate = useNavigate();
 
     const handleLeftArrow = () => {
         if (imageIndex < maxImage) {
@@ -40,6 +42,9 @@ const BeforeDetail = (props: BeforeDetailProps) => {
             res.data.beforeAfterVo.length === 1
                 ? setLast(true)
                 : setLast(false);
+        }).catch((err) => {
+            alert(`Contact to developer2. ${err.status}`);
+            navigate("/");
         });
     }, []);
 

@@ -36,3 +36,21 @@
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
 }
+
+@media (max-width:1024px) {
+  .before_category_div {
+    width: 100%;
+  }
+
+  .before_item_div_{
+    width: 49%;
+  }
+}
+
+@media (max-width:860px) {
+
+  .before_item_div_{
+    width: 100%;
+  }
+
+}

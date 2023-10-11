@@ -223,3 +223,79 @@
     font-size: 18px;
     margin-right: 5px;
 }
+
+.edit_doctor_div {
+    width: 1000px;
+    height: 1200px;
+    background: #ffffff;
+    box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.08);
+    border-radius: 15px;
+    position: absolute;
+    left: 450px;
+    top: 170px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+}
+
+.edit_doctor_page_category_div {
+    display: flex;
+    height: 40px;
+    flex-direction: row;
+    margin: 20px 0px 0px 20px;
+    align-items: center;
+}
+
+#edit_doctor_page_category_title {
+    font-weight: 600;
+    font-size: 18px;
+    color: #444444;
+}
+
+#edit_doctor_page_category_sub_title {
+    font-weight: 500;
+    font-size: 14px;
+    color: #444444;
+}
+
+.sub_doc_div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+.sub_hos_div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+.sub_bef_div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+#edit_doctor_page_category_checkbox {
+    width: 20px;
+    height: 20px;
+    margin-right: 3px;
+}
+
+#edit_doctor_page_category_pupple_checkbox {
+    width: 20px;
+    height: 20px;
+    margin-right: 3px;
+}
+
+.sub_doc_category_div {
+    display: flex;
+    align-items: center;
+    height: 40px;
+}

@@ -5,11 +5,13 @@ import Pagination from "react-js-pagination";
 import Footer from "../bottom/Footer";
 import axios from "axios";
 import { MyInqueryResponseDto } from "../dto/MyInqueryResponseDto";
+import { useNavigate } from "react-router-dom";
 
 function MyRecommendReview() {
   const [myInqueryList, setMyInqueryList] = React.useState<MyInqueryResponseDto[]>([]);
   const [page, setPage] = React.useState(1);
   const [totalPages, setTotalPages] = React.useState(2);
+  const navigate = useNavigate();
 
   const handlePageChange = (page: React.SetStateAction<number>) => {
     setPage(page);
@@ -27,6 +29,15 @@ function MyRecommendReview() {
     }).then((res) => {
       setMyInqueryList(res.data);
       setTotalPages(res.data[0] !== undefined ? res.data[0].totalPages : 1);
+    }).catch((err) => {
+      if(err.response.status === 401 || err.response.status === 403) {
+        alert("This is not admin ID.");
+        navigate("/login");
+    }
+    else {
+        alert(`Contact to developer. ${err.response.status}`);
+        navigate("/");
+    }        
     });
   }, [page]);
 
