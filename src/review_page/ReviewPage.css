@@ -76,12 +76,14 @@
     font-size: 14px;
     text-align: end;
     white-space: nowrap;
+    cursor: pointer;
 }
 
 #post_delete_button {
     color: #E95454;
     font-size: 14px;
     white-space: nowrap;
+    cursor: pointer;
 }
 
 .review_detail_image_div {
@@ -204,9 +206,97 @@
     font-weight: 500;
 }
 
-.slick-dots li button:before {
-    color: #D4D4D4;  /* 원하는 색상으로 변경 */
+.review_page_hr_div {
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 14px;       
 }
-.slick-dots li.slick-active button:before {
-    color: #DDB0E3;  /* 활성화된 dot의 색상을 변경 */
+
+.review_page_review_info_div {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 10px 0px 30px 0px;
+}
+
+#review_page_review_info_text {
+    font-size: 15px;
+    font-weight: 600;
+    color: #222222;
+    white-space: nowrap;
+}
+
+#review_page_review_hr {
+    width: 80%;
+    border: none;
+    border-top: 1px solid #D4D4D4;
+}
+
+@media (max-width: 720px) {
+    .review_detail_wrapper {
+        width: 505px;
+    }
+
+    .profile_edit_div {
+        width: 505px;
+    }
+
+    .review_detail_title_div {
+        width: 100%;
+    }
+
+    .review_detail_image_item_div {
+        width: 99.5%;
+    }
+
+    .review_detail_image_item_description_div {
+        width: 99.5%;
+    }
+}
+
+@media (max-width: 520px) {
+    .review_detail_wrapper {
+        width: 305px;
+    }
+
+    .profile_edit_div {
+        width: 305px;
+    }
+
+    .review_detail_title_div {
+        width: 100%;
+    }
+
+    .review_detail_image_item_div {
+        width: 99.5%;
+    }
+
+    .review_detail_image_item_description_div {
+        width: 99.5%;
+    }
+
+    #review_detail_title {
+        font-size: 24px;
+    }
+
+    .profile_info_div {
+        width: 38px;
+        height: 38px;
+    }
+
+    #nickname {
+        font-size: 12px;
+    }
+
+    #date {
+        font-size: 12px;
+    }
+
+    #post_delete_button, #review_detail_image_number, #post_edit_button, #review_created_at {
+        font-size: 12px;
+    }
+
+    #first_review_title {
+        font-size: 16px;
+    }
 }

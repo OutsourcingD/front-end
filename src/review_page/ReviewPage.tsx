@@ -77,7 +77,7 @@ function ReviewPage() {
             <p id="post_delete_button">삭제</p>
           </div>
         </div>
-        <div style={{width: "696.29px", marginTop: "8px", marginBottom: "14px"}}>
+        <div className="review_page_hr_div">
             <hr style={{width: "100%"}}/>
         </div>
         <div className="review_detail_image_div">
@@ -108,9 +108,9 @@ function ReviewPage() {
         <div className="review_info">
           <p>tag</p>
         </div>
-        <div style={{display: "flex", flexDirection: "row", width: "696.29px", marginTop: "10px", marginBottom: "30px"}}>
-          <p style={{flex: "1", whiteSpace: "nowrap"}}>리뷰 정보</p>
-          <hr style={{flex: "10", border: "none", borderTop: "1px solid #D4D4D4"}}/>
+        <div className="review_page_review_info_div">
+          <p id="review_page_review_info_text">review info</p>
+          <hr id="review_page_review_hr" />
         </div>
         <div className="review_comment">
 
