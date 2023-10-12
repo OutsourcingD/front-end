@@ -110,6 +110,7 @@
 
 #find_id_page_email_input::placeholder {
     color: #D4D4D4;
+    font-size: 15px;
 }
 
 .find_page_email_form_div {
@@ -132,8 +133,11 @@
     background-color: #DFB1E4;
     border-radius: 8px;
     border: 1px solid #E6C2EA;
-    align-items: stretch;
+    align-items: center;
+    display: flex;
+    justify-content: center;
     width: 90.91px;
+    height: 41px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.11);
     cursor: pointer;
 }
@@ -145,11 +149,7 @@
 
 #find_page_email_push_button_text {
     color: white;
-    height: 40.9px;
-    width: 90.9px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    white-space: nowrap;
 }
 
 #find_page_code_verify_button_text {
@@ -162,7 +162,7 @@
 }
 
 .find_page_verify_code_button_div {
-    width: 615px;
+    width: 100%;
     display: flex;
     justify-content: center;
     margin-top: 49.2px;
@@ -175,7 +175,7 @@
     }
 
     .find_div {
-        height: 250px;
+        height: 300px;
         width: 310px;
     }
 
@@ -201,5 +201,42 @@
 
     .find_page_title_div {
         margin-left: 5px;
+    }
+
+    .find_page_email_input_div {
+        margin-top: 30px;
+        margin-left: 20px;
+    }
+
+    .find_page_email_push_button_div {
+        width: 100px;
+        height: 30px;
+        align-self: flex-end;
+        
+    }
+
+    #find_id_page_email_input::placeholder {
+        font-size: 12px;
+    }
+
+    #find_page_email_push_button_text {
+        font-size: 12px;
+    }
+
+    .find_page_email_container {
+        width: 96%;
+    }
+
+    .find_page_verify_code_button_div {
+        height: 0;
+        margin-top: 60px;
+    }
+
+    .find_page_email_form_div {
+        width: 240px;
+    }
+
+    #find_page_code_verify_button_text {
+        font-size: 12px;
     }
 }
