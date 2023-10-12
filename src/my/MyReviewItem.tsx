@@ -23,11 +23,11 @@ const MyReviewItem : React.FC<MyReviewItemProps> = (props: MyReviewItemProps) =>
     return (
         <div className="myreview_div" onClick={() => onClick(props.reviewId)}>
             <div className="nth_container">
-                <p id="my_review_title">{props.title && props.title.length > 40 ? props.title.substring(0, 40) : props.title}</p>
+                <p id="my_review_title">{props.title}</p>
             </div>
             <div className="nth_right_div">
                 <div className="nth_button_div" onClick={(event) => handleWrite(event, props.reviewId)}>
-                    <p id="nth_text">second review</p>
+                    <p id="nth_text">review</p>
                     <img src="/pen.png" alt="" id="pen"/>
                 </div>
                 <p id="my_review_date">{props.date}</p>
