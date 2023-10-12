@@ -67,7 +67,7 @@
 .profile_right_div {
     display: flex;
     flex-direction: row;
-    width: 66px;
+    width: 80px;
     justify-content: space-between;
 }
 

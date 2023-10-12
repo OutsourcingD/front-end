@@ -73,8 +73,8 @@ function ReviewPage() {
             </div>
           </div>
           <div className="profile_right_div">
-            <p id="post_edit_button">수정</p>
-            <p id="post_delete_button">삭제</p>
+            <p id="post_edit_button">edit</p>
+            <p id="post_delete_button">delete</p>
           </div>
         </div>
         <div className="review_page_hr_div">
@@ -99,7 +99,7 @@ function ReviewPage() {
           </Slider>
         </div>
         <div className="review_first_detail">
-          <p id="first_review_title">1차 후기</p>
+          <p id="first_review_title">1st review</p>
           <p id="review_created_at">{reviewDetail?.createdAt}</p>
         </div>
         <div className="review_first_detail_div">
