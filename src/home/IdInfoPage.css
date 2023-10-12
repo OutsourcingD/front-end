@@ -76,6 +76,8 @@
   display: flex;
   flex-direction: row;
   margin-top: 46.9px;
+  align-items: center;
+  justify-content: center;
 }
 
 #id_result_ok_button_text {
@@ -94,6 +96,49 @@
 
 @media (max-width: 640px) {
   .id_result_text_div {
-    margin: 0;
+    margin-top: 40px;
+  }
+
+  #id_infomanage_title {
+    font-size: 12px;
+  }
+
+  .id_infomanage_div {
+    margin-top: 20px;
+  }
+
+  #id_infomanage_id {
+    font-size: 12px;
+  }
+
+  #id_infomanage_id_data {
+    font-size: 15px;
+  }
+
+  #join_date {
+    font-size: 12px;
+  }
+
+  .id_result_button_div {
+    margin-top: 30px;
+  }
+
+  .id_result_ok_button {
+    width: 80px;
+    height: 20px;
+    margin-right: 10px;
+  }
+
+  #id_result_ok_button_text {
+    font-size: 12px;
+  }
+
+  .id_result_pwd_button {
+    width: 80px;
+    height: 20px;
+  }
+
+  #id_result_pwd_button_text {
+    font-size: 12px;
   }
 }

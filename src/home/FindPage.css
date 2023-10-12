@@ -171,8 +171,8 @@
 
 @media (max-width: 640px) {
     .find_div {
-        height: 150px;
-        width: 315px;
+        height: 250px;
+        width: 310px;
     }
 
     .find_id_container {
@@ -193,5 +193,9 @@
     
     #find_id_page_input_title {
         font-size: 14px;
+    }
+
+    .find_page_title_div {
+        margin-left: 5px;
     }
 }
