@@ -73,3 +73,31 @@
     color: #ffffff;
     cursor: pointer;
 }
+
+@media (max-width: 640px) {
+  .pwd_setting_div {
+    width: 90%;
+    margin-top: 20px;
+    margin-left: 16px;
+  }
+
+  #pwd_setting_title {
+    font-size: 12px;
+  }
+  
+  #pwd_setting_pwd_input_div {
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+
+  .pwd_setting_input_div {
+    margin-bottom: 10px;
+    width: 99%;
+  }
+
+  .pwd_setting_check_button {
+    margin-top: 0px;
+    width: 61px;
+    height: 24px;
+  }
+}
