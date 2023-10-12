@@ -212,3 +212,42 @@
     font-weight: 500;
     color: white;
 }
+
+@media (max-width: 480px) {
+    .signup_wrapper {
+        width: 304px;
+    }
+
+    #signup_title {
+        font-size: 24px;
+    }
+
+    .signup_input_div {
+        width: 79px;
+        height: 79px;
+    }
+
+    .email_form_div {
+        width: 204px;
+    }
+
+    .sign_up_button_div {
+        width: 80px;
+    }
+
+    #signup_email_title {
+        font-size: 15px;
+    }
+
+    #verify_button_text {
+        font-size: 12px;
+    }
+
+    .signup_button_div {
+        width: 304px;
+    }
+
+    #signup_email_input::placeholder {
+        font-size: 12px;
+    }
+}
