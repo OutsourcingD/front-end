@@ -54,7 +54,7 @@ function MyRecommendReview() {
     return (
         <div className="my_recommend_review_div">
             <div className="my_recommend_review_header">
-                <p id="my_recommend_review_title">나의 댓글</p>
+                <p id="my_recommend_review_title">My comments</p>
             </div>
             <div className="my_review_item_list_div">
                 {myCommentList.length !== 0 ? (
@@ -69,7 +69,7 @@ function MyRecommendReview() {
                         );
                     })
                 ) : (
-                    <p>작성한 댓글 없음...</p>
+                    <p>No my comments...</p>
                 )}
             </div>
             <Pagination
