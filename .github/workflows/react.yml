@@ -5,7 +5,7 @@ on:
       - master
 jobs:
   deploy_test:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-22.04 
     
     env:
       REACT_APP_SERVER_URL: ${{secrets.REACT_APP_SERVER_URL}}
