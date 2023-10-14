@@ -192,3 +192,76 @@
     background: rgba(0, 0, 0, 0.37);
     filter: blur(50px);
 }
+
+
+@media (max-width:868px) { 
+    .before_detail_container {
+        width: 98%;
+    }
+
+    #arrow {
+        width: 50px;
+        height: 50px;
+    }
+
+    .before_detail_top_body {
+        width: 100%;
+        height: 365px;
+    }
+
+    .before_detail_bottom_body {
+        width: 100%;
+    }
+} 
+
+@media (max-width:680px) { 
+    .before_detail_left_bottom_div {
+        margin-left: 12px;
+    }
+
+    #arrow {
+        width: 40px;
+        height: 40px;
+    }
+
+    .before_detail_period_div {
+        margin-top: 10px;
+    }
+
+    .before_detail_category_div {
+        height: 18px;
+        padding: 0 8px;
+    }
+
+    #before_detail_category_text {
+        font-size: 11px;
+    }
+
+    #before_detail_after_period {
+        margin-left: 0px;
+    }
+
+    .before_detail_right_bottom_div {
+        margin-right: 12px;
+    }
+
+    #before_detail_after_period {
+        display: none;
+    }
+
+    #before_detail_date {
+        margin-bottom: 3px;
+    }
+} 
+
+@media (max-width:488px) {
+
+    #before_detail_date {
+        font-size: 11px;
+        margin-bottom: 3px;
+    }
+
+    #before_detail_nickname {
+        font-size: 11px;
+    }
+}

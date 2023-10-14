@@ -114,23 +114,9 @@ function HospitalDetailPage() {
                         }}
                     />
                 </div>
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        width: "100%",
-                        marginTop: "1%",
-                        marginBottom: "3%",
-                    }}
-                >
-                    <p style={{ flex: "1" }}>병원 정보</p>
-                    <hr
-                        style={{
-                            flex: "10",
-                            border: "none",
-                            borderTop: "1px solid #D4D4D4",
-                        }}
-                    />
+                <div className="hospital_detail_content_title">
+                    <p className="hospital_detail_content_text">병원 정보</p>
+                    <hr className="hospital_detail_content_line"/>
                 </div>
                 <div className="hospital_detail_hospital_info_div">
                     <div className="hospital_info_profile_div">
@@ -150,23 +136,9 @@ function HospitalDetailPage() {
                         <p>{hospitalDetail?.avgRage}</p>
                     </div>
                 </div>
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        width: "100%",
-                        marginTop: "8.7px",
-                        marginBottom: "10px",
-                    }}
-                >
-                    <p style={{width: "79px" }}>연관 후기</p>
-                    <hr
-                        style={{
-                            width: "785px",
-                            border: "none",
-                            borderTop: "1px solid #D4D4D4",
-                        }}
-                    />
+                <div className="hospital_review_title">
+                    <p className="hospital_review_text">연관 후기</p>
+                    <hr className="hospital_review_line"/>
                 </div>
                 <div className="hospital_review_div">
                     {hospitalReviewList.length !== 0 ? hospitalReviewList.map((item) => {
