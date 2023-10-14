@@ -9,8 +9,15 @@ function Category(props: CategoryProps) {
     const [categoryNumber, setCotegoryNumber] = useState(0);
 
     const handleCategory = (nav: number) => {
-        setCotegoryNumber(nav);
-        props.onCategory(nav);
+        if(categoryNumber !== nav) {
+            setCotegoryNumber(nav);
+            props.onCategory(nav);
+        }
+        else 
+        {
+            setCotegoryNumber(0);
+            props.onCategory(0);
+        }
     }
 
     return (

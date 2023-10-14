@@ -1,12 +1,14 @@
 .hospital_div {
     width: 100%;
+    height: 100%;
     border-top: 1px solid #D4D4D4;
     margin-top: 7.7px;
     display: flex;
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
-    margin-bottom: 60px;
+    justify-content: space-between;
+    min-height: calc(100vh - 65px);
 }
 
 .hospital_container {

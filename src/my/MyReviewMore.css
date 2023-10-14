@@ -1,11 +1,13 @@
 .my_recommend_review_div {
     width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
+    align-items: center;
     border-top: 1px solid #d4d4d4;
     margin-top: 2px;
+    height: 100%;
+    min-height: calc(100vh - 65px);
+    justify-content: space-between;
 }
 
 .my_recommend_review_header {

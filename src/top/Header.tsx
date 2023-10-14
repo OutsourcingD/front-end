@@ -134,6 +134,10 @@ function Header() {
         const refreshToken = localStorage.getItem("refresh_token")
         const memberIdString = localStorage.getItem("user_id")
         let memberId = 0
+
+        if(location.pathname !== "/hospital" && location.pathname !== "/doctor" && location.pathname !== "/before-after") {
+            setSelected(0);
+        }
         
         memberIdString !== null ? memberId = Number(memberIdString) : memberId = 0;
 
@@ -146,10 +150,6 @@ function Header() {
     }, [location]);
 
     useEffect(() => {
-        localStorage.getItem("selected")
-            ? setSelected(Number(localStorage.getItem("selected")))
-            : setSelected(0);
-
         axios({
             method: "get", // or 'post', 'put', etc.
             url: `${process.env.REACT_APP_SERVER_URL}/member/info`,
@@ -182,12 +182,6 @@ function Header() {
             window.removeEventListener("resize", handleResize);
         };
     }, []);
-
-    useEffect(() => {
-        localStorage.getItem("selected") === null
-            ? setSelected(0)
-            : setSelected(Number(localStorage.getItem("selected")));
-    }, [selected]);
 
     useEffect(() => {
         if(isClick) {
