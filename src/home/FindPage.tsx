@@ -5,13 +5,26 @@ import FindPwdPage from "./FindPwdPage";
 import IdInfoPage from "./IdInfoPage";
 import PwdSettingPage from "./PwdSettingPage";
 import Footer from "../bottom/Footer";
+import { FindIdDto } from "../dto/FindIdDto";
 
 const FindPage = () => {
   const [isId, setIsId] = React.useState<boolean>(true);
+  const [isPwd, setIsPwd] = React.useState<boolean>(false);
   const [isSubmit, setIsSubmit] = React.useState<boolean>(false);
+  const [inResult, setInResult] = React.useState<FindIdDto>({} as FindIdDto);
 
   const handleEmail = (email: string) => {
     
+  }
+
+  const setResult = (result: FindIdDto) => {
+    setInResult(result);
+    setIsSubmit(true);
+  }
+
+  const revert = (id: boolean) => {
+    setIsId(id);
+    setIsSubmit(false);
   }
 
   return (
@@ -39,10 +52,10 @@ const FindPage = () => {
             !isSubmit ?
           <>{
             isId ? 
-                <FindIdPageItem findId={handleEmail} />
+                <FindIdPageItem findId={handleEmail} setResult={setResult} />
             : <FindPwdPage />
           }</>
-          : <>{isId ? <IdInfoPage /> : <PwdSettingPage />}</>
+          : <>{isId ? <IdInfoPage createdAt={inResult.createdAt} userId={inResult.userId} revert={revert}  /> : <PwdSettingPage />}</>
           }
         </div>
       </div>
