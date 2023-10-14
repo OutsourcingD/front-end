@@ -131,7 +131,7 @@
 
 .filter_div {
     display: flex;
-    margin-top: 8px;
+    margin: 8px 0 0 10px;
     align-items: flex-end;
     cursor: pointer;
 }
@@ -328,7 +328,7 @@
 
     .moreDiv {
         flex: 10;
-        padding-right: 14px;
+        padding-right: 10px;
     }
 
     #more_text {
