@@ -108,6 +108,11 @@ function Header() {
         }
     }
 
+    const handleHamburgerLogout = () => {
+        logoutClick();
+        setIsClick(false);
+    }
+
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
             if (
@@ -209,8 +214,17 @@ function Header() {
                             <p id="hamburger_menu_text">Before-After</p>
                         </div>
                     </div>
-                    <div className="hamburger_sign_in_div" onClick={() => {navigate("/login"); setIsClick(false)}}>
-                        <p id="hamburger_sign_in">Sign in / up</p>
+                    <div className="hamburger_sign_in_div">
+                        {
+                            isLogin ?
+                                <div className="logout_container">
+                                    <p id="hamburger_sign_in" onClick={handleHamburgerLogout}>Log out</p>
+                                    <div onClick={() => {mypageClick(); setIsClick(false)}}>
+                                        <img src="/setting_image.png" alt="" id="setting_image" />
+                                    </div>
+                                </div>
+                                : <p id="hamburger_sign_in" onClick={() => {navigate("/login"); setIsClick(false)}}>Sign in / up</p>
+                        }
                     </div>
                 </div> : null
             }

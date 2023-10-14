@@ -43,7 +43,7 @@
     border: none;
     outline: none;
     font-size: 14px;
-    width: 700px;
+    width: 686px;
     padding-left: 14px;
     height: 200px;
     border-radius: 15px;
@@ -80,4 +80,32 @@
     font-weight: 600;
     font-size: 18px;
     color: #444444;
+}
+
+@media (max-width: 712px) {
+    .inquery_wrapper {
+        width: 94%;
+    }
+
+    #inquery_input {
+        width: 476px;
+    }
+
+    .inquery_button_div {
+        width: 500px;
+    }
+}
+
+@media (max-width: 510px) {
+    #inquery_input {
+        width: 286px;
+    }
+
+    .inquery_button_div {
+        width: 300px;
+    }
+
+    #inquery_title {
+        font-size: 24px;
+    }
 }

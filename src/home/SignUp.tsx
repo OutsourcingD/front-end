@@ -208,7 +208,7 @@ function SignUp() {
         <div className="signup_div">
             <div className="signup_wrapper">
                 <div className="signup_title_div">
-                    <p id="signup_title">Please enter your information</p>
+                    <p id="signup_title">Sign up</p>
                 </div>
                 {/* 프로필 이미지 입력 */}
                 <div className="signup_input_div">
@@ -258,11 +258,11 @@ function SignUp() {
                                 className="sign_up_active_button_div"
                                 onClick={() => pushCode(email)}
                             >
-                                <p id="verify_active_button_text">verify mail</p>
+                                <p id="verify_active_button_text">push</p>
                             </div>
                         ) : (
                             <div className="sign_up_button_div">
-                                <p id="verify_button_text">verify mail</p>
+                                <p id="verify_button_text">push</p>
                             </div>
                         )}
                     </div>
@@ -270,7 +270,7 @@ function SignUp() {
                 {/* 인증번호 입력 섹션 */}
                 <div className="signup_email_div">
                     <div className="signup_email_title_div">
-                        <p id="signup_email_title">Authentication code</p>
+                        <p id="signup_email_title">Verified code</p>
                         <p id="essential">*</p>
                         {codeVerified === 1 ? (
                             <p id="email_verified">verified.</p>
@@ -307,11 +307,11 @@ function SignUp() {
                                 className="sign_up_active_button_div"
                                 onClick={() => checkMailCode(code)}
                             >
-                                <p id="verify_active_button_text">verify code</p>
+                                <p id="verify_active_button_text">verify</p>
                             </div>
                         ) : (
                             <div className="sign_up_button_div">
-                                <p id="verify_button_text">verify code</p>
+                                <p id="verify_button_text">verify</p>
                             </div>
                         )}
                     </div>
@@ -332,7 +332,7 @@ function SignUp() {
                             <form onSubmit={sendEmail} id="sign_up_form">
                                 <input
                                     id="signup_email_input"
-                                    placeholder="Enter a password of 8 to 16 characters"
+                                    placeholder="Enter a password of 8 to 16."
                                     type="password"
                                     value={password}
                                     onChange={passwordHandler}

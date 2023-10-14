@@ -9,7 +9,7 @@
 }
 
 .recommend_all_page_title_div {
-    margin-top: 46px;
+    margin: 44px 0 32px 0;
     width: 809px;
     display: flex;
     justify-content: flex-start;
@@ -44,3 +44,34 @@
     display: flex;
     align-items: center;
 }
+
+
+@media (max-width:860px) { 
+    .recommend_all_page_title_div {
+        width: 94%;
+    }
+} 
+
+@media (max-width:680px) { 
+    .recommend_all_page_title_div {
+        margin: 44px 0 24px 0;
+    }
+
+    #recommend_all_page_title {
+        font-size: 24px;
+    }
+
+    .hot_div {
+        height: 32px;
+    }
+}
+
+@media (max-width:399px) { 
+    #recommend_all_page_title {
+        font-size: 18px;
+    }
+
+    .hot_div {
+        height: 24px;
+    }
+} 

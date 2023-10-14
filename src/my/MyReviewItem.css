@@ -12,6 +12,9 @@
     color: #444444;
     font-size: 15px;
     font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 #my_review_date {
@@ -23,6 +26,7 @@
 .nth_container {
     display: flex;
     flex-direction: row;
+    width: 300px;
 }
 
 .nth_button_div {
@@ -30,11 +34,10 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    border: 1px solid #999999;
+    border: 1px solid #d4d4d4;
     filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.08));
     border-radius: 100px;
-    margin-left: 10px;
-    padding: 2px 10px;
+    padding: 3px 10px;
     cursor: pointer;
     margin: 0 10px;
 }
@@ -56,4 +59,16 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+@media (max-width: 640px) {
+    .nth_container {
+        width: 200px;
+    }
+}
+
+@media (max-width: 440px) {
+    .nth_container {
+        width: 100px;
+    }
 }

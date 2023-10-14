@@ -81,13 +81,13 @@ function InqueryComponent() {
                         <textarea
                             id="inquery_input"
                             value={value}
-                            placeholder="문의하고 싶은 내용을 입력해주세요. 빠른 시일 내에 관리자가 답변해드립니다."
+                            placeholder="Please enter what you want to inquire about."
                             onChange={onChange}
                         />
                     </form>
                 </div>
                 <div className="inquery_button_div" onClick={sendInquery}>
-                    <p id="inquery_button">등록하기</p>
+                    <p id="inquery_button">submit</p>
                 </div>
             </div>
             <Footer />

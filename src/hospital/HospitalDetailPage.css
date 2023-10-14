@@ -11,7 +11,7 @@
 }
 
 .hospital_detail_wrapper {
-    margin-top: 38.4px;
+    margin-top: 38px;
     width: 864px;
     display: flex;    
     flex-direction: column;
@@ -52,6 +52,24 @@
     margin-bottom: 16px;
 }
 
+.hospital_detail_content_title {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 24px;
+}
+
+.hospital_detail_content_text {
+    flex: 1;
+}
+
+.hospital_detail_content_line {
+    flex: 10;
+    border: 0;
+    border-top: 1px solid #D4D4D4;
+}
+
 #hospital_detail_content {
     width: 100%;
     display: flex;
@@ -63,14 +81,14 @@
     display: flex;
     flex-direction: row;
     align-items: stretch;
-    margin-bottom: 34.5px;
+    margin-bottom: 34px;
 }
 
 .hospital_info_profile_div {
     border-radius: 50%;
     border: 1px solid #D4D4D4;
-    width: 63px;
-    height: 63px;
+    width: 64px;
+    height: 64px;
     justify-content: center;
 }
 
@@ -203,4 +221,95 @@
     font-weight: 400;
     color: #444444;
     margin-right: 5px;
+}
+
+.hospital_review_title {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 24px;
+}
+
+.hospital_review_text {
+    flex: 1;
+}
+
+.hospital_review_line {
+    flex: 10 1;
+    border: none;
+    border-top: 1px solid #D4D4D4;
+}
+
+@media (max-width:868px) { 
+    .hospital_detail_wrapper {
+        width: 94%;
+    }
+
+    .hospital_detail_content_text {
+        flex: 2;
+    }
+    
+    .hospital_detail_content_line {
+        flex: 16;
+    }
+
+    .hospital_review_text {
+        flex: 2;
+    }
+    
+    .hospital_review_line {
+        flex: 16;
+    }
+} 
+
+@media (max-width:680px) { 
+    #hospital_detail_title {
+        font-size: 28px;
+    }
+
+    .hospital_detail_content_text {
+        flex: 3;
+    }
+    
+    .hospital_detail_content_line {
+        flex: 19;
+    }
+
+    .hospital_review_text {
+        flex: 3;
+    }
+    
+    .hospital_review_line {
+        flex: 19;
+    }
+} 
+
+@media (max-width:488px) {
+    #hospital_detail_title {
+        font-size: 24px;
+    }
+
+    .hospital_detail_description {
+        font-size: 14px;
+    }
+
+    .hospital_detail_content_text {
+        flex: 5;
+        font-size: 15px;
+    }
+    
+    .hospital_detail_content_line {
+        flex: 20;
+    }
+
+    .hospital_review_text {
+        flex: 5;
+        font-size: 15px;
+    }
+    
+    .hospital_review_line {
+        flex: 20;
+    }
+
 }

@@ -285,6 +285,18 @@
     cursor: pointer;
 }
 
+.logout_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#setting_image {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
 @media (max-width: 920px) {
     .right {
         margin-right: 15px;

@@ -39,10 +39,55 @@
     align-items: center;
     justify-content: center;
     filter: drop-shadow(0px 4px 11px rgba(0, 0, 0, 0.09));
+    cursor: pointer;
 }
 
 #nth_review_write_page_button {
     font-weight: 700;
     font-size: 14px;
     color: white;
+}
+
+.nth_review_write_page_wysiwyg_div {
+    width: 100%;
+}
+
+@media (max-width: 1180px) {
+    .nth_review_write_page_title_div {
+        width: 720px;
+    }
+
+    .nth_review_write_page_wysiwyg_div {
+        width: 760px;
+    }
+
+    .nth_review_write_page_wrapper {
+        width: 760px;
+    }
+}
+
+@media (max-width: 735px) {
+    .nth_review_write_page_title_div {
+        width: 300px;
+    }
+
+    .nth_review_write_page_wysiwyg_div {
+        width: 340px;
+    }
+
+    .nth_review_write_page_wrapper {
+        width: 340px;
+    }
+
+    #nth_review_write_page_title {
+        font-size: 24px;
+    }
+
+    .nth_review_write_page_button_div {
+        width: 60px;
+    }
+
+    #nth_review_write_page_button {
+        font-size: 11px;
+    }
 }

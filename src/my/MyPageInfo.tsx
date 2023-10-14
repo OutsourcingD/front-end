@@ -203,15 +203,15 @@ function MyPageInfo() {
                 <div className="mypage_info_body">
                     <div className="my_info_sub_title_div">
                         <div className="my_info_nickname_container">
-                            <p id="my_info_sub_title">닉네임</p>
+                            <p id="my_info_sub_title">Nickname</p>
                             {isDuplicate === 2 ? (
                                 <p id="check_nickname_result_ok">
-                                    사용 가능한 닉네임입니다.
+                                    available nickname.
                                 </p>
                             ) : null}
                             {isDuplicate === 1 ? (
                                 <p id="check_nickname_result_false">
-                                    사용 불가능한 닉네임입니다.
+                                    unavailable nickname.
                                 </p>
                             ) : null}
                         </div>
@@ -243,13 +243,13 @@ function MyPageInfo() {
                                             : "check_nickname_active"
                                     }
                                 >
-                                    중복확인
+                                    check
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div className="my_info_sub_title_div">
-                        <p id="my_info_sub_title_name">이름</p>
+                        <p id="my_info_sub_title_name">Name</p>
                         <form
                             id="form_tag"
                             onSubmit={(e) => e.preventDefault()}
@@ -260,7 +260,7 @@ function MyPageInfo() {
                                 type="text"
                                 placeholder={
                                     defaultName.length === 0
-                                        ? "이름을 입력해주세요."
+                                        ? "Enter a name."
                                         : defaultName
                                 }
                                 onChange={nameHandler}
@@ -268,7 +268,7 @@ function MyPageInfo() {
                         </form>
                     </div>
                     <div className="my_info_sub_title_div">
-                        <p id="my_info_sub_title_name">이메일</p>
+                        <p id="my_info_sub_title_name">Email</p>
                         <form
                             id="form_tag"
                             onSubmit={(e) => e.preventDefault()}
@@ -284,16 +284,16 @@ function MyPageInfo() {
                     <div className="my_info_sub_title_div">
                         <div className="my_info_password_container">
                             <p id="my_info_sub_title_password_name">
-                                새 비밀번호
+                                New Password
                             </p>
                             {pwd.length > 16 ? (
                                 <p id="check_nickname_result_false">
-                                    비밀번호가 너무 길어요.
+                                    too long password.
                                 </p>
                             ) : null}
                             {pwd.length < 8 && pwd.length > 0 ? (
                                 <p id="check_nickname_result_false">
-                                    비밀번호가 너무 짧습니다.
+                                    too short password.
                                 </p>
                             ) : null}
                         </div>
@@ -305,7 +305,7 @@ function MyPageInfo() {
                                 id="input_tag"
                                 type="password"
                                 value={pwd}
-                                placeholder="8 ~ 16글자 사이의 비밀번호를 입력해주세요."
+                                placeholder="Enter a password between 8 and 16 characters."
                                 onChange={pwdHandler}
                             />
                         </form>
@@ -313,11 +313,11 @@ function MyPageInfo() {
                     <div className="my_info_sub_title_div">
                         <div className="my_info_password_container">
                             <p id="my_info_sub_title_password_name">
-                                새 비밀번호 확인
+                                Password Check
                             </p>
                             {pwdCheck.length === 0 ? null : pwd !== pwdCheck ? (
                                 <p id="check_nickname_result_false">
-                                    비밀번호가 일치하지 않습니다.
+                                    Password mismatch.
                                 </p>
                             ) : null}
                         </div>
@@ -335,7 +335,7 @@ function MyPageInfo() {
                         </form>
                     </div>
                     <div className="my_info_sub_title_div">
-                        <p id="my_info_sub_title_name">전화번호</p>
+                        <p id="my_info_sub_title_name">Phone Number</p>
                         <form
                             id="form_tag"
                             onSubmit={(e) => e.preventDefault()}
@@ -346,7 +346,7 @@ function MyPageInfo() {
                                 value={phone}
                                 placeholder={
                                     defaultPhone.length === 0
-                                        ? "전화번호를 입력해주세요."
+                                        ? "Enter a phone number."
                                         : defaultPhone
                                 }
                                 onChange={phoneHandler}
@@ -354,7 +354,7 @@ function MyPageInfo() {
                         </form>
                     </div>
                     <div className="my_info_sub_title_div">
-                        <p id="my_info_sub_title_name">성별</p>
+                        <p id="my_info_sub_title_name">Gender</p>
                         <div className="gender_button">
                             {gender === 1 ? (
                                 <img
