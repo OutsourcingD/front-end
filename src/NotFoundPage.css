@@ -1,0 +1,114 @@
+.not_found_page_div {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    border-top: 1px solid #d4d4d4;
+    flex-direction: column;
+}
+
+.not_found_wrapper {
+    width: 704px;
+    height: 704px;
+    border-radius: 50%;
+    background-color: rgba(255, 251, 255, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 0px 70px 0px;
+}
+
+.not_found_body {
+    background: #ffffff;
+    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.08);
+    border-radius: 15px;
+    width: 523px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#not_found_main_title {
+    font-weight: 600;
+    font-size: 120px;
+    background: linear-gradient(
+        180deg,
+        #a991d4 0%,
+        #e1a5e2 97.4%,
+        #fac1ec 97.41%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+#not_found_text {
+    font-weight: 700;
+    font-size: 30px;
+    color: #222222;
+    margin-top: 10px;
+}
+
+#not_found_sub_title {
+    font-weight: 400;
+    font-size: 16px;
+    color: #4c4c4c;
+    margin-top: 30px;
+}
+
+.back_button_div {
+    width: 160px;
+    height: 48px;
+    background: #dfb1e4;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.11);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+#back_button_text {
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+@media (max-width: 720px) {
+    .not_found_wrapper {
+        width: 304px;
+        height: 304px;
+        margin: 30px 0px 340px 0px;
+    }
+
+    .not_found_body {
+        width: 223px;
+        height: 200px;
+    }
+
+    #not_found_main_title {
+        font-size: 50px;
+    }
+
+    #not_found_text {
+        font-size: 20px;
+        margin-top: 2px;
+    }
+
+    #not_found_sub_title {
+        font-size: 12px;
+        margin-top: 10px;
+    }
+
+    .back_button_div {
+        width: 80px;
+        height: 21px;
+        margin-top: 6px;
+    }
+
+    #back_button_text {
+        font-size: 11px;
+    }
+}
