@@ -1,10 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./MakeReviewPage.css";
 import MakeReviewItem from "./MakeReviewItem";
 import MakeBeforeItem from "./MakeBeforeItem";
 import Wysiwyg from "../components/ContentInput";
-import { EditorState, convertToRaw } from "draft-js";
-import draftjsToHtml from "draftjs-to-html";
 import Footer from "../bottom/Footer";
 
 interface ReviewProps {
@@ -17,22 +15,7 @@ const MakeReviewPage = ({ checkBox }: ReviewProps) => {
     const handleReview = (review: boolean) => {
         setIsReview(review);
     };
-    const [editorState, setEditorState] = React.useState(
-        EditorState.createEmpty()
-    );
-    const [htmlString, setHtmlString] = React.useState("");
-
-    const updateTextDescription = async (state: EditorState) => {
-        await setEditorState(state);
-        const html = draftjsToHtml(
-            convertToRaw(editorState.getCurrentContent())
-        );
-        setHtmlString(html);
-    };
-
-    const uploadCallback = () => {
-        console.log("이미지 업로드");
-    };
+    const [content, setContent] = React.useState<string>("");
 
     return (
         <div className="review_page_div">
@@ -90,7 +73,7 @@ const MakeReviewPage = ({ checkBox }: ReviewProps) => {
                     <>
                         <MakeReviewItem />
                         <div style={{width: "705px"}}>
-                        <Wysiwyg />
+                            <Wysiwyg setContent={setContent} />
                         </div>
                     </>
                 ) : (

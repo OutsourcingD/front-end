@@ -1,26 +1,47 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Wysiwyg from "../components/ContentInput";
 import "./MakeNthReviewPage.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function MakeNthReviewPage() {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
+    const [content, setContent] = React.useState<string>("");
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        console.log(queryParams.get("reviewId"));
-    }, []);
+    const onClick = () => {
+        axios({
+            method: "post",
+            url: `${process.env.REACT_APP_SERVER_URL}/review/child/add`,
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+            data: {
+                content: content,
+                reviewId: queryParams.get("reviewId")
+            }
+        }).then((res) => {
+            alert("Review upload complete.");
+            navigate("/review?reviewId=" + queryParams.get("reviewId"));
+        }).catch((err) => {
+            alert(`Contact to developer. ${err.response.status}`);
+        });
+    };
 
     return (
         <div className="nth_review_write_page_div">
             <div className="nth_review_write_page_wrapper">
                 <div className="nth_review_write_page_title_div">
-                    <p id="nth_review_write_page_title">후기 작성</p>
-                    <div className="nth_review_write_page_button_div">
-                        <p id="nth_review_write_page_button">submit</p>
+                    <p id="nth_review_write_page_title">Make Nth Review</p>
+                    <div className="nth_review_write_page_button_div" onClick={onClick}>
+                        <p id="nth_review_write_page_button">Submit</p>
                     </div>
                 </div>
-                <Wysiwyg />
+                <div className="nth_review_write_page_wysiwyg_div">
+                    <Wysiwyg setContent={setContent}/>
+                </div>
             </div>
         </div>
     );
