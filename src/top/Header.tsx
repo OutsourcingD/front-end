@@ -205,10 +205,10 @@ function Header() {
                 <div className="hamburger_menu">
                     <div>
                         <div className="hamburger_menu_item" onClick={() => handleHamburger(1)}>
-                            <p id="hamburger_menu_text">Hospital info</p>
+                            <p id="hamburger_menu_text">Hospital</p>
                         </div>
                         <div className="hamburger_menu_item" onClick={() => handleHamburger(2)}>
-                            <p id="hamburger_menu_text">Doctor info</p>
+                            <p id="hamburger_menu_text">Doctor</p>
                         </div>
                         <div className="hamburger_menu_item" onClick={() => handleHamburger(3)}>
                             <p id="hamburger_menu_text">Before-After</p>
@@ -254,19 +254,19 @@ function Header() {
                     }
                     onClick={() => movePage(1)}
                 >
-                    병원정보
+                    Hospital
                 </Menu>
                 <Menu
                     id={selected !== 2 ? "menu" : "selected_menu"}
                     onClick={() => movePage(2)}
                 >
-                    원장정보
+                    Doctor
                 </Menu>
                 <Menu
                     id={selected !== 3 ? "menu" : "selected_menu"}
                     onClick={() => movePage(3)}
                 >
-                    전후사진
+                    Before-After
                 </Menu></> : null}
             </LeftDiv>
             <RightDiv className="right">
