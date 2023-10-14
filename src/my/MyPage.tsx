@@ -118,7 +118,6 @@ function MyPage() {
                         <p id="mypage_name">김철수</p>
                     </div>
                     <div className="modify_mypage_button_div">
-                        <p id="mypage_sir">sir</p>
                         <img
                             src="/setting1.png"
                             alt="setting"
