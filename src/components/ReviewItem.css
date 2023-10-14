@@ -232,7 +232,7 @@ p {
   }
 
   .left_review_item {
-    margin: 0 12px 0 0;
+    margin: 0 6px 0 0;
   }
 
   .view_info {
@@ -296,6 +296,10 @@ p {
 
   .comment_div {
     width: 30px;
+  }
+
+  .hospital_name_div {
+    width: 40px;
   }
 } 
 

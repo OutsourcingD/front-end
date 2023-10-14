@@ -53,35 +53,39 @@ function MyRecommendReview() {
 
     return (
         <div className="my_recommend_review_div">
-            <div className="my_recommend_review_header">
-                <p id="my_recommend_review_title">My comments</p>
+            <div>
+                <div className="my_recommend_review_header">
+                    <p id="my_recommend_review_title">My comments</p>
+                </div>
+                <div className="my_review_item_list_div">
+                    {myCommentList.length !== 0 ? (
+                        myCommentList.map((item, index) => {
+                            return (
+                                <div key={index}>
+                                    <MyCommentItem
+                                        title={item.content}
+                                        reviewId={item.reviewId}
+                                    />
+                                </div>
+                            );
+                        })
+                    ) : (
+                        <p>No my comments...</p>
+                    )}
+                </div>
             </div>
-            <div className="my_review_item_list_div">
-                {myCommentList.length !== 0 ? (
-                    myCommentList.map((item, index) => {
-                        return (
-                            <div key={index}>
-                                <MyCommentItem
-                                    title={item.content}
-                                    reviewId={item.reviewId}
-                                />
-                            </div>
-                        );
-                    })
-                ) : (
-                    <p>No my comments...</p>
-                )}
+            <div className="mycomments_bottom_div">
+                <Pagination
+                    activePage={page}
+                    itemsCountPerPage={10}
+                    totalItemsCount={totalPages * 10}
+                    pageRangeDisplayed={10}
+                    prevPageText={"‹"}
+                    nextPageText={"›"}
+                    onChange={handlePageChange}
+                />
+                <Footer />
             </div>
-            <Pagination
-                activePage={page}
-                itemsCountPerPage={10}
-                totalItemsCount={totalPages * 10}
-                pageRangeDisplayed={10}
-                prevPageText={"‹"}
-                nextPageText={"›"}
-                onChange={handlePageChange}
-            />
-            <Footer />
         </div>
     );
 }

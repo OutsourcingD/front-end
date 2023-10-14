@@ -3,6 +3,7 @@ import Wysiwyg from "../components/ContentInput";
 import "./MakeNthReviewPage.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Footer from "../bottom/Footer";
 
 function MakeNthReviewPage() {
     const location = useLocation();
@@ -43,6 +44,7 @@ function MakeNthReviewPage() {
                     <Wysiwyg setContent={setContent}/>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 }
