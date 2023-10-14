@@ -44,10 +44,10 @@ function MyRecommendReview() {
   return (
     <div className="my_recommend_review_div">
       <div className="my_recommend_review_header">
-        <p id="my_recommend_review_title">나의 문의 내역</p>
+        <p id="my_recommend_review_title">My Inquirys</p>
       </div>
       <div className="my_review_item_list_div">
-        {myInqueryList.map((item, index) => {
+        {myInqueryList.length !== 0 ? myInqueryList.map((item, index) => {
           return (
             <div key={index}>
               <MyInqueryItem 
@@ -58,8 +58,8 @@ function MyRecommendReview() {
                 totalPages={item.totalPages}
               />
             </div>
-          );
-        })}
+          )
+        }) : <p>no inquiry...</p>}
       </div>
       <Pagination
         activePage={page}

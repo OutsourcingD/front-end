@@ -118,7 +118,7 @@ function MyPage() {
                         <p id="mypage_name">김철수</p>
                     </div>
                     <div className="modify_mypage_button_div">
-                        <p id="mypage_sir">님</p>
+                        <p id="mypage_sir">sir</p>
                         <img
                             src="/setting1.png"
                             alt="setting"
@@ -144,12 +144,12 @@ function MyPage() {
             <div className="mypage_body">
                 <div className="mypage_review_div">
                     <div className="mypage_review_header_div">
-                        <p id="my_page_sub_title">나의 후기</p>
+                        <p id="my_page_sub_title">My Reviews</p>
                         <p
                             id="my_page_more"
                             onClick={() => navigate(`/mypage/review/more?id=${localStorage.getItem("user_id")}`)}
                         >
-                            더보기
+                            more
                         </p>
                     </div>
                     <div className="my_review_items_div">
@@ -170,12 +170,12 @@ function MyPage() {
                 <div className="mypage_comment_div">
                     {/* 나의 댓글 헤더 부분 */}
                     <div className="mypage_review_header_div">
-                        <p id="my_page_sub_title">나의 댓글</p>
+                        <p id="my_page_sub_title">My Comments</p>
                         <p
                             id="my_page_more"
                             onClick={() => navigate(`/mypage/comment/more?id=${localStorage.getItem("user_id")}`)}
                         >
-                            더보기
+                            more
                         </p>
                     </div>
                     <div className="my_review_items_div">
@@ -192,12 +192,12 @@ function MyPage() {
                 <div className="mypage_inquery_div">
                     {/* 나의 문의 내역 헤더 부분 */}
                     <div className="mypage_review_header_div">
-                        <p id="my_page_sub_title">나의 문의 내역</p>
+                        <p id="my_page_sub_title">My Inquiries</p>
                         <p
                             id="my_page_more"
                             onClick={() => navigate(`/mypage/inquery/more?id=${localStorage.getItem("user_id")}`)}
                         >
-                            더보기
+                            more
                         </p>
                     </div>
                     <div className="my_review_items_div">

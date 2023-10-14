@@ -9,7 +9,11 @@ import { HookCallback } from "@toast-ui/editor/types/editor";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Wysiwyg = () => {
+interface WysiwygProps {
+    setContent: (content: string) => void;
+}
+
+const Wysiwyg = (props: WysiwygProps) => {
     const editorRef = React.useRef<ToastEditor>(null);
     const [data, setData] = React.useState<string | null>(null);
     const navigate = useNavigate();
@@ -47,6 +51,7 @@ const Wysiwyg = () => {
     const onChange = () => {
         const htmlValue = editorRef.current?.getInstance().getHTML() || null;
         setData(htmlValue);
+        props.setContent(htmlValue || "");
     };
 
     return (

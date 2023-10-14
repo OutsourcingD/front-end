@@ -204,3 +204,13 @@
     color: #444444;
     margin-right: 5px;
 }
+
+@media (max-width:868px) { 
+    .hospital_detail_wrapper {
+        width: 94%;
+    }
+} 
+
+@media (max-width:780px) { 
+
+} 
