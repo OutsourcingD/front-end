@@ -40,8 +40,8 @@ function Main() {
     const navigate = useNavigate();
     const [type, setType] = React.useState(0); //0: 날짜 순, 1: 조회수 별, 2: 댓글 수 별
     const [category, setCategory] = React.useState(0); //0: 전체, 1: 지방, 2: 리프팅, 3: 피부, 4: 지방흡입, 5: 유방, 6: 코, 7: 안면, 8: 윤곽, 9: 의사, 10: 병원
-    const [week, setWeek] = React.useState(0); //0: 전체, 1: 1주차, 2: 2주차, 3: 3주차, 4: 4주차
-    const [month, setMonth] = React.useState(0); //0: 전체, 1: 1월, 2: 2월, 3: 3월, 4: 4월, 5: 5월, 6: 6월, 7: 7월, 8: 8월, 9: 9월, 10: 10월, 11: 11월, 12: 12월
+    const [week, setWeek] = React.useState(""); //0: 전체, 1: 1주차, 2: 2주차, 3: 3주차, 4: 4주차
+    const [month, setMonth] = React.useState(""); //0: 전체, 1: 1월, 2: 2월, 3: 3월, 4: 4월, 5: 5월, 6: 6월, 7: 7월, 8: 8월, 9: 9월, 10: 10월, 11: 11월, 12: 12월
     const [isFilter, setIsFilter] = React.useState(false); // 필터 여부 [true: 필터, false: 필터x
     const [filter, setFilter] = React.useState("filter");
     const [docHosReviewList, setDocHosReviewList] = React.useState<
@@ -166,7 +166,32 @@ function Main() {
         const today = new Date();
         const monthNumber = today.getMonth() + 1; // JavaScript에서 월은 0부터 시작하므로, 실제 월을 얻기 위해선 +1을 해야 합니다.
 
-        setMonth(monthNumber);
+        if(monthNumber === 1)
+            setMonth("Jan.");
+        else if(monthNumber === 2)
+            setMonth("Feb.");
+        else if(monthNumber === 3)
+            setMonth("Mar.");
+        else if(monthNumber === 4)
+            setMonth("Apr.");
+        else if(monthNumber === 5)
+            setMonth("May");
+        else if(monthNumber === 6)
+            setMonth("Jun.");
+        else if(monthNumber === 7)
+            setMonth("Jul.");
+        else if(monthNumber === 8)
+            setMonth("Aug.");
+        else if(monthNumber === 9)
+            setMonth("Sep.");
+        else if(monthNumber === 10)
+            setMonth("Oct.");
+        else if(monthNumber === 11)
+            setMonth("Nov.");
+        else if(monthNumber === 12)
+            setMonth("Dec.");
+        else
+            setMonth("Month Error");
 
         // 해당 달의 첫 날과 오늘 날짜 사이에 있는 주 수 계산
         let firstDayOfTheMonth = new Date(
@@ -179,9 +204,16 @@ function Main() {
 
         let weekNumberOfMonth = currentWeek - weekOfFirstDay + 1;
 
-        setWeek(weekNumberOfMonth);
+        if(weekNumberOfMonth === 1) 
+            setWeek(weekNumberOfMonth + "st");
+        else if(weekNumberOfMonth === 2)
+            setWeek(weekNumberOfMonth + "nd");
+        else if(weekNumberOfMonth === 3)
+            setWeek(weekNumberOfMonth + "rd");
+        else
+            setWeek(weekNumberOfMonth + "th");
+            
 
-        localStorage.removeItem("selected");
     }, []);
 
     useEffect(() => {
@@ -266,10 +298,10 @@ function Main() {
                 <div className="recommend_div">
                     <div className="recommend_text_div">
                         <p id="recommended_title">
-                            {month}월 {week}주차 커뮤니티 추천 후기 글
+                            Best {month} {week} week review
                         </p>
                         <p id="week_text">
-                            이번주 가장 조회수가 많은 후기 글 보러가기
+                            Checking weekly top reviews
                         </p>
                     </div>
                     <div className="hotDiv">
@@ -279,7 +311,7 @@ function Main() {
                         className="moreDiv"
                         onClick={() => navigate("/recommend/review/all")}
                     >
-                        <p id="more_text">더보기</p>
+                        <p id="more_text">More</p>
                     </div>
                 </div>
             </div>

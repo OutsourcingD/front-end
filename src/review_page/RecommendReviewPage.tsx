@@ -22,8 +22,8 @@ function RecommendReviewPage() {
     const [isSearch, setIsSearch] = React.useState(false); // 검색 여부 [true: 검색, false: 검색x]
     const [searchValue, setSearchValue] = React.useState("");
     const [category, setCategory] = React.useState(0);
-    const [month, setMonth] = React.useState(0);
-    const [week, setWeek] = React.useState(0);
+    const [month, setMonth] = React.useState("");
+    const [week, setWeek] = React.useState("");
     const navigate = useNavigate();
     const [docHosReviewList, setDocHosReviewList] = React.useState<
         DocsHosDto[]
@@ -61,14 +61,7 @@ function RecommendReviewPage() {
             setRecommendReviewItems(res.data);
             setTotalPages(res.data[0].totalPages);
         }).catch((err) => {
-            if(err.response.status === 401 || err.response.status === 403) {
-                alert("This is not admin ID.");
-                navigate("/login");
-            }
-            else {
-                alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
-            }          
+            console.log("get recommend review list", err);
         });
     };
 
@@ -85,16 +78,9 @@ function RecommendReviewPage() {
             },
         }).then((res) => {
             setRecommendReviewItems(res.data);
-            setTotalPages(res.data[0].totalPages);
+            setTotalPages(res.data.length === 0 ? 1 : res.data[0].totalPages);
         }).catch((err) => {
-            if(err.response.status === 401 || err.response.status === 403) {
-                alert("This is not admin ID.");
-                navigate("/login");
-            }
-            else {
-                alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
-            }           
+            console.log("handle category", err)
         });
     } else {
         await axios({
@@ -146,7 +132,32 @@ function RecommendReviewPage() {
         const today = new Date();
         const monthNumber = today.getMonth() + 1; // JavaScript에서 월은 0부터 시작하므로, 실제 월을 얻기 위해선 +1을 해야 합니다.
 
-        setMonth(monthNumber);
+        if(monthNumber === 1)
+            setMonth("Jan.");
+        else if(monthNumber === 2)
+            setMonth("Feb.");
+        else if(monthNumber === 3)
+            setMonth("Mar.");
+        else if(monthNumber === 4)
+            setMonth("Apr.");
+        else if(monthNumber === 5)
+            setMonth("May");
+        else if(monthNumber === 6)
+            setMonth("Jun.");
+        else if(monthNumber === 7)
+            setMonth("Jul.");
+        else if(monthNumber === 8)
+            setMonth("Aug.");
+        else if(monthNumber === 9)
+            setMonth("Sep.");
+        else if(monthNumber === 10)
+            setMonth("Oct.");
+        else if(monthNumber === 11)
+            setMonth("Nov.");
+        else if(monthNumber === 12)
+            setMonth("Dec.");
+        else
+            setMonth("Month Error");
 
         // 해당 달의 첫 날과 오늘 날짜 사이에 있는 주 수 계산
         let firstDayOfTheMonth = new Date(
@@ -159,78 +170,89 @@ function RecommendReviewPage() {
 
         let weekNumberOfMonth = currentWeek - weekOfFirstDay + 1;
 
-        setWeek(weekNumberOfMonth);
+        if(weekNumberOfMonth === 1) 
+            setWeek(weekNumberOfMonth + "st");
+        else if(weekNumberOfMonth === 2)
+            setWeek(weekNumberOfMonth + "nd");
+        else if(weekNumberOfMonth === 3)
+            setWeek(weekNumberOfMonth + "rd");
+        else
+            setWeek(weekNumberOfMonth + "th");
+            
 
-        localStorage.removeItem("selected");
     }, []);
 
     return (
         <div className="recommend_all_div">
-            <div className="recommend_all_page_title_div">
-                <p id="recommend_all_page_title">{month}월 {week}주차 커뮤니티 추천 후기글</p>
-                <div className="hot_div">
-                    <img id="hot_image" src="/hot.png" alt="추천 후기" />
+            <div>
+                <div className="recommend_all_page_title_div">
+                    <p id="recommend_all_page_title">Best {month} {week} week review</p>
+                    <div className="hot_div">
+                        <img id="hot_image" src="/hot.png" alt="추천 후기" />
+                    </div>
+                </div>
+                <Category onCategory={onCategory} />
+                <div className="search_div">
+                    <Search
+                        parent={1}
+                        page={page}
+                        onSearch={handleSearch}
+                        onSearchResult={handleSearchResult}
+                        onDoctorSearchResult={onDoctorSearchResult}
+                        category={category}
+                    />
+                </div>
+                <div className="review_list_div">
+                    {
+                        category < 9 ?
+                    recommendReviewItems.map((review, index) => {
+                        return (
+                            <div
+                                key={"des" + index}
+                                className="review_item_div"
+                                onClick={() => handleReview(review.reviewId)}
+                            >
+                                <ReviewItem
+                                    key={review.reviewId}
+                                    commentCount={review.commentCount}
+                                    createdAt={review.createdAt}
+                                    doctorName={review.doctorName}
+                                    hospitalName={review.hospitalName}
+                                    part={review.part}
+                                    profile={review.profile}
+                                    reviewId={review.reviewId}
+                                    title={review.title}
+                                    viewCount={review.viewCount}
+                                    likeCount={review.likeCount}
+                                    nickname={review.nickname}
+                                    totalPages={review.totalPages}
+                                />
+                            </div>
+                        );
+                    }) : docHosReviewList.map((review, index) => {
+                        return <DocsHosReviewItem key={review.id} dto={review} type={category === 9 ? 0 : 1} />;
+                    })}
                 </div>
             </div>
-            <Category onCategory={onCategory} />
-            <div className="search_div">
-                <Search
-                    parent={1}
-                    page={page}
-                    onSearch={handleSearch}
-                    onSearchResult={handleSearchResult}
-                    onDoctorSearchResult={onDoctorSearchResult}
-                    category={category}
+            <div className="recommend_page_footer_div">
+                <Pagination
+                    activePage={page}
+                    itemsCountPerPage={10}
+                    totalItemsCount={totalPages * 10}
+                    pageRangeDisplayed={10}
+                    prevPageText={"‹"}
+                    nextPageText={"›"}
+                    onChange={handlePageChange}
                 />
+                {/* 후기 만들기 floating button */}
+                <div
+                    className="make_review_button_div"
+                    onClick={makeReviewButtonClick}
+                >
+                    <GoPencil color="white" id="pencil" />
+                </div>
+                <Footer />
             </div>
-            <div className="review_list_div">
-                {
-                    category < 9 ?
-                recommendReviewItems.map((review, index) => {
-                    return (
-                        <div
-                            key={"des" + index}
-                            className="review_item_div"
-                            onClick={() => handleReview(review.reviewId)}
-                        >
-                            <ReviewItem
-                                key={review.reviewId}
-                                commentCount={review.commentCount}
-                                createdAt={review.createdAt}
-                                doctorName={review.doctorName}
-                                hospitalName={review.hospitalName}
-                                part={review.part}
-                                profile={review.profile}
-                                reviewId={review.reviewId}
-                                title={review.title}
-                                viewCount={review.viewCount}
-                                likeCount={review.likeCount}
-                                nickname={review.nickname}
-                                totalPages={review.totalPages}
-                            />
-                        </div>
-                    );
-                }) : docHosReviewList.map((review, index) => {
-                    return <DocsHosReviewItem key={review.id} dto={review} type={category === 9 ? 0 : 1} />;
-                })}
-            </div>
-            <Pagination
-                activePage={page}
-                itemsCountPerPage={10}
-                totalItemsCount={totalPages * 10}
-                pageRangeDisplayed={10}
-                prevPageText={"‹"}
-                nextPageText={"›"}
-                onChange={handlePageChange}
-            />
-            {/* 후기 만들기 floating button */}
-            <div
-                className="make_review_button_div"
-                onClick={makeReviewButtonClick}
-            >
-                <GoPencil color="white" id="pencil" />
-            </div>
-            <Footer />
         </div>
     );
 }

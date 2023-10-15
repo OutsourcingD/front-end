@@ -48,6 +48,10 @@
     align-items: center;
 }
 
+.recommend_page_footer_div {
+    width: 100%;
+}
+
 
 @media (max-width:860px) { 
     .recommend_all_page_title_div {
