@@ -6,6 +6,7 @@ import Footer from "../bottom/Footer";
 import axios from "axios";
 import { MyCommentResponseDto } from "../dto/MyCommentResponseDto";
 import { useNavigate } from "react-router-dom";
+import "./MyInqueryMore.css";
 
 function MyRecommendReview() {
     const [myCommentList, setMyCommentList] = React.useState<

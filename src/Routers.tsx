@@ -30,7 +30,6 @@ function Routers () {
                 <Route path="/" element={<App />} />
                 <Route path="/test" element={<Test />} />
                 <Route path="/inquiry" element={<InqueryComponent />} />
-                <Route path="/recommend/review" element={<RecommendedReview />} />
                 <Route path="/mypage" element={<MyPage />} />
                 <Route path="/mypage/review/more" element={<MyRecommendReview />} />
                 <Route path="/mypage/comment/more" element={<MyCommentMore />} />

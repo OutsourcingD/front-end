@@ -15,6 +15,7 @@ function RecommendedReview() {
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(2);
     const [category, setCategory] = React.useState(0);
+    const [search, setSearch] = React.useState("");
     const navigate = useNavigate();
 
     const onCategory = (value: number) => {
@@ -28,7 +29,7 @@ function RecommendedReview() {
     useEffect(() => {
         axios({
             method: "get", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/review/recommendation/all?pages=0`,
+            url: `${process.env.REACT_APP_SERVER_URL}/review/recommendation/search?pages=${page - 1}&query=${search}&part=${category}`,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },
@@ -44,7 +45,7 @@ function RecommendedReview() {
                 navigate("/");
             }
         });
-    }, []);
+    }, [page]);
 
     return (
         <div className="recommed_div">

@@ -12,11 +12,10 @@
 
 @media (max-width: 640px) {
     .my_recommend_review_header {
-        width: 419px
+        width: 419px;
     }
     
     .my_recommend_review_div {
-        width: 419px;
         padding-left: 10px;
     }
 
@@ -31,7 +30,6 @@
     }
     
     .my_recommend_review_div {
-        width: 300px;
         padding-left: 10px;
     }
 
