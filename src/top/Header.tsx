@@ -225,8 +225,12 @@ function Header() {
             <LeftDiv className="left">
                 {
                     width <= 920 ? isClick ? 
-                        <div className="hamburger_close_div">
-                            <p id="hamburger_close" onClick={() => setIsClick(false)}>X</p>
+                        <div className="hamburger_close_div" onClick={() => setIsClick(false)}>
+                            <img
+                                src="/close_black.png"
+                                alt="close"
+                                id="hamburger_close"
+                            />
                         </div>
                      : (
                         <div className="hamburger_div" onClick={() => setIsClick(true)}>

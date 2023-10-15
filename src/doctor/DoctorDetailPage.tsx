@@ -7,6 +7,7 @@ import Pagination from "react-js-pagination";
 import Footer from "../bottom/Footer";
 import { DoctorDetailDto } from "../dto/DoctorDetailDto";
 import { DoctorReviewDto } from "../dto/DoctorReview";
+import "./DoctorDetailPage.css";
 
 function DoctorDetailPage() {
     const location = useLocation();
