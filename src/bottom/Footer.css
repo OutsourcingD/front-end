@@ -14,22 +14,23 @@
 .footer_info_div {
     margin-top: 14px;
     display: flex;
-    width: 815px;
+    width: 900px;
 }
 
 .footer_top_div {
     margin-top: 14px;
     display: flex;
-    width: 815px;
+    width: 900px;
 }
 
 .footer_inquery_info_div {
     display: flex;
-    width: 815px;
+    width: 900px;
 }
 
 #inquiry {
-    white-space: nowrap;
+    text-align: start;
+    white-space: wrap;
     margin: 0 12px 0 0;
     color: #666666;
     font-size: 12px;
@@ -38,6 +39,7 @@
 
 #inquiry_item {
     white-space: nowrap;
+    word-wrap: break-word;
     margin-right: 11.2px;
     color: #222222;
     font-size: 12px;
@@ -45,7 +47,7 @@
     cursor: pointer;
 }
 
-@media (max-width:868px) { 
+@media (max-width:1024px) { 
     .footer_info_div {
         width: 94%;
         flex-wrap:wrap;

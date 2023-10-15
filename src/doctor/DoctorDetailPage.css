@@ -144,3 +144,76 @@
     border: none;
     border-top: 1px solid #D4D4D4;
 }
+
+@media (max-width:868px) { 
+    .hospital_detail_wrapper {
+        width: 94%;
+    }
+
+    .hospital_detail_content_text {
+        flex: 2;
+    }
+    
+    .hospital_detail_content_line {
+        flex: 16;
+    }
+
+    .hospital_review_text {
+        flex: 2;
+    }
+    
+    .hospital_review_line {
+        flex: 16;
+    }
+} 
+
+@media (max-width:680px) { 
+    #hospital_detail_title {
+        font-size: 28px;
+    }
+
+    .hospital_detail_content_text {
+        flex: 3;
+    }
+    
+    .hospital_detail_content_line {
+        flex: 19;
+    }
+
+    .hospital_review_text {
+        flex: 3;
+    }
+    
+    .hospital_review_line {
+        flex: 19;
+    }
+} 
+
+@media (max-width:488px) {
+    #hospital_detail_title {
+        font-size: 24px;
+    }
+
+    .hospital_detail_description {
+        font-size: 14px;
+    }
+
+    .hospital_detail_content_text {
+        flex: 5;
+        font-size: 15px;
+    }
+    
+    .hospital_detail_content_line {
+        flex: 20;
+    }
+
+    .hospital_review_text {
+        flex: 5;
+        font-size: 15px;
+    }
+    
+    .hospital_review_line {
+        flex: 20;
+    }
+
+}

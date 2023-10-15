@@ -134,12 +134,7 @@
     object-fit: fill;
 }
 
-@media (max-width:640px) { 
-    .mypage_body {
-        width: 90%;
-        margin-top: 32px;
-    }
-
+@media (max-width:640px) {
     .mypage_title_div {
         width: 90%;
     }
