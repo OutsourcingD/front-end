@@ -61,7 +61,7 @@ function MyPageInfo() {
 
         if(accessToken) {
             axios
-                .post(`/api/member/edit`, formData, {
+                .post('/api/member/edit', formData, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                         Authorization: `Bearer ${localStorage.getItem(
@@ -139,7 +139,7 @@ function MyPageInfo() {
     React.useEffect(() => {
         axios({
             method: "get",
-            url: `/api/member/info`,
+            url: '/api/member/info',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },

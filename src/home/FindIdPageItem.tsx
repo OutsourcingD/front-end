@@ -25,7 +25,7 @@ const FindIdPageItem = (props: FindIdPageItemProps) => {
         } else {
             await axios
                 .post(
-                    `/api/email/send-verification`,
+                    '/api/email/send-verification',
                     {
                         email: email,
                     }
@@ -68,7 +68,7 @@ const FindIdPageItem = (props: FindIdPageItemProps) => {
             setCodeVerified(2);
             axios({
                 method: "post",
-                url: `/api/email/verify`,
+                url: '/api/email/verify',
                 data: {
                     code: code,
                 },

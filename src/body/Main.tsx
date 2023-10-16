@@ -71,7 +71,7 @@ function Main() {
         //배너 이미지 가져오기
         await axios({
             method: "get", // or 'post', 'put', etc.
-            url: `/api/banner?location=1`,
+            url: '/api/banner?location=1',
             withCredentials: true,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
@@ -86,7 +86,7 @@ function Main() {
     const getRecommendedReviews = async () => {
         await axios({
             method: "get", // or 'post', 'put', etc.
-            url: `/api/review/recommendation`,
+            url: '/api/review/recommendation',
             withCredentials: true,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,

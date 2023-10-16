@@ -64,7 +64,7 @@ function Header() {
     const mypageClick = () => {
         axios({
             method: "get",
-            url: `/api/auth/check`,
+            url: '/api/auth/check',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
@@ -152,7 +152,7 @@ function Header() {
     useEffect(() => {
         axios({
             method: "get", // or 'post', 'put', etc.
-            url: `/api/member/info`,
+            url: '/api/member/info',
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },

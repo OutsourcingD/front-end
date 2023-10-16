@@ -54,7 +54,7 @@ function SignUp() {
     const pushCode = async (email: string) => {
         await axios
             .post(
-                `/api/email/signup-verification`,
+                '/api/email/signup-verification',
                 {
                     email: email,
                 }
@@ -94,7 +94,7 @@ function SignUp() {
 
     const checkMailCode = async (code: string) => {
         await axios
-            .post(`/api/email/signup/verify`, {
+            .post('/api/email/signup/verify', {
                 code: code,
             })
             .then((res) => {
@@ -152,7 +152,7 @@ function SignUp() {
 
             await axios
                 .post(
-                    `/api/login/member`,
+                    '/api/login/member',
                     formData,
                     { headers: { "Content-Type": "multipart/form-data" } }
                 )

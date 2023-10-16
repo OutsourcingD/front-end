@@ -24,7 +24,7 @@ const FindPwdPage = (props: FindPwdProps) => {
         } else {
             await axios
                 .post(
-                    `/api/email/send-verification`,
+                    '/api/email/send-verification',
                     {
                         email: email,
                     }
@@ -67,7 +67,7 @@ const FindPwdPage = (props: FindPwdProps) => {
             setCodeVerified(2);
             axios({
                 method: "post",
-                url: `/api/email/verify`,
+                url: '/api/email/verify',
                 data: {
                     code: code,
                 },

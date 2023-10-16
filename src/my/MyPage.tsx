@@ -30,7 +30,7 @@ function MyPage() {
         //banner api
         axios({
             method: "get",
-            url: `/api/banner?location=3`,
+            url: '/api/banner?location=3',
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },
@@ -50,7 +50,7 @@ function MyPage() {
         //my review api
         axios({
             method: "get",
-            url: `/api/review/my?pages=0`,
+            url: '/api/review/my?pages=0',
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },
@@ -70,7 +70,7 @@ function MyPage() {
         //my comment api
         axios({
             method: "get",
-            url: `/api/comment/my`,
+            url: '/api/comment/my',
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },
@@ -90,7 +90,7 @@ function MyPage() {
         //my inquery api
         axios({
           method: "get",
-          url: `/api/inquiry`,
+          url: '/api/inquiry',
           headers: {
             Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
           },

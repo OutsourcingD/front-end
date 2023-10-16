@@ -26,7 +26,7 @@ const AddAdminId = () => {
 
         axios({
             method: "get",
-            url: `/api/admin/member/upgrade`,
+            url: '/api/admin/member/upgrade',
             params: {
                 id: userId,
             },
@@ -59,7 +59,7 @@ const AddAdminId = () => {
     const deleteHandler = (index: number) => {
         axios({
             method: "get",
-            url: `/api/admin/member/downgrade`,
+            url: '/api/admin/member/downgrade',
             params: {
                 id: adminIdList[index].userId,
             },
@@ -85,7 +85,7 @@ const AddAdminId = () => {
     React.useEffect(() => {
         axios({
             method: "get",
-            url: `/api/admin`,
+            url: '/api/admin',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },

@@ -39,7 +39,7 @@ function AdminPage() {
     React.useEffect(() => {
         axios({
             method: "get",
-            url: `/api/auth/check`,
+            url: '/api/auth/check',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },  

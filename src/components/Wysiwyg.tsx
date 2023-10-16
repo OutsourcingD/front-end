@@ -18,7 +18,7 @@ const Test = () => {
 
     await axios({
       method: "post",
-      url: `/api/image`,
+      url: '/api/image',
       data: formData,
       headers: {
         "Content-Type": "multipart/form-data",
