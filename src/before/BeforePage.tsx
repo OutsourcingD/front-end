@@ -39,7 +39,7 @@ function BeforePage() {
     React.useEffect(() => {
         axios({
             method: "get", // or 'post', 'put', etc.
-            url: `/app/review/before-after?part=${category}&pages=${
+            url: `/api/review/before-after?part=${category}&pages=${
                 page - 1
             }`,
             headers: {
