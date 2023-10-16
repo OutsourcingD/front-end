@@ -14,7 +14,7 @@ const BannerManagementPage = () => {
         //1: 상단, 3: 하단
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/banner?location=${location}`,
+            url: `/api/banner?location=${location}`,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },

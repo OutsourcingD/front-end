@@ -61,7 +61,7 @@ function MyPageInfo() {
 
         if(accessToken) {
             axios
-                .post(`${process.env.REACT_APP_SERVER_URL}/member/edit`, formData, {
+                .post(`/api/member/edit`, formData, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                         Authorization: `Bearer ${localStorage.getItem(
@@ -91,7 +91,7 @@ function MyPageInfo() {
     const handleDuplicate = () => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/non-member/check-duplicated?name=${nickname}`,
+            url: `/api/non-member/check-duplicated?name=${nickname}`,
         }).then((res) => {
             res.data ? setIsDuplicate(1) : setIsDuplicate(2);
         }).catch((err) => {
@@ -139,7 +139,7 @@ function MyPageInfo() {
     React.useEffect(() => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/member/info`,
+            url: `/api/member/info`,
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },

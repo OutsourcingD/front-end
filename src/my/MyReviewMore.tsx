@@ -24,7 +24,7 @@ function MyRecommendReview() {
 
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/review/my?pages=${
+            url: `/api/review/my?pages=${
                 page - 1
             }`,
             headers: {

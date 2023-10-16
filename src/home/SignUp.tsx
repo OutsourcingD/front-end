@@ -54,7 +54,7 @@ function SignUp() {
     const pushCode = async (email: string) => {
         await axios
             .post(
-                `${process.env.REACT_APP_SERVER_URL}/email/signup-verification`,
+                `/api/email/signup-verification`,
                 {
                     email: email,
                 }
@@ -94,7 +94,7 @@ function SignUp() {
 
     const checkMailCode = async (code: string) => {
         await axios
-            .post(`${process.env.REACT_APP_SERVER_URL}/email/signup/verify`, {
+            .post(`/api/email/signup/verify`, {
                 code: code,
             })
             .then((res) => {
@@ -118,7 +118,7 @@ function SignUp() {
     const checkDuplicatedNickname = async (nickname: string) => {
         await axios
             .get(
-                `${process.env.REACT_APP_SERVER_URL}/non-member/check-duplicated?name=${nickname}`,
+                `/api/non-member/check-duplicated?name=${nickname}`,
                 {
                     headers: {
                         Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
@@ -152,7 +152,7 @@ function SignUp() {
 
             await axios
                 .post(
-                    `${process.env.REACT_APP_SERVER_URL}/login/member`,
+                    `/api/login/member`,
                     formData,
                     { headers: { "Content-Type": "multipart/form-data" } }
                 )

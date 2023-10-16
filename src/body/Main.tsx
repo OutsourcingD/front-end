@@ -71,7 +71,7 @@ function Main() {
         //배너 이미지 가져오기
         await axios({
             method: "get", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/banner?location=1`,
+            url: `/api/banner?location=1`,
             withCredentials: true,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
@@ -86,7 +86,7 @@ function Main() {
     const getRecommendedReviews = async () => {
         await axios({
             method: "get", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/review/recommendation`,
+            url: `/api/review/recommendation`,
             withCredentials: true,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
@@ -121,7 +121,7 @@ function Main() {
         } else {
             axios({
                 method: "get", // or 'post', 'put', etc.
-                url: `${process.env.REACT_APP_SERVER_URL}/review/search/doc-hos?sortType=${type}&type=${category}&query=${searchValue}`,
+                url: `/api/review/search/doc-hos?sortType=${type}&type=${category}&query=${searchValue}`,
                 withCredentials: true,
                 headers: {
                     Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
@@ -248,7 +248,7 @@ function Main() {
         } else if (9 === category || category === 10) {
             axios({
                 method: "get", // or 'post', 'put', etc.
-                url: `${process.env.REACT_APP_SERVER_URL}/review/search/doc-hos?sortType=${0}&type=${category}&query=${" "}`,
+                url: `/api/review/search/doc-hos?sortType=${0}&type=${category}&query=${" "}`,
                 withCredentials: true,
                 headers: {
                     Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,

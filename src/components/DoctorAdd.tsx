@@ -37,7 +37,7 @@ const DoctorAdd = () => {
     const getHospitals = async () => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/hospital-info`,
+            url: `/api/admin/hospital-info`,
             params: {
                 pages: hospitalPage - 1,
                 hospitalName: hospitalSearchValue,
@@ -63,7 +63,7 @@ const DoctorAdd = () => {
     const getDoctors = async () => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/doctor-info`,
+            url: `/api/admin/doctor-info`,
             params: {
                 pages: doctorPage - 1,
                 doctorName: doctorSearchValue,
@@ -91,7 +91,7 @@ const DoctorAdd = () => {
         
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/hospital-info`,
+            url: `/api/admin/hospital-info`,
             params: {
                 pages: hospitalPage - 1,
                 hospitalName: hospitalSearchValue,
@@ -118,7 +118,7 @@ const DoctorAdd = () => {
     const handleHospitalSearchButton = async () => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/hospital-info`,
+            url: `/api/admin/hospital-info`,
             params: {
                 pages: hospitalPage - 1,
                 hospitalName: hospitalSearchValue,
@@ -147,7 +147,7 @@ const DoctorAdd = () => {
 
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/doctor-info`,
+            url: `/api/admin/doctor-info`,
             params: {
                 pages: doctorPage - 1,
                 doctorName: doctorSearchValue,
@@ -174,7 +174,7 @@ const DoctorAdd = () => {
     const handleDoctorSearchButton = async () => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/doctor-info`,
+            url: `/api/admin/doctor-info`,
             params: {
                 pages: doctorPage - 1,
                 doctorName: doctorSearchValue,
@@ -201,7 +201,7 @@ const DoctorAdd = () => {
     const handledeleteHospitalButton = (index: number) => {
         axios({
             method: "delete",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/hospital-info/delete`,
+            url: `/api/admin/hospital-info/delete`,
             params: {
                 hospitalId: hospitalItems[index].hospitalId,
             },
@@ -229,7 +229,7 @@ const DoctorAdd = () => {
     const handledeleteDoctorButton = (index: number) => {
         axios({
             method: "delete",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/doctor-info/delete`,
+            url: `/api/admin/doctor-info/delete`,
             params: {
                 doctorId: doctorItems[index].doctorId,
             },

@@ -47,7 +47,7 @@ const DoctorEdit = () => {
     const getHospitals = async () => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/hospital`,
+            url: `/api/admin/hospital`,
             params: {
                 pages: hospitalPage - 1,
                 query: hospitalSearchValue,
@@ -73,7 +73,7 @@ const DoctorEdit = () => {
     const getDoctors = async () => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/doctor`,
+            url: `/api/admin/doctor`,
             params: {
                 pages: doctorPage - 1,
                 query: doctorSearchValue,
@@ -103,7 +103,7 @@ const DoctorEdit = () => {
 
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/hospital`,
+            url: `/api/admin/hospital`,
             params: {
                 pages: hospitalPage - 1,
                 query: hospitalSearchValue,
@@ -130,7 +130,7 @@ const DoctorEdit = () => {
     const handleHospitalSearchButton = async () => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/hospital`,
+            url: `/api/admin/hospital`,
             params: {
                 pages: hospitalPage - 1,
                 query: hospitalSearchValue,
@@ -159,7 +159,7 @@ const DoctorEdit = () => {
 
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/doctor`,
+            url: `/api/admin/doctor`,
             params: {
                 pages: doctorPage - 1,
                 query: doctorSearchValue,
@@ -186,7 +186,7 @@ const DoctorEdit = () => {
     const handleDoctorSearchButton = async () => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/doctor`,
+            url: `/api/admin/doctor`,
             params: {
                 pages: doctorPage - 1,
                 query: doctorSearchValue,
@@ -213,7 +213,7 @@ const DoctorEdit = () => {
     const HospitalDeleteHandler = (index: number) => {
         axios({
             method: "delete",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/post/delete`,
+            url: `/api/admin/post/delete`,
             params: {
                 postId: hospitalItems[index].postId,
             },
@@ -241,7 +241,7 @@ const DoctorEdit = () => {
     const DoctorDeleteHandler = (index: number) => {
         axios({
             method: "delete",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/post/delete`,
+            url: `/api/admin/post/delete`,
             params: {
                 postId: doctorItems[index].postId,
             },

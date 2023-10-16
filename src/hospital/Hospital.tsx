@@ -28,7 +28,7 @@ function Hospital() {
     const getHospitalList = async () => {
         await axios({
             method: "get", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/hospital/search?pages=${
+            url: `/api/hospital/search?pages=${
                 page - 1
             }&title=${searchValue}`,
             headers: {
