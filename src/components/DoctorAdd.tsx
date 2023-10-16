@@ -3,6 +3,9 @@ import "./DoctorEdit.css";
 import Pagination from "react-js-pagination";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import axios from "axios";
+import DoctorInfoEditComponent from "./DoctorInfoEditComponent";
+import HospitalInfoEditComponent from "./HospitalInfoEditComponent";
+import InfoAddComponent from "./InfoAddComponent";
 
 interface HospitalEditProps {
     hospitalId: number;
@@ -23,6 +26,9 @@ const DoctorAdd = () => {
     const [doctorPage, setDoctorPage] = React.useState(1);
     const [hospitalTotalPages, setHospitalTotalPages] = React.useState(2);
     const [doctorTotalPages, setDoctorTotalPages] = React.useState(2);
+    const [isDoctorInfoEditClicked,setIsDoctorInfoEditClicked] = React.useState<boolean>(false);
+    const [isHopitalInfoEditClicked,setIsHospitalInfoEditClicked] = React.useState<boolean>(false);
+    const [isInfoAddClicked,setIsInfoAddClicked] = React.useState<boolean>(false);
 
     const handleDoctorPageChange = (page: React.SetStateAction<number>) => {
         setDoctorPage(page);
@@ -242,7 +248,7 @@ const DoctorAdd = () => {
                                             </p>
                                         </div>
                                         <div className="doctor_edit_item_right_div">
-                                            <div className="doctor_edit_item_button_div">
+                                            <div className="doctor_edit_item_button_div" onClick={() => setIsHospitalInfoEditClicked(true)}>
                                                 <p id="doctor_item_button_edit">
                                                     edit
                                                 </p>
@@ -310,7 +316,7 @@ const DoctorAdd = () => {
                                             </p>
                                         </div>
                                         <div className="doctor_edit_item_right_div">
-                                            <div className="doctor_edit_item_button_div">
+                                            <div className="doctor_edit_item_button_div" onClick={() => setIsDoctorInfoEditClicked(true)}>
                                                 <p id="doctor_item_button_edit">
                                                     edit
                                                 </p>
@@ -337,10 +343,21 @@ const DoctorAdd = () => {
                     />
                 </div>
             </div>
-            <div className="doctor_edit_page_add_button_div">
-                <p id="doctor_edit_page_add_button_text">add hospital • doctor post</p>
+            <div className="doctor_edit_page_add_button_div" onClick = {() => setIsInfoAddClicked(true)}>
+                <p id="doctor_edit_page_add_button_text">add hospital • doctor Info</p>
                 <IoMdAddCircleOutline size="20px"/>
             </div>
+            {
+                isDoctorInfoEditClicked ? <DoctorInfoEditComponent isDoctorInfoEditClicked={isDoctorInfoEditClicked} setIsDoctorInfoEditClicked={setIsDoctorInfoEditClicked} /> : null
+            }
+
+            {
+                isHopitalInfoEditClicked ? <HospitalInfoEditComponent isHopitalInfoEditClicked={isHopitalInfoEditClicked} setIsHospitalInfoEditClicked={setIsHospitalInfoEditClicked}/> : null
+            }
+
+            {
+                isInfoAddClicked ? <InfoAddComponent isInfoAddClicked={isInfoAddClicked} setIsInfoAddClicked={setIsInfoAddClicked} /> :null
+            }
         </div>
     );
 };

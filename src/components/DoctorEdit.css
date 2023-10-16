@@ -218,6 +218,15 @@
     height: 45px;
 }
 
+.doctor_edit_page_add_button_div:hover {
+    cursor: pointer;
+}
+
+.doctor_edit_page_add_button_div:focus {
+    cursor: pointer;
+}
+
+
 #doctor_edit_page_add_button_text {
     font-weight: 600;
     font-size: 18px;
@@ -298,4 +307,47 @@
     display: flex;
     align-items: center;
     height: 40px;
+}
+
+.doctor_buttons_div {
+    margin-right: 18px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.doctor_cancel_button_div {
+    cursor: pointer;
+    border: 1px solid #D4D4D4;
+    border-radius: 20px;
+    width: 70px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.doctor_save_button_div {
+    cursor: pointer;
+    background: #DFB1E4;
+    border-radius: 20px;
+    width: 70px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0px 4px 11px rgba(0, 0, 0, 0.09));
+    margin-left: 10px;
+}
+
+#doctor_cancel_text {
+    font-size: 14px;
+    font-weight: 700;
+    color: #444444;
+}
+
+#doctor_save_text {
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFFFFF;
 }

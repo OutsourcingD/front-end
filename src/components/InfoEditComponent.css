@@ -209,7 +209,7 @@
 .banner_detail_page_div {
     position: absolute;
     width: 760px;
-    height: 480px;
+    height: 520px;
     background: #FFFFFF;
     border: 1px solid #D4D4D4;
     box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.08);
@@ -223,7 +223,7 @@
     display: flex;
     height: 40px;
     flex-direction: row;
-    margin: 20px 0px 0px 20px;
+    margin: 20px 0px 0px 10px;
     align-items: center;
 }
 
@@ -246,7 +246,7 @@
     font-weight: 600;
     color: #444444;
     white-space: nowrap;
-    margin-right: 10px;
+    margin-left: 10px;
 }
 
 #banner_link_text {
@@ -283,7 +283,7 @@
 }
 
 .banner_link_add_container {
-    margin-left: 20px;
+    margin-left: 10px;
     margin-top: 10px;
 }
 
@@ -301,7 +301,7 @@
 #banner_link_add_form {
     border: none;
     outline: none;
-    width: 380px;
+    width: 280px;
     display: flex;
     align-items: center;
 }
@@ -321,9 +321,17 @@
 .banner_info_add_picture_div {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
     margin-top: 20px;
+}
+
+.banner_add_picture_wrapper {
+    width: 240px;
+    height: 240px;
+    border-radius: 15px;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .banner_picture_make_div {
@@ -342,14 +350,6 @@
     height: 100%;
     object-fit: fill;
     border-radius: 15px;
-}
-
-.banner_add_picture_wrapper {
-    width: 700px;
-    height: 250px;
-    border-radius: 15px;
-    margin-right: 10px;
-    margin-left: 10px;
 }
 
 .banner_add_button_wrapper {
@@ -400,4 +400,18 @@
     font-size: 14px;
     font-weight: 700;
     color: #FFFFFF;
+}
+
+.doctor_info_add_part_container {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+#doctor_info_add_name_title {
+    font-weight: 600;
+    font-size: 18px;
+    color: #444444;
+    margin-right: 10px;
 }

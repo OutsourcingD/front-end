@@ -1,14 +1,14 @@
 import React from "react";
-import "./DoctorInfoAdd.css";
+import "./HospitalInfoAdd.css";
 import PartCategory from "../review_page/PartCategory";
 import Wysiwyg from "./ContentInput";
 
-interface DoctorInfoAddProps {
+interface HospitalInfoAddProps {
     isLeftClicked: boolean;
     isRightClicked: boolean;
 }
 
-const DoctorInfoAdd: React.FC<DoctorInfoAddProps> = ({isLeftClicked,isRightClicked}) => {
+const HospitalInfoAdd: React.FC<HospitalInfoAddProps> = ({isLeftClicked,isRightClicked}) => {
     const [images, setImages] = React.useState(
         Array(10).fill("/add_picture_png.png")
     );
@@ -76,60 +76,60 @@ const DoctorInfoAdd: React.FC<DoctorInfoAddProps> = ({isLeftClicked,isRightClick
     }
 
     return (
-        <div className="doctor_info_add_div">
-            <div className="doctor_info_add_name_div">
-                <p id="doctor_info_add_name_title">name</p>
-                <div className="doctor_info_add_name_form_div">
-                    <form id="doctor_info_add_name_form">
+        <div className="hospital_info_add_div">
+            <div className="hospital_info_add_name_div">
+                <p id="hospital_info_add_name_title">name</p>
+                <div className="hospital_info_add_name_form_div">
+                    <form id="hospital_info_add_name_form">
                         <input
-                            id="doctor_info_add_name_input"
-                            placeholder="Please enter doctor name"
+                            id="hospital_info_add_name_input"
+                            placeholder="Please enter hospital name"
                         />
                     </form>
                 </div>
             </div>
-            <div className="doctor_info_add_part_container">
-                <p id="doctor_info_add_name_title">Part</p>
+            <div className="hospital_info_add_part_container">
+                <p id="hospital_info_add_name_title">Part</p>
                 <div style={{ width: "300px" }}>
                     <PartCategory />
                 </div>
             </div>
-            <div className="doctor_info_add_part_container">
-                <p id="doctor_info_add_name_title">Title</p>
-                <div className="doctor_info_add_title_form_div">
-                    <form id="doctor_info_add_form">
+            <div className="hospital_info_add_part_container">
+                <p id="hospital_info_add_name_title">Title</p>
+                <div className="hospital_info_add_title_form_div">
+                    <form id="hospital_info_add_form">
                         <input
-                            id="doctor_info_add_name_input"
+                            id="hospital_info_add_name_input"
                             placeholder="Please enter title"
                         />
                     </form>
                 </div>
             </div>
-            <div className="doctor_info_add_part_container">
-                <p id="doctor_info_add_name_title">Description</p>
-                <div className="doctor_info_add_des_form_div">
-                    <form id="doctor_info_add_form">
+            <div className="hospital_info_add_part_container">
+                <p id="hospital_info_add_name_title">Description</p>
+                <div className="hospital_info_add_des_form_div">
+                    <form id="hospital_info_add_form">
                         <input
-                            id="doctor_info_add_name_input"
+                            id="hospital_info_add_name_input"
                             placeholder="Please enter description"
                         />
                     </form>
                 </div>
             </div>
-            <div className="doctor_info_add_picture_div">
-                <p id="doctor_info_add_name_title">Add picture</p>
-                <p id="doctor_info_add_warn">Maximum: 10</p>
+            <div className="hospital_info_add_picture_div">
+                <p id="hospital_info_add_name_title">Add picture</p>
+                <p id="hospital_info_add_warn">Maximum: 10</p>
                 {/* 사진 */}
                 <div className="make_info_pictures_div">
                     {items.map((item, index) => {
                         return (
                             <div className="make_review_add_picture_wrapper">
                                 <div className="make_review_add_picture_div">
-                                    <div className="add_doctor_picture_wrapper">
+                                    <div className="add_hospital_picture_wrapper">
                                         <img
                                             src={images[index]}
                                             alt=""
-                                            id="add_doctor_info_make_review_picture"
+                                            id="add_hospital_info_make_review_picture"
                                             onClick={() => {
                                                 fileInputs.current[
                                                     index
@@ -167,11 +167,11 @@ const DoctorInfoAdd: React.FC<DoctorInfoAddProps> = ({isLeftClicked,isRightClick
                         </div>
                     </div>
                 </div>
-                <div className="doctor_add_page_wysiwyg_div">
+                <div className="hospital_add_page_wysiwyg_div">
                     <Wysiwyg />
                 </div>
             </div>
         </div>
     );
 };
-export default DoctorInfoAdd;
+export default HospitalInfoAdd;

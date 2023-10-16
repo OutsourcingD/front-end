@@ -1,14 +1,13 @@
 import React from "react";
-import "./DoctorInfoAdd.css";
+import "./DoctorPostAdd.css";
 import PartCategory from "../review_page/PartCategory";
 import Wysiwyg from "./ContentInput";
 
 interface DoctorInfoAddProps {
-    isLeftClicked: boolean;
-    isRightClicked: boolean;
+    isAddClicked: boolean;
 }
 
-const DoctorInfoAdd: React.FC<DoctorInfoAddProps> = ({isLeftClicked,isRightClicked}) => {
+const DoctorPostAdd: React.FC<DoctorInfoAddProps> = ({isAddClicked}) => {
     const [images, setImages] = React.useState(
         Array(10).fill("/add_picture_png.png")
     );
@@ -71,7 +70,7 @@ const DoctorInfoAdd: React.FC<DoctorInfoAddProps> = ({isLeftClicked,isRightClick
         }
     };
 
-    if (!isRightClicked && !isLeftClicked) {
+    if (!isAddClicked) {
         return null;
     }
 
@@ -174,4 +173,4 @@ const DoctorInfoAdd: React.FC<DoctorInfoAddProps> = ({isLeftClicked,isRightClick
         </div>
     );
 };
-export default DoctorInfoAdd;
+export default DoctorPostAdd;
