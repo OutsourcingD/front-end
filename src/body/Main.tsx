@@ -102,7 +102,7 @@ function Main() {
         if (category < 9) {
             await axios({
                 method: "get", // or 'post', 'put', etc.
-                url: `/ap/review/search?type=${type}&query=${searchValue}&category=${category}&pages=${
+                url: `/api/review/search?type=${type}&query=${searchValue}&category=${category}&pages=${
                     page - 1
                 }`,
                 withCredentials: true,
