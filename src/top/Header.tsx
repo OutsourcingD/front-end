@@ -64,7 +64,7 @@ function Header() {
     const mypageClick = () => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/auth/check`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/auth/check`,
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
@@ -150,25 +150,32 @@ function Header() {
     }, [location]);
 
     useEffect(() => {
-        axios({
-            method: "get", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/member/info`,
-            headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-            },
-        }).then((res) => {
-            setName(res.data.nickname);
-            setProfile(res.data.profile);
-        }).catch((err) => {
-            if(err.response.status === 401 || err.response.status === 403) {
-                alert("This is not admin ID.");
-                navigate("/login");
-            }
-            else {
-                alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
-            }          
-        });
+        if(localStorage.getItem("access_token") !== null) {
+            axios({
+                method: "get", // or 'post', 'put', etc.
+                url: `${process.env.REACT_APP_SERVER_URL}/api/member/info`,
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+                },
+            }).then((res) => {
+                setName(res.data.nickname);
+                setProfile(res.data.profile);
+            }).catch((err) => {
+                console.log(err)
+                if(err.response.status === 401 || err.response.status === 403) {
+                    alert("This is not admin ID.");
+                    navigate("/login");
+                }
+                else {
+                    alert(`Contact to developer. ${err.response.status}`);
+                    navigate("/");
+                }          
+            });
+        }
+        else 
+        {
+            setIsLogin(false)
+        }
     }, []);
 
     useEffect(() => {

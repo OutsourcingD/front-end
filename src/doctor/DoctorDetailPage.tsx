@@ -43,7 +43,7 @@ function DoctorDetailPage() {
         /* doctor detail */
         axios({
             method: "get", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/doctor/detail?postId=${doctorId}`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/doctor/detail?postId=${doctorId}`,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },
@@ -56,7 +56,7 @@ function DoctorDetailPage() {
             method: "get", // or 'post', 'put', etc.
             url: `${
                 process.env.REACT_APP_SERVER_URL
-            }/doctor/review?doctorId=${doctorId}&pages=${page - 1}`,
+            }/api/doctor/review?doctorId=${doctorId}&pages=${page - 1}`,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },

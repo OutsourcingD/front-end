@@ -45,7 +45,7 @@ function HospitalDetailPage() {
         /* hospital detail */
         axios({
             method: "get", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/hospital/detail?postId=${hospitalId}`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/hospital/detail?postId=${hospitalId}`,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },
@@ -59,7 +59,7 @@ function HospitalDetailPage() {
         // 연관 후기
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/hospital/review?hospitalId=${hospitalId}&pages=${page - 1}`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/hospital/review?hospitalId=${hospitalId}&pages=${page - 1}`,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },

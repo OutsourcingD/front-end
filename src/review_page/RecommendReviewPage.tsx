@@ -53,7 +53,7 @@ function RecommendReviewPage() {
             method: "get", // or 'post', 'put', etc.
             url: `${
                 process.env.REACT_APP_SERVER_URL
-            }/review/recommendation/search?pages=${page - 1}&query=${searchValue}&part=${category}`,
+            }/api/review/recommendation/search?pages=${page - 1}&query=${searchValue}&part=${category}`,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },
@@ -72,7 +72,7 @@ function RecommendReviewPage() {
             method: "get", // or 'post', 'put', etc.
             url: `${
                 process.env.REACT_APP_SERVER_URL
-            }/review/recommendation/search?pages=${0}&query=${" "}&part=${category}`,
+            }/api/review/recommendation/search?pages=${0}&query=${" "}&part=${category}`,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },
@@ -87,7 +87,7 @@ function RecommendReviewPage() {
             method: "get", // or 'post', 'put', etc.
             url: `${
                 process.env.REACT_APP_SERVER_URL
-            }/review/recommendation/doc-hos?type=${category}&query=${" "}`,
+            }/api/review/recommendation/doc-hos?type=${category}&query=${" "}`,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },

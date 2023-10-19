@@ -21,7 +21,7 @@ const BeforeCategory = (props: BeforeCategoryProps) => {
     React.useEffect(() => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/review/before-after?part=${categoryNumber}&pages=0`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/review/before-after?part=${categoryNumber}&pages=0`,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },

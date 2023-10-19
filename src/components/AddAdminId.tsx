@@ -26,7 +26,7 @@ const AddAdminId = () => {
 
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/member/upgrade`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member/upgrade`,
             params: {
                 id: userId,
             },
@@ -59,7 +59,7 @@ const AddAdminId = () => {
     const deleteHandler = (index: number) => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/member/downgrade`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member/downgrade`,
             params: {
                 id: adminIdList[index].userId,
             },
@@ -85,7 +85,7 @@ const AddAdminId = () => {
     React.useEffect(() => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin`,
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },

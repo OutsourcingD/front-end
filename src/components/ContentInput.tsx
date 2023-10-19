@@ -24,7 +24,7 @@ const Wysiwyg = (props: WysiwygProps) => {
 
         await axios({
             method: "post",
-            url: `${process.env.REACT_APP_SERVER_URL}/image`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/image`,
             data: formData,
             headers: {
                 "Content-Type": "multipart/form-data",

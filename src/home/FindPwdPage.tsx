@@ -67,7 +67,7 @@ const FindPwdPage = (props: FindPwdProps) => {
             setCodeVerified(2);
             axios({
                 method: "post",
-                url: `${process.env.REACT_APP_SERVER_URL}/email/verify`,
+                url: `${process.env.REACT_APP_SERVER_URL}/api/email/verify`,
                 data: {
                     code: code,
                 },

@@ -29,7 +29,7 @@ function Login() {
         emailRegEx.test(email)
             ? axios({
                   method: "post",
-                  url: `${process.env.REACT_APP_SERVER_URL}/login`,
+                  url: `${process.env.REACT_APP_SERVER_URL}/api/login`,
                   data: {
                       userId: email,
                       password: pwd,

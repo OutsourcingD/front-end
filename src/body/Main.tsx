@@ -71,8 +71,7 @@ function Main() {
         //배너 이미지 가져오기
         await axios({
             method: "get", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/banner?location=1`,
-            withCredentials: true,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/banner?location=1`,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },
@@ -86,15 +85,14 @@ function Main() {
     const getRecommendedReviews = async () => {
         await axios({
             method: "get", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/review/recommendation`,
-            withCredentials: true,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/review/recommendation`,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },
         }).then((res) => {
             setRecommendReviews(res.data);
         }).catch((err) => {
-            alert("Server Error" + err.response.status);
+            alert("Server Error" + err.response);
         });
     };
 
@@ -104,10 +102,9 @@ function Main() {
                 method: "get", // or 'post', 'put', etc.
                 url: `${
                     process.env.REACT_APP_SERVER_URL
-                }/review/search?type=${type}&query=${searchValue}&category=${category}&pages=${
+                }/api/review/search?type=${type}&query=${searchValue}&category=${category}&pages=${
                     page - 1
                 }`,
-                withCredentials: true,
                 headers: {
                     Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
                 },
@@ -116,13 +113,12 @@ function Main() {
 
                 setTotalPages(res.data[0].totalPages === undefined ? 1 : res.data[0].totalPages);
             }).catch((err) => {
-                alert("Server Error" + err.response.status);
+                alert("Server Error" + err.response);
             });
         } else {
             axios({
                 method: "get", // or 'post', 'put', etc.
-                url: `${process.env.REACT_APP_SERVER_URL}/review/search/doc-hos?sortType=${type}&type=${category}&query=${searchValue}`,
-                withCredentials: true,
+                url: `${process.env.REACT_APP_SERVER_URL}/api/review/search/doc-hos?sortType=${type}&type=${category}&query=${searchValue}`,
                 headers: {
                     Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
                 },
@@ -223,6 +219,8 @@ function Main() {
     }, [page, type]);
 
     useEffect(() => {
+        setDocHosReviewList([]);
+        setReviewList([]);
         setSearchValue(" ");
         setFilter("filter");
         if (category < 9) {
@@ -230,9 +228,8 @@ function Main() {
                 method: "get", // or 'post', 'put', etc.
                 url: `${
                     process.env.REACT_APP_SERVER_URL
-                }/review/search?type=${0}&query=${" "}&category=${category}&pages=${0
+                }/api/review/search?type=${0}&query=${" "}&category=${category}&pages=${0
                 }`,
-                withCredentials: true,
                 headers: {
                     Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
                 },
@@ -243,13 +240,12 @@ function Main() {
                     res.data[0] === undefined ? 1 : res.data[0].totalPages
                 );
             }).catch((err) => {
-                alert("Server Error" + err.response.status);
+                alert("Server Error" + err.response);
             });
         } else if (9 === category || category === 10) {
             axios({
                 method: "get", // or 'post', 'put', etc.
-                url: `${process.env.REACT_APP_SERVER_URL}/review/search/doc-hos?sortType=${0}&type=${category}&query=${" "}`,
-                withCredentials: true,
+                url: `${process.env.REACT_APP_SERVER_URL}/api/review/search/doc-hos?sortType=${0}&type=${category}&query=${" "}`,
                 headers: {
                     Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
                 },
@@ -431,7 +427,7 @@ function Main() {
                           );
                       })
                     : docHosReviewList.map((review, index) => {
-                          return <DocsHosReviewItem key={review.id} dto={review} type={category === 9 ? 0 : 1} />;
+                          return <DocsHosReviewItem key={category === 9 ? review.id + "doc" + index : review.id + "hos" + index} dto={review} type={category === 9 ? 0 : 1} />;
                       })}
             </div>
             {/* pagenation 섹션 */}

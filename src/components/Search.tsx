@@ -36,7 +36,7 @@ const Search = (props: SearchProps) => {
                     method: "get", // or 'post', 'put', etc.
                     url: `${
                         process.env.REACT_APP_SERVER_URL
-                    }/review/search?type=${0}&query=${value}&category=${
+                    }/api/review/search?type=${0}&query=${value}&category=${
                         props.category
                     }&pages=${0}`,
                     headers: {
@@ -60,7 +60,7 @@ const Search = (props: SearchProps) => {
             } else {
                 axios({
                     method: "get", // or 'post', 'put', etc.
-                    url: `${process.env.REACT_APP_SERVER_URL}/review/search/doc-hos?sortType=0&type=${props.category}&query=${value}`,
+                    url: `${process.env.REACT_APP_SERVER_URL}/api/review/search/doc-hos?sortType=0&type=${props.category}&query=${value}`,
                     headers: {
                         Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
                     },
@@ -86,7 +86,7 @@ const Search = (props: SearchProps) => {
                     method: "get", // or 'post', 'put', etc.
                     url: `${
                         process.env.REACT_APP_SERVER_URL
-                    }/review/recommendation/search?&pages=${0}&query=${value}&part=${props.category}`,
+                    }/api/review/recommendation/search?&pages=${0}&query=${value}&part=${props.category}`,
                     headers: {
                         Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
                     },
@@ -108,7 +108,7 @@ const Search = (props: SearchProps) => {
             } else {
                 axios({
                     method: "get", // or 'post', 'put', etc.
-                    url: `${process.env.REACT_APP_SERVER_URL}/review/recommendation/doc-hos?type=${props.category}&query=${value}`,
+                    url: `${process.env.REACT_APP_SERVER_URL}/api/review/recommendation/doc-hos?type=${props.category}&query=${value}`,
                     headers: {
                         Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
                     },
@@ -132,7 +132,7 @@ const Search = (props: SearchProps) => {
         else if(props.parent === 2) {
             axios({
                 method: "get",
-                url: `${process.env.REACT_APP_SERVER_URL}/hospital/search?pages=0&title=${value}`,
+                url: `${process.env.REACT_APP_SERVER_URL}/api/hospital/search?pages=0&title=${value}`,
                 headers: {
                     Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
                 },
@@ -154,7 +154,7 @@ const Search = (props: SearchProps) => {
         } else if(props.parent === 3) {
             axios({
                 method: "get",
-                url: `${process.env.REACT_APP_SERVER_URL}/doctor/search?pages=0&title=${value}`,
+                url: `${process.env.REACT_APP_SERVER_URL}/api/doctor/search?pages=0&title=${value}`,
                 headers: {
                     Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
                 },
@@ -183,7 +183,7 @@ const Search = (props: SearchProps) => {
                     method: "get", // or 'post', 'put', etc.
                     url: `${
                         process.env.REACT_APP_SERVER_URL
-                    }/review/recommendation/search?&pages=${0}&query=${value}&part=${props.category}`,
+                    }/api/review/recommendation/search?&pages=${0}&query=${value}&part=${props.category}`,
                     headers: {
                         Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
                     },
@@ -204,7 +204,7 @@ const Search = (props: SearchProps) => {
             } else {
                 axios({
                     method: "get", // or 'post', 'put', etc.
-                    url: `${process.env.REACT_APP_SERVER_URL}/review/recommendation/doc-hos?type=${props.category}&query=${value}`,
+                    url: `${process.env.REACT_APP_SERVER_URL}/api/review/recommendation/doc-hos?type=${props.category}&query=${value}`,
                     headers: {
                         Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
                     },
@@ -230,7 +230,7 @@ const Search = (props: SearchProps) => {
                     method: "get", // or 'post', 'put', etc.
                     url: `${
                         process.env.REACT_APP_SERVER_URL
-                    }/review/recommendation/search?&pages=${0}&query=${value}&part=${props.category}`,
+                    }/api/review/recommendation/search?&pages=${0}&query=${value}&part=${props.category}`,
                     headers: {
                         Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
                     },
@@ -252,7 +252,7 @@ const Search = (props: SearchProps) => {
             } else {
                 axios({
                     method: "get", // or 'post', 'put', etc.
-                    url: `${process.env.REACT_APP_SERVER_URL}/review/recommendation/doc-hos?type=${props.category}&query=${value}`,
+                    url: `${process.env.REACT_APP_SERVER_URL}/api/review/recommendation/doc-hos?type=${props.category}&query=${value}`,
                     headers: {
                         Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
                     },
@@ -276,7 +276,7 @@ const Search = (props: SearchProps) => {
         else if(props.parent === 3) {
             axios({
                 method: "get",
-                url: `${process.env.REACT_APP_SERVER_URL}/doctor/search?pages=0&title=${value}`,
+                url: `${process.env.REACT_APP_SERVER_URL}/api/doctor/search?pages=0&title=${value}`,
                 headers: {
                     Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
                 },
