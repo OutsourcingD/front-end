@@ -18,9 +18,9 @@ function InqueryComponent() {
 
         axios({
             method: "post", // or 'post', 'put', etc.
-            url: '/api/inquiry',
+            url: `${process.env.REACT_APP_SERVER_URL}/api/inquiry`,
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
             data: {
                 content: value,
@@ -43,9 +43,9 @@ function InqueryComponent() {
     const sendInquery = () => {
         axios({
             method: "post", // or 'post', 'put', etc.
-            url: '/api/inquiry',
+            url: `${process.env.REACT_APP_SERVER_URL}/api/inquiry`,
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
             data: {
                 content: value,

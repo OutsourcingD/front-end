@@ -48,9 +48,9 @@ function MakeReviewItem() {
         //병원 정보 가져오기
         axios({
             method: "get", // or 'post', 'put', etc.
-            url: '/api/hospital/all',
+            url: `${process.env.REACT_APP_SERVER_URL}/api/hospital/all`,
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setHospitalInfo(res.data);
@@ -68,9 +68,9 @@ function MakeReviewItem() {
         //의사 정보 가져오기
         axios({
             method: "get", // or 'post', 'put', etc.
-            url: '/api/doctor/all',
+            url: `${process.env.REACT_APP_SERVER_URL}/api/doctor/all`,
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setDoctorInfo(res.data);

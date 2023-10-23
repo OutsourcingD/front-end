@@ -27,10 +27,7 @@ function ReviewPage() {
     if (reviewDetail === null) {
       axios({
         method: "get", // or 'post', 'put', etc.
-        url: `/api/review/detail?reviewId=${reviewId}`,
-        headers: {
-          Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-        },
+        url: `${process.env.REACT_APP_SERVER_URL}/api/review/detail?reviewId=${reviewId}`,
       }).then((res) => {
         setReviewDetail(res.data);
       }).catch((err) => {

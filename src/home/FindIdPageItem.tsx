@@ -68,7 +68,7 @@ const FindIdPageItem = (props: FindIdPageItemProps) => {
             setCodeVerified(2);
             axios({
                 method: "post",
-                url: '/api/email/verify',
+                url: `${process.env.REACT_APP_SERVER_URL}/api/email/verify`,
                 data: {
                     code: code,
                 },

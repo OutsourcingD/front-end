@@ -30,10 +30,7 @@ function MyPage() {
         //banner api
         axios({
             method: "get",
-            url: '/api/banner?location=3',
-            headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-            },
+            url: `${[process.env.REACT_APP_SERVER_URL]}/api/banner?location=3`,
         }).then((res) => {
             setBanners(res.data);
         }).catch((err) => {
@@ -50,9 +47,9 @@ function MyPage() {
         //my review api
         axios({
             method: "get",
-            url: '/api/review/my?pages=0',
+            url: `${process.env.REACT_APP_SERVER_URL}/api/review/my?pages=0`,
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setMyReviewItems(res.data);
@@ -70,9 +67,9 @@ function MyPage() {
         //my comment api
         axios({
             method: "get",
-            url: '/api/comment/my',
+            url: `${process.env.REACT_APP_SERVER_URL}/api/comment/my`,
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
           setMyCommentItems(res.data);
@@ -90,9 +87,9 @@ function MyPage() {
         //my inquery api
         axios({
           method: "get",
-          url: '/api/inquiry',
+          url: `${process.env.REACT_APP_SERVER_URL}/api/inquiry`,
           headers: {
-            Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
           },
         }).then((res) => {
           setMyInqueryItems(res.data);

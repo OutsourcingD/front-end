@@ -62,30 +62,32 @@ function Header() {
     };
 
     const mypageClick = () => {
-        axios({
-            method: "get",
-            url: '/api/auth/check',
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-            },
-        }).then((res) => {
-            res.data.map((item: Props) => {
-                if (item.authorityName === "ROLE_USER") {
-                    navigate(`/mypage?id=${localStorage.getItem("member_id")}`);
-                } else if (item.authorityName === "ROLE_ADMIN") {
-                    navigate("/admin");
+        if (localStorage.getItem("access_token") !== null) {
+            axios({
+                method: "get",
+                url: `${process.env.REACT_APP_SERVER_URL}/api/auth/check`,
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+                },
+            }).then((res) => {
+                res.data.map((item: Props) => {
+                    if (item.authorityName === "ROLE_USER") {
+                        navigate(`/mypage?id=${localStorage.getItem("member_id")}`);
+                    } else if (item.authorityName === "ROLE_ADMIN") {
+                        navigate("/admin");
+                    }
+                });
+            }).catch((err) => {
+                if (err.response.status === 401 || err.response.status === 403) {
+                    alert("This is not admin ID.");
+                    navigate("/login");
+                }
+                else {
+                    alert(`Contact to developer. ${err.response.status}`);
+                    navigate("/");
                 }
             });
-        }).catch((err) => {
-            if(err.response.status === 401 || err.response.status === 403) {
-                alert("This is not admin ID.");
-                navigate("/login");
-            }
-            else {
-                alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
-            }          
-        });
+        }
     };
 
     const logoutClick = () => {
@@ -135,10 +137,10 @@ function Header() {
         const memberIdString = localStorage.getItem("user_id")
         let memberId = 0
 
-        if(location.pathname !== "/hospital" && location.pathname !== "/doctor" && location.pathname !== "/before-after") {
+        if (location.pathname !== "/hospital" && location.pathname !== "/doctor" && location.pathname !== "/before-after") {
             setSelected(0);
         }
-        
+
         memberIdString !== null ? memberId = Number(memberIdString) : memberId = 0;
 
         if (accessToken !== null && refreshToken !== null) {
@@ -150,29 +152,31 @@ function Header() {
     }, [location]);
 
     useEffect(() => {
-        axios({
-            method: "get", // or 'post', 'put', etc.
-            url: '/api/member/info',
-            headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-            },
-        }).then((res) => {
-            setName(res.data.nickname);
-            setProfile(res.data.profile);
-        }).catch((err) => {
-            if(err.response.status === 401 || err.response.status === 403) {
-                alert("This is not admin ID.");
-                navigate("/login");
-            }
-            else {
-                alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
-            }          
-        });
+        if (localStorage.getItem("access_token") !== null) {
+            axios({
+                method: "get", // or 'post', 'put', etc.
+                url: '/api/member/info',
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+                },
+            }).then((res) => {
+                setName(res.data.nickname);
+                setProfile(res.data.profile);
+            }).catch((err) => {
+                if (err.response.status === 401 || err.response.status === 403) {
+                    alert("This is not admin ID.");
+                    navigate("/login");
+                }
+                else {
+                    alert(`Contact to developer. ${err.response.status}`);
+                    navigate("/");
+                }
+            });
+        }
     }, []);
 
     useEffect(() => {
-        if(width > 920) setIsClick(false);
+        if (width > 920) setIsClick(false);
     }, [width]);
 
     useEffect(() => {
@@ -184,7 +188,7 @@ function Header() {
     }, []);
 
     useEffect(() => {
-        if(isClick) {
+        if (isClick) {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = 'unset';
@@ -192,39 +196,39 @@ function Header() {
     }, [isClick])
 
     return (
-        <HeaderDiv className="header"> 
+        <HeaderDiv className="header">
             {isClick === true ? <div className="main_disabled"></div> : null}
             {
-                isClick === true ? 
-                <div className="hamburger_menu">
-                    <div>
-                        <div className="hamburger_menu_item" onClick={() => handleHamburger(1)}>
-                            <p id="hamburger_menu_text">Hospital</p>
+                isClick === true ?
+                    <div className="hamburger_menu">
+                        <div>
+                            <div className="hamburger_menu_item" onClick={() => handleHamburger(1)}>
+                                <p id="hamburger_menu_text">Hospital</p>
+                            </div>
+                            <div className="hamburger_menu_item" onClick={() => handleHamburger(2)}>
+                                <p id="hamburger_menu_text">Doctor</p>
+                            </div>
+                            <div className="hamburger_menu_item" onClick={() => handleHamburger(3)}>
+                                <p id="hamburger_menu_text">Before-After</p>
+                            </div>
                         </div>
-                        <div className="hamburger_menu_item" onClick={() => handleHamburger(2)}>
-                            <p id="hamburger_menu_text">Doctor</p>
-                        </div>
-                        <div className="hamburger_menu_item" onClick={() => handleHamburger(3)}>
-                            <p id="hamburger_menu_text">Before-After</p>
-                        </div>
-                    </div>
-                    <div className="hamburger_sign_in_div">
-                        {
-                            isLogin ?
-                                <div className="logout_container">
-                                    <p id="hamburger_sign_in" onClick={handleHamburgerLogout}>Log out</p>
-                                    <div onClick={() => {mypageClick(); setIsClick(false)}}>
-                                        <img src="/setting_image.png" alt="" id="setting_image" />
+                        <div className="hamburger_sign_in_div">
+                            {
+                                isLogin ?
+                                    <div className="logout_container">
+                                        <p id="hamburger_sign_in" onClick={handleHamburgerLogout}>Log out</p>
+                                        <div onClick={() => { mypageClick(); setIsClick(false) }}>
+                                            <img src="/setting_image.png" alt="" id="setting_image" />
+                                        </div>
                                     </div>
-                                </div>
-                                : <p id="hamburger_sign_in" onClick={() => {navigate("/login"); setIsClick(false)}}>Sign in / up</p>
-                        }
-                    </div>
-                </div> : null
+                                    : <p id="hamburger_sign_in" onClick={() => { navigate("/login"); setIsClick(false) }}>Sign in / up</p>
+                            }
+                        </div>
+                    </div> : null
             }
             <LeftDiv className="left">
                 {
-                    width <= 920 ? isClick ? 
+                    width <= 920 ? isClick ?
                         <div className="hamburger_close_div" onClick={() => setIsClick(false)}>
                             <img
                                 src="/close_black.png"
@@ -232,11 +236,11 @@ function Header() {
                                 id="hamburger_close"
                             />
                         </div>
-                     : (
-                        <div className="hamburger_div" onClick={() => setIsClick(true)}>
-                            <img src="/hamburger.png" id="hamburger" alt="" />
-                        </div>
-                    ) : null
+                        : (
+                            <div className="hamburger_div" onClick={() => setIsClick(true)}>
+                                <img src="/hamburger.png" id="hamburger" alt="" />
+                            </div>
+                        ) : null
                 }
                 <img
                     src="/logo.png"
@@ -254,18 +258,18 @@ function Header() {
                 >
                     Hospital
                 </Menu>
-                <Menu
-                    id={selected !== 2 ? "menu" : "selected_menu"}
-                    onClick={() => movePage(2)}
-                >
-                    Doctor
-                </Menu>
-                <Menu
-                    id={selected !== 3 ? "menu" : "selected_menu"}
-                    onClick={() => movePage(3)}
-                >
-                    Before-After
-                </Menu></> : null}
+                    <Menu
+                        id={selected !== 2 ? "menu" : "selected_menu"}
+                        onClick={() => movePage(2)}
+                    >
+                        Doctor
+                    </Menu>
+                    <Menu
+                        id={selected !== 3 ? "menu" : "selected_menu"}
+                        onClick={() => movePage(3)}
+                    >
+                        Before-After
+                    </Menu></> : null}
             </LeftDiv>
             <RightDiv className="right">
                 {!isLogin ? (
@@ -286,44 +290,44 @@ function Header() {
                     </div>
                 ) : (
                     <>
-                    {
-                        width > 920 ?
-                        <>
-                            <div className="profile_container" onClick={onClick}>
-                                <img
-                                    src={profile}
-                                    alt="profile"
-                                    id="profile"
-                                />
-                            </div>
-                            <div className="nameDiv" onClick={onClick}>
-                                <div className="header_my_name_info">
-                                    <p id="name">{name}</p>
-                                    <p id="name_">Sir</p>
-                                </div>
-                                {more ? (
-                                    <div
-                                        className="mypage_more_drop_box"
-                                        ref={dropdownRef}
-                                    >
-                                        <div
-                                            className="header_logout_div"
-                                            onClick={logoutClick}
-                                        >
-                                            <p id="header_logout">log out</p>
-                                        </div>
-                                        <div
-                                            className="header_logout_div"
-                                            onClick={mypageClick}
-                                        >
-                                            <p id="header_logout">my page</p>
-                                        </div>
+                        {
+                            width > 920 ?
+                                <>
+                                    <div className="profile_container" onClick={onClick}>
+                                        <img
+                                            src={profile}
+                                            alt="profile"
+                                            id="profile"
+                                        />
                                     </div>
-                                ) : null}
-                            </div>
-                        </>
-                        : null
-                    }
+                                    <div className="nameDiv" onClick={onClick}>
+                                        <div className="header_my_name_info">
+                                            <p id="name">{name}</p>
+                                            <p id="name_">Sir</p>
+                                        </div>
+                                        {more ? (
+                                            <div
+                                                className="mypage_more_drop_box"
+                                                ref={dropdownRef}
+                                            >
+                                                <div
+                                                    className="header_logout_div"
+                                                    onClick={logoutClick}
+                                                >
+                                                    <p id="header_logout">log out</p>
+                                                </div>
+                                                <div
+                                                    className="header_logout_div"
+                                                    onClick={mypageClick}
+                                                >
+                                                    <p id="header_logout">my page</p>
+                                                </div>
+                                            </div>
+                                        ) : null}
+                                    </div>
+                                </>
+                                : null
+                        }
                         <div className="chatDiv">
                             <div className="chat_icon_div">
                                 <img

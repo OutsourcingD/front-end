@@ -39,12 +39,9 @@ function BeforePage() {
     React.useEffect(() => {
         axios({
             method: "get", // or 'post', 'put', etc.
-            url: `/api/review/before-after?part=${category}&pages=${
+            url: `${process.env.REACT_APP_SERVER_URL}/api/review/before-after?part=${category}&pages=${
                 page - 1
             }`,
-            headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-            },
         }).then((res) => {
             setBeforeAfterList(res.data);
             setTotalPages(res.data[0] !== undefined ? res.data[0].totalPages : 1);

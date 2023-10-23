@@ -119,11 +119,6 @@ function SignUp() {
         await axios
             .get(
                 `/api/non-member/check-duplicated?name=${nickname}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-                    },
-                }
             )
             .then((res) => {
                 setDuplicated(res.data ? 2 : 1);

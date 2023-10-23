@@ -45,10 +45,7 @@ function HospitalDetailPage() {
         /* hospital detail */
         axios({
             method: "get", // or 'post', 'put', etc.
-            url: `/api/hospital/detail?postId=${hospitalId}`,
-            headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-            },
+            url: `${process.env.REACT_APP_SERVER_URL}/api/hospital/detail?postId=${hospitalId}`,
         }).then((res) => {
             setHospitalDetail(res.data);
         }).catch((err) => {
@@ -59,10 +56,7 @@ function HospitalDetailPage() {
         // 연관 후기
         axios({
             method: "get",
-            url: `/api/hospital/review?hospitalId=${hospitalId}&pages=${page - 1}`,
-            headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-            },
+            url: `${process.env.REACT_APP_SERVER_URL}/api/hospital/review?hospitalId=${hospitalId}&pages=${page - 1}`,
         }).then((res) => {
             setHospitalReview(res.data);
         }).catch((err) => {

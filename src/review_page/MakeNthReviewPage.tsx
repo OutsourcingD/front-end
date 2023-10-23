@@ -14,7 +14,7 @@ function MakeNthReviewPage() {
     const onClick = () => {
         axios({
             method: "post",
-            url: '/api/review/child/add',
+            url: `${process.env.REACT_APP_SERVER_URL}/api/review/child/add`,
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,

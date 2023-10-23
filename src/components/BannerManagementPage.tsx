@@ -14,10 +14,7 @@ const BannerManagementPage = () => {
         //1: 상단, 3: 하단
         await axios({
             method: "get",
-            url: `/api/banner?location=${location}`,
-            headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-            },
+            url: `${process.env.REACT_APP_SERVER_URL}/api/banner?location=${location}`,
         }).then((res) => {
             location === 1 ? setTopBannerList(res.data) : setBottomBannerList(res.data);
         }).catch((err) => {

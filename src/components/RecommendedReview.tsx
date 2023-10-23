@@ -29,10 +29,7 @@ function RecommendedReview() {
     useEffect(() => {
         axios({
             method: "get", // or 'post', 'put', etc.
-            url: `/api/review/recommendation/search?pages=${page - 1}&query=${search}&part=${category}`,
-            headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-            },
+            url: `${process.env.REACT_APP_SERVER_URL}/api/review/recommendation/search?pages=${page - 1}&query=${search}&part=${category}`,
         }).then((res) => {
             setReviewList(res.data);
         }).catch((err) => {

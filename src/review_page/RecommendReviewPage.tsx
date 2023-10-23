@@ -51,10 +51,7 @@ function RecommendReviewPage() {
     const getRecommendReviewList = async () => {
         await axios({
             method: "get", // or 'post', 'put', etc.
-            url: `/api/review/recommendation/search?pages=${page - 1}&query=${searchValue}&part=${category}`,
-            headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-            },
+            url: `${process.env.REACT_APP_SERVER_URL}/api/review/recommendation/search?pages=${page - 1}&query=${searchValue}&part=${category}`,
         }).then((res) => {
             setRecommendReviewItems(res.data);
             setTotalPages(res.data[0].totalPages);
@@ -68,10 +65,7 @@ function RecommendReviewPage() {
         if(category < 9) {
         await axios({
             method: "get", // or 'post', 'put', etc.
-            url: `/api/review/recommendation/search?pages=${0}&query=${" "}&part=${category}`,
-            headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-            },
+            url: `${process.env.REACT_APP_SERVER_URL}/api/review/recommendation/search?pages=${0}&query=${" "}&part=${category}`,
         }).then((res) => {
             setRecommendReviewItems(res.data);
             setTotalPages(res.data.length === 0 ? 1 : res.data[0].totalPages);
@@ -81,10 +75,7 @@ function RecommendReviewPage() {
     } else {
         await axios({
             method: "get", // or 'post', 'put', etc.
-            url: `/api/review/recommendation/doc-hos?type=${category}&query=${" "}`,
-            headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-            },
+            url: `${process.env.REACT_APP_SERVER_URL}/api/review/recommendation/doc-hos?type=${category}&query=${" "}`,
         }).then((res) => {
             setDocHosReviewList(res.data);
         }).catch((err) => {

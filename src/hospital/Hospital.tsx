@@ -28,12 +28,9 @@ function Hospital() {
     const getHospitalList = async () => {
         await axios({
             method: "get", // or 'post', 'put', etc.
-            url: `/api/hospital/search?pages=${
+            url: `${process.env.REACT_APP_SERVER_URL}/api/hospital/search?pages=${
                 page - 1
             }&title=${searchValue}`,
-            headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-            },
         }).then((res) => {
             setHospitalList(res.data);
             setTotalPages(res.data !== undefined && res.data.length !== 0 ? res.data[0].totalPages : 1);
