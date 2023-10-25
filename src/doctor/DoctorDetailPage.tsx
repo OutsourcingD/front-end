@@ -7,6 +7,7 @@ import Pagination from "react-js-pagination";
 import Footer from "../bottom/Footer";
 import { DoctorDetailDto } from "../dto/DoctorDetailDto";
 import { DoctorReviewDto } from "../dto/DoctorReview";
+import "./DoctorDetailPage.css";
 
 function DoctorDetailPage() {
     const location = useLocation();
@@ -42,10 +43,7 @@ function DoctorDetailPage() {
         /* doctor detail */
         axios({
             method: "get", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/doctor/detail?postId=${doctorId}`,
-            headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-            },
+            url: `${process.env.REACT_APP_SERVER_URL}/api/doctor/detail?postId=${doctorId}`,
         }).then((res) => {
             setDoctorDetail(res.data);
         });
@@ -53,12 +51,7 @@ function DoctorDetailPage() {
         /* hospital detail */
         axios({
             method: "get", // or 'post', 'put', etc.
-            url: `${
-                process.env.REACT_APP_SERVER_URL
-            }/doctor/review?doctorId=${doctorId}&pages=${page - 1}`,
-            headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-            },
+            url: `${process.env.REACT_APP_SERVER_URL}/api/doctor/review?doctorId=${doctorId}&pages=${page - 1}`,
         }).then((res) => {
             setDoctorReviews(res.data);
             setTotalPages(res.data.length !== 0 ? res.data[0].totalPages : 1);
@@ -115,23 +108,9 @@ function DoctorDetailPage() {
                         }}
                     />
                 </div>
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        width: "100%",
-                        marginTop: "1%",
-                        marginBottom: "3%",
-                    }}
-                >
-                    <p style={{ flex: "1" }}>원장 정보</p>
-                    <hr
-                        style={{
-                            flex: "10",
-                            border: "none",
-                            borderTop: "1px solid #D4D4D4",
-                        }}
-                    />
+                <div className="hospital_detail_content_title">
+                    <p className="hospital_detail_content_text">원장 정보</p>
+                    <hr className="hospital_detail_content_line"/>
                 </div>
                 <div className="hospital_detail_hospital_info_div">
                     <div className="hospital_info_profile_div">
@@ -153,23 +132,9 @@ function DoctorDetailPage() {
                         <p>{doctorDetail?.avgRate}</p>
                     </div>
                 </div>
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        width: "100%",
-                        marginTop: "8.7px",
-                        marginBottom: "10px",
-                    }}
-                >
-                    <p style={{ width: "79px" }}>연관 후기</p>
-                    <hr
-                        style={{
-                            width: "785px",
-                            border: "none",
-                            borderTop: "1px solid #D4D4D4",
-                        }}
-                    />
+                <div className="hospital_review_title">
+                    <p className="hospital_review_text">연관 후기</p>
+                    <hr className="hospital_review_line"/>
                 </div>
                 <div className="hospital_review_div">
                     {doctorReviews.length === 0 ? (

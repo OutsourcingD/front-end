@@ -3,6 +3,7 @@ import "./BannerManagementPage.css";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import axios from "axios";
 import { BannerDto } from "../dto/BannerDto";
+import { useNavigate } from "react-router-dom";
 
 interface BannerDetailProps {
     bannerId: number;
@@ -89,17 +90,28 @@ const BannerManagementPage = () => {
             }
         };
     };
+    const navigate = useNavigate();
 
     const getBanner = async (location: number) => {
         //1: 상단, 3: 하단
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/banner?location=${location}`,
-            headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-            },
+            url: `${process.env.REACT_APP_SERVER_URL}/api/banner?location=${location}`,
         }).then((res) => {
             location === 1 ? setTopBannerList(res.data) : setBottomBannerList(res.data);
+        }).catch((err) => {
+            if(err.status === 401 || err.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else if(err.status === 404) {
+                alert("Contact to developer.");
+                navigate("/");
+            }
+            else {
+                alert(`Contact to developer2. ${err.status}`);
+                navigate("/");
+            }
         });
     }
 

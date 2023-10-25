@@ -3,6 +3,7 @@ import "./AddAdminId.css";
 import axios from "axios";
 import Pagination from "react-js-pagination";
 import UseConfirm from "./ConfirmItem";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
     isBanned: boolean;
@@ -16,6 +17,7 @@ const DeleteMember = () => {
     const [page, setPage] = React.useState(1);
     const [totalPage, setTotalPage] = React.useState(2);
     const message = "Are you sure delete this user?";
+    const navigate = useNavigate();
 
     const handlePage = (e: React.SetStateAction<number>) => {
         setPage(e);
@@ -26,7 +28,7 @@ const DeleteMember = () => {
 
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/member/whole-info`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member/whole-info`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -38,13 +40,22 @@ const DeleteMember = () => {
             setUserList(res.data);
             setTotalPage(res.data.length >= 1 ? res.data[0].totalPages : 1);
             setPage(1);
+        }).catch((err) => {
+            if(err.response.status === 403 || err.response.status === 401) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");   
+            }
         });
     };
 
     const handleDelete = (id: string) => {
         axios({
             method: "delete",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/member`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member`,
             params: {
                 id
             },
@@ -52,15 +63,19 @@ const DeleteMember = () => {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
-            if(res.status === 200) {
                 alert("delete success");
                 // Delete the user from the userList state
                 setUserList(userList.filter(user => user.userId !== id));
                 setPage(1);
                 setId("");
+        }).catch((err) => {
+            if(err.response.status === 403 || err.response.status === 401) {
+                alert("This is not admin ID.");
+                navigate("/login");
             }
             else {
-                alert("delete fail");
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");   
             }
         });
     };
@@ -75,7 +90,7 @@ const DeleteMember = () => {
     const onClick = () => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/member/whole-info`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member/whole-info`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -85,15 +100,24 @@ const DeleteMember = () => {
             },
         }).then((res) => {
             setUserList(res.data);
-            setTotalPage(res.data.length >= 1 ? res.data[0].totalPages : 1);
+            setTotalPage(res.data !== null && res.data !== undefined && res.data.length >= 1 ? res.data[0].totalPages : 1);
             setPage(1);
+        }).catch((err) => {
+            if(err.response.status === 403 || err.response.status === 401) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");   
+            }
         });
     }
 
     React.useEffect(() => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/member/whole-info`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member/whole-info`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -103,7 +127,16 @@ const DeleteMember = () => {
             },
         }).then((res) => {
             setUserList(res.data);
-            setTotalPage(res.data.length >= 1 ? res.data[0].totalPages : 1);
+            setTotalPage(res.data !== null && res.data !== undefined && res.data.length >= 1 ? res.data[0].totalPages : 1);
+        }).catch((err) => {
+            if(err.response.status === 403 || err.response.status === 401) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");   
+            }
         });
     }, [page]);
 

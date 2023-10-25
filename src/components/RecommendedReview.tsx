@@ -8,12 +8,15 @@ import { ReviewResponseDto } from "../dto/ReviewDto";
 import axios from "axios";
 import Footer from "../bottom/Footer";
 import Pagination from "react-js-pagination";
+import { useNavigate } from "react-router-dom";
 
 function RecommendedReview() {
     const [reviewList, setReviewList] = React.useState<ReviewResponseDto[]>([]);
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(2);
     const [category, setCategory] = React.useState(0);
+    const [search, setSearch] = React.useState("");
+    const navigate = useNavigate();
 
     const onCategory = (value: number) => {
         setCategory(value);
@@ -26,19 +29,25 @@ function RecommendedReview() {
     useEffect(() => {
         axios({
             method: "get", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/review/recommendation/all?pages=0`,
-            headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-            },
+            url: `${process.env.REACT_APP_SERVER_URL}/api/review/recommendation/search?pages=${page - 1}&query=${search}&part=${category}`,
         }).then((res) => {
             setReviewList(res.data);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
+            }
         });
-    }, []);
+    }, [page]);
 
     return (
         <div className="recommed_div">
             <div className="recommend_title_div">
-                <p id="recommend_title">8월 2주차 커뮤니티 추천 후기글</p>
+                <p id="recommend_title">Week 3 of October Community Review</p>
                 <div className="hot_div">
                     <img src="/hot.png" alt="hot" id="hot" />
                 </div>

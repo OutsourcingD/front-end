@@ -18,11 +18,10 @@ const Test = () => {
 
     await axios({
       method: "post",
-      url: `${process.env.REACT_APP_SERVER_URL}/image`,
+      url: `${process.env.REACT_APP_SERVER_URL}/api/image`,
       data: formData,
       headers: {
         "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
       },
     }).then((res) => {
       callback(res.data, "");

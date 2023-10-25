@@ -30,45 +30,78 @@ function MyPage() {
         //banner api
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/banner?location=3`,
-            headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-            },
+            url: `${[process.env.REACT_APP_SERVER_URL]}/api/banner?location=3`,
         }).then((res) => {
             setBanners(res.data);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
+            }          
         });
 
         //my review api
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/review/my?pages=0`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/review/my?pages=0`,
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setMyReviewItems(res.data);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("Login require.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
+            }          
         });
 
         //my comment api
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/comment/my`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/comment/my`,
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
           setMyCommentItems(res.data);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("Login require.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
+            }          
         });
         
         //my inquery api
         axios({
           method: "get",
-          url: `${process.env.REACT_APP_SERVER_URL}/inquiry`,
+          url: `${process.env.REACT_APP_SERVER_URL}/api/inquiry`,
           headers: {
-            Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
           },
         }).then((res) => {
           setMyInqueryItems(res.data);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("Login require.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
+            }          
         });
     }, []);
 
@@ -82,7 +115,6 @@ function MyPage() {
                         <p id="mypage_name">김철수</p>
                     </div>
                     <div className="modify_mypage_button_div">
-                        <p id="mypage_sir">님</p>
                         <img
                             src="/setting1.png"
                             alt="setting"
@@ -108,12 +140,12 @@ function MyPage() {
             <div className="mypage_body">
                 <div className="mypage_review_div">
                     <div className="mypage_review_header_div">
-                        <p id="my_page_sub_title">나의 후기</p>
+                        <p id="my_page_sub_title">My Reviews</p>
                         <p
                             id="my_page_more"
                             onClick={() => navigate(`/mypage/review/more?id=${localStorage.getItem("user_id")}`)}
                         >
-                            더보기
+                            more
                         </p>
                     </div>
                     <div className="my_review_items_div">
@@ -134,12 +166,12 @@ function MyPage() {
                 <div className="mypage_comment_div">
                     {/* 나의 댓글 헤더 부분 */}
                     <div className="mypage_review_header_div">
-                        <p id="my_page_sub_title">나의 댓글</p>
+                        <p id="my_page_sub_title">My Comments</p>
                         <p
                             id="my_page_more"
                             onClick={() => navigate(`/mypage/comment/more?id=${localStorage.getItem("user_id")}`)}
                         >
-                            더보기
+                            more
                         </p>
                     </div>
                     <div className="my_review_items_div">
@@ -156,12 +188,12 @@ function MyPage() {
                 <div className="mypage_inquery_div">
                     {/* 나의 문의 내역 헤더 부분 */}
                     <div className="mypage_review_header_div">
-                        <p id="my_page_sub_title">나의 문의 내역</p>
+                        <p id="my_page_sub_title">My Inquiries</p>
                         <p
                             id="my_page_more"
                             onClick={() => navigate(`/mypage/inquery/more?id=${localStorage.getItem("user_id")}`)}
                         >
-                            더보기
+                            more
                         </p>
                     </div>
                     <div className="my_review_items_div">

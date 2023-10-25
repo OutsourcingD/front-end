@@ -1,6 +1,7 @@
 import React, { useId } from "react";
 import "./AddAdminId.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
     userId: string;
@@ -9,6 +10,7 @@ interface Props {
 const AddAdminId = () => {
     const [adminIdList, setAdminIdList] = React.useState<Props[]>([]);
     const [id, setId] = React.useState("");
+    const navigate = useNavigate();
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>, userId: string) => {
         e.preventDefault();
@@ -17,77 +19,89 @@ const AddAdminId = () => {
     };
 
     const addHandler = (userId: string) => {
-        if(userId === "") {
-            alert("Please enter an email to add.")
+        if (userId === "") {
+            alert("Please enter an email to add.");
             return;
         }
 
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/member/upgrade`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member/upgrade`,
             params: {
                 id: userId,
             },
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
-        }).then((res) => {
-            const newItems = [...adminIdList]; // 기존 아이템들의 복사본을 만듭니다.
-            newItems.push({userId}); // 복사본의 특정 요소만 업데이트합니다.
-            setAdminIdList(newItems); // 그리고 복사본으로 상태를 업데이트합니다.
-        }).catch((err) => {
-            if(err.response.status === 401 || err.response.status === 403)
-                alert("This is not admin ID.");
-            else if(err.response.status === 404)
-                alert(`${userId} is not exist.`);
-            else
-            {
-                alert(`Contact to developer. ${err.response.status}`);
-            }
-        });
+        })
+            .then((res) => {
+                const newItems = [...adminIdList]; // 기존 아이템들의 복사본을 만듭니다.
+                newItems.push({ userId }); // 복사본의 특정 요소만 업데이트합니다.
+                setAdminIdList(newItems); // 그리고 복사본으로 상태를 업데이트합니다.
+            })
+            .catch((err) => {
+                if (
+                    err.response.status === 401 ||
+                    err.response.status === 403
+                ) {
+                    alert("This is not admin ID.");
+                    navigate("/login");
+                } else if (err.response.status === 404) {
+                    alert(`${userId} is not exist.`);
+                    navigate("/");
+                } else {
+                    alert(`Contact to developer. ${err.response.status}`);
+                    navigate("/");
+                }
+            });
     };
 
     const deleteHandler = (index: number) => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/member/downgrade`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member/downgrade`,
             params: {
                 id: adminIdList[index].userId,
             },
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
-        }).then((res) => {
-            if(res.status === 200) {
+        })
+            .then((res) => {
                 const newItems = [...adminIdList]; // 기존 아이템들의 복사본을 만듭니다.
                 newItems.splice(index, 1); // 복사본의 특정 요소만 업데이트합니다.
                 setAdminIdList(newItems); // 그리고 복사본으로 상태를 업데이트합니다.
-            }
-        }).catch((err) => {
-            if(err.status === 401 || err.status === 403)
-                alert("This is not admin ID.");
-            else if(err.status === 400)
-                alert("Contact to developer.");  
-            else 
-                alert(`Contact to developer2. ${err.status}`);
-        });
-    }
+            })
+            .catch((err) => {
+                if (err.status === 401 || err.status === 403) {
+                    alert("This is not admin ID.");
+                    navigate("/login");
+                } else {
+                    alert(`Contact to developer2. ${err.status}`);
+                }
+            });
+    };
 
     React.useEffect(() => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin`,
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
-        }).then((res) => {
-            if(res.status === 200) 
+        })
+            .then((res) => {
                 setAdminIdList(res.data);
-            else if(res.status === 401 || res.status === 403)
-                alert("This is not admin ID.");
-            else
-                alert("Contact to developer.");
-        });
+            })
+            .catch((err) => {
+                if (err.status === 401 || err.status === 403) {
+                    alert("This is not admin ID.");
+                    navigate("/login");
+                } else {
+                    alert(`Contact to developer2. ${err.status}`);
+                    navigate("/");
+                }
+            });
     }, []);
 
     return (
@@ -112,13 +126,18 @@ const AddAdminId = () => {
                             return (
                                 <div className="add_admin_item">
                                     <div className="add_admin_item_div">
-                                        <p id="add_admin_item_sequence">{index + 1}</p>
+                                        <p id="add_admin_item_sequence">
+                                            {index + 1}
+                                        </p>
                                         <p id="add_admin_item_id">
                                             {item.userId}
                                         </p>
                                     </div>
                                     <div className="admin_page_buttons_div">
-                                        <div className="admin_add_item_button_div" onClick={() => deleteHandler(index)}>
+                                        <div
+                                            className="admin_add_item_button_div"
+                                            onClick={() => deleteHandler(index)}
+                                        >
                                             <p id="doctor_item_button_delete">
                                                 delete
                                             </p>
@@ -134,7 +153,10 @@ const AddAdminId = () => {
                     <div className="add_id_form_div">
                         <p id="admin_label">Admin Id</p>
                         <div className="add_id_form_container">
-                            <form className="add_id_form" onSubmit={(e) => onSubmit(e, id)}>
+                            <form
+                                className="add_id_form"
+                                onSubmit={(e) => onSubmit(e, id)}
+                            >
                                 <input
                                     type="text"
                                     placeholder="Please enter an email to add."
@@ -146,7 +168,10 @@ const AddAdminId = () => {
                         </div>
                     </div>
                     <div className="add_admin_add_button_wrapper">
-                        <div className="add_admin_add_button_div" onClick={() => addHandler(id)}>
+                        <div
+                            className="add_admin_add_button_div"
+                            onClick={() => addHandler(id)}
+                        >
                             <p id="add_admin_add_button_text">add</p>
                         </div>
                     </div>

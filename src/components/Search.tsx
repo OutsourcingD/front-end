@@ -5,6 +5,7 @@ import { SearchResponseDto } from "../dto/SearchResultDto";
 import { DocsHosDto } from "../dto/DocsHosDto";
 import { DoctorResponseDto } from "../dto/DoctorResponseDto";
 import { HospitalResponseDto } from "../dto/HospitalResponseDto";
+import { useNavigate } from "react-router-dom";
 
 interface SearchProps {
     page: number;
@@ -19,6 +20,7 @@ interface SearchProps {
 
 const Search = (props: SearchProps) => {
     const [value, setText] = useState(" ");
+    const navigate = useNavigate();
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         props.onSearch(e.target.value);
@@ -32,90 +34,122 @@ const Search = (props: SearchProps) => {
             if (props.category < 9) {
                 axios({
                     method: "get", // or 'post', 'put', etc.
-                    url: `${
-                        process.env.REACT_APP_SERVER_URL
-                    }/review/search?type=${0}&query=${value}&category=${
+                    url: `${process.env.REACT_APP_SERVER_URL}/api/review/search?type=${0}&query=${value}&category=${
                         props.category
                     }&pages=${0}`,
-                    headers: {
-                        Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-                    },
                 }).then((res) => {
                     if (props.onSearchResult) {
                         props.onSearchResult(res.data);
                         props.onSearch(value);
                     }
+                }).catch((err) => {
+                    if(err.response.status === 401 || err.response.status === 403) {
+                        alert("This is not admin ID.");
+                        navigate("/login");
+                    }
+                    else {
+                        alert(`Contact to developer. ${err.response.status}`);
+                        navigate("/");
+                    }  
                 });
             } else {
                 axios({
                     method: "get", // or 'post', 'put', etc.
-                    url: `${process.env.REACT_APP_SERVER_URL}/review/search/doc-hos?sortType=0&type=${props.category}&query=${value}`,
-                    headers: {
-                        Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-                    },
+                    url: `${process.env.REACT_APP_SERVER_URL}/api/review/search/doc-hos?sortType=0&type=${props.category}&query=${value}`,
                 }).then((res) => {
                     if (props.onDoctorSearchResult) {
                         props.onDoctorSearchResult(res.data);
                         props.onSearch(value);
                     }
+                }).catch((err) => {
+                    if(err.response.status === 401 || err.response.status === 403) {
+                        alert("This is not admin ID.");
+                        navigate("/login");
+                    }
+                    else {
+                        alert(`Contact to developer. ${err.response.status}`);
+                        navigate("/");
+                    }    
                 });
             }
         } else if(props.parent === 1) {
             if (props.category < 9) {
                 axios({
                     method: "get", // or 'post', 'put', etc.
-                    url: `${
-                        process.env.REACT_APP_SERVER_URL
-                    }/review/recommendation/search?&pages=${0}&query=${value}&part=${props.category}`,
-                    headers: {
-                        Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-                    },
+                    url: `${process.env.REACT_APP_SERVER_URL}/api/review/recommendation/search?&pages=${0}&query=${value}&part=${props.category}`,
                 }).then((res) => {
                     if (props.onSearchResult) {
                         props.onSearchResult(res.data);
                         props.onSearch(value);
                     }
+                }).catch((err) => {
+                    if(err.response.status === 401 || err.response.status === 403) {
+                        alert("This is not admin ID.");
+                        navigate("/login");
+                    }
+                    else {
+                        alert(`Contact to developer. ${err.response.status}`);
+                        navigate("/");
+                    }      
                 });
             } else {
                 axios({
                     method: "get", // or 'post', 'put', etc.
-                    url: `${process.env.REACT_APP_SERVER_URL}/review/recommendation/doc-hos?type=${props.category}&query=${value}`,
-                    headers: {
-                        Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-                    },
+                    url: `${process.env.REACT_APP_SERVER_URL}/api/review/recommendation/doc-hos?type=${props.category}&query=${value}`,
                 }).then((res) => {
                     if (props.onDoctorSearchResult) {
                         props.onDoctorSearchResult(res.data);
                         props.onSearch(value);
                     }
+                }).catch((err) => {
+                    if(err.response.status === 401 || err.response.status === 403) {
+                        alert("This is not admin ID.");
+                        navigate("/login");
+                    }
+                    else {
+                        alert(`Contact to developer. ${err.response.status}`);
+                        navigate("/");
+                    }      
                 });
             }
         }
         else if(props.parent === 2) {
             axios({
                 method: "get",
-                url: `${process.env.REACT_APP_SERVER_URL}/hospital/search?pages=0&title=${value}`,
-                headers: {
-                    Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-                },
+                url: `${process.env.REACT_APP_SERVER_URL}/api/hospital/search?pages=0&title=${value}`,
             }).then((res) => {
                 if (props.onHospitalSearchResult) {
                     props.onHospitalSearchResult(res.data);
                     props.onSearch(value);
                 }
+            }).catch((err) => {
+                if(err.response.status === 401 || err.response.status === 403) {
+                    alert("This is not admin ID.");
+                    navigate("/login");
+                }
+                else {
+                    alert(`Contact to developer. ${err.response.status}`);
+                    navigate("/");
+                }        
             });
         } else if(props.parent === 3) {
             axios({
                 method: "get",
-                url: `${process.env.REACT_APP_SERVER_URL}/doctor/search?pages=0&title=${value}`,
-                headers: {
-                    Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-                },
+                url: `${process.env.REACT_APP_SERVER_URL}/api/doctor/search?pages=0&title=${value}`,
             }).then((res) => {
                 if (props.onDoctorPageSearchResult) {
                     props.onDoctorPageSearchResult(res.data);
                     props.onSearch(value);
                 }
+            }).catch((err) => {
+                if(err.response.status === 401 || err.response.status === 403) {
+                    alert("This is not admin ID.");
+                    navigate("/login");
+                }
+                else {
+                    alert(`Contact to developer. ${err.response.status}`);
+                    navigate("/");
+                }          
             });
         }
     };
@@ -125,28 +159,38 @@ const Search = (props: SearchProps) => {
             if (props.category < 9) {
                 axios({
                     method: "get", // or 'post', 'put', etc.
-                    url: `${
-                        process.env.REACT_APP_SERVER_URL
-                    }/review/recommendation/search?&pages=${0}&query=${value}&part=${props.category}`,
-                    headers: {
-                        Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-                    },
+                    url: `${process.env.REACT_APP_SERVER_URL}/api/review/recommendation/search?&pages=${0}&query=${value}&part=${props.category}`,
                 }).then((res) => {
                     if (props.onSearchResult) {
                         props.onSearchResult(res.data);
                     }
+                }).catch((err) => {
+                    if(err.response.status === 401 || err.response.status === 403) {
+                        alert("This is not admin ID.");
+                        navigate("/login");
+                    }
+                    else {
+                        alert(`Contact to developer. ${err.response.status}`);
+                        navigate("/");
+                    }      
                 });
             } else {
                 axios({
                     method: "get", // or 'post', 'put', etc.
-                    url: `${process.env.REACT_APP_SERVER_URL}/review/recommendation/doc-hos?type=${props.category}&query=${value}`,
-                    headers: {
-                        Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-                    },
+                    url: `${process.env.REACT_APP_SERVER_URL}/api/review/recommendation/doc-hos?type=${props.category}&query=${value}`,
                 }).then((res) => {
                     if (props.onDoctorSearchResult) {
                         props.onDoctorSearchResult(res.data);
                     }
+                }).catch((err) => {
+                    if(err.response.status === 401 || err.response.status === 403) {
+                        alert("This is not admin ID.");
+                        navigate("/login");
+                    }
+                    else {
+                        alert(`Contact to developer. ${err.response.status}`);
+                        navigate("/");
+                    }        
                 });
             }
         }
@@ -154,45 +198,61 @@ const Search = (props: SearchProps) => {
             if (props.category < 9) {
                 axios({
                     method: "get", // or 'post', 'put', etc.
-                    url: `${
-                        process.env.REACT_APP_SERVER_URL
-                    }/review/recommendation/search?&pages=${0}&query=${value}&part=${props.category}`,
-                    headers: {
-                        Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-                    },
+                    url: `${process.env.REACT_APP_SERVER_URL}/api/review/recommendation/search?&pages=${0}&query=${value}&part=${props.category}`,
                 }).then((res) => {
                     if (props.onSearchResult) {
                         props.onSearchResult(res.data);
                         props.onSearch(value);
                     }
+                }).catch((err) => {
+                    if(err.response.status === 401 || err.response.status === 403) {
+                        alert("This is not admin ID.");
+                        navigate("/login");
+                    }
+                    else {
+                        alert(`Contact to developer. ${err.response.status}`);
+                        navigate("/");
+                    }        
                 });
             } else {
                 axios({
                     method: "get", // or 'post', 'put', etc.
-                    url: `${process.env.REACT_APP_SERVER_URL}/review/recommendation/doc-hos?type=${props.category}&query=${value}`,
-                    headers: {
-                        Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-                    },
+                    url: `${process.env.REACT_APP_SERVER_URL}/api/review/recommendation/doc-hos?type=${props.category}&query=${value}`,
                 }).then((res) => {
                     if (props.onDoctorSearchResult) {
                         props.onDoctorSearchResult(res.data);
                         props.onSearch(value);
                     }
+                }).catch((err) => {
+                    if(err.response.status === 401 || err.response.status === 403) {
+                        alert("This is not admin ID.");
+                        navigate("/login");
+                    }
+                    else {
+                        alert(`Contact to developer. ${err.response.status}`);
+                        navigate("/");
+                    }          
                 });
             }
         }
         else if(props.parent === 3) {
             axios({
                 method: "get",
-                url: `${process.env.REACT_APP_SERVER_URL}/doctor/search?pages=0&title=${value}`,
-                headers: {
-                    Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-                },
+                url: `${process.env.REACT_APP_SERVER_URL}/api/doctor/search?pages=0&title=${value}`,
             }).then((res) => {
                 if (props.onDoctorPageSearchResult) {
                     props.onDoctorPageSearchResult(res.data);
                     props.onSearch(value);
                 }
+            }).catch((err) => {
+                if(err.response.status === 401 || err.response.status === 403) {
+                    alert("This is not admin ID.");
+                    navigate("/login");
+                }
+                else {
+                    alert(`Contact to developer. ${err.response.status}`);
+                    navigate("/");
+                }          
             });
         }
     }

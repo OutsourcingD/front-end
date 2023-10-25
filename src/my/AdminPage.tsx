@@ -39,7 +39,7 @@ function AdminPage() {
     React.useEffect(() => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/auth/check`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/auth/check`,
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },  
@@ -58,7 +58,14 @@ function AdminPage() {
             if(!admin)
                 navigate("/");
         }).catch((err) => {  
-            navigate("/");
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
+            }        
         });
     }, []);
 

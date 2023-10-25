@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./ReviewPage.css";
 import axios from "axios";
 import { ReviewDetailDto } from "../dto/ReviewDetailDto";
@@ -11,7 +11,6 @@ function ReviewPage() {
   const queryParams = new URLSearchParams(location.search);
   const [reviewDetail, setReviewDetail] =
     React.useState<ReviewDetailDto | null>(null); // 검색 여부 [true: 검색, false: 검색x
-  const [isLoading, setIsLoading] = React.useState();
   const [currentSlide, setCurrentSlide] = React.useState(0);
   const settings = {
     infinite: true,
@@ -20,6 +19,7 @@ function ReviewPage() {
     dots: true,
     afterChange: (current: React.SetStateAction<number>) => setCurrentSlide(current)
   };
+  const navigate = useNavigate();
 
   useEffect(() => {
     const reviewId = queryParams.get("reviewId");
@@ -27,13 +27,20 @@ function ReviewPage() {
     if (reviewDetail === null) {
       axios({
         method: "get", // or 'post', 'put', etc.
-        url: `${process.env.REACT_APP_SERVER_URL}/review/detail?reviewId=${reviewId}`,
-        headers: {
-          Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-        },
+        url: `${process.env.REACT_APP_SERVER_URL}/api/review/detail?reviewId=${reviewId}`,
       }).then((res) => {
         setReviewDetail(res.data);
-      });
+      }).catch((err) => {
+        if(err.response.status === 403 || err.response.status === 401) {
+            alert("Please the login.");
+            navigate("/login")
+        }
+        else
+        {
+            alert("Server Error" + err.response.status);
+            navigate("/");
+        }
+    });
     }
   }, []);
 
@@ -63,11 +70,11 @@ function ReviewPage() {
             </div>
           </div>
           <div className="profile_right_div">
-            <p id="post_edit_button">수정</p>
-            <p id="post_delete_button">삭제</p>
+            <p id="post_edit_button">edit</p>
+            <p id="post_delete_button">delete</p>
           </div>
         </div>
-        <div style={{width: "696.29px", marginTop: "8px", marginBottom: "14px"}}>
+        <div className="review_page_hr_div">
             <hr style={{width: "100%"}}/>
         </div>
         <div className="review_detail_image_div">
@@ -89,7 +96,7 @@ function ReviewPage() {
           </Slider>
         </div>
         <div className="review_first_detail">
-          <p id="first_review_title">1차 후기</p>
+          <p id="first_review_title">1st review</p>
           <p id="review_created_at">{reviewDetail?.createdAt}</p>
         </div>
         <div className="review_first_detail_div">
@@ -98,9 +105,9 @@ function ReviewPage() {
         <div className="review_info">
           <p>tag</p>
         </div>
-        <div style={{display: "flex", flexDirection: "row", width: "696.29px", marginTop: "10px", marginBottom: "30px"}}>
-          <p style={{flex: "1", whiteSpace: "nowrap"}}>리뷰 정보</p>
-          <hr style={{flex: "10", border: "none", borderTop: "1px solid #D4D4D4"}}/>
+        <div className="review_page_review_info_div">
+          <p id="review_page_review_info_text">review info</p>
+          <hr id="review_page_review_hr" />
         </div>
         <div className="review_comment">
 

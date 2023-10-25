@@ -7,6 +7,7 @@ import DoctorInfoAdd from "./DoctorInfoAdd";
 import HospitalInfoAdd from "./HospitalInfoAdd";
 import DoctorPostAdd from "./DoctorPostAdd";
 import HospitalPostAdd from "./HospitalPostAdd";
+import { useNavigate } from "react-router-dom";
 
 interface HospitalEditProps {
     postId: number;
@@ -37,6 +38,7 @@ const DoctorEdit = () => {
     const [isRightClicked, setIsRightClicked] = React.useState(false);
     const [category, setCategory] = React.useState<number>(0);
     const [isAddClicked,setIsAddClicked] = React.useState<boolean>(false);
+    const navigate = useNavigate();
 
     const handleHospitalPageChange = (page: React.SetStateAction<number>) => {
         setHospitalPage(page);
@@ -49,7 +51,7 @@ const DoctorEdit = () => {
     const getHospitals = async () => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/hospital`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/hospital`,
             params: {
                 pages: hospitalPage - 1,
                 query: hospitalSearchValue,
@@ -59,14 +61,23 @@ const DoctorEdit = () => {
             },
         }).then((res) => {
             setHospitalItems(res.data);
-            setHospitalTotalPages(res.data[0].totalPages);
+            setHospitalTotalPages(res.data !== null && res.data !== undefined ? res.data[0].totalPages : 1);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
+            }
         });
     };
 
     const getDoctors = async () => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/doctor`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/doctor`,
             params: {
                 pages: doctorPage - 1,
                 query: doctorSearchValue,
@@ -76,7 +87,16 @@ const DoctorEdit = () => {
             },
         }).then((res) => {
             setDoctorItems(res.data);
-            setDoctorTotalPages(res.data[0].totalPages);
+            setDoctorTotalPages(res.data !== null && res.data !== undefined ? res.data[0].totalPages : 1);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
+            }
         });
     };
 
@@ -87,7 +107,7 @@ const DoctorEdit = () => {
 
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/hospital`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/hospital`,
             params: {
                 pages: hospitalPage - 1,
                 query: hospitalSearchValue,
@@ -97,15 +117,24 @@ const DoctorEdit = () => {
             },
         }).then((res) => {
             setHospitalItems(res.data);
-            setHospitalTotalPages(res.data[0].totalPages);
+            setHospitalTotalPages(res.data !== null && res.data !== undefined ? res.data[0].totalPages : 1);
             setHospitalPage(1);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
+            }
         });
     };
 
     const handleHospitalSearchButton = async () => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/hospital`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/hospital`,
             params: {
                 pages: hospitalPage - 1,
                 query: hospitalSearchValue,
@@ -115,8 +144,17 @@ const DoctorEdit = () => {
             },
         }).then((res) => {
             setHospitalItems(res.data);
-            setHospitalTotalPages(res.data[0].totalPages);
+            setHospitalTotalPages(res.data !== null && res.data !== undefined ? res.data[0].totalPages : 1);
             setHospitalPage(1);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/admin");
+            }
         });
     };
 
@@ -125,7 +163,7 @@ const DoctorEdit = () => {
 
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/doctor`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/doctor`,
             params: {
                 pages: doctorPage - 1,
                 query: doctorSearchValue,
@@ -135,15 +173,24 @@ const DoctorEdit = () => {
             },
         }).then((res) => {
             setDoctorItems(res.data);
-            setDoctorTotalPages(res.data[0].totalPages);
+            setDoctorTotalPages(res.data !== null && res.data !== undefined ? res.data[0].totalPages : 1);
             setDoctorPage(1);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/admin");
+            }
         });
     };
 
     const handleDoctorSearchButton = async () => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/doctor`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/doctor`,
             params: {
                 pages: doctorPage - 1,
                 query: doctorSearchValue,
@@ -153,15 +200,24 @@ const DoctorEdit = () => {
             },
         }).then((res) => {
             setDoctorItems(res.data);
-            setDoctorTotalPages(res.data[0].totalPages);
+            setDoctorTotalPages(res.data !== null && res.data !== undefined ? res.data[0].totalPages : 1);
             setDoctorPage(1);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/admin");
+            }
         });
     };
 
     const HospitalDeleteHandler = (index: number) => {
         axios({
             method: "delete",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/post/delete`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/post/delete`,
             params: {
                 postId: hospitalItems[index].postId,
             },
@@ -175,16 +231,21 @@ const DoctorEdit = () => {
                 setHospitalItems(newItems);
             })
             .catch((err) => {
-                if (err.response.status === 401 || err.response.status === 403)
-                    alert(`This is not admin ID.: ${err.response.status}`);
-                else alert(`Contact to developer. ${err.response.status}`);
+                if (err.response.status === 401 || err.response.status === 403) {
+                    alert(`This is not admin ID.`);
+                    navigate("/login");
+                }
+                else {
+                    alert(`Contact to developer. ${err.response.status}`)
+                    navigate("/admin");
+                };
             });
     };
 
     const DoctorDeleteHandler = (index: number) => {
         axios({
             method: "delete",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/post/delete`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/post/delete`,
             params: {
                 postId: doctorItems[index].postId,
             },
@@ -198,9 +259,14 @@ const DoctorEdit = () => {
                 setDoctorItems(newItems);
             })
             .catch((err) => {
-                if (err.response.status === 401 || err.response.status === 403)
+                if (err.response.status === 401 || err.response.status === 403) {
                     alert(`This is not admin ID.: ${err.response.status}`);
-                else alert(`Contact to developer. ${err.response.status}`);
+                    navigate("/login");
+                }
+                else {
+                    alert(`Contact to developer. ${err.response.status}`);
+                    navigate("/admin");
+                }
             });
     };
 

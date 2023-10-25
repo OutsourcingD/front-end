@@ -5,10 +5,7 @@
     height: 65px;
     justify-content: space-between;
     overflow-x: hidden;
-}
-
-#header_login {
-    width: 120px;
+    z-index: 10000;
 }
 
 .header_my_name_info {
@@ -28,7 +25,7 @@
     font-size: 18px;
     color: #666666;
     font-weight: 600;
-    margin-left: 10px;
+    margin-left: 12px;
     white-space: nowrap;
     text-align: start;
 }
@@ -37,7 +34,7 @@
     font-size: 18px;
     color: #222222;
     font-weight: 600;
-    margin-left: 10px;
+    margin-left: 12px;
     white-space: nowrap;
     text-align: start;
 }
@@ -46,7 +43,7 @@
     font-size: 18px;
     color: #666666;
     font-weight: 600;
-    margin-left: 40px;
+    margin-left: 30px;
     white-space: nowrap;
     text-align: start;
 }
@@ -55,7 +52,7 @@
     font-size: 18px;
     color: #222222;
     font-weight: 600;
-    margin-left: 40px;
+    margin-left: 30px;
     white-space: nowrap;
     text-align: start;
 }
@@ -75,6 +72,7 @@
     float: right;
     margin-right: 120px;
     justify-content: right;
+    padding-top: 11px
 }
 
 .profile_container {
@@ -167,8 +165,8 @@
 
 .login_div {
     display: flex;
-    width: 116px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
 }
 
 .header_logout_div {
@@ -196,4 +194,137 @@
     font-size: 14px;
     font-weight: 500;
     color: #222222;
+}
+
+.hamburger_div {
+    width: 20px;
+    margin: 0px 10px 0px 10px;
+}
+
+#hamburger {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    cursor: pointer;
+}
+
+.hamburger_close_div {
+    width: 20px;
+    margin: 0px 10px 0px 10px;
+}
+
+.main_disabled {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 65px;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.hamburger_close_div {
+    cursor: pointer;
+}
+
+.hamburger_sign_in_div {
+    margin: 0px 0px 145px 0;
+    padding: 20px 0 0px 30px;
+    border-top: 1px solid #D4D4D4;
+    cursor: pointer;
+}
+
+#hamburger_sign_in {
+    font-weight: 500;
+    font-size: 14px;
+    color: #666666;
+}
+
+.hamburger_menu {
+    position: absolute;
+    top: 65px;
+    width: 300px;
+    height: 100%;
+    background-color: #FFFFFF;
+    border-top: 1px solid #D4D4D4;
+    z-index: 10000;
+    padding: 30px 0px 0px 0px;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+}
+
+.hamburger_menu_item {
+    width: 100%;
+    height: 40px;
+    padding: 0px 0px 0px 30px;
+    cursor: pointer;
+}
+
+#hamburger_menu_text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #222222;
+}
+
+.sign_in_up_div {
+    height: 20px;
+    text-align: center;
+}
+
+#sign_in_up_text {
+    font-weight: 600;
+    font-size: 14px;
+    color: #222222;
+    white-space: nowrap;
+    margin-left: 5px;
+}
+
+.login_right_div {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+}
+
+.logout_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#setting_image {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+@media (max-width: 920px) {
+    .right {
+        margin-right: 15px;
+    }
+
+    .left {
+        width: 696px;
+        margin-left: 0px;
+        padding-top: 11px;
+    }
+
+    #logo {
+        margin-left: 10px;
+        margin-right: 4px;
+    }
+}
+
+@media (max-width: 600px) {
+    #logo {
+        width: 70px;
+    }
+
+    .hamburger_div {
+        width: 14px;
+    }
+
+    .hamburger_close_div {
+        width: 15px;
+    }
 }

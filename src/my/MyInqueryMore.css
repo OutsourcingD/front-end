@@ -1,13 +1,3 @@
-.my_recommend_review_div {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    border-top: 1px solid #d4d4d4;
-    margin-top: 2px;
-}
-
 .my_recommend_review_header {
     margin-top: 31px;
     width: 619px;
@@ -15,14 +5,35 @@
     display: flex;
 }
 
-#my_recommend_review_title {
-    font-weight: 700;
-    font-size: 32px;
-    white-space: nowrap;
-    color: #222222;
-}
-
 .my_review_item_list_div {
     width: 619px;
     margin-top: 10px;
+}
+
+@media (max-width: 640px) {
+    .my_recommend_review_header {
+        width: 419px;
+    }
+    
+    .my_recommend_review_div {
+        padding-left: 10px;
+    }
+
+    .my_review_item_list_div {
+        width: 419px;
+    }
+}
+
+@media (max-width: 440px) {
+    .my_recommend_review_header {
+        width: 300px
+    }
+    
+    .my_recommend_review_div {
+        padding-left: 10px;
+    }
+
+    .my_review_item_list_div {
+        width: 300px;
+    }
 }

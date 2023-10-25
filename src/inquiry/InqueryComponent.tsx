@@ -18,9 +18,9 @@ function InqueryComponent() {
 
         axios({
             method: "post", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/inquiry`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/inquiry`,
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
             data: {
                 content: value,
@@ -28,15 +28,24 @@ function InqueryComponent() {
         }).then((res) => {
             alert("문의가 등록되었습니다.")
             navigate("/");
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
+            }          
         });
     };
 
     const sendInquery = () => {
         axios({
             method: "post", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/inquiry`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/inquiry`,
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
             data: {
                 content: value,
@@ -44,6 +53,15 @@ function InqueryComponent() {
         }).then((res) => {
             alert("문의가 등록되었습니다.")
             navigate("/");
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");
+            }          
         });
     };
 
@@ -63,13 +81,13 @@ function InqueryComponent() {
                         <textarea
                             id="inquery_input"
                             value={value}
-                            placeholder="문의하고 싶은 내용을 입력해주세요. 빠른 시일 내에 관리자가 답변해드립니다."
+                            placeholder="Please enter what you want to inquire about."
                             onChange={onChange}
                         />
                     </form>
                 </div>
                 <div className="inquery_button_div" onClick={sendInquery}>
-                    <p id="inquery_button">등록하기</p>
+                    <p id="inquery_button">submit</p>
                 </div>
             </div>
             <Footer />

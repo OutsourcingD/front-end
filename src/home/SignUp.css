@@ -30,6 +30,7 @@
 #signup_email_title {
     font-size: 18px;
     font-weight: 700;
+    margin-right: 5px;
     color: #222222;
 }
 
@@ -84,7 +85,7 @@
 
 .email_form_div {
     padding-left: 4.6px;
-    width: 375px;
+    width: 345px;
     border-bottom: 1px solid #D4D4D4;
     display: flex;
     flex-direction: row;
@@ -101,23 +102,19 @@
 
 .sign_up_button_div {
     display: flex;
-    width: 81px;
+    width: 100px;
     height: 33.5px;
     border-radius: 8px;
     align-items: center;
     justify-content: center;
     background-color: #F5F5F5;
     border: 1px solid #F5F5F5;
-}
-
-#profile_input_img {
-    width: 109px;
-    height: 109px;
+    cursor: pointer;
 }
 
 .sign_up_active_button_div {
     display: flex;
-    width: 81px;
+    width: 100px;
     height: 33.5px;
     border-radius: 8px;
     align-items: center;
@@ -125,6 +122,7 @@
     background: #DFB1E4;
     border: 1px solid #E6C2EA;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.11);
+    cursor: pointer;
 }
 
 #verify_button_text {
@@ -149,6 +147,7 @@
     width: 109px;
     height: 109px;
     display: inline-block;
+    cursor: pointer;
 }
 
 #camera_img {
@@ -165,6 +164,7 @@
     border-radius: 50%; /* Add this line */
     object-fit: cover; /* Add this line */
     border: 1px solid #D4D4D4;
+    cursor: pointer;
 }
 
 #count_time {
@@ -204,10 +204,50 @@
     border-radius: 8px;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 #signup_button_text {
     font-size: 15px;
     font-weight: 500;
     color: white;
+}
+
+@media (max-width: 480px) {
+    .signup_wrapper {
+        width: 304px;
+    }
+
+    #signup_title {
+        font-size: 24px;
+    }
+
+    .signup_input_div {
+        width: 79px;
+        height: 79px;
+    }
+
+    .email_form_div {
+        width: 204px;
+    }
+
+    .sign_up_button_div {
+        width: 80px;
+    }
+
+    #signup_email_title {
+        font-size: 15px;
+    }
+
+    #verify_button_text {
+        font-size: 12px;
+    }
+
+    .signup_button_div {
+        width: 304px;
+    }
+
+    #signup_email_input::placeholder {
+        font-size: 12px;
+    }
 }

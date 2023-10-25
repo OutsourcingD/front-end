@@ -2,6 +2,7 @@ import React from "react";
 import Pagination from "react-js-pagination";
 import "./EtcReviewManagement.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 interface EtcReviewManagementProps {
     createdAt: string;
@@ -16,6 +17,7 @@ const EtcReviewManagement = () => {
     const [totalPages, setTotalPages] = React.useState(2);
     const [id, setId] = React.useState("");
     const [etcList, setEtcList] = React.useState<EtcReviewManagementProps[]>([]);
+    const navigate = useNavigate();
 
     const handlePageChange = (page: React.SetStateAction<number>) => {
         setPage(page);
@@ -24,7 +26,7 @@ const EtcReviewManagement = () => {
     const onClick = () => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/review-info`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/review-info`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -34,7 +36,16 @@ const EtcReviewManagement = () => {
             },
         }).then((res) => {
             setEtcList(res.data);
-            setTotalPages(res.data.length === 0 ? 1 : res.data[0].totalPages);
+            setTotalPages(res.data.length === 0 && res.data.length === undefined && res.data === undefined && res.data === null ? 1 : res.data[0].totalPages);
+        }).catch((err) => {
+            if(err.response.status === 403 || err.response.status === 401) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/admin");   
+            }
         });
     };
 
@@ -43,7 +54,7 @@ const EtcReviewManagement = () => {
         
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/review-info`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/review-info`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -53,14 +64,23 @@ const EtcReviewManagement = () => {
             },
         }).then((res) => {
             setEtcList(res.data);
-            setTotalPages(res.data.length === 0 ? 1 : res.data[0].totalPages);
+            setTotalPages(res.data.length === 0 && res.data === undefined && res.data === null ? 1 : res.data[0].totalPages);
+        }).catch((err) => {
+            if(err.response.status === 403 || err.response.status === 401) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/admin");   
+            }
         });
     };
 
     React.useEffect(() => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/review-info`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/review-info`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -70,8 +90,17 @@ const EtcReviewManagement = () => {
             },
         }).then((res) => {
             setEtcList(res.data);
-            setTotalPages(res.data.length === 0 ? 1 : res.data[0].totalPages);
+            setTotalPages(res.data.length === 0 && res.data === undefined && res.data === null ? 1 : res.data[0].totalPages);
             console.log(res.data.length)
+        }).catch((err) => {
+            if(err.response.status === 403 || err.response.status === 401) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/admin");   
+            }
         });
     }, [page]);
 

@@ -32,7 +32,7 @@ function DoctorReviewItem(props: any) {
                 <div className="review_item_index_div">
                     <div className="index_hospital_div">
                         <div className="hospital_name_div">
-                            <p id="index_hospital_name">병원</p>
+                            <p id="index_hospital_name">HOSP</p>
                         </div>
                         <div className="hospital_name_data">
                             <p id="review_hospital_info">
@@ -42,7 +42,7 @@ function DoctorReviewItem(props: any) {
                     </div>
                     <div className="index_hospital_div">
                         <div className="hospital_name_div">
-                            <p id="index_hospital_name">원장님</p>
+                            <p id="index_hospital_name">Dr.</p>
                         </div>
                         <div className="hospital_name_data">
                             <p id="review_doctor_info">{props.doctorName}</p>
@@ -50,7 +50,7 @@ function DoctorReviewItem(props: any) {
                     </div>
                     <div className="index_hospital_div">
                         <div className="hospital_name_div">
-                            <p id="index_hospital_name">부위</p>
+                            <p id="index_hospital_name">Part</p>
                         </div>
                         <div className="hospital_name_data">
                             <p id="review_part_info">

@@ -29,7 +29,7 @@ function Login() {
         emailRegEx.test(email)
             ? axios({
                   method: "post",
-                  url: `${process.env.REACT_APP_SERVER_URL}/login`,
+                  url: `${process.env.REACT_APP_SERVER_URL}/api/login`,
                   data: {
                       userId: email,
                       password: pwd,
@@ -40,6 +40,17 @@ function Login() {
                   localStorage.setItem("member_id", res.data.memberId);
                   localStorage.setItem("flvnsfl", res.data.flvnsfl);
                   navigate("/");
+              }).catch((err) => {
+                if(err.response.status === 401 || err.response.status === 403) {
+                    alert("Check the ID or Password.");
+                }
+                else if(err.response.status === 404) {
+                    alert("This ID is not exist.");
+                }
+                else {
+                    alert(`Contact to developer. ${err.response.status}`);
+                    navigate("/login");
+                }        
               })
             : alert("Invalid email format.");
     };

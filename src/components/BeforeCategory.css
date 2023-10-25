@@ -1,5 +1,4 @@
 .b_category {
-    display: inline-block;
     flex-direction: column;
     width: 1025px;
     display: flex;
@@ -7,10 +6,10 @@
     justify-content: center;
 }
 
-.b_category > div {
+/* .b_category > div {
     display: inline-block;
     width: 102px;
-}
+} */
 
 .b_categoryDiv {
     width: 81px;
@@ -20,4 +19,16 @@
 img {
     width: 100%;
     object-fit: fill;
+}
+
+@media (max-width:1024px) {
+    .b_category {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .b_categoryDiv {
+        width: 72px;
+    }
 }

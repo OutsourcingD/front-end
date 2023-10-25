@@ -2,6 +2,7 @@ import React from "react";
 import "./InqueryManagement.css";
 import Pagination from "react-js-pagination";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 interface InqueryManagementProps {
     id: number;
@@ -28,6 +29,7 @@ const InqueryManagement = () => {
     const [content, setContent] = React.useState("");
     const [inquiryDetail, setInquiryDetail] = React.useState<InqueryDetailProps>({} as InqueryDetailProps);
     const [inquiryIndex, setInquiryIndex] = React.useState(0);
+    const navigate = useNavigate();
 
     const handlePageChange = (page: React.SetStateAction<number>) => {
         setPage(page);
@@ -38,7 +40,7 @@ const InqueryManagement = () => {
 
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/inquiry`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/inquiry`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -47,17 +49,25 @@ const InqueryManagement = () => {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },
         }).then((res) => {
-            console.log("click")
             setInquiryList(res.data);
-            setTotalPages(res.data.length === 0 ? 1 : res.data[0].totalPages);
+            setTotalPages(res.data.length === 0 && res.data === null && res.data === undefined ? 1 : res.data[0].totalPages);
             setPage(1);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/admin");
+            }   
         });
     }
 
     const onClick = () => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/inquiry`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/inquiry`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -68,15 +78,24 @@ const InqueryManagement = () => {
         }).then((res) => {
             console.log("click")
             setInquiryList(res.data);
-            setTotalPages(res.data.length === 0 ? 1 : res.data[0].totalPages);
+            setTotalPages(res.data.length === 0 || res.data === null || res.data === undefined ? 1 : res.data[0].totalPages);
             setPage(1);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/admin");
+            }      
         });
     }
 
     const onSave = (id: number) => {
         axios({
             method: "post",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/inquiry-answer/edit`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/inquiry-answer/edit`,
             data: {
                 id: id,
                 answer: content,
@@ -94,10 +113,12 @@ const InqueryManagement = () => {
         }).catch((err) => {
             if (err.response.status === 401 || err.response.status === 403) {
                 alert("This id is not admin id.");
+                navigate("/login");
             }
             else 
             {
                 alert("Contact to developer." + err.response.status)
+                navigate("/admin");
             }
         });
     }
@@ -107,7 +128,7 @@ const InqueryManagement = () => {
 
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/inquiry/detail`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/inquiry/detail`,
             params: {
                 id: id,
             },
@@ -119,10 +140,12 @@ const InqueryManagement = () => {
         }).catch((err) => {
             if (err.response.status === 401 || err.response.status === 403) {
                 alert("This id is not admin id.");
+                navigate("/login");
             }
             else 
             {
                 alert("Contact to developer." + err.response.status)
+                navigate("/admin");
             }
         })
     };
@@ -132,7 +155,7 @@ const InqueryManagement = () => {
 
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/inquiry/detail`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/inquiry/detail`,
             params: {
                 id: id,
             },
@@ -144,10 +167,12 @@ const InqueryManagement = () => {
         }).catch((err) => {
             if (err.response.status === 401 || err.response.status === 403) {
                 alert("This id is not admin id.");
+                navigate("/login");
             }
             else 
             {
                 alert("Contact to developer." + err.response.status)
+                navigate("/admin");
             }
         })
     };
@@ -155,7 +180,7 @@ const InqueryManagement = () => {
     React.useEffect(() => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/inquiry`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/inquiry`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -166,6 +191,15 @@ const InqueryManagement = () => {
         }).then((res) => {
             setInquiryList(res.data);
             setTotalPages(res.data.length === 0 ? 1 : res.data[0].totalPages);
+        }).catch((err) => {
+            if(err.response.status === 401 || err.response.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/admin");
+            }   
         });
     }, []);
 

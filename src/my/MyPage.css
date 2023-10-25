@@ -1,21 +1,25 @@
 .mypage_div {
     width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     border-top: 1px solid #d4d4d4;
     margin-top: 5px;
+    min-height: calc(100vh - 65px);
+    justify-content: space-between;
 }
 
 .mypage_title_div {
-    margin-top: 30px;
+    margin-top: 48px;
     width: 619px;
     justify-content: space-between;
     display: flex;
 }
 
 .mypage_title_left_div {
+    padding: 0 0 13px 0;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
@@ -52,15 +56,18 @@
 #mypage_setting_button {
     width: 100px;
     height: fit-content;
+    cursor: pointer;
 }
 
 #write_review {
-    width: 110px;
+    width: 130px;
     height: fit-content;
+    cursor: pointer;
 }
 
 .write_review_button {
     width: 110px;
+    margin-right: 20px;
     display: flex;
     align-items: flex-end;
 }
@@ -71,7 +78,7 @@
 }
 
 .mypage_body {
-    margin-top: 25px;
+    margin-top: 48px;
     width: 619px;
     display: flex;
     flex-direction: column;
@@ -102,6 +109,7 @@
     font-size: 16px;
     margin-bottom: 10px;
     color: #DDB0E3;
+    cursor: pointer;
 }
 
 .mypage_review_header_div {
@@ -125,3 +133,25 @@
     height: 164px;
     object-fit: fill;
 }
+
+@media (max-width:640px) {
+    .mypage_title_div {
+        width: 90%;
+    }
+
+    .mypage_bottom {
+        width: 90%;
+    }
+
+    #mypage_name {
+        font-size: 24px;
+    }
+
+    #mypage_setting_button {
+        width: 80px;
+    }
+
+    .mypage_sir {
+        margin-right: 4px;
+    }
+} 

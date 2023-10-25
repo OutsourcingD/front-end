@@ -8,6 +8,7 @@ import Pagination from "react-js-pagination";
 import Footer from "../bottom/Footer";
 import { HospitalReviewDto } from "../dto/HospitalReviewDto";
 import { useNavigate } from "react-router-dom";
+import "../doctor/DoctorDetailPage.css";
 
 function HospitalDetailPage() {
     const location = useLocation();
@@ -44,23 +45,23 @@ function HospitalDetailPage() {
         /* hospital detail */
         axios({
             method: "get", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/hospital/detail?postId=${hospitalId}`,
-            headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-            },
+            url: `${process.env.REACT_APP_SERVER_URL}/api/hospital/detail?postId=${hospitalId}`,
         }).then((res) => {
             setHospitalDetail(res.data);
+        }).catch((err) => {
+            alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");        
         });
 
         // 연관 후기
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/hospital/review?hospitalId=${hospitalId}&pages=${page - 1}`,
-            headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-            },
+            url: `${process.env.REACT_APP_SERVER_URL}/api/hospital/review?hospitalId=${hospitalId}&pages=${page - 1}`,
         }).then((res) => {
             setHospitalReview(res.data);
+        }).catch((err) => {
+            alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");          
         });
     }, []);
 
@@ -108,23 +109,9 @@ function HospitalDetailPage() {
                         }}
                     />
                 </div>
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        width: "100%",
-                        marginTop: "1%",
-                        marginBottom: "3%",
-                    }}
-                >
-                    <p style={{ flex: "1" }}>병원 정보</p>
-                    <hr
-                        style={{
-                            flex: "10",
-                            border: "none",
-                            borderTop: "1px solid #D4D4D4",
-                        }}
-                    />
+                <div className="hospital_detail_content_title">
+                    <p className="hospital_detail_content_text">병원 정보</p>
+                    <hr className="hospital_detail_content_line"/>
                 </div>
                 <div className="hospital_detail_hospital_info_div">
                     <div className="hospital_info_profile_div">
@@ -144,23 +131,9 @@ function HospitalDetailPage() {
                         <p>{hospitalDetail?.avgRage}</p>
                     </div>
                 </div>
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        width: "100%",
-                        marginTop: "8.7px",
-                        marginBottom: "10px",
-                    }}
-                >
-                    <p style={{width: "79px" }}>연관 후기</p>
-                    <hr
-                        style={{
-                            width: "785px",
-                            border: "none",
-                            borderTop: "1px solid #D4D4D4",
-                        }}
-                    />
+                <div className="hospital_review_title">
+                    <p className="hospital_review_text">연관 후기</p>
+                    <hr className="hospital_review_line"/>
                 </div>
                 <div className="hospital_review_div">
                     {hospitalReviewList.length !== 0 ? hospitalReviewList.map((item) => {

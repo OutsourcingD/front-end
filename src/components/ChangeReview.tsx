@@ -1,22 +1,34 @@
 import React from "react";
 import "./ChangeReview.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ChangeReview = () => {
   const [sort, setSort] = React.useState(0);
   const [defaultSort, setDefaultSort] = React.useState<number>(0);
   const [isSubmit, setIsSubmit] = React.useState<boolean>(true);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     axios({
         method: "get",
-        url: `${process.env.REACT_APP_SERVER_URL}/admin/review/order`,
+        url: `${process.env.REACT_APP_SERVER_URL}/api/admin/review/order`,
         headers: {
             Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
     }).then((res) => {
         setDefaultSort(res.data.recommendReview);
         setSort(res.data.recommendReview);
+    }).catch((err) => {
+      if(err.status === 401 || err.status === 403) {
+        alert("This is not admin ID.");
+        navigate("/login");
+      }
+      else 
+      {
+        alert(`Contact to developer. ${err.status}`);
+        navigate("/");
+      }
     });
   }, []);
 
@@ -28,7 +40,7 @@ const ChangeReview = () => {
     if(isSubmit) {
         axios({
             method: "post",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/review/order`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/review/order`,
             data: {
                 recommendReview: sort,
             },

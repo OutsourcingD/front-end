@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./BeforeCategory.css";
 import axios from "axios";
 import { BeforeAfterResponseDto } from "../dto/BeforeAfterResponseDto";
+import { useNavigate } from "react-router-dom";
 
 interface BeforeCategoryProps {
     onCategory: (value: number) => void;
@@ -10,6 +11,7 @@ interface BeforeCategoryProps {
 
 const BeforeCategory = (props: BeforeCategoryProps) => {
     const [categoryNumber, setCotegoryNumber] = useState(0);
+    const navigate = useNavigate();
 
     const handleCategory = (nav: number) => {
         setCotegoryNumber(nav);
@@ -19,12 +21,12 @@ const BeforeCategory = (props: BeforeCategoryProps) => {
     React.useEffect(() => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/review/before-after?part=${categoryNumber}&pages=0`,
-            headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-            },
+            url: `${process.env.REACT_APP_SERVER_URL}/api/review/before-after?part=${categoryNumber}&pages=0`,
         }).then((res) => {
             props.onCategoryResult(res.data);
+        }).catch((err) => {
+            alert(`Contact to developer2. ${err.status}`);
+            navigate("/");
         });
     }, [categoryNumber]);
 

@@ -3,6 +3,7 @@ import "./CheckUser.css";
 import Pagination from "react-js-pagination";
 import axios from "axios";
 import { UserDetailDto } from "../dto/UserDetailDto";
+import { useNavigate } from "react-router-dom";
 
 interface CheckUserIpProps {
     userId: string;
@@ -17,6 +18,7 @@ const CheckUser = () => {
     const [isLeftClick, setIsLeftClick] = React.useState(false);
     const [isRightClick, setIsRightClick] = React.useState(false);
     const [detail, setDetail] = React.useState<UserDetailDto>({} as UserDetailDto);
+    const navigate = useNavigate();
 
     const handlePageChange = (page: React.SetStateAction<number>) => {
         setPage(page);
@@ -27,7 +29,7 @@ const CheckUser = () => {
 
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/member/whole-info`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member/whole-info`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -39,13 +41,22 @@ const CheckUser = () => {
             setItems(res.data);
             setTotalPages(res.data.length === 0 ? 1 : res.data[0].totalPages);
             setPage(1);
+        }).catch((err) => {
+            if(err.response.status === 403 || err.response.status === 401) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");   
+            }
         });
     };
 
     const searchClick = () => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/member/whole-info`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member/whole-info`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -57,13 +68,22 @@ const CheckUser = () => {
             setItems(res.data);
             setTotalPages(res.data.length === 0 ? 1 : res.data[0].totalPages);
             setPage(1);
+        }).catch((err) => {
+            if(err.response.status === 403 || err.response.status === 401) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");   
+            }
         });
     };
 
     const handleBlock = (index: number) => {
         axios({
             method: "post",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/member/ban`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member/ban`,
             data: {
                 userId: items[index].userId,
             },
@@ -71,15 +91,18 @@ const CheckUser = () => {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
-            if (res.status === 200) {
                 const newItems = [...items]; // 기존 아이템들의 복사본을 만듭니다.
                 newItems[index].isBanned = res.data.isBanned; // 복사본의 특정 요소만 업데이트합니다.
                 setItems(newItems); // 그리고 복사본으로 상태를 업데이트합니다.
-            } else if(res.status === 403 || res.status === 401) {
+
+        }).catch((err) => {
+            if(err.response.status === 403 || err.response.status === 401) {
                 alert("This is not admin ID.");
+                navigate("/login");
             }
             else {
-                alert("block fail");
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");   
             }
         });
     };
@@ -89,7 +112,7 @@ const CheckUser = () => {
         
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/member/detail`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member/detail`,
             params: {
                 userId: useId,
             },
@@ -102,9 +125,11 @@ const CheckUser = () => {
         }).catch((err) => {
             if(err.response.status === 403 || err.response.status === 401) {
                 alert("This is not admin ID.");
+                navigate("/login");
             }
             else {
                 alert("Contact to developer.");
+                navigate("/");
             }
         })
     }
@@ -114,7 +139,7 @@ const CheckUser = () => {
         
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/member/detail`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member/detail`,
             params: {
                 userId: useId,
             },
@@ -127,9 +152,11 @@ const CheckUser = () => {
         }).catch((err) => {
             if(err.response.status === 403 || err.response.status === 401) {
                 alert("This is not admin ID.");
+                navigate("/login");
             }
             else {
                 alert("Contact to developer.");
+                navigate("/");
             }
         })
     }
@@ -137,7 +164,7 @@ const CheckUser = () => {
     React.useEffect(() => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/member/whole-info`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member/whole-info`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -148,6 +175,15 @@ const CheckUser = () => {
         }).then((res) => {
             setItems(res.data);
             setTotalPages(res.data.length === 0 ? 1 : res.data[0].totalPages);
+        }).catch((err) => {
+            if(err.response.status === 403 || err.response.status === 401) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else {
+                alert(`Contact to developer. ${err.response.status}`);
+                navigate("/");   
+            }
         });
     }, [page]);
 

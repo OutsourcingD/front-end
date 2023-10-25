@@ -1,10 +1,13 @@
 .mypage_info_div {
     width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
     border-top: 1px solid #d4d4d4;
     margin-top: 2px;
+    justify-content: space-between;
+    min-height: calc(100vh - 65px);
 }
 
 .mypage_info_wrapper {
@@ -107,6 +110,7 @@
 
 #input_tag::placeholder {
     color: #C1C1C1;
+    font-size: 15px;
 }
 
 .nickname_div {
@@ -136,6 +140,7 @@
     width: 80px;
     height: 39px;
     margin-left: 4px;
+    cursor: pointer;
 }
 
 .check_nickname_active {
@@ -148,6 +153,7 @@
     width: 80px;
     height: 39px;
     margin-left: 4px;
+    cursor: pointer;
 }
 
 .my_info_nickname_container {
@@ -202,6 +208,7 @@
     width: 40px;
     height: 40px;
     margin-right: 9.4px;
+    cursor: pointer;
 }
 
 #woman_button {
@@ -218,10 +225,60 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 #mypage_info_edit_button_text {
     font-weight: 700;
     font-size: 15px;
     color: #FFFFFF;
+}
+
+@media (max-width: 490px) {
+    .mypage_info_wrapper {
+        width: 264px;
+    }
+
+    #mypage_name {
+        font-size: 24px;
+    }
+
+    .mypage_info_div {
+        align-items: flex-start;
+        padding-left: 10px;
+    }
+
+    .mypage_info_signup_input_div {
+        width: 79px;
+        height: 79px;
+    }
+
+    #my_info_sub_title {
+        font-size: 15px;
+    }
+
+    #my_info_sub_title_name {
+        font-size: 15px;
+    }
+
+    #my_info_sub_title_password_name {
+        font-size: 15px;
+    }
+    
+    #input_tag::placeholder {
+        font-size: 12px;
+    }
+
+    .nickname_div {
+        width: 298px;
+    }
+
+    .my_info_sub_title_div {
+        width: 298px;
+    }
+
+    .mypage_info_edit_button_div {
+        width: 298px;
+        height: 36px;
+    }
 }
