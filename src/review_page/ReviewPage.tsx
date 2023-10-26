@@ -28,11 +28,14 @@ function ReviewPage() {
       axios({
         method: "get", // or 'post', 'put', etc.
         url: `${process.env.REACT_APP_SERVER_URL}/api/review/detail?reviewId=${reviewId}`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        }
       }).then((res) => {
         setReviewDetail(res.data);
       }).catch((err) => {
         if(err.response.status === 403 || err.response.status === 401) {
-            alert("Please the login.");
+            alert("review page Please the login.");
             navigate("/login")
         }
         else

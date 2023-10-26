@@ -155,7 +155,7 @@ function Header() {
         if (localStorage.getItem("access_token") !== null) {
             axios({
                 method: "get", // or 'post', 'put', etc.
-                url: '/api/member/info',
+                url: `${process.env.REACT_APP_SERVER_URL}/api/member/info`,
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("access_token")}`,
                 },
