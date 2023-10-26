@@ -192,7 +192,7 @@ const DoctorEdit = () => {
                 query: doctorSearchValue,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setDoctorItems(res.data);

@@ -43,7 +43,7 @@ const DoctorAdd = () => {
                 hospitalName: hospitalSearchValue,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setHospitalItems(res.data);
@@ -69,7 +69,7 @@ const DoctorAdd = () => {
                 doctorName: doctorSearchValue,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setDoctorItems(res.data);
@@ -97,7 +97,7 @@ const DoctorAdd = () => {
                 hospitalName: hospitalSearchValue,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setHospitalItems(res.data);
@@ -124,7 +124,7 @@ const DoctorAdd = () => {
                 hospitalName: hospitalSearchValue,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setHospitalItems(res.data);
@@ -153,7 +153,7 @@ const DoctorAdd = () => {
                 doctorName: doctorSearchValue,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setDoctorItems(res.data);
@@ -180,7 +180,7 @@ const DoctorAdd = () => {
                 doctorName: doctorSearchValue,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setDoctorItems(res.data);

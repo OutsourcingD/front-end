@@ -34,7 +34,7 @@ const CheckUserIp = () => {
                 userId: id,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             console.log(res.data.length);
@@ -62,7 +62,7 @@ const CheckUserIp = () => {
                 userId: id,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setUserIps(res.data);
@@ -89,7 +89,7 @@ const CheckUserIp = () => {
                 userId: id,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setUserIps(res.data);

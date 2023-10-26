@@ -46,7 +46,7 @@ const InqueryManagement = () => {
                 userId: id,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setInquiryList(res.data);
@@ -73,7 +73,7 @@ const InqueryManagement = () => {
                 userId: id,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             console.log("click")
@@ -186,7 +186,7 @@ const InqueryManagement = () => {
                 userId: id,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setInquiryList(res.data);

@@ -28,7 +28,7 @@ const Wysiwyg = (props: WysiwygProps) => {
             data: formData,
             headers: {
                 "Content-Type": "multipart/form-data",
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         })
             .then((res) => {
