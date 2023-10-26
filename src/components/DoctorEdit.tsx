@@ -276,7 +276,7 @@ const DoctorEdit = () => {
 
     return (
         <div className="doctor_edit_page">
-            {!isLeftClicked || !isRightClicked ? (
+            {isLeftClicked || isRightClicked ? (
                 <div
                     className="before_page_div_disabled"
                     onClick={() => {
@@ -345,7 +345,10 @@ const DoctorEdit = () => {
                                             </p>
                                         </div>
                                         <div className="doctor_edit_item_right_div">
-                                            <div className="doctor_edit_item_button_div">
+                                            <div className="doctor_edit_item_button_div" onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    setIsLeftClicked(true);
+                                                }}>
                                                 <p id="doctor_item_button_edit">
                                                     edit
                                                 </p>
@@ -474,13 +477,34 @@ const DoctorEdit = () => {
                 </p>
                 <IoMdAddCircleOutline size="20px" />
             </div>
-            {!isLeftClicked || !isRightClicked ? (
+            {isLeftClicked || isRightClicked ? (
                 <div className="edit_doctor_div">
                     <div className="edit_doctor_page_category_div">
-                        <p id="edit_doctor_page_category_title">category</p>
-                        <div className="sub_doc_div">
-                            <div className="sub_doc_category_div">
-                                {category === 0 ? (
+                        <div className="edit_doctor_page_left_category">
+                            <p id="edit_doctor_page_category_title">category</p>
+                            <div className="sub_doc_div">
+                                <div className="sub_doc_category_div">
+                                    {category === 0 ? (
+                                        <img
+                                            src="/checkbox_pupple.png"
+                                            alt=""
+                                            id="edit_doctor_page_category_checkbox"
+                                        />
+                                    ) : (
+                                        <img
+                                            src="/checkbox.png"
+                                            alt=""
+                                            id="edit_doctor_page_category_pupple_checkbox"
+                                            onClick={() => setCategory(0)}
+                                        />
+                                    )}
+                                </div>
+                                <p id="edit_doctor_page_category_sub_title">
+                                    doctor
+                                </p>
+                            </div>
+                            <div className="sub_hos_div">
+                                {category === 1 ? (
                                     <img
                                         src="/checkbox_pupple.png"
                                         alt=""
@@ -491,51 +515,35 @@ const DoctorEdit = () => {
                                         src="/checkbox.png"
                                         alt=""
                                         id="edit_doctor_page_category_pupple_checkbox"
-                                        onClick={() => setCategory(0)}
+                                        onClick={() => setCategory(1)}
                                     />
                                 )}
+                                <p id="edit_doctor_page_category_sub_title">
+                                    hospital
+                                </p>
                             </div>
-                            <p id="edit_doctor_page_category_sub_title">
-                                doctor
-                            </p>
+                            <div className="sub_bef_div">
+                                {category === 2 ? (
+                                    <img
+                                        src="/checkbox_pupple.png"
+                                        alt=""
+                                        id="edit_doctor_page_category_checkbox"
+                                    />
+                                ) : (
+                                    <img
+                                        src="/checkbox.png"
+                                        alt=""
+                                        id="edit_doctor_page_category_pupple_checkbox"
+                                        onClick={() => setCategory(2)}
+                                    />
+                                )}
+                                <p id="edit_doctor_page_category_sub_title">
+                                    before-after
+                                </p>
+                            </div>
                         </div>
-                        <div className="sub_hos_div">
-                            {category === 1 ? (
-                                <img
-                                    src="/checkbox_pupple.png"
-                                    alt=""
-                                    id="edit_doctor_page_category_checkbox"
-                                />
-                            ) : (
-                                <img
-                                    src="/checkbox.png"
-                                    alt=""
-                                    id="edit_doctor_page_category_pupple_checkbox"
-                                    onClick={() => setCategory(1)}
-                                />
-                            )}
-                            <p id="edit_doctor_page_category_sub_title">
-                                hospital
-                            </p>
-                        </div>
-                        <div className="sub_bef_div">
-                            {category === 2 ? (
-                                <img
-                                    src="/checkbox_pupple.png"
-                                    alt=""
-                                    id="edit_doctor_page_category_checkbox"
-                                />
-                            ) : (
-                                <img
-                                    src="/checkbox.png"
-                                    alt=""
-                                    id="edit_doctor_page_category_pupple_checkbox"
-                                    onClick={() => setCategory(2)}
-                                />
-                            )}
-                            <p id="edit_doctor_page_category_sub_title">
-                                before-after
-                            </p>
+                        <div className="edit_doctor_page_right_category" onClick={() => {setIsLeftClicked(false); setIsRightClicked(false)}}>
+                            <p id="close">X</p>
                         </div>
                     </div>
                     {
