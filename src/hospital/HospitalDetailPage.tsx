@@ -20,6 +20,7 @@ function HospitalDetailPage() {
     const [page, setPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(1);
     const navigate = useNavigate();
+    const avgReages = [0, 1, 2, 3, 4];
 
     const settings = {
         infinite: true,
@@ -110,7 +111,7 @@ function HospitalDetailPage() {
                     />
                 </div>
                 <div className="hospital_detail_content_title">
-                    <p className="hospital_detail_content_text">병원 정보</p>
+                    <p className="hospital_detail_content_text">Hospital Info</p>
                     <hr className="hospital_detail_content_line"/>
                 </div>
                 <div className="hospital_detail_hospital_info_div">
@@ -128,11 +129,24 @@ function HospitalDetailPage() {
                         </p>
                     </div>
                     <div className="hospital_info_avg_div">
-                        <p>{hospitalDetail?.avgRage}</p>
+                        {
+                            avgReages.map((avgReage) => {
+                                return (
+                                    hospitalDetail?.avgRage !== undefined && avgReage + 1 <= hospitalDetail?.avgRage ? 
+                                        <div className="star_div">
+                                            <img src="/star.png" alt="" id="review_star" />
+                                        </div>
+                                         : 
+                                         <div className="star_div">
+                                            <img src="/star_empty.png" alt="" id="review_star" />
+                                        </div>
+                                )
+                            })
+                        }
                     </div>
                 </div>
                 <div className="hospital_review_title">
-                    <p className="hospital_review_text">연관 후기</p>
+                    <p className="hospital_review_text">Related review</p>
                     <hr className="hospital_review_line"/>
                 </div>
                 <div className="hospital_review_div">
@@ -151,15 +165,15 @@ function HospitalDetailPage() {
                                     <div className="hospital_detail_page_review_list_doctor_info_div">
                                         <div className="hospital_detail_page_review_list_doctor_info_left">
                                             <p id="hospital_detail_review_index_title">
-                                                원장님
+                                                doctor
                                             </p>
                                             <p id="hospital_detail_review_index_data">
-                                                {item.doctorName} 원장님
+                                                {item.doctorName} doctor
                                             </p>
                                         </div>
                                         <div className="hospital_detail_page_review_list_doctor_info_right">
                                             <p id="hospital_detail_review_index_title">
-                                                부위
+                                                parts
                                             </p>
                                             <p id="hospital_detail_review_index_data">
                                                 {
@@ -199,7 +213,7 @@ function HospitalDetailPage() {
                                 </div>
                             </div>
                         );
-                    }) : <p>연관 후기 없음....</p>}
+                    }) : <p>No review....</p>}
                     <Pagination
                         activePage={page}
                         itemsCountPerPage={10}

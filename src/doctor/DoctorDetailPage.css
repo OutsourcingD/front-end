@@ -66,7 +66,7 @@
 }
 
 .hospital_detail_content_line {
-    flex: 10;
+    flex: 680px;
     border: 0;
     border-top: 1px solid #D4D4D4;
 }
@@ -127,6 +127,11 @@
     align-items: center;
 }
 
+.star_div {
+    display: flex;
+    height: 45px;
+}
+
 .hospital_review_title {
     display: flex;
     flex-direction: row;
@@ -136,13 +141,19 @@
 }
 
 .hospital_review_text {
+    white-space: nowrap;
     flex: 1;
 }
 
 .hospital_review_line {
-    flex: 10 1;
+    flex: 620px;
     border: none;
     border-top: 1px solid #D4D4D4;
+}
+
+#review_star {
+    width: 24px;
+    height: 24px;
 }
 
 @media (max-width:868px) { 

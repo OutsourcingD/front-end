@@ -48,7 +48,7 @@ function Hospital() {
         <div className="hospital_div">
             <div className="hospital_container">
                 <div className="hospital_page_recommend_title_div">
-                    <p id="hospital_page_recommend_title">병원정보</p>
+                    <p id="hospital_page_recommend_title">Hospital Info</p>
                 </div>
                 <div className="hospital_page_search_div">
                     <Search

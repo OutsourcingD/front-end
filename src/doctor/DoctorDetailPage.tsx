@@ -20,6 +20,7 @@ function DoctorDetailPage() {
         []
     );
     const navigate = useNavigate();
+    const avgReages = [1, 2, 3, 4, 5];
 
     const handleReview = (reviewId: number) => {
         navigate(`/review?reviewId=${reviewId}`);
@@ -109,7 +110,7 @@ function DoctorDetailPage() {
                     />
                 </div>
                 <div className="hospital_detail_content_title">
-                    <p className="hospital_detail_content_text">원장 정보</p>
+                    <p className="hospital_detail_content_text">Doctor Info</p>
                     <hr className="hospital_detail_content_line"/>
                 </div>
                 <div className="hospital_detail_hospital_info_div">
@@ -129,16 +130,29 @@ function DoctorDetailPage() {
                         </p>
                     </div>
                     <div className="hospital_info_avg_div">
-                        <p>{doctorDetail?.avgRate}</p>
+                        {
+                            avgReages.map((avgReage) => {
+                                return (
+                                    doctorDetail?.avgRate !== undefined && avgReage + 1 <= doctorDetail?.avgRate ? 
+                                        <div className="star_div">
+                                            <img src="/star.png" alt="" id="review_star" />
+                                        </div>
+                                         : 
+                                         <div className="star_div">
+                                            <img src="/star_empty.png" alt="" id="review_star" />
+                                        </div>
+                                )
+                            })
+                        }
                     </div>
                 </div>
                 <div className="hospital_review_title">
-                    <p className="hospital_review_text">연관 후기</p>
+                    <p className="hospital_review_text">Related Review</p>
                     <hr className="hospital_review_line"/>
                 </div>
                 <div className="hospital_review_div">
                     {doctorReviews.length === 0 ? (
-                        <p>연관 후기 없음....</p>
+                        <p>No review....</p>
                     ) : (
                         doctorReviews.map((item) => {
                             return (
@@ -158,12 +172,12 @@ function DoctorDetailPage() {
                                                     원장님
                                                 </p>
                                                 <p id="hospital_detail_review_index_data">
-                                                    {item.doctorName} 원장님
+                                                    {item.doctorName} doctor
                                                 </p>
                                             </div>
                                             <div className="hospital_detail_page_review_list_doctor_info_right">
                                                 <p id="hospital_detail_review_index_title">
-                                                    부위
+                                                    parts
                                                 </p>
                                                 <p id="hospital_detail_review_index_data">
                                                     {item.partList.map(

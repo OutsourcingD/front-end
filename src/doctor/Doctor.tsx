@@ -38,7 +38,7 @@ function Doctor() {
         <div className="doctor_div">
             <div className="hospital_container">
                 <div className="hospital_page_recommend_title_div">
-                    <p id="hospital_page_recommend_title">원장정보</p>
+                    <p id="hospital_page_recommend_title">Doctor Info</p>
                 </div>
                 <div className="hospital_page_search_div">
                     <Search
