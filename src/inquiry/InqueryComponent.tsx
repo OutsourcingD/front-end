@@ -16,28 +16,34 @@ function InqueryComponent() {
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        axios({
-            method: "post", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/api/inquiry`,
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-            },
-            data: {
-                content: value,
-            },
-        }).then((res) => {
-            alert("문의가 등록되었습니다.")
-            navigate("/");
-        }).catch((err) => {
-            if(err.response.status === 401 || err.response.status === 403) {
-                alert("This is not admin ID.");
-                navigate("/login");
-            }
-            else {
-                alert(`Contact to developer. ${err.response.status}`);
+        if(localStorage.getItem("access_token") === null) {
+            alert("Please login.");
+            navigate("/login");
+        }
+        else {
+            axios({
+                method: "post", // or 'post', 'put', etc.
+                url: `${process.env.REACT_APP_SERVER_URL}/api/inquiry`,
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+                },
+                data: {
+                    content: value,
+                },
+            }).then((res) => {
+                alert("문의가 등록되었습니다.")
                 navigate("/");
-            }          
-        });
+            }).catch((err) => {
+                if(err.response.status === 401 || err.response.status === 403) {
+                    alert("Login please.");
+                    navigate("/login");
+                }
+                else {
+                    alert(`Contact to developer. ${err.response.status}`);
+                    navigate("/");
+                }          
+            });
+        }
     };
 
     const sendInquery = () => {
