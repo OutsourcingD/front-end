@@ -32,7 +32,7 @@ const EtcReviewManagement = () => {
                 userId: id,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setEtcList(res.data);
@@ -60,7 +60,7 @@ const EtcReviewManagement = () => {
                 userId: id,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setEtcList(res.data);
@@ -86,7 +86,7 @@ const EtcReviewManagement = () => {
                 userId: id,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setEtcList(res.data);

@@ -46,7 +46,7 @@ const InqueryManagement = () => {
                 userId: id,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setInquiryList(res.data);
@@ -73,7 +73,7 @@ const InqueryManagement = () => {
                 userId: id,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             console.log("click")
@@ -186,7 +186,7 @@ const InqueryManagement = () => {
                 userId: id,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setInquiryList(res.data);
@@ -319,7 +319,7 @@ const InqueryManagement = () => {
                                         <p id="inquiry_mage_page_more_answer_div">Answer</p>
                                         <div className="answer_input_div">
                                             <form onSubmit={(e) => e.preventDefault()}>
-                                                <textarea id="admin_inuery" value={content} placeholder="문의하고 싶은 내용을 입력해주세요. 빠른시일 내에 관리자가 답변 해드립니다." onChange={(e) => setContent(e.target.value)} />
+                                                <textarea id="admin_inuery" value={content} placeholder="Please enter an answer." onChange={(e) => setContent(e.target.value)} />
                                             </form>
                                             <div className="admin_inquiry_buttons_div">
                                                 <div className="admin_inquiry_cancle_div">

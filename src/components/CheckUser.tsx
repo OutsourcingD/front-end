@@ -35,7 +35,7 @@ const CheckUser = () => {
                 userId: id,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setItems(res.data);
@@ -62,7 +62,7 @@ const CheckUser = () => {
                 userId: id,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setItems(res.data);
@@ -170,7 +170,7 @@ const CheckUser = () => {
                 userId: id,
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setItems(res.data);
@@ -340,22 +340,18 @@ const CheckUser = () => {
                                     <div className="user_detail_right_div">
                                         <div className="user_detail_top_left_password_div">
                                             <div className="user_detail_email_div">
-                                                <p id="user_detail_email">password</p>
-                                                <p id="user_detail_email_data">{detail.password ? detail.password : "error"}</p>
-                                            </div>
-                                            <div className="user_detail_email_div">
                                                 <p id="user_detail_email">phone</p>
                                                 <p id="user_detail_email_data">{detail.phoneNumber === null ? "N/A" : detail.phoneNumber}</p>
+                                            </div>
+                                            <div className="user_detail_email_div">
+                                                <p id="user_detail_email">gender</p>
+                                                <p id="user_detail_email_data">{detail.gender === undefined ? "N/A" : detail.gender ===  "true" ? "male" : "female"}</p>
                                             </div>
                                         </div>
                                         <div className="user_detail_top_left_info_div">
                                             <div className="user_detail_email_div">
                                                 <p id="user_detail_email">nickname</p>
                                                 <p id="user_detail_email_data">{detail.nickname}</p>
-                                            </div>
-                                            <div className="user_detail_email_div">
-                                                <p id="user_detail_email">gender</p>
-                                                <p id="user_detail_email_data">{detail.gender === undefined ? "N/A" : detail.gender ===  "true" ? "male" : "female"}</p>
                                             </div>
                                         </div>
                                     </div>

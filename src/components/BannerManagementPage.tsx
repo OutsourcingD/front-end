@@ -116,16 +116,17 @@ const BannerManagementPage = () => {
     }
 
     const onDetailClick = (bannerId : number) => {
+        console.log(bannerId)
         setIsBannerClicked(true);
 
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/admin/banner/detail`,
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/banner/detail`,
             params: {
                 bannerId: bannerId
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         }).then((res) => {
             setBannerDetail(res.data);
@@ -143,7 +144,7 @@ const BannerManagementPage = () => {
                 hospitalName: hospitalName
             },
             headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             }    
         }).then((res) => {
             alert("Success");

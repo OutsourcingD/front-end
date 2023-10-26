@@ -18,6 +18,7 @@ const HospitalInfoAdd: React.FC<HospitalInfoAddProps> = ({isLeftClicked,isRightC
     const [profileFiles, setProfileFiles] = React.useState<File[]>([]); // 파일 객체를 위한 상태
     const fileInputs = React.useRef<HTMLInputElement[]>([]);
     const [items, setItems] = React.useState([1]);
+    const [content, setContent] = React.useState("");
 
     const saveImgFile = (index: number) => {
         if (
@@ -168,7 +169,7 @@ const HospitalInfoAdd: React.FC<HospitalInfoAddProps> = ({isLeftClicked,isRightC
                     </div>
                 </div>
                 <div className="hospital_add_page_wysiwyg_div">
-                    <Wysiwyg />
+                    <Wysiwyg setContent={(content) => setContent(content)}/>
                 </div>
             </div>
         </div>

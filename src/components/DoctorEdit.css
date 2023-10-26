@@ -253,6 +253,25 @@
     flex-direction: row;
     margin: 20px 0px 0px 20px;
     align-items: center;
+    justify-content: space-between;
+}
+
+.edit_doctor_page_left_category {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#close {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.edit_doctor_page_right_category {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    cursor: pointer;
 }
 
 #edit_doctor_page_category_title {
