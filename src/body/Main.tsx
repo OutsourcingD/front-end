@@ -72,47 +72,61 @@ function Main() {
         await axios({
             method: "get", // or 'post', 'put', etc.
             url: `${process.env.REACT_APP_SERVER_URL}/api/banner?location=1`,
-        }).then((res) => {
-            setImageList(res.data);
-        }).catch((err) => {
-            alert("Server Error" + err.response.status);
-        });
+        })
+            .then((res) => {
+                setImageList(res.data);
+            })
+            .catch((err) => {
+                alert("Server Error" + err.response.status);
+            });
     };
 
     const getRecommendedReviews = async () => {
         await axios({
             method: "get", // or 'post', 'put', etc.
             url: `${process.env.REACT_APP_SERVER_URL}/api/review/recommendation`,
-        }).then((res) => {
-            setRecommendReviews(res.data);
-        }).catch((err) => {
-            alert("Server Error" + err.response.status);
-        });
+        })
+            .then((res) => {
+                setRecommendReviews(res.data);
+            })
+            .catch((err) => {
+                alert("Server Error" + err.response.status);
+            });
     };
 
     const getSearchReviewList = async () => {
         if (category < 9) {
             await axios({
                 method: "get", // or 'post', 'put', etc.
-                url: `${process.env.REACT_APP_SERVER_URL}/api/review/search?type=${type}&query=${searchValue}&category=${category}&pages=${
+                url: `${
+                    process.env.REACT_APP_SERVER_URL
+                }/api/review/search?type=${type}&query=${searchValue}&category=${category}&pages=${
                     page - 1
                 }`,
-            }).then((res) => {
-                setReviewList(res.data);
+            })
+                .then((res) => {
+                    setReviewList(res.data);
 
-                setTotalPages(res.data[0].totalPages === undefined ? 1 : res.data[0].totalPages);
-            }).catch((err) => {
-                alert("Server Error" + err.response.status);
-            });
+                    setTotalPages(
+                        res.data[0].totalPages === undefined
+                            ? 1
+                            : res.data[0].totalPages
+                    );
+                })
+                .catch((err) => {
+                    alert("Server Error" + err.response.status);
+                });
         } else {
             axios({
                 method: "get", // or 'post', 'put', etc.
                 url: `${process.env.REACT_APP_SERVER_URL}/api/review/search/doc-hos?sortType=${type}&type=${category}&query=${searchValue}`,
-            }).then((res) => {
-                setDocHosReviewList(res.data);
-            }).catch((err) => {
-                alert("Server Error" + err.response.status);
-            });
+            })
+                .then((res) => {
+                    setDocHosReviewList(res.data);
+                })
+                .catch((err) => {
+                    alert("Server Error" + err.response.status);
+                });
         }
     };
 
@@ -148,32 +162,19 @@ function Main() {
         const today = new Date();
         const monthNumber = today.getMonth() + 1; // JavaScript에서 월은 0부터 시작하므로, 실제 월을 얻기 위해선 +1을 해야 합니다.
 
-        if(monthNumber === 1)
-            setMonth("Jan.");
-        else if(monthNumber === 2)
-            setMonth("Feb.");
-        else if(monthNumber === 3)
-            setMonth("Mar.");
-        else if(monthNumber === 4)
-            setMonth("Apr.");
-        else if(monthNumber === 5)
-            setMonth("May");
-        else if(monthNumber === 6)
-            setMonth("Jun.");
-        else if(monthNumber === 7)
-            setMonth("Jul.");
-        else if(monthNumber === 8)
-            setMonth("Aug.");
-        else if(monthNumber === 9)
-            setMonth("Sep.");
-        else if(monthNumber === 10)
-            setMonth("Oct.");
-        else if(monthNumber === 11)
-            setMonth("Nov.");
-        else if(monthNumber === 12)
-            setMonth("Dec.");
-        else
-            setMonth("Month Error");
+        if (monthNumber === 1) setMonth("Jan.");
+        else if (monthNumber === 2) setMonth("Feb.");
+        else if (monthNumber === 3) setMonth("Mar.");
+        else if (monthNumber === 4) setMonth("Apr.");
+        else if (monthNumber === 5) setMonth("May");
+        else if (monthNumber === 6) setMonth("Jun.");
+        else if (monthNumber === 7) setMonth("Jul.");
+        else if (monthNumber === 8) setMonth("Aug.");
+        else if (monthNumber === 9) setMonth("Sep.");
+        else if (monthNumber === 10) setMonth("Oct.");
+        else if (monthNumber === 11) setMonth("Nov.");
+        else if (monthNumber === 12) setMonth("Dec.");
+        else setMonth("Month Error");
 
         // 해당 달의 첫 날과 오늘 날짜 사이에 있는 주 수 계산
         let firstDayOfTheMonth = new Date(
@@ -186,16 +187,10 @@ function Main() {
 
         let weekNumberOfMonth = currentWeek - weekOfFirstDay + 1;
 
-        if(weekNumberOfMonth === 1) 
-            setWeek(weekNumberOfMonth + "st");
-        else if(weekNumberOfMonth === 2)
-            setWeek(weekNumberOfMonth + "nd");
-        else if(weekNumberOfMonth === 3)
-            setWeek(weekNumberOfMonth + "rd");
-        else
-            setWeek(weekNumberOfMonth + "th");
-            
-
+        if (weekNumberOfMonth === 1) setWeek(weekNumberOfMonth + "st");
+        else if (weekNumberOfMonth === 2) setWeek(weekNumberOfMonth + "nd");
+        else if (weekNumberOfMonth === 3) setWeek(weekNumberOfMonth + "rd");
+        else setWeek(weekNumberOfMonth + "th");
     }, []);
 
     useEffect(() => {
@@ -210,26 +205,33 @@ function Main() {
         if (category < 9) {
             axios({
                 method: "get", // or 'post', 'put', etc.
-                url: `${process.env.REACT_APP_SERVER_URL}/api/review/search?type=${0}&query=${" "}&category=${category}&pages=${0
-                }`,
-            }).then((res) => {
-                setReviewList(res.data);
+                url: `${
+                    process.env.REACT_APP_SERVER_URL
+                }/api/review/search?type=${0}&query=${" "}&category=${category}&pages=${0}`,
+            })
+                .then((res) => {
+                    setReviewList(res.data);
 
-                setTotalPages(
-                    res.data[0] === undefined ? 1 : res.data[0].totalPages
-                );
-            }).catch((err) => {
-                alert("Server Error" + err.response.status);
-            });
+                    setTotalPages(
+                        res.data[0] === undefined ? 1 : res.data[0].totalPages
+                    );
+                })
+                .catch((err) => {
+                    alert("Server Error" + err.response.status);
+                });
         } else if (9 === category || category === 10) {
             axios({
                 method: "get", // or 'post', 'put', etc.
-                url: `${process.env.REACT_APP_SERVER_URL}/api/review/search/doc-hos?sortType=${0}&type=${category}&query=${" "}`,
-            }).then((res) => {
-                setDocHosReviewList(res.data);
-            }).catch((err) => {
-                alert("Server Error" + err.response.status);
-            });
+                url: `${
+                    process.env.REACT_APP_SERVER_URL
+                }/api/review/search/doc-hos?sortType=${0}&type=${category}&query=${" "}`,
+            })
+                .then((res) => {
+                    setDocHosReviewList(res.data);
+                })
+                .catch((err) => {
+                    alert("Server Error" + err.response.status);
+                });
         } else {
             alert("category error");
         }
@@ -272,9 +274,7 @@ function Main() {
                         <p id="recommended_title">
                             Best {month} {week} week review
                         </p>
-                        <p id="week_text">
-                            Checking weekly top reviews
-                        </p>
+                        <p id="week_text">Checking weekly top reviews</p>
                     </div>
                     <div className="hotDiv">
                         <img id="hot" src="hot.png" alt="추천 후기" />
@@ -375,11 +375,18 @@ function Main() {
                 </div>
             </div>
             {/*d 후기 리스트 섹션 */}
-            <div className={category < 9 ? "review_list_div" : "docs_hos_review_list_div"}>
+            <div
+                className={
+                    category < 9
+                        ? "review_list_div"
+                        : "docs_hos_review_list_div"
+                }
+            >
                 {category < 9
                     ? reviewList.map((review, index) => {
+                          const Wrapper = "div";
                           return (
-                              <div
+                              <Wrapper
                                   key={"des" + index}
                                   className="review_item_div"
                                   onClick={() => handleReview(review.reviewId)}
@@ -399,16 +406,24 @@ function Main() {
                                       nickname={review.nickname}
                                       totalPages={review.totalPages}
                                   />
-                              </div>
+                              </Wrapper>
                           );
                       })
                     : docHosReviewList.map((review, index) => {
-                          return <DocsHosReviewItem key={review.id} dto={review} type={category === 9 ? 0 : 1} />;
+                          const Wrapper = index % 2 === 0 ? "div" : React.Fragment;
+                          return (
+                            <Wrapper>
+                              <DocsHosReviewItem
+                                  key={category + "-" + review.id}
+                                  dto={review}
+                                  type={category === 9 ? 0 : 1}
+                              />
+                            </Wrapper>
+                          );
                       })}
             </div>
             {/* pagenation 섹션 */}
-            {
-                category < 9 ?
+            {category < 9 ? (
                 <Pagination
                     activePage={page}
                     itemsCountPerPage={10}
@@ -418,8 +433,7 @@ function Main() {
                     nextPageText={"›"}
                     onChange={handlePageChange}
                 />
-                : null
-            }
+            ) : null}
             {/* 후기 만들기 floating button */}
             <div
                 className="make_review_button_div"

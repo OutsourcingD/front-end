@@ -220,6 +220,7 @@
     border: 1px solid #D4D4D4;
     padding-top: 4px;
     padding-bottom: 4px;
+    cursor: pointer;
 }
 
 #advertisement_img {
