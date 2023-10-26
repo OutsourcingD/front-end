@@ -218,7 +218,7 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    margin: 10px 0px 30px 0px;
+    margin: 10px 0px 10px 0px;
 }
 
 #review_page_review_info_text {
@@ -232,6 +232,51 @@
     width: 80%;
     border: none;
     border-top: 1px solid #D4D4D4;
+}
+
+#doctor_image {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+
+}
+
+.doctor_image_div {
+    border-radius: 50%;
+}
+
+.review_page_doctor_info_div {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+}
+
+#review_page_doctor_name {
+    font-weight: 600;
+    font-size: 16px;
+    color: #222222;
+}
+
+.review_page_doctor_detail_info_div {
+    display: flex;
+    flex-direction: column;
+    height: 72px;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+#review_page_hospital_name {
+    font-size: 13px;
+    color: #666666;
+    font-weight: 400;
+}
+
+.review_page_star_div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 72px;
+    margin-left: 10px;
 }
 
 @media (max-width: 720px) {
