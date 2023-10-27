@@ -174,7 +174,141 @@ function ReviewPage() {
                     </div>
                 </div>
                 <div>
-                    <p>상세 별점</p>
+                    <div className="detail_quality_info_div">
+                        <div className="detail_quality_info_left_div">
+                            <p id="quality_data">consulting</p>
+                            <div className="review_page_detail_star_div">
+                                {avgReages.map((avgReage) => {
+                                    return reviewDetail?.doctorConsulting !==
+                                        undefined &&
+                                        avgReage + 1 <=
+                                            reviewDetail?.doctorConsulting ? (
+                                        <div className="detail_star_div">
+                                            <img
+                                                src="/star.png"
+                                                alt=""
+                                                id="review_detail_star"
+                                            />
+                                        </div>
+                                    ) : (
+                                        <div className="detail_star_div">
+                                            <img
+                                                src="/star_empty.png"
+                                                alt=""
+                                                id="review_detail_star"
+                                            />
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                        <p id="quality_data">doctor care</p>
+                        <div className="review_page_detail_star_div">
+                            {avgReages.map((avgReage) => {
+                                return reviewDetail?.doctorCare !==
+                                    undefined &&
+                                    avgReage + 1 <=
+                                        reviewDetail?.doctorCare ? (
+                                    <div className="detail_star_div">
+                                        <img
+                                            src="/star.png"
+                                            alt=""
+                                            id="review_detail_star"
+                                        />
+                                    </div>
+                                ) : (
+                                    <div className="detail_star_div">
+                                        <img
+                                            src="/star_empty.png"
+                                            alt=""
+                                            id="review_detail_star"
+                                        />
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                    <div className="detail_quality_info_div">
+                        <div className="detail_quality_info_left_div">
+                            <p id="quality_data">satisfy</p>
+                            <div className="review_page_detail_star_div">
+                                {avgReages.map((avgReage) => {
+                                    return reviewDetail?.doctorSatisfy !==
+                                        undefined &&
+                                        avgReage + 1 <=
+                                            reviewDetail?.doctorSatisfy ? (
+                                        <div className="detail_star_div">
+                                            <img
+                                                src="/star.png"
+                                                alt=""
+                                                id="review_detail_star"
+                                            />
+                                        </div>
+                                    ) : (
+                                        <div className="detail_star_div">
+                                            <img
+                                                src="/star_empty.png"
+                                                alt=""
+                                                id="review_detail_star"
+                                            />
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                        <p id="quality_data">doctor manner</p>
+                        <div className="review_page_detail_star_div">
+                            {avgReages.map((avgReage) => {
+                                return reviewDetail?.doctorManner !==
+                                    undefined &&
+                                    avgReage + 1 <=
+                                        reviewDetail?.doctorManner ? (
+                                    <div className="detail_star_div">
+                                        <img
+                                            src="/star.png"
+                                            alt=""
+                                            id="review_detail_star"
+                                        />
+                                    </div>
+                                ) : (
+                                    <div className="detail_star_div">
+                                        <img
+                                            src="/star_empty.png"
+                                            alt=""
+                                            id="review_detail_star"
+                                        />
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                    <div className="detail_quality_info_div">
+                        <p id="quality_data">communication</p>
+                        <div className="review_page_detail_star_div">
+                            {avgReages.map((avgReage) => {
+                                return reviewDetail?.doctorCommunication !==
+                                    undefined &&
+                                    avgReage + 1 <=
+                                        reviewDetail?.doctorCommunication ? (
+                                    <div className="detail_star_div">
+                                        <img
+                                            src="/star.png"
+                                            alt=""
+                                            id="review_detail_star"
+                                        />
+                                    </div>
+                                ) : (
+                                    <div className="detail_star_div">
+                                        <img
+                                            src="/star_empty.png"
+                                            alt=""
+                                            id="review_detail_star"
+                                        />
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
                 </div>
                 <div className="review_page_doctor_info_div">
                     <div className="doctor_image_div">
@@ -218,7 +352,114 @@ function ReviewPage() {
                     </div>
                 </div>
                 <div>
-                    <p>상세 별점</p>
+                    <div className="detail_quality_info_div">
+                        <div className="detail_quality_info_left_div">
+                            <p id="quality_right_data">facility</p>
+                            <div className="review_page_detail_star_div">
+                                {avgReages.map((avgReage) => {
+                                    return reviewDetail?.hospitalFacility !==
+                                        undefined &&
+                                        avgReage + 1 <=
+                                            reviewDetail?.doctorConsulting ? (
+                                        <div className="detail_star_div">
+                                            <img
+                                                src="/star.png"
+                                                alt=""
+                                                id="review_detail_star"
+                                            />
+                                        </div>
+                                    ) : (
+                                        <div className="detail_star_div">
+                                            <img
+                                                src="/star_empty.png"
+                                                alt=""
+                                                id="review_detail_star"
+                                            />
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                        <p id="quality_right_data">system</p>
+                        <div className="review_page_detail_star_div">
+                            {avgReages.map((avgReage) => {
+                                return reviewDetail?.hospitalSystem !==
+                                    undefined &&
+                                    avgReage + 1 <=
+                                        reviewDetail?.hospitalSystem ? (
+                                    <div className="detail_star_div">
+                                        <img
+                                            src="/star.png"
+                                            alt=""
+                                            id="review_detail_star"
+                                        />
+                                    </div>
+                                ) : (
+                                    <div className="detail_star_div">
+                                        <img
+                                            src="/star_empty.png"
+                                            alt=""
+                                            id="review_detail_star"
+                                        />
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                    <div className="detail_quality_info_div">
+                        <div className="detail_quality_info_left_div">
+                            <p id="quality_right_data">price</p>
+                            <div className="review_page_detail_star_div">
+                                {avgReages.map((avgReage) => {
+                                    return reviewDetail?.hospitalPrice !==
+                                        undefined &&
+                                        avgReage + 1 <=
+                                            reviewDetail?.hospitalPrice ? (
+                                        <div className="detail_star_div">
+                                            <img
+                                                src="/star.png"
+                                                alt=""
+                                                id="review_detail_star"
+                                            />
+                                        </div>
+                                    ) : (
+                                        <div className="detail_star_div">
+                                            <img
+                                                src="/star_empty.png"
+                                                alt=""
+                                                id="review_detail_star"
+                                            />
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                        <p id="quality_right_data">location</p>
+                        <div className="review_page_detail_star_div">
+                            {avgReages.map((avgReage) => {
+                                return reviewDetail?.hospitalLocation !==
+                                    undefined &&
+                                    avgReage + 1 <=
+                                        reviewDetail?.hospitalLocation ? (
+                                    <div className="detail_star_div">
+                                        <img
+                                            src="/star.png"
+                                            alt=""
+                                            id="review_detail_star"
+                                        />
+                                    </div>
+                                ) : (
+                                    <div className="detail_star_div">
+                                        <img
+                                            src="/star_empty.png"
+                                            alt=""
+                                            id="review_detail_star"
+                                        />
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
                 </div>
                 <div className="review_comment">
                     <p>review comment</p>
