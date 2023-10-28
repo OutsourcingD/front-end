@@ -29,6 +29,7 @@ function Header() {
     const [width, setWidth] = useState(window.innerWidth);
     const dropdownRef = React.useRef<HTMLDivElement | null>(null); // 참조 생성
     const [isClick, setIsClick] = useState(false);
+    const [memberId, setMemberId] = useState(0);
 
     const handleResize = debounce(() => {
         setWidth(window.innerWidth);
@@ -134,7 +135,8 @@ function Header() {
     useEffect(() => {
         const accessToken = localStorage.getItem("access_token")
         const refreshToken = localStorage.getItem("refresh_token")
-        const memberIdString = localStorage.getItem("user_id")
+        const memberIdString = localStorage.getItem("member_id")
+        setMemberId(Number(memberIdString));
         let memberId = 0
 
         if (location.pathname !== "/hospital" && location.pathname !== "/doctor" && location.pathname !== "/before-after") {
@@ -328,7 +330,7 @@ function Header() {
                                 </>
                                 : null
                         }
-                        <div className="chatDiv">
+                        <div className="chatDiv" onClick={() => {navigate("/chatting?memberId=" + memberId)}}>
                             <div className="chat_icon_div">
                                 <img
                                     src="/Send.png"

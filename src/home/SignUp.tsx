@@ -157,7 +157,7 @@ function SignUp() {
                         "refresh_token",
                         res.data.refreshToken
                     );
-                    localStorage.setItem("user_id", res.data.memberId);
+                    localStorage.setItem("member_id", res.data.memberId);
                     localStorage.setItem("profile", res.data.name);
                     navagate("/");
                 })

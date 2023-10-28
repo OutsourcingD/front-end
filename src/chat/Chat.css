@@ -1,0 +1,116 @@
+.chatting_div {
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    overflow-x: hidden;
+    height: 100%;
+    border-top: 1px solid #D4D4D4;
+}
+
+.chatting_wrapper {
+    width: 1200px;
+    height: 907px;
+    margin: 0 0 120px 0;
+}
+
+#chatting_page_profile {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid #D4D4D4;
+}
+
+#chatting_page_nickname {
+    font-weight: 500;
+    font-size: 18px;
+    color: #DDB0E3;
+    margin: 0 0 0 10px;
+}
+
+.chatting_page_header {
+    display: flex;
+    flex-direction: row;
+    margin-top: 80px;
+    align-items: flex-end; 
+}
+
+#chatting_room_text {
+    font-weight: 700;
+    font-size: 32px;
+    color: #222222;
+    margin: 0 0 0 10px;
+}
+
+.chatting_container {
+    width: 100%;
+    height: 854px;
+    border: 1px solid #D4D4D4;
+    border-radius: 15px;
+    margin: 20px 0 0 0;
+}
+
+.chatting_left_div {
+    height: calc(100% - 20px);
+    width: 375px;
+    overflow-y: scroll;
+    padding: 10px
+}
+
+#chatting_left_item_profile {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 1px solid #D4D4D4;
+}
+
+.chatting_left_item_div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: #FCFCFC;
+    border: 1px solid #F5F5F5;
+    border-radius: 10px;
+    width: 355px;
+    height: 75px;
+    margin-top: 10px;
+}
+
+.chatting_info_div {
+    margin-left: 10px;
+}
+
+#chatting_left_item_content {
+    font-size: 12px;
+    font-weight: 500;
+    color: #888888;
+    width: 231px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.chatting_day_div {
+    height: 33px;
+    display: flex;
+    align-items: flex-end;
+}
+
+#chatting_day {
+    font-size: 12px;
+    font-weight: 500;
+    color: #888888;
+}
+
+.chatting_right_header {
+    background: #FCFCFC;
+    border-width: 0px 1px 1px 1px;
+    border-style: solid;
+    border-color: #D4D4D4;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.04);
+    border-radius: 0px 15px 0px 0px;
+    width: 800px;
+    height: 80px;
+}

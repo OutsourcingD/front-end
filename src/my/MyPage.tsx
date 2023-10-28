@@ -4,7 +4,7 @@ import MyReviewItem from "./MyReviewItem";
 import MyCommentItem from "./MyCommentItem";
 import MyInqueryItem from "./MyInqueryItem";
 import Footer from "../bottom/Footer";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BannerDto } from "../dto/BannerDto";
 import Slider from "react-slick";
@@ -25,8 +25,26 @@ function MyPage() {
         slidesToScroll: 1,
         autoplay: true,
     };
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
 
     React.useEffect(() => {
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/api/member/info`,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        }).then((res) => {
+            localStorage.setItem("member_id", res.data.memberId);
+            
+            if(queryParams.get("id") != res.data.memberId) {
+                navigate("/notfound")
+            }
+        }).catch((err) => {
+            console.log(err.status)
+        });
+
         //banner api
         axios({
             method: "get",

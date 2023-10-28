@@ -23,6 +23,7 @@ import FindPage from "./home/FindPage";
 import AdminPage from "./my/AdminPage";
 import MakeNthReviewPage from "./review_page/MakeNthReviewPage";
 import NotFoundPage from "./NotFoundPage";
+import Chatting from "./chat/Chat";
 
 function Routers () {
     return (
@@ -47,6 +48,7 @@ function Routers () {
                 <Route path="/doctor/detail" element={<DoctorDetailPage />} />
                 <Route path="/hospital/detail" element={<HospitalDetailPage />} />
                 <Route path="/login/find" element={<FindPage />} />
+                <Route path="/chatting" element={<Chatting />} />
                 <Route path="/admin" element={<AdminPage />} />
                 <Route path="/*" element={<NotFoundPage />} />
             </Routes>
