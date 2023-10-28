@@ -3,6 +3,7 @@ import Pagination from "react-js-pagination";
 import "./EtcReviewManagement.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import EtcReviewComponent from "./EtcReviewComponent";
 
 interface EtcReviewManagementProps {
     createdAt: string;
@@ -17,6 +18,7 @@ const EtcReviewManagement = () => {
     const [totalPages, setTotalPages] = React.useState(2);
     const [id, setId] = React.useState("");
     const [etcList, setEtcList] = React.useState<EtcReviewManagementProps[]>([]);
+    const [isEditClicked,setIsEditClicked] = React.useState(false);
     const navigate = useNavigate();
 
     const handlePageChange = (page: React.SetStateAction<number>) => {
@@ -154,7 +156,7 @@ const EtcReviewManagement = () => {
                                         <p title={item.userId} id="etc_manage_page_id_data">
                                             {item.userId.substring(0, 20)}
                                         </p>
-                                        <div className="etc_manage_page_action_button">
+                                        <div className="etc_manage_page_action_button" onClick={() => setIsEditClicked(true)}>
                                             <p id="etc_manage_page_action_data">
                                                 edit
                                             </p>
@@ -185,7 +187,7 @@ const EtcReviewManagement = () => {
                                         <p title={item.userId} id="etc_manage_page_id_data">
                                             {item.userId.substring(0, 20)}
                                         </p>
-                                        <div className="etc_manage_page_action_button">
+                                        <div className="etc_manage_page_action_button" onClick={() => setIsEditClicked(true)}>
                                             <p id="etc_manage_page_action_data">
                                                 edit
                                             </p>
@@ -206,6 +208,9 @@ const EtcReviewManagement = () => {
                     onChange={handlePageChange}
                 />
             </div>
+            {
+                isEditClicked ? <EtcReviewComponent isEditClicked={isEditClicked} setIsEditClicked={setIsEditClicked}/> : null
+            }
         </div>
     );
 };

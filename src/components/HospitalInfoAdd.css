@@ -4,6 +4,7 @@
 }
 
 .hospital_info_add_name_div {
+    margin-top: 10px;
     margin-bottom: 10px;
     display: flex;
     flex-direction: row;

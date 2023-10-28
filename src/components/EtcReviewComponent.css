@@ -1,0 +1,304 @@
+.etc_management_page_div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.etc_management_page_title_div {
+    margin-top: 60px;
+    margin-left: 40px;
+}
+
+#etc_management_page_title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #222222;
+}
+
+.etc_management_left_div {
+    width: 600px;
+    height: 645px;
+    margin-left: 40px;
+    margin-top: 10px;
+    background: #ffffff;
+    box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.08);
+    border-radius: 15px;
+    border: 1px solid #d4d4d4;
+    overflow-y: scroll;
+}
+
+.etc_management_container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+#etc_management_item_title {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 21px;
+    color: #222222;
+    margin-left: 25px;
+    margin-top: 30px;
+}
+
+.etc_detail_page_top_div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.etc_detail_page_div {
+    position: absolute;
+    width: 760px;
+    height: 520px;
+    background: #FFFFFF;
+    border: 1px solid #D4D4D4;
+    box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.08);
+    border-radius: 15px;
+    left: 350px;
+    top: 70px;
+    z-index: 10;
+}
+
+.etc_edit_category_div {
+    display: flex;
+    height: 40px;
+    flex-direction: row;
+    margin: 20px 0px 0px 10px;
+    align-items: center;
+}
+
+.etc_sub_div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+.etc_sub_category_div {
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+
+#etc_main_text {
+    font-size: 18px;
+    width: 75px;
+    font-weight: 600;
+    color: #444444;
+    white-space: nowrap;
+    margin-left: 10px;
+}
+
+#etc_link_text {
+    font-size: 18px;
+    font-weight: 600;
+    color: #444444;
+    white-space: nowrap;
+    margin-left: 20px;
+}
+
+#etc_sub_text {
+    font-weight: 500;
+    font-size: 14px;
+    color: #444444;
+}
+
+#etc_edit_category_checkbox {
+    width: 15px;
+    height: 15px;
+    margin-right: 2px;
+}
+
+#etc_edit_category_checkbox_pupple {
+    width: 15px;
+    height: 15px;
+    margin-right: 2px;
+}
+
+#etc_edit_line {
+    font-weight: 600;
+    font-size: 18px;
+    color: #444444;
+    margin-right: 10px;
+}
+
+.etc_link_add_container {
+    margin-left: 10px;
+    margin-top: 30px;
+}
+
+.etc_link_add_div {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.etc_link_add_form_div {
+    border-bottom: 0px;
+    height: 20px;
+    margin-left: 20px;
+}
+
+#etc_link_add_form {
+    border: none;
+    outline: none;
+    width: 200px;
+    display: flex;
+    align-items: center;
+}
+
+#etc_link_add_input {
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+#etc_link_add_input::placeholder {
+    color: #D4D4D4;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.etc_info_add_picture_div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.etc_add_picture_wrapper {
+    width: 240px;
+    height: 240px;
+    border-radius: 15px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.etc_picture_make_div {
+    width: 946px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: row;
+    margin-top: 10px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+#etc_add_picture {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    border-radius: 15px;
+}
+
+.etc_add_button_wrapper {
+    width: 90%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 25px;
+}
+
+.etc_buttons_div {
+    margin-right: 18px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.etc_cancel_button_div {
+    cursor: pointer;
+    border: 1px solid #D4D4D4;
+    border-radius: 20px;
+    width: 70px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.etc_save_button_div {
+    cursor: pointer;
+    background: #DFB1E4;
+    border-radius: 20px;
+    width: 70px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0px 4px 11px rgba(0, 0, 0, 0.09));
+    margin-left: 10px;
+}
+
+#etc_cancel_text {
+    font-size: 14px;
+    font-weight: 700;
+    color: #444444;
+}
+
+#etc_save_text {
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.doctor_info_add_part_container {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+#doctor_info_add_name_title {
+    font-weight: 600;
+    font-size: 18px;
+    color: #444444;
+    margin-right: 10px;
+}
+
+.flex-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+}
+
+.surgery-part-dropdown-wrapper {
+    position: relative;
+    margin-left: 5px; 
+}
+
+.surgery-part-dropdown {
+    width: 200px; 
+    height: 30px; 
+    border: 1px solid #ccc; 
+    padding: 5px; 
+    border-radius: 5px;
+    appearance: none; 
+    background-color: white; 
+    font-size: 15px; 
+}
+
+.surgery-period-input-wrapper {
+    width: 200px;
+    margin-left: 30px; 
+}
+
+.surgery-period {
+    width: 100%;
+    height: 20px; 
+    border: 1px solid #ccc; 
+    padding: 5px; 
+    border-radius: 5px; 
+    font-size: 15px; 
+}

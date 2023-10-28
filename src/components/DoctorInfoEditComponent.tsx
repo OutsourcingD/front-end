@@ -79,68 +79,40 @@ const DoctorInfoEditComponent: React.FC<InfoEditProp> = ({isDoctorInfoEditClicke
             <p id="banner_main_text">Category</p>
             <div className="banner_sub_div">
                 <div className="banner_sub_category_div">
-                    {category === 0 ? (
-                        <img
-                            src="/checkbox_pupple.png"
-                            alt=""
-                            id = "banner_edit_category_checkbox"
-                        />
-                    ) : (
-                        <img
-                            src="/checkbox.png"
-                            alt=""
-                            id ="banner_edit_category_checkbox_pupple"
-                            onClick={() => setCategory(0)}
-                        />
-                    )}
-                </div>
-                <p id="banner_sub_text">
-                    doctor
-                </p>
-            </div>
-            <div className="banner_sub_div">
-                {category === 1 ? (
                     <img
                         src="/checkbox_pupple.png"
                         alt=""
                         id = "banner_edit_category_checkbox"
                     />
-                ) : (
-                    <img
-                        src="/checkbox_pupple.png"
-                        alt=""
-                        id = "banner_edit_category_checkbox_pupple"
-                        onClick={() => setCategory(1)}
-                    />
-                )}
+                </div>
                 <p id="banner_sub_text">
-                    hospital
+                    doctor
                 </p>
             </div>
         </div>
 
         <div className="banner_link_add_container">
-                <div className="banner_link_add_div">
-                    <p id="banner_main_text">Location</p>
-                    <div className="banner_link_add_form_div">
-                        <form id = "banner_link_add_form">
-                            <input
-                                id ="banner_link_add_input"
-                                 placeholder="Enter the address of hospital"
-                            />
-                        </form>
-                    </div>
-
-                    <p id="banner_main_text">Name</p>
-                    <div className="banner_link_add_form_div">
-                        <form id = "banner_link_add_form">
-                            <input
-                                id ="banner_link_add_input"
-                                placeholder="Enter the name of the hospital or doctor"
-                            />
-                        </form>
-                    </div>
+            <div className="banner_link_add_div">
+                <p id="banner_main_text">Location</p>
+                <div className="banner_link_add_form_div">
+                    <form id = "banner_link_add_form">
+                        <input
+                            id ="banner_link_add_input"
+                            placeholder="Enter the address of hospital"
+                        />
+                    </form>
                 </div>
+
+                <p id="banner_main_text">Name</p>
+                <div className="banner_link_add_form_div">
+                    <form id = "banner_link_add_form">
+                        <input
+                            id ="banner_link_add_input"
+                            placeholder="Enter the name of the doctor"
+                        />
+                    </form>
+                </div>
+            </div>
         </div>
 
         <div className="doctor_info_add_part_container">

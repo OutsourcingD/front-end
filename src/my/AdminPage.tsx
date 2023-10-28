@@ -4,7 +4,7 @@ import SideMenu from "../components/SideMenu";
 import BannerManagementPage from "../components/BannerManagementPage";
 import ChangeReview from "../components/ChangeReview";
 import DoctorEdit from "../components/DoctorEdit";
-import DoctorAdd from "../components/DoctorAdd";
+import DoctorAdd from "../components/DoctorHospitalAdd";
 import CheckUserIp from "../components/CheckUserIp";
 import CheckUser from "../components/CheckUser";
 import AddAdminId from "../components/AddAdminId";

@@ -95,9 +95,9 @@
 }
 
 #add_doctor_info_make_review_picture {
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
+    width: 240px;
+    height: 240px;
+    object-fit: contain;
     border-radius: 15px;
 }
 
@@ -105,4 +105,51 @@
     width: 240px;
     height: 240px;
     border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.surgery-part-dropdown-wrapper {
+    position: relative;
+    margin-left: 15px; 
+}
+
+.surgery-part-dropdown {
+    width: 100px; 
+    height: 30px; 
+    border: 1px solid #ccc; 
+    padding: 5px; 
+    border-radius: 5px;
+    appearance: none; 
+    background-color: white; 
+    font-size: 12px; 
+}
+
+.surgery-part-dropdown-wrapper::after {
+    content: "▼"; 
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 10px;
+}
+
+.surgery-period-input-wrapper {
+    width: 80px;
+    margin-left: 15px; 
+}
+
+.surgery-period {
+    width: 100%;
+    height: 20px; 
+    border: 1px solid #ccc; 
+    padding: 5px; 
+    border-radius: 5px; 
+    font-size: 12px; 
 }

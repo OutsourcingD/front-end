@@ -136,7 +136,7 @@ function MyPageInfo() {
         };
     };
 
-    React.useEffect(() => {
+    /*React.useEffect(() => {
         axios({
             method: "get",
             url: `${process.env.REACT_APP_SERVER_URL}/api/member/info`,
@@ -166,7 +166,7 @@ function MyPageInfo() {
                 navigate("/");
             }          
         });
-    }, []);
+    }, []);*/
 
     React.useEffect(() => {
         console.log("profile file: ", profileFile)

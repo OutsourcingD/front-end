@@ -151,7 +151,7 @@ function Header() {
         }
     }, [location]);
 
-    useEffect(() => {
+    /*useEffect(() => {
         if (localStorage.getItem("access_token") !== null) {
             axios({
                 method: "get", // or 'post', 'put', etc.
@@ -173,7 +173,7 @@ function Header() {
                 }
             });
         }
-    }, []);
+    }, []);*/
 
     useEffect(() => {
         if (width > 920) setIsClick(false);

@@ -1,13 +1,12 @@
 import React from "react";
-import "./HospitalPostAdd.css";
-import PartCategory from "../review_page/PartCategory";
 import Wysiwyg from "./ContentInput";
+import './BeforeAfterPostAdd.css';
 
-interface HospitalInfoAddProps {
+interface BeforeAfterAddProps {
     isAddClicked: boolean;
 }
 
-const HospitalPostAdd: React.FC<HospitalInfoAddProps> = ({isAddClicked}) => {
+const BeforeAfterPostAdd: React.FC<BeforeAfterAddProps> = ({isAddClicked}) => {
     const [images, setImages] = React.useState(
         Array(10).fill("/add_picture_png.png")
     );
@@ -16,7 +15,7 @@ const HospitalPostAdd: React.FC<HospitalInfoAddProps> = ({isAddClicked}) => {
     );
     const [profileFiles, setProfileFiles] = React.useState<File[]>([]); // 파일 객체를 위한 상태
     const fileInputs = React.useRef<HTMLInputElement[]>([]);
-    const [items, setItems] = React.useState([1]);
+    const [items, setItems] = React.useState([1,2]);
 
     const saveImgFile = (index: number) => {
         if (
@@ -66,7 +65,10 @@ const HospitalPostAdd: React.FC<HospitalInfoAddProps> = ({isAddClicked}) => {
     };
     const addButtonClick = () => {
         if (items.length < 10) {
-            setItems((prev) => [...prev, prev.length + 1]);
+            setItems((prev) => [
+                ...prev, 
+                prev[prev.length-1] + 1,
+                prev[prev.length+1] + 2]);
         } else {
             alert("Exceeding the maximum number : 10")
         }
@@ -77,60 +79,43 @@ const HospitalPostAdd: React.FC<HospitalInfoAddProps> = ({isAddClicked}) => {
     }
 
     return (
-        <div className="hospital_info_add_div">
-            <div className="hospital_info_add_name_div">
-                <p id="hospital_info_add_name_title">Name</p>
-                <div className="hospital_info_add_name_form_div">
-                    <form id="hospital_info_add_name_form">
+        <div className="doctor_info_add_div">
+            <div className="doctor_info_add_part_container">
+                <p id="doctor_info_add_name_title">Hospital</p>
+                <div className="doctor_info_add_title_form_div">
+                    <form id="doctor_info_add_form">
                         <input
-                            id="hospital_info_add_name_input"
+                            id="doctor_info_add_name_input"
                             placeholder="Please enter hospital name"
                         />
                     </form>
                 </div>
-            </div>
-            <div className="hospital_info_add_part_container">
-                <p id="hospital_info_add_name_title">Part</p>
-                <div style={{ width: "300px" }}>
-                    <PartCategory />
-                </div>
-            </div>
-            <div className="hospital_info_add_part_container">
-                <p id="hospital_info_add_name_title">Title</p>
-                <div className="hospital_info_add_title_form_div">
-                    <form id="hospital_info_add_form">
+                
+                <p id="doctor_info_add_name_title">Doctor</p>
+                <div className="doctor_info_add_title_form_div">
+                    <form id="doctor_info_add_form">
                         <input
-                            id="hospital_info_add_name_input"
-                            placeholder="Please enter title"
+                            id="doctor_info_add_name_input"
+                            placeholder="Please enter doctor name"
                         />
                     </form>
                 </div>
             </div>
-            <div className="hospital_info_add_part_container">
-                <p id="hospital_info_add_name_title">Description</p>
-                <div className="hospital_info_add_des_form_div">
-                    <form id="hospital_info_add_form">
-                        <input
-                            id="hospital_info_add_name_input"
-                            placeholder="Please enter description"
-                        />
-                    </form>
-                </div>
-            </div>
-            <div className="hospital_info_add_picture_div">
-                <p id="hospital_info_add_name_title">Add picture</p>
-                <p id="hospital_info_add_warn">Maximum: 10</p>
-                {/* 사진 */}
+
+            <div className="doctor_info_add_picture_div">
+                <p id="doctor_info_add_name_title">Add picture</p>
+                <p id="doctor_info_add_warn">Maximum: 10</p>
+                
                 <div className="make_info_pictures_div">
                     {items.map((item, index) => {
                         return (
                             <div className="make_review_add_picture_wrapper">
                                 <div className="make_review_add_picture_div">
-                                    <div className="add_hospital_picture_wrapper">
+                                    <div className="add_doctor_picture_wrapper">
                                         <img
                                             src={images[index]}
                                             alt=""
-                                            id="add_hospital_info_make_review_picture"
+                                            id="add_doctor_info_make_review_picture"
                                             onClick={() => {
                                                 fileInputs.current[
                                                     index
@@ -152,6 +137,31 @@ const HospitalPostAdd: React.FC<HospitalInfoAddProps> = ({isAddClicked}) => {
                                         ></input>
                                     </div>
                                 </div>
+                                
+                                <div className="flex-wrapper">
+                                    <div className="surgery-part-dropdown-wrapper">
+                                        <select className="surgery-part-dropdown">
+                                            <option>Fat Grafting</option>
+                                            <option>Lifting</option>
+                                            <option>Skin</option>
+                                            <option>Liposuction</option>
+                                            <option>Breast</option>
+                                            <option>Nose</option>
+                                            <option>Eyes</option>
+                                            <option>Contouring</option>
+                                            <option>Doctors</option>
+                                            <option>Plastic surgery</option>
+                                        </select>
+                                    </div>
+
+                                    <div className="surgery-period-input-wrapper">
+                                        <input
+                                            type="text"
+                                            placeholder="surgery period"
+                                            className="surgery-period"
+                                        />
+                                    </div>
+                                </div>
                             </div>
                         );
                     })}
@@ -168,11 +178,9 @@ const HospitalPostAdd: React.FC<HospitalInfoAddProps> = ({isAddClicked}) => {
                         </div>
                     </div>
                 </div>
-                <div className="hospital_add_page_wysiwyg_div">
-                    
-                </div>
             </div>
         </div>
     );
 };
-export default HospitalPostAdd;
+
+export default BeforeAfterPostAdd;

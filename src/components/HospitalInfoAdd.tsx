@@ -68,6 +68,8 @@ const HospitalInfoAdd: React.FC<HospitalInfoAddProps> = ({isLeftClicked,isRightC
     const addButtonClick = () => {
         if (items.length < 10) {
             setItems((prev) => [...prev, prev.length + 1]);
+        } else {
+            alert("Exceeding the maximum number : 10")
         }
     };
 
@@ -78,7 +80,7 @@ const HospitalInfoAdd: React.FC<HospitalInfoAddProps> = ({isLeftClicked,isRightC
     return (
         <div className="hospital_info_add_div">
             <div className="hospital_info_add_name_div">
-                <p id="hospital_info_add_name_title">name</p>
+                <p id="hospital_info_add_name_title">Name</p>
                 <div className="hospital_info_add_name_form_div">
                     <form id="hospital_info_add_name_form">
                         <input
@@ -168,7 +170,7 @@ const HospitalInfoAdd: React.FC<HospitalInfoAddProps> = ({isLeftClicked,isRightC
                     </div>
                 </div>
                 <div className="hospital_add_page_wysiwyg_div">
-                    <Wysiwyg />
+                    
                 </div>
             </div>
         </div>

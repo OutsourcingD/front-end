@@ -79,40 +79,12 @@ const HospitalInfoEditComponent:React.FC<InfoEditProp> = ({isHopitalInfoEditClic
             <p id="banner_main_text">Category</p>
             <div className="banner_sub_div">
                 <div className="banner_sub_category_div">
-                    {category === 0 ? (
-                        <img
-                            src="/checkbox_pupple.png"
-                            alt=""
-                            id = "banner_edit_category_checkbox"
-                        />
-                    ) : (
-                        <img
-                            src="/checkbox.png"
-                            alt=""
-                            id ="banner_edit_category_checkbox_pupple"
-                            onClick={() => setCategory(0)}
-                        />
-                    )}
-                </div>
-                <p id="banner_sub_text">
-                    doctor
-                </p>
-            </div>
-            <div className="banner_sub_div">
-                {category === 1 ? (
                     <img
                         src="/checkbox_pupple.png"
                         alt=""
                         id = "banner_edit_category_checkbox"
                     />
-                ) : (
-                    <img
-                        src="/checkbox_pupple.png"
-                        alt=""
-                        id = "banner_edit_category_checkbox_pupple"
-                        onClick={() => setCategory(1)}
-                    />
-                )}
+                </div>
                 <p id="banner_sub_text">
                     hospital
                 </p>
@@ -136,7 +108,7 @@ const HospitalInfoEditComponent:React.FC<InfoEditProp> = ({isHopitalInfoEditClic
                         <form id = "banner_link_add_form">
                             <input
                                 id ="banner_link_add_input"
-                                placeholder="Enter the name of the hospital or doctor"
+                                placeholder="Enter the name of the hospital"
                             />
                         </form>
                     </div>

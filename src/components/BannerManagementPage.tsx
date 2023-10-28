@@ -245,7 +245,7 @@ const BannerManagementPage = () => {
                                             />
                                         ) : (
                                             <img
-                                                src="/checkbox_pupple.png"
+                                                src="/checkbox.png"
                                                 alt=""
                                                 id = "banner_edit_category_checkbox_pupple"
                                                 onClick={() => setCategory(1)}
@@ -400,7 +400,7 @@ const BannerManagementPage = () => {
                                             />
                                         ) : (
                                             <img
-                                                src="/checkbox_pupple.png"
+                                                src="/checkbox.png"
                                                 alt=""
                                                 id = "banner_edit_category_checkbox_pupple"
                                                 onClick={() => setCategory(1)}

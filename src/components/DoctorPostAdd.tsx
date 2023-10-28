@@ -67,6 +67,8 @@ const DoctorPostAdd: React.FC<DoctorInfoAddProps> = ({isAddClicked}) => {
     const addButtonClick = () => {
         if (items.length < 10) {
             setItems((prev) => [...prev, prev.length + 1]);
+        } else {
+            alert("Exceeding the maximum number : 10")
         }
     };
 
@@ -76,10 +78,10 @@ const DoctorPostAdd: React.FC<DoctorInfoAddProps> = ({isAddClicked}) => {
 
     return (
         <div className="doctor_info_add_div">
-            <div className="doctor_info_add_name_div">
-                <p id="doctor_info_add_name_title">name</p>
-                <div className="doctor_info_add_name_form_div">
-                    <form id="doctor_info_add_name_form">
+            <div className="doctor_info_add_part_container">
+                <p id="doctor_info_add_name_title">Name</p>
+                <div className="doctor_info_add_title_form_div">
+                    <form id="doctor_info_add_form">
                         <input
                             id="doctor_info_add_name_input"
                             placeholder="Please enter doctor name"
@@ -167,7 +169,7 @@ const DoctorPostAdd: React.FC<DoctorInfoAddProps> = ({isAddClicked}) => {
                     </div>
                 </div>
                 <div className="doctor_add_page_wysiwyg_div">
-                    <Wysiwyg />
+                    
                 </div>
             </div>
         </div>

@@ -100,18 +100,18 @@ const InfoAddComponent:React.FC<InfoAddProp> = ({isInfoAddClicked,setIsInfoAddCl
             </div>
             <div className="banner_sub_div">
                 {category === 1 ? (
-                    <img
-                        src="/checkbox_pupple.png"
-                        alt=""
-                        id = "banner_edit_category_checkbox"
-                    />
-                ) : (
-                    <img
-                        src="/checkbox_pupple.png"
-                        alt=""
-                        id = "banner_edit_category_checkbox_pupple"
-                        onClick={() => setCategory(1)}
-                    />
+                        <img
+                            src="/checkbox_pupple.png"
+                            alt=""
+                            id = "banner_edit_category_checkbox"
+                        />
+                    ) : (
+                        <img
+                            src="/checkbox.png"
+                            alt=""
+                            id ="banner_edit_category_checkbox_pupple"
+                            onClick={() => setCategory(1)}
+                        />
                 )}
                 <p id="banner_sub_text">
                     hospital
