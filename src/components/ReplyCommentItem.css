@@ -112,6 +112,13 @@
     margin-top: 10px;
 }
 
+.reply_comment_item_button_div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
 .comment_item_edit_delete_button_div {
     display: flex;
     flex-direction: row;

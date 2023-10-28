@@ -31,7 +31,102 @@ function ReviewPage() {
     const avgReages = [0, 1, 2, 3, 4];
     const [comments, setComments] = React.useState<CommentDto[]>([]);
     const [userInfo, setUserInfo] = React.useState<UserInfo>({} as UserInfo);
-    const [isReply, setIsReply] = React.useState<boolean>(false);
+    const [isReply, setIsReply] = React.useState<number>(0);
+    const [content, setContent] = React.useState<string>("");
+    const [event, setEvent] = React.useState<number>(0);
+
+    const onDelete = () => {
+        axios({
+            method: "delete",
+            url: `${process.env.REACT_APP_SERVER_URL}/api/review/remove`,
+            params: {
+                reviewId: queryParams.get("reviewId"),
+            },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem(
+                    "access_token"
+                )}`,
+            },
+        }).then((res) => {
+            navigate("/");
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
+    const likeEvent = (id: number, isLiked: boolean) => {
+        axios({
+            method: "post",
+            url: `${process.env.REACT_APP_SERVER_URL}/api/comment/like`,
+            data: {
+                commentId: id,
+                liked: !isLiked,
+            },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        }).then((res) => {
+            setEvent((count) => count + 1);
+        }).catch((err) => {
+            console.log(err)
+        });
+    }
+
+    const deleteEvent = (commentId: number) => {
+        axios({
+            method: "delete",
+            url: `${process.env.REACT_APP_SERVER_URL}/api/comment/remove`,
+            params: {
+                commentId: commentId,
+                reviewId: queryParams.get("reviewId"),
+            },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        }).then((res) => {
+            setEvent((count) => count + 1);
+        }).catch((err) => {
+            alert(err.status);
+        })
+    };
+
+    const onSubmit = () => {
+        const formData = new FormData();
+        formData.append("content", content);
+        formData.append("parentId", isReply.toString());
+        formData.append("reviewId", queryParams.get("reviewId") || "");
+
+        if(content === "") {
+            alert("Please input comment")
+            return;
+        }
+
+        axios({
+            method: "post",
+            url: `${process.env.REACT_APP_SERVER_URL}/api/comment/add`,
+            data: {
+                content: content,
+                reviewId: queryParams.get("reviewId"),
+                parentId: isReply,
+            },
+            headers: {
+                "Content-Type": "multipart/form-data",
+                Authorization: `Bearer ${localStorage.getItem(
+                    "access_token"
+                )}`,
+            },
+        }).then((res) => {
+            setIsReply(0);
+            setEvent((event) => event + 1);
+            setContent("");
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
+    const replyEvent = (reply: number) => {
+        setIsReply(reply);
+    }
 
     const getUserInfo = () => {
         axios({
@@ -69,7 +164,6 @@ function ReviewPage() {
                 )}`,
             },
         }).then((res) => {
-            console.log(res.data)
             setComments(res.data);
         }).catch((err) => {
             if (
@@ -118,7 +212,7 @@ function ReviewPage() {
             getParentComment(reviewId);
             getUserInfo();
         }
-    }, []);
+    }, [isReply, event]);
 
     return (
         <div className="review_detail_div">
@@ -150,8 +244,11 @@ function ReviewPage() {
                         </div>
                     </div>
                     <div className="profile_right_div">
-                        <p id="post_edit_button" onClick={() => console.log("edit")}>edit</p>
-                        <p id="post_delete_button">delete</p>
+                        {reviewDetail?.isMyReview ? <>
+                        {/*<p id="post_edit_button" onClick={() => console.log("edit")}>edit</p>*/}
+                        <p id="post_delete_button" onClick={onDelete}>delete</p>
+                        </>
+                        : null}
                     </div>
                 </div>
                 <div className="review_page_hr_div">
@@ -538,7 +635,7 @@ function ReviewPage() {
                     {
                         comments.map((comment) => {
                             return (
-                                <CommentItem {...comment} />
+                                <CommentItem commentDto={comment} changeEvent={replyEvent} onDelete={deleteEvent} likeEvent={likeEvent} />
                             )
                         })
                     }
@@ -548,11 +645,11 @@ function ReviewPage() {
                         <img src={userInfo.profile} alt="" id="comment_input_profile_img" />
                         <p id="comment_input_profile_nickname">{userInfo.nickname}</p>
                     </div>
-                    <textarea id="comment_input_textarea" placeholder={isReply ? "input reply comment" : "input comment"}></textarea>
+                    <textarea id="comment_input_textarea" value={content} onChange={(e) => setContent(e.target.value)} placeholder={isReply !== 0 ? "input reply comment" : "input comment"}></textarea>
                     <div className="comment_input_bottom_div">
                         <img src="/comment_camera.png" alt="" id="comment_input_camera_img" />
                         <div className="comment_input_add_text_div">
-                            <p id="comment_input_add_text">Add</p>
+                            <p id="comment_input_add_text" onClick={onSubmit}>Add</p>
                         </div>
                     </div>
                 </div>

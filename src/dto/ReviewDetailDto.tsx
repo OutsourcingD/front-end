@@ -40,6 +40,7 @@ export type ReviewDetailDto = {
   location: string;
   nickname: string;
   partList: string[];
+  isMyReview: boolean;
 
   imageList: Image[];
 
