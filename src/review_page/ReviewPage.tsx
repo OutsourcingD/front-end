@@ -5,6 +5,13 @@ import axios from "axios";
 import { ReviewDetailDto } from "../dto/ReviewDetailDto";
 import Slider from "react-slick";
 import Footer from "../bottom/Footer";
+import { CommentDto } from "../dto/CommentDto";
+import CommentItem from "../components/CommentItem";
+
+interface UserInfo {
+    nickname: string;
+    profile: string;
+}
 
 function ReviewPage() {
     const location = useLocation();
@@ -22,6 +29,59 @@ function ReviewPage() {
     };
     const navigate = useNavigate();
     const avgReages = [0, 1, 2, 3, 4];
+    const [comments, setComments] = React.useState<CommentDto[]>([]);
+    const [userInfo, setUserInfo] = React.useState<UserInfo>({} as UserInfo);
+    const [isReply, setIsReply] = React.useState<boolean>(false);
+
+    const getUserInfo = () => {
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/api/member/info`,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem(
+                    "access_token"
+                )}`,
+            },
+        }).then((res) => {
+            setUserInfo(res.data);
+        }).catch((err) => {
+            if (
+                err.response.status === 403 ||
+                err.response.status === 401
+            ) {
+                alert("Token is not exist.");
+            } else {
+                alert("Server Error" + err.response.status);
+            }
+        });
+    }
+
+    const getParentComment = (reviewId: string) => {
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/api/comment/`,
+            params: {
+                reviewId: reviewId,
+            },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem(
+                    "access_token"
+                )}`,
+            },
+        }).then((res) => {
+            console.log(res.data)
+            setComments(res.data);
+        }).catch((err) => {
+            if (
+                err.response.status === 403 ||
+                err.response.status === 401
+            ) {
+                alert("Token is not exist.");
+            } else {
+                alert("Server Error" + err.response.status);
+            }
+        });
+    }
 
     useEffect(() => {
         const reviewId = queryParams.get("reviewId");
@@ -51,6 +111,12 @@ function ReviewPage() {
                         navigate("/");
                     }
                 });
+        }
+
+        
+        if(reviewId !== null) {
+            getParentComment(reviewId);
+            getUserInfo();
         }
     }, []);
 
@@ -84,7 +150,7 @@ function ReviewPage() {
                         </div>
                     </div>
                     <div className="profile_right_div">
-                        <p id="post_edit_button">edit</p>
+                        <p id="post_edit_button" onClick={() => console.log("edit")}>edit</p>
                         <p id="post_delete_button">delete</p>
                     </div>
                 </div>
@@ -462,7 +528,33 @@ function ReviewPage() {
                     </div>
                 </div>
                 <div className="review_comment">
-                    <p>review comment</p>
+                    <div className="comment_detail_div">
+                        <p id="comments_length">{comments.length}</p>
+                        <p id="comment_detail_text">comment</p>
+                    </div>
+                    <hr id="comment_horizontal_tag"/>
+                </div>
+                <div className="comment_list_div">
+                    {
+                        comments.map((comment) => {
+                            return (
+                                <CommentItem {...comment} />
+                            )
+                        })
+                    }
+                </div>
+                <div className="comment_text_area_div">
+                    <div className="comment_input_profile_div">
+                        <img src={userInfo.profile} alt="" id="comment_input_profile_img" />
+                        <p id="comment_input_profile_nickname">{userInfo.nickname}</p>
+                    </div>
+                    <textarea id="comment_input_textarea" placeholder={isReply ? "input reply comment" : "input comment"}></textarea>
+                    <div className="comment_input_bottom_div">
+                        <img src="/comment_camera.png" alt="" id="comment_input_camera_img" />
+                        <div className="comment_input_add_text_div">
+                            <p id="comment_input_add_text">Add</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <Footer />
