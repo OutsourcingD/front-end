@@ -61,6 +61,22 @@ function Chatting() {
                             })
                         }
                     </div>
+                    <div className="chatting_right_div">
+                        <div className="chatting_right_header">
+                            <img src={profile} alt="" id="chatting_left_item_profile"/>
+                            <p id="chatting_right_item_nickname">nickname</p>
+                            <img src="/trash.png" alt="" id="chatting_right_item_trash"/>
+                        </div>
+                        <div className="chatting_bottom_div">
+                            <div className="chatting_bottom_left_div">
+                                <img src="/chatting_camera.png" alt="" id="chatting_camera"/>
+                                <form id="chatting_form">
+                                    <input type="text" id="chatting_input" placeholder="Input message."/>
+                                </form>
+                            </div>
+                            <img src="/email_send.png" alt="" id="chatting_send"/>
+                        </div>
+                    </div>
                 </div>
             </div>
             <Footer />
