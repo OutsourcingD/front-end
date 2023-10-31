@@ -37,8 +37,6 @@ const DoctorEdit = () => {
     const [doctorTotalPages, setDoctorTotalPages] = React.useState(2);
     const [isLeftClicked, setIsLeftClicked] = React.useState(false);
     const [isRightClicked, setIsRightClicked] = React.useState(false);
-    const [isDoctorClicked,setIsDoctorClicked] = React.useState(false);
-    const [isHospitalClicked,setIsHospitalClicked] = React.useState(false);
     const [category, setCategory] = React.useState<number>(0);
     const [isAddClicked,setIsAddClicked] = React.useState<boolean>(false);
     const navigate = useNavigate();

@@ -30,6 +30,9 @@ const DoctorAdd = () => {
     const [isDoctorInfoEditClicked,setIsDoctorInfoEditClicked] = React.useState<boolean>(false);
     const [isHopitalInfoEditClicked,setIsHospitalInfoEditClicked] = React.useState<boolean>(false);
     const [isInfoAddClicked,setIsInfoAddClicked] = React.useState<boolean>(false);
+
+    const [doctorId,setDoctorId] = React.useState(0);
+    const [hospitalId,sethospitalId] = React.useState(0);
     const navigate = useNavigate();
 
     const handleDoctorPageChange = (page: React.SetStateAction<number>) => {
@@ -310,7 +313,7 @@ const DoctorAdd = () => {
                                             </p>
                                         </div>
                                         <div className="doctor_edit_item_right_div">
-                                            <div className="doctor_edit_item_button_div" onClick={() => setIsHospitalInfoEditClicked(true)}>
+                                            <div className="doctor_edit_item_button_div" onClick={() => {setIsHospitalInfoEditClicked(true); sethospitalId(item.hospitalId);}}>
                                                 <p id="doctor_item_button_edit">
                                                     edit
                                                 </p>
@@ -378,7 +381,7 @@ const DoctorAdd = () => {
                                             </p>
                                         </div>
                                         <div className="doctor_edit_item_right_div">
-                                            <div className="doctor_edit_item_button_div" onClick={() => setIsDoctorInfoEditClicked(true)}>
+                                            <div className="doctor_edit_item_button_div" onClick={() => {setIsDoctorInfoEditClicked(true); setDoctorId(item.doctorId);}}>
                                                 <p id="doctor_item_button_edit">
                                                     edit
                                                 </p>
@@ -410,11 +413,11 @@ const DoctorAdd = () => {
                 <IoMdAddCircleOutline size="20px"/>
             </div>
             {
-                isDoctorInfoEditClicked ? <DoctorInfoEditComponent isDoctorInfoEditClicked={isDoctorInfoEditClicked} setIsDoctorInfoEditClicked={setIsDoctorInfoEditClicked} /> : null
+                isDoctorInfoEditClicked ? <DoctorInfoEditComponent doctorId={doctorId} isDoctorInfoEditClicked={isDoctorInfoEditClicked} setIsDoctorInfoEditClicked={setIsDoctorInfoEditClicked} /> : null
             }
 
             {
-                isHopitalInfoEditClicked ? <HospitalInfoEditComponent isHopitalInfoEditClicked={isHopitalInfoEditClicked} setIsHospitalInfoEditClicked={setIsHospitalInfoEditClicked}/> : null
+                isHopitalInfoEditClicked ? <HospitalInfoEditComponent hospitalId={hospitalId} isHopitalInfoEditClicked={isHopitalInfoEditClicked} setIsHospitalInfoEditClicked={setIsHospitalInfoEditClicked}/> : null
             }
 
             {

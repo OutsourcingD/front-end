@@ -1,14 +1,23 @@
-import React from "react";
+import React,{useEffect} from "react";
 import "./InfoEditComponent.css";
-import PartCategory from "../review_page/PartCategory";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import PartComponent from "../part/PartComponent";
 
 interface InfoEditProp {
+    doctorId: number;
     isDoctorInfoEditClicked : boolean;
     setIsDoctorInfoEditClicked: (value:boolean) => void;
 }
 
-const DoctorInfoEditComponent: React.FC<InfoEditProp> = ({isDoctorInfoEditClicked,setIsDoctorInfoEditClicked}) => {
+interface DoctorDetailProps {
+    location: string;
+    partList: string[];
+    doctorName: string;
+    mainImage: string;
+}
+
+const DoctorInfoEditComponent: React.FC<InfoEditProp> = ({doctorId,isDoctorInfoEditClicked,setIsDoctorInfoEditClicked}) => {
     const [category,setCategory] = React.useState<number>(0);
 
     const [images,setImages] = React.useState(
@@ -19,8 +28,39 @@ const DoctorInfoEditComponent: React.FC<InfoEditProp> = ({isDoctorInfoEditClicke
         Array(10).fill("/add_picture_png.png")
     );
 
+    const navigate = useNavigate();
     const [profileFiles, setProfileFiles] = React.useState<File[]>([]); 
     const fileInputs = React.useRef<HTMLInputElement[]>([]);
+    const [doctorDetail,setDoctorDetail] = React.useState<DoctorDetailProps>({} as DoctorDetailProps);
+
+    const getDoctorDetail = async (doctorId : number) => {
+        await axios({
+            method: "get",
+            url: `${process.env.REACT_APP_SERVER_URL}/api/doctor/detail-info?doctorId=${doctorId}`,
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            setDoctorDetail(res.data);
+        }).catch((err) => {
+            if(err.status === 401 || err.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else if(err.status === 404) {
+                alert("Contact to developer.");
+                navigate("/");
+            }
+            else {
+                alert(`Contact to developer2. ${err.status}`);
+                navigate("/");
+            }
+        });
+    }
+
+    useEffect(() => {
+        getDoctorDetail(doctorId);
+    }, []);
 
     const saveImgFile = (index: number) => {
         if (
@@ -98,7 +138,7 @@ const DoctorInfoEditComponent: React.FC<InfoEditProp> = ({isDoctorInfoEditClicke
                     <form id = "banner_link_add_form">
                         <input
                             id ="banner_link_add_input"
-                            placeholder="Enter the address of hospital"
+                            placeholder={doctorDetail.location}
                         />
                     </form>
                 </div>
@@ -108,7 +148,7 @@ const DoctorInfoEditComponent: React.FC<InfoEditProp> = ({isDoctorInfoEditClicke
                     <form id = "banner_link_add_form">
                         <input
                             id ="banner_link_add_input"
-                            placeholder="Enter the name of the doctor"
+                            placeholder={doctorDetail.doctorName}
                         />
                     </form>
                 </div>
@@ -117,8 +157,8 @@ const DoctorInfoEditComponent: React.FC<InfoEditProp> = ({isDoctorInfoEditClicke
 
         <div className="doctor_info_add_part_container">
                 <p id="doctor_info_add_name_title">Part</p>
-                <div style={{ width: "300px" }}>
-                    <PartCategory />
+                <div>
+                    <PartComponent partList={doctorDetail.partList}/>
                 </div>
         </div>
 
@@ -127,7 +167,7 @@ const DoctorInfoEditComponent: React.FC<InfoEditProp> = ({isDoctorInfoEditClicke
         </div>
         <div className="banner_add_picture_wrapper">
                     <img
-                        src={images[0]}
+                        src={doctorDetail.mainImage}
                         alt=""
                         id="banner_add_picture"
                         onClick={()=> {
