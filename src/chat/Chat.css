@@ -92,6 +92,7 @@
     width: 355px;
     height: 75px;
     margin-top: 10px;
+    cursor: pointer;
 }
 
 .chatting_info_div {

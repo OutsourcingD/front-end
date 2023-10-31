@@ -74,7 +74,7 @@ function Chatting() {
                                     <input type="text" id="chatting_input" placeholder="Input message."/>
                                 </form>
                             </div>
-                            <img src="/email_send.png" alt="" id="chatting_send"/>
+                            <img src="/Send.png" alt="" id="chatting_send"/>
                         </div>
                     </div>
                 </div>
