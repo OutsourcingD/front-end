@@ -146,6 +146,7 @@
     width: 24px;
     height: 24px;
     margin-left: 10px;
+    cursor: pointer;
 }
 
 .chatting_bottom_div {
@@ -164,6 +165,7 @@
     width: 32px;
     height: 32px;
     margin: 0 0 0 10px;
+    cursor: pointer;
 }
 
 #chatting_input {
@@ -198,4 +200,5 @@
     width: 24px;
     height: 24px;
     margin: 0 10px 0 0;
+    cursor: pointer;
 }
