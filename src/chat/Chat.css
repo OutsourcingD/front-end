@@ -139,7 +139,15 @@
 .chatting_right_div {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+}
+
+.chat_body {
+    margin: 20px 0 20px 30px;
+    height: 684px;
+    width: 706px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
 }
 
 #chatting_right_item_trash {

@@ -1,0 +1,44 @@
+.other_chatting_div {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 10px;
+    align-items: flex-end;
+}
+
+.other_chatting_wrapper {
+    max-width: 388px;
+    border-radius: 15px;
+    padding: 10px 10px 10px 10px;
+    border: 1px solid #D4D4D4;
+    margin-left: 10px;
+}
+
+#other_chatting_content {
+    font-size: 15px;
+    font-weight: 500;
+    color: #222222;
+    overflow-wrap: break-word;
+}
+
+#other_chatting_date {
+    color: #D4D4D4;
+    font-weight: 500;
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.other_chatting_profile {
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    border: 1px solid #D4D4D4;
+    height: 36px;
+}
+
+#other_chatting_profile_img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
