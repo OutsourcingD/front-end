@@ -9,6 +9,8 @@ import DoctorPostAdd from "./DoctorPostAdd";
 import HospitalPostAdd from "./HospitalPostAdd";
 import { useNavigate } from "react-router-dom";
 import BeforeAfterPostAdd from "./BeforeAfterPostAdd";
+import HospitalPostEdit from "./HospitalPostEdit";
+import DoctorPostEdit from "./DoctorPostEdit";
 
 interface HospitalEditProps {
     postId: number;
@@ -39,6 +41,7 @@ const DoctorEdit = () => {
     const [isRightClicked, setIsRightClicked] = React.useState(false);
     const [category, setCategory] = React.useState<number>(0);
     const [isAddClicked,setIsAddClicked] = React.useState<boolean>(false);
+    const [postId,setPostId] = React.useState(0);
     const navigate = useNavigate();
 
     const handleHospitalPageChange = (page: React.SetStateAction<number>) => {
@@ -348,6 +351,7 @@ const DoctorEdit = () => {
                                             <div className="doctor_edit_item_button_div"
                                                 onClick={(e) => {
                                                     e.stopPropagation();
+                                                    setPostId(item.postId);
                                                     setIsLeftClicked(true);
                                                 }}
                                             >
@@ -439,6 +443,7 @@ const DoctorEdit = () => {
                                                 className="doctor_edit_item_button_div"
                                                 onClick={(e) => {
                                                     e.stopPropagation();
+                                                    setPostId(item.postId);
                                                     setIsRightClicked(true);
                                                 }}
                                             >
@@ -481,10 +486,10 @@ const DoctorEdit = () => {
             </div>
             {isLeftClicked ? (
                 <div className="edit_doctor_div">
-                    <HospitalInfoAdd isLeftClicked={isLeftClicked} isRightClicked={isRightClicked}/>
+                    <HospitalPostEdit postId={postId} isLeftClicked={isLeftClicked} />
                     <div className="banner_buttons_div">
                         <div className="banner_cancel_button_div">
-                            <p id="banner_cancel_text" onClick={() => {setIsLeftClicked(false); setIsRightClicked(false);}}>cancel</p>
+                            <p id="banner_cancel_text" onClick={() => {setIsLeftClicked(false);}}>cancel</p>
                          </div>
                         <div className="banner_save_button_div">
                             <p id="banner_save_text">save</p>
@@ -495,10 +500,10 @@ const DoctorEdit = () => {
 
             {isRightClicked ? (
                 <div className="edit_doctor_div">
-                    <DoctorInfoAdd isLeftClicked={isLeftClicked} isRightClicked={isRightClicked}/>
+                    <DoctorPostEdit postId={postId} isRightClicked={isRightClicked}/>
                     <div className="banner_buttons_div">
                         <div className="banner_cancel_button_div">
-                            <p id="banner_cancel_text" onClick={() => {setIsLeftClicked(false); setIsRightClicked(false);}}>cancel</p>
+                            <p id="banner_cancel_text" onClick={() => {setIsRightClicked(false);}}>cancel</p>
                          </div>
                         <div className="banner_save_button_div">
                             <p id="banner_save_text">save</p>

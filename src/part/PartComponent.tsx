@@ -13,7 +13,7 @@ interface PartProp {
 }
 
 const PartComponent: React.FC<PartProp> = ({partList}) => {
-    
+    console.log(partList);
     return (
         <div style={{ display: 'flex', flexWrap: 'nowrap', overflowX: 'auto'}}>
             {partList && partList.map((item, index) => {
