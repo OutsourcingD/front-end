@@ -182,6 +182,26 @@ const BannerManagementPage = () => {
         })
     }
 
+    const onBannerRemove = (bannerId : number) => {
+        axios({
+            method: "delete",
+            url: `${process.env.REACT_APP_SERVER_URL}/api/banner/remove?bannerId=${bannerId}`, // bannerId를 URL에 포함시킵니다.
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
+            }    
+        }).then((res) => {
+            alert("Delete Success");
+        }).catch((err) => {
+            if (err.response.status === 401 || err.response.status === 403) {
+                alert("This id is not admin id.");
+            }
+            else {
+                alert("Contact to developer. Error Code: " + err.response.status)
+            }
+        });
+        
+    }
+
     const onBannerAddClick = () => {
         const BannerAddRequestDto: BannerAddRequestDto = {
             bannerId: bannerId,
@@ -250,7 +270,7 @@ const BannerManagementPage = () => {
                                         />
                                     </div>
                                     <div className="admin_page_banner_edit_buttons_div">
-                                        <div className="admin_page_banner_delete_button_div">
+                                        <div className="admin_page_banner_delete_button_div" onClick={() => onBannerRemove(item.bannerId)}>
                                             <p id="admin_page_banner_button_delete">
                                                 delete
                                             </p>
@@ -368,7 +388,7 @@ const BannerManagementPage = () => {
                                         />
                                     </div>
                                     <div className="admin_page_banner_edit_buttons_div">
-                                        <div className="admin_page_banner_delete_button_div">
+                                        <div className="admin_page_banner_delete_button_div" onClick={() => onBannerRemove(item.bannerId)}>
                                             <p id="admin_page_banner_button_delete">
                                                 delete
                                             </p>

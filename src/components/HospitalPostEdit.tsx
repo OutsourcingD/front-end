@@ -9,6 +9,7 @@ import Wysiwyg from "./ContentInput";
 interface HospitalPostEditProps {
     postId : number;
     isLeftClicked: boolean;
+    setIsLeftClicked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface HospitalPostDetailProps {
@@ -18,7 +19,13 @@ interface HospitalPostDetailProps {
     introduction: string;
 }
 
-const HospitalPostEdit: React.FC<HospitalPostEditProps> = ({postId,isLeftClicked}) => {
+interface ImageVo {
+    imageId: number;
+    description: string;
+    url: string;
+}
+
+const HospitalPostEdit: React.FC<HospitalPostEditProps> = ({postId,isLeftClicked,setIsLeftClicked}) => {
     const navigate = useNavigate();
     const [images, setImages] = React.useState(
         Array(10).fill("/add_picture_png.png")
@@ -30,6 +37,7 @@ const HospitalPostEdit: React.FC<HospitalPostEditProps> = ({postId,isLeftClicked
     const fileInputs = React.useRef<HTMLInputElement[]>([]);
     const [items, setItems] = React.useState([1]);
     const [hospitalPostDetail,setHospitalPostDetail]  = React.useState<HospitalPostDetailProps>({} as HospitalPostDetailProps);
+    const [imageList, setImageList] = React.useState<ImageVo[]>([]);
 
     const saveImgFile = (index: number) => {
         if (
@@ -77,13 +85,6 @@ const HospitalPostEdit: React.FC<HospitalPostEditProps> = ({postId,isLeftClicked
             }
         };
     };
-    const addButtonClick = () => {
-        if (items.length < 10) {
-            setItems((prev) => [...prev, prev.length + 1]);
-        } else {
-            alert("Exceeding the maximum number : 10")
-        }
-    };
 
     const getHospitalPostDetail = async (postId : number) => {
         await axios({
@@ -94,6 +95,7 @@ const HospitalPostEdit: React.FC<HospitalPostEditProps> = ({postId,isLeftClicked
             },
         }).then((res) => {
             setHospitalPostDetail(res.data);
+            setImageList(res.data.imageList);
         }).catch((err) => {
             if(err.status === 401 || err.status === 403) {
                 alert("This is not admin ID.");
@@ -119,7 +121,9 @@ const HospitalPostEdit: React.FC<HospitalPostEditProps> = ({postId,isLeftClicked
     }
 
     return (
-        <div className="hospital_info_add_div">
+        
+        <div className="edit_doctor_div">
+                    <div className="hospital_info_add_div">
             <div className="hospital_info_add_name_div">
                 <p id="hospital_info_add_name_title">Name</p>
                 <div className="hospital_info_add_name_form_div">
@@ -164,56 +168,41 @@ const HospitalPostEdit: React.FC<HospitalPostEditProps> = ({postId,isLeftClicked
                 <p id="hospital_info_add_warn">Maximum: 10</p>
                 {/* 사진 */}
                 <div className="make_info_pictures_div">
-                    {items.map((item, index) => {
-                        return (
-                            <div className="make_review_add_picture_wrapper">
-                                <div className="make_review_add_picture_div">
-                                    <div className="add_hospital_picture_wrapper">
-                                        <img
-                                            src={images[index]}
-                                            alt=""
-                                            id="add_hospital_info_make_review_picture"
-                                            onClick={() => {
-                                                fileInputs.current[
-                                                    index
-                                                ]?.click();
-                                            }}
-                                        />
-                                        <input
-                                            type="file"
-                                            accept="image/*"
-                                            id="signup_input"
-                                            name="profile"
-                                            style={{ display: "none" }}
-                                            onChange={() => saveImgFile(index)}
-                                            ref={(el) => {
-                                                if (el)
-                                                    fileInputs.current[index] =
-                                                        el;
-                                            }}
-                                        ></input>
-                                    </div>
-                                </div>
-                            </div>
-                        );
-                    })}
-                    <div className="add_picture_button">
-                        <div
-                            className="add_picture_plus_div"
-                            onClick={addButtonClick}
-                        >
-                            <img
-                                src="/add_picture_plus.png"
-                                alt=""
-                                id="add_picture_plus"
-                            />
+                    {imageList.map((image,index) => {
+                                               return (
+                                                <div className="make_review_add_picture_wrapper">
+                                                    <div className="make_review_add_picture_div">
+                                                        <div className="add_hospital_picture_wrapper">
+                                                            <img
+                                                                src={imageList[index].url}
+                                                                alt=""
+                                                                id="add_hospital_info_make_review_picture"
+                                                                onClick={() => {
+                                                                    fileInputs.current[
+                                                                        index
+                                                                    ]?.click();
+                                                                }}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            );
+                    })
+                    }
+                </div>
+                <div className="banner_buttons_div">
+                        <div className="banner_cancel_button_div">
+                            <p id="banner_cancel_text" onClick={() => {setIsLeftClicked(false);}}>cancel</p>
+                         </div>
+                        <div className="banner_save_button_div">
+                            <p id="banner_save_text">save</p>
                         </div>
                     </div>
-                </div>
                 <div className="hospital_add_page_wysiwyg_div">
                     
                 </div>
             </div>
+        </div>
         </div>
     );
 };

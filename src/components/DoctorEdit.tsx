@@ -365,7 +365,7 @@ const DoctorEdit = () => {
                                                     HospitalDeleteHandler(index)
                                                 }
                                             >
-                                                <p id="doctor_item_button_delete">
+                                                <p id="doctor_item_button_delete" onClick={() => HospitalDeleteHandler(item.postId)}>
                                                     delete
                                                 </p>
                                             </div>
@@ -457,7 +457,7 @@ const DoctorEdit = () => {
                                                     DoctorDeleteHandler(index)
                                                 }
                                             >
-                                                <p id="doctor_item_button_delete">
+                                                <p id="doctor_item_button_delete" onClick={() => DoctorDeleteHandler(item.postId)}>
                                                     delete
                                                 </p>
                                             </div>
@@ -485,30 +485,12 @@ const DoctorEdit = () => {
                 <IoMdAddCircleOutline size="20px" />
             </div>
             {isLeftClicked ? (
-                <div className="edit_doctor_div">
-                    <HospitalPostEdit postId={postId} isLeftClicked={isLeftClicked} />
-                    <div className="banner_buttons_div">
-                        <div className="banner_cancel_button_div">
-                            <p id="banner_cancel_text" onClick={() => {setIsLeftClicked(false);}}>cancel</p>
-                         </div>
-                        <div className="banner_save_button_div">
-                            <p id="banner_save_text">save</p>
-                        </div>
-                    </div>
-                </div>
+                    <HospitalPostEdit postId={postId} isLeftClicked={isLeftClicked} setIsLeftClicked={setIsLeftClicked}/>
             ) : null}
 
             {isRightClicked ? (
                 <div className="edit_doctor_div">
-                    <DoctorPostEdit postId={postId} isRightClicked={isRightClicked}/>
-                    <div className="banner_buttons_div">
-                        <div className="banner_cancel_button_div">
-                            <p id="banner_cancel_text" onClick={() => {setIsRightClicked(false);}}>cancel</p>
-                         </div>
-                        <div className="banner_save_button_div">
-                            <p id="banner_save_text">save</p>
-                        </div>
-                    </div>
+                    <DoctorPostEdit postId={postId} isRightClicked={isRightClicked} setIsRightClicked={setIsRightClicked}/>
                 </div>
             ) : null}
 

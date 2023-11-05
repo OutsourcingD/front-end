@@ -9,6 +9,7 @@ import Wysiwyg from "./ContentInput";
 interface DoctorPostEditProps {
     postId : number;
     isRightClicked: boolean;
+    setIsRightClicked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface DoctorPostDetailProps {
@@ -18,7 +19,13 @@ interface DoctorPostDetailProps {
     introduction: string;
 }
 
-const DoctorPostEdit: React.FC<DoctorPostEditProps> = ({postId,isRightClicked}) => {
+interface ImageVo {
+    imageId: number;
+    description: string;
+    url: string;
+}
+
+const DoctorPostEdit: React.FC<DoctorPostEditProps> = ({postId,isRightClicked,setIsRightClicked}) => {
     const navigate = useNavigate();
     const [images, setImages] = React.useState(
         Array(10).fill("/add_picture_png.png")
@@ -30,6 +37,7 @@ const DoctorPostEdit: React.FC<DoctorPostEditProps> = ({postId,isRightClicked}) 
     const fileInputs = React.useRef<HTMLInputElement[]>([]);
     const [items, setItems] = React.useState([1]);
     const [doctorPostDetail,setDoctorPostDetail]  = React.useState<DoctorPostDetailProps>({} as DoctorPostDetailProps);
+    const [imageList, setImageList] = React.useState<ImageVo[]>([]);
 
     const saveImgFile = (index: number) => {
         if (
@@ -77,13 +85,6 @@ const DoctorPostEdit: React.FC<DoctorPostEditProps> = ({postId,isRightClicked}) 
             }
         };
     };
-    const addButtonClick = () => {
-        if (items.length < 10) {
-            setItems((prev) => [...prev, prev.length + 1]);
-        } else {
-            alert("Exceeding the maximum number : 10")
-        }
-    };
 
     const getDoctorPostDetail = async (postId : number) => {
         await axios({
@@ -93,7 +94,9 @@ const DoctorPostEdit: React.FC<DoctorPostEditProps> = ({postId,isRightClicked}) 
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },
         }).then((res) => {
+            console.log(res.data.imageList);
             setDoctorPostDetail(res.data);
+            setImageList(res.data.imageList);
         }).catch((err) => {
             if(err.status === 401 || err.status === 403) {
                 alert("This is not admin ID.");
@@ -119,7 +122,8 @@ const DoctorPostEdit: React.FC<DoctorPostEditProps> = ({postId,isRightClicked}) 
     }
 
     return (
-        <div className="hospital_info_add_div">
+        <div>
+            <div className="hospital_info_add_div">
             <div className="hospital_info_add_name_div">
                 <p id="hospital_info_add_name_title">Name</p>
                 <div className="hospital_info_add_name_form_div">
@@ -164,56 +168,41 @@ const DoctorPostEdit: React.FC<DoctorPostEditProps> = ({postId,isRightClicked}) 
                 <p id="hospital_info_add_warn">Maximum: 10</p>
                 {/* 사진 */}
                 <div className="make_info_pictures_div">
-                    {items.map((item, index) => {
-                        return (
-                            <div className="make_review_add_picture_wrapper">
-                                <div className="make_review_add_picture_div">
-                                    <div className="add_hospital_picture_wrapper">
-                                        <img
-                                            src={images[index]}
-                                            alt=""
-                                            id="add_hospital_info_make_review_picture"
-                                            onClick={() => {
-                                                fileInputs.current[
-                                                    index
-                                                ]?.click();
-                                            }}
-                                        />
-                                        <input
-                                            type="file"
-                                            accept="image/*"
-                                            id="signup_input"
-                                            name="profile"
-                                            style={{ display: "none" }}
-                                            onChange={() => saveImgFile(index)}
-                                            ref={(el) => {
-                                                if (el)
-                                                    fileInputs.current[index] =
-                                                        el;
-                                            }}
-                                        ></input>
-                                    </div>
-                                </div>
-                            </div>
-                        );
-                    })}
-                    <div className="add_picture_button">
-                        <div
-                            className="add_picture_plus_div"
-                            onClick={addButtonClick}
-                        >
-                            <img
-                                src="/add_picture_plus.png"
-                                alt=""
-                                id="add_picture_plus"
-                            />
+                {imageList.map((image,index) => {
+                                               return (
+                                                <div className="make_review_add_picture_wrapper">
+                                                    <div className="make_review_add_picture_div">
+                                                        <div className="add_hospital_picture_wrapper">
+                                                            <img
+                                                                src={imageList[index].url}
+                                                                alt=""
+                                                                id="add_hospital_info_make_review_picture"
+                                                                onClick={() => {
+                                                                    fileInputs.current[
+                                                                        index
+                                                                    ]?.click();
+                                                                }}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            );
+                    })
+                    }
+                </div>
+                <div className="banner_buttons_div">
+                        <div className="banner_cancel_button_div">
+                            <p id="banner_cancel_text" onClick={() => {setIsRightClicked(false);}}>cancel</p>
+                         </div>
+                        <div className="banner_save_button_div">
+                            <p id="banner_save_text">save</p>
                         </div>
-                    </div>
                 </div>
                 <div className="hospital_add_page_wysiwyg_div">
                     
                 </div>
             </div>
+        </div>
         </div>
     );
 };
