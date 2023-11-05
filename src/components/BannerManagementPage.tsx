@@ -4,6 +4,8 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import axios from "axios";
 import { BannerDto } from "../dto/BannerDto";
 import { useNavigate } from "react-router-dom";
+import { BannerEditRequestDto } from "../dto/BannerEditRequestDto";
+import { BannerAddRequestDto } from "../dto/BannerAddRequestDto";
 
 interface BannerDetailProps {
     bannerId: number;
@@ -20,7 +22,6 @@ interface BannerRequestDto {
 }
 
 const BannerManagementPage = () => {
-    const BannerEditRequestDto = new FormData();
     const [topBannerList, setTopBannerList] = React.useState<BannerDto[]>([]);
     const [bottomBannerList, setBottomBannerList] = React.useState<BannerDto[]>([]);
     const [isTopBannerClicked,setIsTopBannerClicked] = React.useState(false);
@@ -30,6 +31,10 @@ const BannerManagementPage = () => {
     const [bannerRequestDto,setBannerRequestDto] = React.useState<BannerRequestDto>({} as BannerRequestDto);
     const [category,setCategory] = React.useState(0);
     const [hospitalName,setHospitalName] = React.useState<String>();
+    const [bannerLink,setBannerLink] = React.useState("");
+    const [bannerId,setBannerId] = React.useState(0);
+    const [location,setLocation] = React.useState(0);
+    const [sequence,setSequence] = React.useState(1);
 
     const [images,setImages] = React.useState(
         Array(10).fill("/add_picture_png.png")
@@ -58,7 +63,6 @@ const BannerManagementPage = () => {
             return;
         }
 
-        BannerEditRequestDto.append("img",file);
         reader.readAsDataURL(file);
         reader.onloadend = () => {
             if (
@@ -114,7 +118,14 @@ const BannerManagementPage = () => {
         });
     }
 
-    const onEditBanner = () => {
+    const onEditBanner = (bannerId: number) => {
+        const BannerEditRequestDto: BannerEditRequestDto = {
+            bannerId: bannerId,
+            bannerLink: bannerLink,
+            location: location,
+            img: profileFiles[0]
+        }
+
         axios({
             method: "post",
             url: `${process.env.REACT_APP_SERVER_URL}/api/admin/banner/edit`,
@@ -138,9 +149,6 @@ const BannerManagementPage = () => {
     }
 
     const onTopDetailClick = (bannerId : number) => {
-        BannerEditRequestDto.append("bannerId",String(bannerId));
-        BannerEditRequestDto.append("location",String(0));
-
         axios({
             method: "get",
             url: `${process.env.REACT_APP_SERVER_URL}/api/admin/banner/detail`,
@@ -152,13 +160,12 @@ const BannerManagementPage = () => {
             },
         }).then((res) => {
             setBannerDetail(res.data);    
+            setBannerId(res.data.bannerId);
+            setBannerLink(res.data.bannerLink);
         });
     }
 
     const onBottomDetailClick = (bannerId : number) => {
-        BannerEditRequestDto.append("bannerId",String(bannerId));
-        BannerEditRequestDto.append("location",String(3));
-
         axios({
             method:"get",
             url: `${process.env.REACT_APP_SERVER_URL}/api/admin/banner/detail`,
@@ -170,14 +177,24 @@ const BannerManagementPage = () => {
             },
         }).then((res) => {
             setBannerDetail(res.data);
+            setBannerId(res.data.bannerId);
+            setBannerLink(res.data.bannerLink);
         })
     }
 
     const onBannerAddClick = () => {
+        const BannerAddRequestDto: BannerAddRequestDto = {
+            bannerId: bannerId,
+            location: location,
+            bannerLink: bannerLink,
+            sequence: sequence,
+            img: profileFiles[0]
+        }
+
         axios({
             method: "post",
             url: `${process.env.REACT_APP_SERVER_URL}/api/admin/banner/add`,
-            data: BannerEditRequestDto,
+            data: BannerAddRequestDto,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
                 "Content-Type": "multipart/form-data"
@@ -238,7 +255,7 @@ const BannerManagementPage = () => {
                                                 delete
                                             </p>
                                         </div>
-                                        <div className="admin_page_banner_edit_button_div" onClick={() => {setIsTopBannerClicked(true); onTopDetailClick(item.bannerId);}}>
+                                        <div className="admin_page_banner_edit_button_div" onClick={() => {setIsTopBannerClicked(true); setLocation(1); onTopDetailClick(item.bannerId);}}>
                                             <p id="admin_page_banner_button_edit">
                                                 edit
                                             </p>
@@ -260,7 +277,7 @@ const BannerManagementPage = () => {
                                                 id = "banner_edit_category_checkbox"
                                             />
                                         </div>
-                                        <p id="banner_sub_text" >
+                                        <p id="banner_sub_text">
                                             top
                                         </p>
                                     </div>
@@ -273,7 +290,7 @@ const BannerManagementPage = () => {
                                                     <input
                                                         id ="banner_link_add_input"
                                                         placeholder={bannerDetail.bannerLink}
-                                                        onChange={(e) => {BannerEditRequestDto.append("bannerLink",e.target.value);}}
+                                                        onChange = {(e) => setBannerLink(e.target.value)}
                                                     />
                                                 </form>
                                             </div>
@@ -289,7 +306,7 @@ const BannerManagementPage = () => {
                                 <div className="banner_info_add_picture_div">
                                     <div className="banner_add_picture_wrapper">
                                         <img
-                                            src={bannerDetail.bannerImg}
+                                            src={images[0] === '/add_picture_png.png' ? bannerDetail.bannerImg:images[0]}
                                             alt=""
                                             id="banner_add_picture"
                                             onClick={(e)=> {
@@ -318,7 +335,7 @@ const BannerManagementPage = () => {
                                     <div className="banner_cancel_button_div">
                                         <p id="banner_cancel_text" onClick={() => {setIsTopBannerClicked(false)}}>cancel</p>
                                     </div>
-                                    <div className="banner_save_button_div" onClick = {() => {onEditBanner();}}>
+                                    <div className="banner_save_button_div" onClick = {() => {onEditBanner(bannerId);}}>
                                         <p id="banner_save_text">save</p>
                                     </div>
                                 </div>
@@ -356,7 +373,7 @@ const BannerManagementPage = () => {
                                                 delete
                                             </p>
                                         </div>
-                                        <div className="admin_page_banner_edit_button_div" onClick={() => {setIsBottomBannerClicked(true); onBottomDetailClick(item.bannerId);}}>
+                                        <div className="admin_page_banner_edit_button_div" onClick={() => {setIsBottomBannerClicked(true); setLocation(3); onBottomDetailClick(item.bannerId);}}>
                                             <p id="admin_page_banner_button_edit">
                                                 edit
                                             </p>
@@ -391,7 +408,7 @@ const BannerManagementPage = () => {
                                                     <input
                                                         id ="banner_link_add_input"
                                                         placeholder={bannerDetail.bannerLink}
-                                                        onChange = {(e) => {BannerEditRequestDto.append("bannerLink",e.target.value);}}
+                                                        onChange = {(e) => setBannerLink(e.target.value)}
                                                     />
                                                 </form>
                                             </div>
@@ -407,7 +424,7 @@ const BannerManagementPage = () => {
                                 <div className="banner_info_add_picture_div">
                                     <div className="banner_add_picture_wrapper">
                                         <img
-                                            src={bannerDetail.bannerImg}
+                                            src={images[0] === '/add_picture_png.png' ? bannerDetail.bannerImg:images[0]}
                                             alt=""
                                             id="banner_add_picture"
                                             onClick={()=> {
@@ -436,7 +453,7 @@ const BannerManagementPage = () => {
                                     <div className="banner_cancel_button_div">
                                         <p id="banner_cancel_text" onClick={() => {setIsBottomBannerClicked(false)}}>cancel</p>
                                     </div>
-                                    <div className="banner_save_button_div" onClick = {() => {onEditBanner();}}>
+                                    <div className="banner_save_button_div" onClick = {() => {onEditBanner(bannerId);}}>
                                         <p id="banner_save_text">save</p>
                                     </div>
                                 </div>
@@ -470,7 +487,7 @@ const BannerManagementPage = () => {
                                                     src="/checkbox.png"
                                                     alt=""
                                                     id ="banner_edit_category_checkbox_pupple"
-                                                    onClick={() => setCategory(0)}
+                                                    onClick={() => {setCategory(0); setLocation(0);}}
                                                 />
                                             )}
                                         </div>
@@ -490,7 +507,7 @@ const BannerManagementPage = () => {
                                                 src="/checkbox.png"
                                                 alt=""
                                                 id = "banner_edit_category_checkbox_pupple"
-                                                onClick={() => setCategory(1)}
+                                                onClick={() => {setCategory(1); setLocation(3);}}
                                             />
                                         )}
                                         <p id="banner_sub_text">
@@ -506,12 +523,104 @@ const BannerManagementPage = () => {
                                                     <input
                                                         id ="banner_link_add_input"
                                                          placeholder="https://"
+                                                         onChange = {(e) => setBannerLink(e.target.value)}
                                                     />
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
+                                <div className="banner_link_add_container">
+                                        <div className="banner_link_add_div">
+                                            <p id="banner_main_text">Display Order</p>
+                                            {sequence === 1 ? (
+                                                <img
+                                                    src="/checkbox_pupple.png"
+                                                    alt=""
+                                                    id = "banner_edit_category_checkbox"
+                                                />
+                                            ) : (
+                                                <img
+                                                    src="/checkbox.png"
+                                                    alt=""
+                                                    id ="banner_edit_category_checkbox_pupple"
+                                                    onClick={() => {setSequence(1);}}
+                                                />
+                                            )}
+                                            <p id="banner_sub_text">
+                                                1st
+                                            </p>
+                                            {sequence === 2 ? (
+                                                <img
+                                                    src="/checkbox_pupple.png"
+                                                    alt=""
+                                                    id = "banner_edit_category_checkbox"
+                                                />
+                                            ) : (
+                                                <img
+                                                    src="/checkbox.png"
+                                                    alt=""
+                                                    id ="banner_edit_category_checkbox_pupple"
+                                                    onClick={() => {setSequence(2);}}
+                                                />
+                                            )}
+                                            <p id="banner_sub_text">
+                                                2nd
+                                            </p>
+                                            {sequence === 3 ? (
+                                                <img
+                                                    src="/checkbox_pupple.png"
+                                                    alt=""
+                                                    id = "banner_edit_category_checkbox"
+                                                />
+                                            ) : (
+                                                <img
+                                                    src="/checkbox.png"
+                                                    alt=""
+                                                    id ="banner_edit_category_checkbox_pupple"
+                                                    onClick={() => {setSequence(3);}}
+                                                />
+                                            )}
+                                            <p id="banner_sub_text">
+                                                3th
+                                            </p>
+                                            {sequence === 4 ? (
+                                                <img
+                                                    src="/checkbox_pupple.png"
+                                                    alt=""
+                                                    id = "banner_edit_category_checkbox"
+                                                />
+                                            ) : (
+                                                <img
+                                                    src="/checkbox.png"
+                                                    alt=""
+                                                    id ="banner_edit_category_checkbox_pupple"
+                                                    onClick={() => {setSequence(4);}}
+                                                />
+                                            )}
+                                            <p id="banner_sub_text">
+                                                4th
+                                            </p>
+                                            {sequence === 5 ? (
+                                                <img
+                                                    src="/checkbox_pupple.png"
+                                                    alt=""
+                                                    id = "banner_edit_category_checkbox"
+                                                />
+                                            ) : (
+                                                <img
+                                                    src="/checkbox.png"
+                                                    alt=""
+                                                    id ="banner_edit_category_checkbox_pupple"
+                                                    onClick={() => {setSequence(5);}}
+                                                />
+                                            )}
+                                            <p id="banner_sub_text">
+                                                5th
+                                            </p>
+                                        </div>
+                                    </div>
 
                                 <div className="banner_edit_category_div">
                                     <p id="banner_main_text">Banner Image</p>
