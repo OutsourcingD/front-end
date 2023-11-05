@@ -2,7 +2,7 @@ name: Build React App
 on:
   push:
     branches:
-      - backup
+      - master
 jobs:
   deploy_test:
     runs-on: ubuntu-22.04 
