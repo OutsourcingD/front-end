@@ -71,7 +71,7 @@ function Main() {
         //배너 이미지 가져오기
         await axios({
             method: "get", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/api/banner?location=1`,
+            url: `/api/banner?location=1`,
         })
             .then((res) => {
                 setImageList(res.data);
@@ -84,7 +84,7 @@ function Main() {
     const getRecommendedReviews = async () => {
         await axios({
             method: "get", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/api/review/recommendation`,
+            url: `/api/review/recommendation`,
         })
             .then((res) => {
                 setRecommendReviews(res.data);
@@ -98,9 +98,7 @@ function Main() {
         if (category < 9) {
             await axios({
                 method: "get", // or 'post', 'put', etc.
-                url: `${
-                    process.env.REACT_APP_SERVER_URL
-                }/api/review/search?type=${type}&query=${searchValue}&category=${category}&pages=${
+                url: `/api/review/search?type=${type}&query=${searchValue}&category=${category}&pages=${
                     page - 1
                 }`,
             })
@@ -119,7 +117,7 @@ function Main() {
         } else {
             axios({
                 method: "get", // or 'post', 'put', etc.
-                url: `${process.env.REACT_APP_SERVER_URL}/api/review/search/doc-hos?sortType=${type}&type=${category}&query=${searchValue}`,
+                url: `/api/review/search/doc-hos?sortType=${type}&type=${category}&query=${searchValue}`,
             })
                 .then((res) => {
                     setDocHosReviewList(res.data);
@@ -205,9 +203,7 @@ function Main() {
         if (category < 9) {
             axios({
                 method: "get", // or 'post', 'put', etc.
-                url: `${
-                    process.env.REACT_APP_SERVER_URL
-                }/api/review/search?type=${0}&query=${" "}&category=${category}&pages=${0}`,
+                url: `/api/review/search?type=${0}&query=${" "}&category=${category}&pages=${0}`,
             })
                 .then((res) => {
                     setReviewList(res.data);
@@ -222,9 +218,7 @@ function Main() {
         } else if (9 === category || category === 10) {
             axios({
                 method: "get", // or 'post', 'put', etc.
-                url: `${
-                    process.env.REACT_APP_SERVER_URL
-                }/api/review/search/doc-hos?sortType=${0}&type=${category}&query=${" "}`,
+                url: `/api/review/search/doc-hos?sortType=${0}&type=${category}&query=${" "}`,
             })
                 .then((res) => {
                     setDocHosReviewList(res.data);

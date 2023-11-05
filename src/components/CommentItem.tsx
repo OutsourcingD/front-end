@@ -25,7 +25,7 @@ const CommentItem = (props: CommentItemProps) => {
     const deleteEvent = (commentId: number) => {
         axios({
             method: "delete",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/comment/remove`,
+            url: `/api/comment/remove`,
             params: {
                 commentId: commentId,
                 reviewId: queryParams.get("reviewId"),
@@ -43,7 +43,7 @@ const CommentItem = (props: CommentItemProps) => {
     const likeEvent = (id: number, isLiked: boolean) => {
         axios({
             method: "post",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/comment/like`,
+            url: `/api/comment/like`,
             data: {
                 commentId: id,
                 liked: !isLiked,
@@ -63,7 +63,7 @@ const CommentItem = (props: CommentItemProps) => {
 
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/comment/child`,
+            url: `/api/comment/child`,
             params: {
                 reviewId: reviewId,
                 parentId: props.commentDto.commentId,

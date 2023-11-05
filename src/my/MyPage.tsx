@@ -31,7 +31,7 @@ function MyPage() {
     React.useEffect(() => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/member/info`,
+            url: `/api/member/info`,
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },

@@ -38,7 +38,7 @@ function ReviewPage() {
     const onDelete = () => {
         axios({
             method: "delete",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/review/remove`,
+            url: `/api/review/remove`,
             params: {
                 reviewId: queryParams.get("reviewId"),
             },
@@ -57,7 +57,7 @@ function ReviewPage() {
     const likeEvent = (id: number, isLiked: boolean) => {
         axios({
             method: "post",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/comment/like`,
+            url: `/api/comment/like`,
             data: {
                 commentId: id,
                 liked: !isLiked,
@@ -75,7 +75,7 @@ function ReviewPage() {
     const deleteEvent = (commentId: number) => {
         axios({
             method: "delete",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/comment/remove`,
+            url: `/api/comment/remove`,
             params: {
                 commentId: commentId,
                 reviewId: queryParams.get("reviewId"),
@@ -103,7 +103,7 @@ function ReviewPage() {
 
         axios({
             method: "post",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/comment/add`,
+            url: `/api/comment/add`,
             data: {
                 content: content,
                 reviewId: queryParams.get("reviewId"),
@@ -131,7 +131,7 @@ function ReviewPage() {
     const getUserInfo = () => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/member/info`,
+            url: `/api/member/info`,
             headers: {
                 Authorization: `Bearer ${localStorage.getItem(
                     "access_token"
@@ -154,7 +154,7 @@ function ReviewPage() {
     const getParentComment = (reviewId: string) => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/comment/`,
+            url: `/api/comment/`,
             params: {
                 reviewId: reviewId,
             },
@@ -183,7 +183,7 @@ function ReviewPage() {
         if (reviewDetail === null) {
             axios({
                 method: "get", // or 'post', 'put', etc.
-                url: `${process.env.REACT_APP_SERVER_URL}/api/review/detail?reviewId=${reviewId}`,
+                url: `/api/review/detail?reviewId=${reviewId}`,
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem(
                         "access_token"

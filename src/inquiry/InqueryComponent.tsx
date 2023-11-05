@@ -23,7 +23,7 @@ function InqueryComponent() {
         else {
             axios({
                 method: "post", // or 'post', 'put', etc.
-                url: `${process.env.REACT_APP_SERVER_URL}/api/inquiry`,
+                url: `/api/inquiry`,
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("access_token")}`,
                 },
