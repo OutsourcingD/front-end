@@ -80,7 +80,7 @@ const HospitalPostAdd: React.FC<HospitalInfoAddProps> = ({isAddClicked,setIsAddC
 
         axios({
             method: "post",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/post/add`,
+            url: `/api/admin/post/add`,
             data: HospitalPostAddDto,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,

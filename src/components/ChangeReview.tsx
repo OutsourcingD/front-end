@@ -12,7 +12,7 @@ const ChangeReview = () => {
   React.useEffect(() => {
     axios({
         method: "get",
-        url: `${process.env.REACT_APP_SERVER_URL}/api/admin/review/order`,
+        url: `/api/admin/review/order`,
         headers: {
             Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
@@ -40,7 +40,7 @@ const ChangeReview = () => {
     if(isSubmit) {
         axios({
             method: "post",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/review/order`,
+            url: `/api/admin/review/order`,
             data: {
                 recommendReview: sort,
             },

@@ -92,7 +92,7 @@ const DoctorPostEdit: React.FC<DoctorPostEditProps> = ({postId,isRightClicked,se
     const getDoctorPostDetail = async (postId : number) => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/doctor/detail?postId=${postId}`,
+            url: `/api/doctor/detail?postId=${postId}`,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },

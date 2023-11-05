@@ -27,7 +27,7 @@ function ReviewPage() {
     if (reviewDetail === null) {
       axios({
         method: "get", // or 'post', 'put', etc.
-        url: `${process.env.REACT_APP_SERVER_URL}/api/review/detail?reviewId=${reviewId}`,
+        url: `/api/review/detail?reviewId=${reviewId}`,
       }).then((res) => {
         setReviewDetail(res.data);
       }).catch((err) => {

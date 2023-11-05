@@ -65,7 +65,7 @@ function Header() {
         if (localStorage.getItem("access_token") !== null) {
             axios({
                 method: "get",
-                url: `${process.env.REACT_APP_SERVER_URL}/api/auth/check`,
+                url: `/api/auth/check`,
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("access_token")}`,
                 },

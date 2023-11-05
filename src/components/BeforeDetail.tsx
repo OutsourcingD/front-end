@@ -31,7 +31,7 @@ const BeforeDetail = (props: BeforeDetailProps) => {
     React.useEffect(() => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/review/before-after/detail?id=${props.id}`,
+            url: `/api/review/before-after/detail?id=${props.id}`,
         }).then((res) => {
             console.log(res.data);
             setBeforeDetail(res.data);

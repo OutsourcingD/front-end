@@ -99,7 +99,7 @@ const BannerManagementPage = () => {
         //1: 상단, 3: 하단
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/banner?location=${location}`,
+            url: `/api/banner?location=${location}`,
         }).then((res) => {
             location === 1 ? setTopBannerList(res.data) : setBottomBannerList(res.data);
         }).catch((err) => {
@@ -128,7 +128,7 @@ const BannerManagementPage = () => {
 
         axios({
             method: "post",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/banner/edit`,
+            url: `/api/admin/banner/edit`,
             data: BannerEditRequestDto,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
@@ -151,7 +151,7 @@ const BannerManagementPage = () => {
     const onTopDetailClick = (bannerId : number) => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/banner/detail`,
+            url: `/api/admin/banner/detail`,
             params: {
                 bannerId: bannerId
             },
@@ -168,7 +168,7 @@ const BannerManagementPage = () => {
     const onBottomDetailClick = (bannerId : number) => {
         axios({
             method:"get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/banner/detail`,
+            url: `/api/admin/banner/detail`,
             params: {
                 bannerId: bannerId
             },
@@ -185,7 +185,7 @@ const BannerManagementPage = () => {
     const onBannerRemove = (bannerId : number) => {
         axios({
             method: "delete",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/banner/remove?bannerId=${bannerId}`, // bannerId를 URL에 포함시킵니다.
+            url: `/api/banner/remove?bannerId=${bannerId}`, // bannerId를 URL에 포함시킵니다.
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
             }    
@@ -213,7 +213,7 @@ const BannerManagementPage = () => {
 
         axios({
             method: "post",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/banner/add`,
+            url: `/api/admin/banner/add`,
             data: BannerAddRequestDto,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,

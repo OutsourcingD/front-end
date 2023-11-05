@@ -28,7 +28,7 @@ const EtcReviewManagement = () => {
     const onClick = () => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/review-info`,
+            url: `/api/admin/review-info`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -56,7 +56,7 @@ const EtcReviewManagement = () => {
         
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/review-info`,
+            url: `/api/admin/review-info`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -82,7 +82,7 @@ const EtcReviewManagement = () => {
     React.useEffect(() => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/review-info`,
+            url: `/api/admin/review-info`,
             params: {
                 pages: page - 1,
                 userId: id,

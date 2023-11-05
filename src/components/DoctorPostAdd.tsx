@@ -81,7 +81,7 @@ const DoctorPostAdd: React.FC<DoctorInfoAddProps> = ({isAddClicked,setIsAddClick
 
         axios({
             method: "post",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/post/add`,
+            url: `/api/admin/post/add`,
             data: DoctorPostAddDto,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,

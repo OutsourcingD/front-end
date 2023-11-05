@@ -82,7 +82,7 @@ const BeforeAfterPostAdd: React.FC<BeforeAfterAddProps> = ({isAddClicked,setIsAd
 
         axios({
             method: "post",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/before-after`,
+            url: `/api/admin/before-after`,
             data: BeforeAfterAddDto,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,

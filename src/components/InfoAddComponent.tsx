@@ -83,7 +83,7 @@ const InfoAddComponent:React.FC<InfoAddProp> = ({isInfoAddClicked,setIsInfoAddCl
 
         axios({
             method: "post",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/doctor/add`,
+            url: `/api/admin/doctor/add`,
             data: AdminDoctorAddRequestDto,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
@@ -140,7 +140,7 @@ const InfoAddComponent:React.FC<InfoAddProp> = ({isInfoAddClicked,setIsInfoAddCl
 
         axios({
             method: "post",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/hospital/add`,
+            url: `/api/admin/hospital/add`,
             data: AdminHospitalAddRequestDto,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,

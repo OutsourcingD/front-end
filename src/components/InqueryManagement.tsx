@@ -40,7 +40,7 @@ const InqueryManagement = () => {
 
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/inquiry`,
+            url: `/api/admin/inquiry`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -67,7 +67,7 @@ const InqueryManagement = () => {
     const onClick = () => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/inquiry`,
+            url: `/api/admin/inquiry`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -95,7 +95,7 @@ const InqueryManagement = () => {
     const onSave = (id: number) => {
         axios({
             method: "post",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/inquiry-answer/edit`,
+            url: `/api/admin/inquiry-answer/edit`,
             data: {
                 id: id,
                 answer: content,
@@ -128,7 +128,7 @@ const InqueryManagement = () => {
 
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/inquiry/detail`,
+            url: `/api/admin/inquiry/detail`,
             params: {
                 id: id,
             },
@@ -155,7 +155,7 @@ const InqueryManagement = () => {
 
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/inquiry/detail`,
+            url: `/api/admin/inquiry/detail`,
             params: {
                 id: id,
             },
@@ -180,7 +180,7 @@ const InqueryManagement = () => {
     React.useEffect(() => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/inquiry`,
+            url: `/api/admin/inquiry`,
             params: {
                 pages: page - 1,
                 userId: id,

@@ -92,7 +92,7 @@ const HospitalPostEdit: React.FC<HospitalPostEditProps> = ({postId,isLeftClicked
     const getHospitalPostDetail = async (postId : number) => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/hospital/detail?postId=${postId}`,
+            url: `/api/hospital/detail?postId=${postId}`,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },

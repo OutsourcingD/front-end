@@ -91,7 +91,7 @@ function MyPageInfo() {
     const handleDuplicate = () => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/non-member/check-duplicated?name=${nickname}`,
+            url: `/api/non-member/check-duplicated?name=${nickname}`,
         }).then((res) => {
             res.data ? setIsDuplicate(1) : setIsDuplicate(2);
         }).catch((err) => {
@@ -139,7 +139,7 @@ function MyPageInfo() {
     /*React.useEffect(() => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/member/info`,
+            url: `/api/member/info`,
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },

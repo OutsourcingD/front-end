@@ -28,7 +28,7 @@ const CheckUserIp = () => {
 
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member-ip`,
+            url: `/api/admin/member-ip`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -56,7 +56,7 @@ const CheckUserIp = () => {
     const onClick = () => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member-ip`,
+            url: `/api/admin/member-ip`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -83,7 +83,7 @@ const CheckUserIp = () => {
     React.useEffect(() => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member-ip`,
+            url: `/api/admin/member-ip`,
             params: {
                 pages: page - 1,
                 userId: id,

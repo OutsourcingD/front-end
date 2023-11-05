@@ -47,7 +47,7 @@ const DoctorInfoEditComponent: React.FC<InfoEditProp> = ({doctorId,isDoctorInfoE
 
         axios({
             method: "post",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/doctor/edit`,
+            url: `/api/admin/doctor/edit`,
             data: EditDoctorInfoRequestDto,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
@@ -69,7 +69,7 @@ const DoctorInfoEditComponent: React.FC<InfoEditProp> = ({doctorId,isDoctorInfoE
     const getDoctorDetail = async (doctorId : number) => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/doctor/detail-info?doctorId=${doctorId}`,
+            url: `/api/doctor/detail-info?doctorId=${doctorId}`,
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },
