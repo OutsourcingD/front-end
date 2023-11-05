@@ -1,6 +1,16 @@
 import React from "react";
 import Wysiwyg from "./ContentInput";
 import './BeforeAfterPostAdd.css';
+import Breast from "../part/Breast";
+import Countouring from "../part/Countouring";
+import Eyes from "../part/Eyes";
+import FatGrafting from "../part/FatGrafting";
+import Lifting from "../part/Lifting";
+import Liposuction from "../part/Liposuction";
+import Nose from "../part/Nose";
+import Skin from "../part/Skin";
+import { BeforeAfterAddDto } from "../dto/BeforeAfterAddDto";
+import axios from 'axios';
 
 interface BeforeAfterAddProps {
     isAddClicked: boolean;
@@ -17,7 +27,80 @@ const BeforeAfterPostAdd: React.FC<BeforeAfterAddProps> = ({isAddClicked,setIsAd
     const [profileFiles, setProfileFiles] = React.useState<File[]>([]); // 파일 객체를 위한 상태
     const fileInputs = React.useRef<HTMLInputElement[]>([]);
     const [items, setItems] = React.useState([1,2]);
+    const [breastClicked,setBreastClicked] = React.useState(false);
+    const [countouringClicked,setCountouringClicked] = React.useState(false);
+    const [eyesClicked,setEyesClicked] = React.useState(false);
+    const [fatGraftingClicked,setFatGraftingClicked] = React.useState(false);
+    const [liftingClicked,setLiftingClicked] = React.useState(false);
+    const [liposuctionClicked,setLiposuctionClicked] = React.useState(false);
+    const [noseClicked,setNoseClicked] = React.useState(false);
+    const [skinClicked,setSkinClicked] = React.useState(false);
+    const [beforeAfterPeriod ,setBeforeAfterPeriod] = React.useState<string[]>([]);
 
+    const [doctorName,setDoctorName] = React.useState("");
+    const [hospitalName,setHospitalName] = React.useState("");
+
+    const onBeforeAfterPostAdd = () => {
+        let part = [];
+
+        if (breastClicked) {
+            part.push('breast');
+        }
+        if (countouringClicked) {
+            part.push('countouring');
+        }
+        if (eyesClicked) {
+            part.push('eyes');
+        }
+        if (fatGraftingClicked) {
+            part.push('fatgrafting');
+        }
+        if (liftingClicked) {
+            part.push('lifting');
+
+        }
+        if (liposuctionClicked) {
+            part.push('liposuction');
+        }
+        if (noseClicked) {
+            part.push('nose');
+        }
+        if (skinClicked) {
+            part.push('skin');
+        }
+
+        const BeforeAfterAddDto: BeforeAfterAddDto = {
+            doctorId: 0,
+            hospitalId: 0,
+            doctorName: doctorName,
+            hospitalName: hospitalName,
+            beforeImage: [profileFiles[0]],
+            afterImage: [profileFiles[1]],
+            part: part,
+            beforeAfterPeriod: beforeAfterPeriod
+        }
+
+        axios({
+            method: "post",
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/before-after`,
+            data: BeforeAfterAddDto,
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                "Content-Type": "multipart/form-data"
+            }    
+        }).then((res) => {
+            alert("Success");
+        }).catch((err) => {
+            if (err.response.status === 401 || err.response.status === 403) {
+                alert("This id is not admin id.");
+            }
+            else 
+            {
+                alert("Contact to developer." + err.response.status)
+            }
+        });
+    }
+ 
     const saveImgFile = (index: number) => {
         if (
             fileInputs.current[0] === null ||
@@ -64,16 +147,6 @@ const BeforeAfterPostAdd: React.FC<BeforeAfterAddProps> = ({isAddClicked,setIsAd
             }
         };
     };
-    const addButtonClick = () => {
-        if (items.length < 10) {
-            setItems((prev) => [
-                ...prev, 
-                prev[prev.length-1] + 1,
-                prev[prev.length+1] + 2]);
-        } else {
-            alert("Exceeding the maximum number : 10")
-        }
-    };
 
     if (!isAddClicked) {
         return null;
@@ -88,6 +161,7 @@ const BeforeAfterPostAdd: React.FC<BeforeAfterAddProps> = ({isAddClicked,setIsAd
                         <input
                             id="doctor_info_add_name_input"
                             placeholder="Please enter hospital name"
+                            onChange={(e) => setHospitalName(e.target.value)}
                         />
                     </form>
                 </div>
@@ -98,6 +172,7 @@ const BeforeAfterPostAdd: React.FC<BeforeAfterAddProps> = ({isAddClicked,setIsAd
                         <input
                             id="doctor_info_add_name_input"
                             placeholder="Please enter doctor name"
+                            onChange={(e) => setDoctorName(e.target.value)}
                         />
                     </form>
                 </div>
@@ -105,7 +180,44 @@ const BeforeAfterPostAdd: React.FC<BeforeAfterAddProps> = ({isAddClicked,setIsAd
 
             <div className="doctor_info_add_picture_div">
                 <p id="doctor_info_add_name_title">Add picture</p>
-                <p id="doctor_info_add_warn">Maximum: 10</p>
+                <p id="doctor_info_add_warn">Maximum: 2</p>
+
+                <div>
+                    <div className="part_category_div">
+                    <div onClick={() => setBreastClicked(breastClicked => !breastClicked)}>
+                    <Breast />
+                    </div>
+                    <div onClick={() => setCountouringClicked(countouringClicked => !countouringClicked)}>
+                    <Countouring />
+                    </div>
+                    <div onClick={() => setEyesClicked(eyesClicked => !eyesClicked)}>
+                    <Eyes />
+                    </div>
+                    <div onClick={() => setFatGraftingClicked(fatGraftingClicked => !fatGraftingClicked)}>
+                    <FatGrafting />
+                    </div>
+                    <div onClick={() => setLiftingClicked(liftingClicked => !liftingClicked)}>
+                    <Lifting />
+                    </div>
+                    <div onClick={() => setLiposuctionClicked(liposuctionClicked => !liposuctionClicked)}>
+                    <Liposuction />
+                    </div>
+                    <div onClick={() => setNoseClicked(noseClicked => !noseClicked)}>
+                    <Nose />
+                    </div>
+                    <div onClick={() => setSkinClicked(skinClicked => !skinClicked)}>
+                    <Skin />
+                    </div>
+                    <div className="surgery-period-input-wrapper" style={{display: 'inline-block'}}>
+                                        <input
+                                            type="text"
+                                            placeholder="duration period"
+                                            className="surgery-period"
+                                            onChange={(e) => setBeforeAfterPeriod([e.target.value])}
+                                        />
+                                    </div>
+                        </div>
+                    </div>
                 
                 <div className="make_info_pictures_div">
                     {items.map((item, index) => {
@@ -138,53 +250,16 @@ const BeforeAfterPostAdd: React.FC<BeforeAfterAddProps> = ({isAddClicked,setIsAd
                                         ></input>
                                     </div>
                                 </div>
-                                
-                                <div className="flex-wrapper">
-                                    <div className="surgery-part-dropdown-wrapper">
-                                        <select className="surgery-part-dropdown">
-                                            <option>Fat Grafting</option>
-                                            <option>Lifting</option>
-                                            <option>Skin</option>
-                                            <option>Liposuction</option>
-                                            <option>Breast</option>
-                                            <option>Nose</option>
-                                            <option>Eyes</option>
-                                            <option>Contouring</option>
-                                            <option>Doctors</option>
-                                            <option>Plastic surgery</option>
-                                        </select>
-                                    </div>
-
-                                    <div className="surgery-period-input-wrapper">
-                                        <input
-                                            type="text"
-                                            placeholder="surgery period"
-                                            className="surgery-period"
-                                        />
-                                    </div>
-                                </div>
                             </div>
                         );
                     })}
-                    <div className="add_picture_button">
-                        <div
-                            className="add_picture_plus_div"
-                            onClick={addButtonClick}
-                        >
-                            <img
-                                src="/add_picture_plus.png"
-                                alt=""
-                                id="add_picture_plus"
-                            />
-                        </div>
-                    </div>
                 </div>
                 <div className="banner_buttons_div">
                         <div className="banner_cancel_button_div">
                             <p id="banner_cancel_text" onClick={() => {setIsAddClicked(false);}}>cancel</p>
                          </div>
                         <div className="banner_save_button_div">
-                            <p id="banner_save_text">save</p>
+                            <p id="banner_save_text" onClick={() => onBeforeAfterPostAdd()}>save</p>
                         </div>
                     </div>
             </div>
