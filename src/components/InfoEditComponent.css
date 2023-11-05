@@ -306,6 +306,14 @@
     align-items: center;
 }
 
+#description_add_form {
+    border: none;
+    outline: none;
+    width: 600px;
+    display: flex;
+    align-items: center;
+}
+
 #banner_link_add_input {
     border: none;
     outline: none;

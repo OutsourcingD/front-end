@@ -25,7 +25,7 @@ function MyRecommendReview() {
 
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/comment/my/all?pages=${
+            url: `/api/comment/my/all?pages=${
                 page - 1
             }`,
             headers: {
@@ -47,7 +47,7 @@ function MyRecommendReview() {
                     navigate("/login");
                 } else {
                     alert(`Contact to developer. ${err.response.status}`);
-                    navigate("/");
+                    ;
                 }
             });
     }, [page]);

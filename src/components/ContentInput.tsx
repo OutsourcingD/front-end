@@ -24,7 +24,7 @@ const Wysiwyg = (props: WysiwygProps) => {
 
         await axios({
             method: "post",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/image`,
+            url: `/api/image`,
             data: formData,
             headers: {
                 "Content-Type": "multipart/form-data",
@@ -43,7 +43,7 @@ const Wysiwyg = (props: WysiwygProps) => {
                     navigate("/login");
                 } else {
                     alert(`Contact to developer. ${err.response.status}`);
-                    navigate("/");
+                    ;
                 }
             });
     };

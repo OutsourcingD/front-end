@@ -8,6 +8,9 @@ import HospitalInfoAdd from "./HospitalInfoAdd";
 import DoctorPostAdd from "./DoctorPostAdd";
 import HospitalPostAdd from "./HospitalPostAdd";
 import { useNavigate } from "react-router-dom";
+import BeforeAfterPostAdd from "./BeforeAfterPostAdd";
+import HospitalPostEdit from "./HospitalPostEdit";
+import DoctorPostEdit from "./DoctorPostEdit";
 
 interface HospitalEditProps {
     postId: number;
@@ -38,6 +41,7 @@ const DoctorEdit = () => {
     const [isRightClicked, setIsRightClicked] = React.useState(false);
     const [category, setCategory] = React.useState<number>(0);
     const [isAddClicked,setIsAddClicked] = React.useState<boolean>(false);
+    const [postId,setPostId] = React.useState(0);
     const navigate = useNavigate();
 
     const handleHospitalPageChange = (page: React.SetStateAction<number>) => {
@@ -51,7 +55,7 @@ const DoctorEdit = () => {
     const getHospitals = async () => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/hospital`,
+            url: `/api/admin/hospital`,
             params: {
                 pages: hospitalPage - 1,
                 query: hospitalSearchValue,
@@ -69,7 +73,7 @@ const DoctorEdit = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
+                ;
             }
         });
     };
@@ -77,7 +81,7 @@ const DoctorEdit = () => {
     const getDoctors = async () => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/doctor`,
+            url: `/api/admin/doctor`,
             params: {
                 pages: doctorPage - 1,
                 query: doctorSearchValue,
@@ -95,7 +99,7 @@ const DoctorEdit = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
+                ;
             }
         });
     };
@@ -107,7 +111,7 @@ const DoctorEdit = () => {
 
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/hospital`,
+            url: `/api/admin/hospital`,
             params: {
                 pages: hospitalPage - 1,
                 query: hospitalSearchValue,
@@ -126,7 +130,7 @@ const DoctorEdit = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
+                ;
             }
         });
     };
@@ -134,7 +138,7 @@ const DoctorEdit = () => {
     const handleHospitalSearchButton = async () => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/hospital`,
+            url: `/api/admin/hospital`,
             params: {
                 pages: hospitalPage - 1,
                 query: hospitalSearchValue,
@@ -163,7 +167,7 @@ const DoctorEdit = () => {
 
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/doctor`,
+            url: `/api/admin/doctor`,
             params: {
                 pages: doctorPage - 1,
                 query: doctorSearchValue,
@@ -190,7 +194,7 @@ const DoctorEdit = () => {
     const handleDoctorSearchButton = async () => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/doctor`,
+            url: `/api/admin/doctor`,
             params: {
                 pages: doctorPage - 1,
                 query: doctorSearchValue,
@@ -214,21 +218,19 @@ const DoctorEdit = () => {
         });
     };
 
-    const HospitalDeleteHandler = (index: number) => {
+    const HospitalDeleteHandler = (postId: number) => {
         axios({
             method: "delete",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/post/delete`,
+            url: `/api/admin/post/delete`,
             params: {
-                postId: hospitalItems[index].postId,
+                postId: postId,
             },
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         })
             .then((res) => {
-                const newItems = [...hospitalItems];
-                newItems.splice(index, 1);
-                setHospitalItems(newItems);
+                alert("delete success");
             })
             .catch((err) => {
                 if (err.response.status === 401 || err.response.status === 403) {
@@ -242,21 +244,19 @@ const DoctorEdit = () => {
             });
     };
 
-    const DoctorDeleteHandler = (index: number) => {
+    const DoctorDeleteHandler = (postId: number) => {
         axios({
             method: "delete",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/post/delete`,
+            url: `/api/admin/post/delete`,
             params: {
-                postId: doctorItems[index].postId,
+                postId: postId,
             },
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         })
             .then((res) => {
-                const newItems = [...doctorItems];
-                newItems.splice(index, 1);
-                setDoctorItems(newItems);
+                alert("delete success");
             })
             .catch((err) => {
                 if (err.response.status === 401 || err.response.status === 403) {
@@ -280,14 +280,9 @@ const DoctorEdit = () => {
 
     return (
         <div className="doctor_edit_page">
-            {isLeftClicked || isRightClicked ? (
-                <div
-                    className="before_page_div_disabled"
-                    onClick={() => {
-                        setIsLeftClicked(false);
-                        setIsRightClicked(false);
-                    }}
-                ></div>
+            {isLeftClicked ? (
+                <div className="before_page_div_disabled">
+                </div>
             ) : null}
             <div className="change_review_container">
                 <p id="change_review_title">Edit Hospital • Doctor Post</p>
@@ -351,6 +346,7 @@ const DoctorEdit = () => {
                                         <div className="doctor_edit_item_right_div">
                                             <div className="doctor_edit_item_button_div" onClick={(e) => {
                                                     e.stopPropagation();
+                                                    setPostId(item.postId);
                                                     setIsLeftClicked(true);
                                                 }}>
                                                 <p id="doctor_item_button_edit">
@@ -359,11 +355,8 @@ const DoctorEdit = () => {
                                             </div>
                                             <div
                                                 className="doctor_edit_item_button_div"
-                                                onClick={() =>
-                                                    HospitalDeleteHandler(index)
-                                                }
                                             >
-                                                <p id="doctor_item_button_delete">
+                                                <p id="doctor_item_button_delete" onClick={() => HospitalDeleteHandler(item.postId)}>
                                                     delete
                                                 </p>
                                             </div>
@@ -441,6 +434,7 @@ const DoctorEdit = () => {
                                                 className="doctor_edit_item_button_div"
                                                 onClick={(e) => {
                                                     e.stopPropagation();
+                                                    setPostId(item.postId);
                                                     setIsRightClicked(true);
                                                 }}
                                             >
@@ -454,7 +448,7 @@ const DoctorEdit = () => {
                                                     DoctorDeleteHandler(index)
                                                 }
                                             >
-                                                <p id="doctor_item_button_delete">
+                                                <p id="doctor_item_button_delete" onClick={() => DoctorDeleteHandler(item.postId)}>
                                                     delete
                                                 </p>
                                             </div>
@@ -481,88 +475,13 @@ const DoctorEdit = () => {
                 </p>
                 <IoMdAddCircleOutline size="20px" />
             </div>
-            {isLeftClicked || isRightClicked ? (
+            {isLeftClicked ? (
+                    <HospitalPostEdit postId={postId} isLeftClicked={isLeftClicked} setIsLeftClicked={setIsLeftClicked}/>
+            ) : null}
+
+            {isRightClicked ? (
                 <div className="edit_doctor_div">
-                    <div className="edit_doctor_page_category_div">
-                        <div className="edit_doctor_page_left_category">
-                            <p id="edit_doctor_page_category_title">category</p>
-                            <div className="sub_doc_div">
-                                <div className="sub_doc_category_div">
-                                    {category === 0 ? (
-                                        <img
-                                            src="/checkbox_pupple.png"
-                                            alt=""
-                                            id="edit_doctor_page_category_checkbox"
-                                        />
-                                    ) : (
-                                        <img
-                                            src="/checkbox.png"
-                                            alt=""
-                                            id="edit_doctor_page_category_pupple_checkbox"
-                                            onClick={() => setCategory(0)}
-                                        />
-                                    )}
-                                </div>
-                                <p id="edit_doctor_page_category_sub_title">
-                                    doctor
-                                </p>
-                            </div>
-                            <div className="sub_hos_div">
-                                {category === 1 ? (
-                                    <img
-                                        src="/checkbox_pupple.png"
-                                        alt=""
-                                        id="edit_doctor_page_category_checkbox"
-                                    />
-                                ) : (
-                                    <img
-                                        src="/checkbox.png"
-                                        alt=""
-                                        id="edit_doctor_page_category_pupple_checkbox"
-                                        onClick={() => setCategory(1)}
-                                    />
-                                )}
-                                <p id="edit_doctor_page_category_sub_title">
-                                    hospital
-                                </p>
-                            </div>
-                            <div className="sub_bef_div">
-                                {category === 2 ? (
-                                    <img
-                                        src="/checkbox_pupple.png"
-                                        alt=""
-                                        id="edit_doctor_page_category_checkbox"
-                                    />
-                                ) : (
-                                    <img
-                                        src="/checkbox.png"
-                                        alt=""
-                                        id="edit_doctor_page_category_pupple_checkbox"
-                                        onClick={() => setCategory(2)}
-                                    />
-                                )}
-                                <p id="edit_doctor_page_category_sub_title">
-                                    before-after
-                                </p>
-                            </div>
-                        </div>
-                        <div className="edit_doctor_page_right_category" onClick={() => {setIsLeftClicked(false); setIsRightClicked(false)}}>
-                            <p id="close">X</p>
-                        </div>
-                    </div>
-                    {
-                        category === 0 ? <DoctorInfoAdd isLeftClicked={isLeftClicked} isRightClicked={isRightClicked}/> : 
-                        category === 1 ? <HospitalInfoAdd isLeftClicked={isLeftClicked} isRightClicked={isRightClicked}/> :
-                        category === 2 ? <DoctorInfoAdd isLeftClicked={isLeftClicked} isRightClicked={isRightClicked}/> : null
-                    }
-                    <div className="banner_buttons_div">
-                        <div className="banner_cancel_button_div">
-                            <p id="banner_cancel_text" onClick={() => {setIsLeftClicked(false); setIsRightClicked(false);}}>cancel</p>
-                         </div>
-                        <div className="banner_save_button_div">
-                            <p id="banner_save_text">save</p>
-                        </div>
-                    </div>
+                    <DoctorPostEdit postId={postId} isRightClicked={isRightClicked} setIsRightClicked={setIsRightClicked}/>
                 </div>
             ) : null}
 
@@ -610,19 +529,32 @@ const DoctorEdit = () => {
                                 hospital
                             </p>
                         </div>
-                    </div>
-                    {
-                        category === 0 ? <DoctorPostAdd isAddClicked={isAddClicked}/> : 
-                        category === 1 ? <HospitalPostAdd isAddClicked={isAddClicked}/> : null
-                    }
-                    <div className="banner_buttons_div">
-                        <div className="banner_cancel_button_div">
-                            <p id="banner_cancel_text" onClick={() => {setIsAddClicked(false);}}>cancel</p>
-                         </div>
-                        <div className="banner_save_button_div">
-                            <p id="banner_save_text">save</p>
+                        <div className="sub_hos_div">
+                            {category === 2 ? (
+                                <img
+                                    src="/checkbox_pupple.png"
+                                    alt=""
+                                    id="edit_doctor_page_category_checkbox"
+                                />
+                            ) : (
+                                <img
+                                    src="/checkbox.png"
+                                    alt=""
+                                    id="edit_doctor_page_category_pupple_checkbox"
+                                    onClick={() => setCategory(2)}
+                                />
+                            )}
+                            <p id="edit_doctor_page_category_sub_title">
+                                before-after
+                            </p>
                         </div>
                     </div>
+                    {
+                        category === 0 ? <DoctorPostAdd isAddClicked={isAddClicked} setIsAddClicked={setIsAddClicked}/> : 
+                        category === 1 ? <HospitalPostAdd isAddClicked={isAddClicked} setIsAddClicked={setIsAddClicked}/> : 
+                        category === 2 ? <BeforeAfterPostAdd isAddClicked={isAddClicked} setIsAddClicked={setIsAddClicked}/> : null
+                    }
+                    
                 </div>
             ) : null}
         </div>

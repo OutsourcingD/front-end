@@ -1,7 +1,8 @@
-import React from "react";
+import React,{useEffect} from "react";
 import "./DoctorInfoAdd.css";
 import PartCategory from "../review_page/PartCategory";
 import Wysiwyg from "./ContentInput";
+import axios from "axios";
 
 interface DoctorInfoAddProps {
     isLeftClicked: boolean;
@@ -15,10 +16,10 @@ const DoctorInfoAdd: React.FC<DoctorInfoAddProps> = ({isLeftClicked,isRightClick
     const [prevImages, setPrevImages] = React.useState(
         Array(10).fill("/add_picture_png.png")
     );
+
     const [profileFiles, setProfileFiles] = React.useState<File[]>([]); // 파일 객체를 위한 상태
     const fileInputs = React.useRef<HTMLInputElement[]>([]);
     const [items, setItems] = React.useState([1]);
-    const [content, setContent] = React.useState<string>("");
 
     const saveImgFile = (index: number) => {
         if (
@@ -69,6 +70,8 @@ const DoctorInfoAdd: React.FC<DoctorInfoAddProps> = ({isLeftClicked,isRightClick
     const addButtonClick = () => {
         if (items.length < 10) {
             setItems((prev) => [...prev, prev.length + 1]);
+        } else {
+            alert("Exceeding the maximum number : 10")
         }
     };
 
@@ -79,12 +82,12 @@ const DoctorInfoAdd: React.FC<DoctorInfoAddProps> = ({isLeftClicked,isRightClick
     return (
         <div className="doctor_info_add_div">
             <div className="doctor_info_add_name_div">
-                <p id="doctor_info_add_name_title">name</p>
+                <p id="doctor_info_add_name_title">Name</p>
                 <div className="doctor_info_add_name_form_div">
                     <form id="doctor_info_add_name_form">
                         <input
                             id="doctor_info_add_name_input"
-                            placeholder="Please enter doctor name"
+                            placeholder="enter the doctor name"
                         />
                     </form>
                 </div>
@@ -169,7 +172,7 @@ const DoctorInfoAdd: React.FC<DoctorInfoAddProps> = ({isLeftClicked,isRightClick
                     </div>
                 </div>
                 <div className="doctor_add_page_wysiwyg_div">
-                    <Wysiwyg setContent={setContent}/>
+                    
                 </div>
             </div>
         </div>

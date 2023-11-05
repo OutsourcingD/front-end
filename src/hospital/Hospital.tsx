@@ -28,7 +28,7 @@ function Hospital() {
     const getHospitalList = async () => {
         await axios({
             method: "get", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/api/hospital/search?pages=${
+            url: `/api/hospital/search?pages=${
                 page - 1
             }&title=${searchValue}`,
         }).then((res) => {
@@ -36,7 +36,7 @@ function Hospital() {
             setTotalPages(res.data !== undefined && res.data.length !== 0 ? res.data[0].totalPages : 1);
         }).catch((err) => {
             alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");      
+                ;      
         });
     };
 

@@ -29,7 +29,7 @@ function RecommendedReview() {
     useEffect(() => {
         axios({
             method: "get", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/api/review/recommendation/search?pages=${page - 1}&query=${search}&part=${category}`,
+            url: `/api/review/recommendation/search?pages=${page - 1}&query=${search}&part=${category}`,
         }).then((res) => {
             setReviewList(res.data);
         }).catch((err) => {
@@ -39,7 +39,7 @@ function RecommendedReview() {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
+                ;
             }
         });
     }, [page]);

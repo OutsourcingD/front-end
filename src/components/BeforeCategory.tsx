@@ -21,12 +21,12 @@ const BeforeCategory = (props: BeforeCategoryProps) => {
     React.useEffect(() => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/review/before-after?part=${categoryNumber}&pages=0`,
+            url: `/api/review/before-after?part=${categoryNumber}&pages=0`,
         }).then((res) => {
             props.onCategoryResult(res.data);
         }).catch((err) => {
             alert(`Contact to developer2. ${err.status}`);
-            navigate("/");
+            ;
         });
     }, [categoryNumber]);
 

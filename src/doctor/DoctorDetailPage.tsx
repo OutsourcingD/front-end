@@ -44,7 +44,7 @@ function DoctorDetailPage() {
         /* doctor detail */
         axios({
             method: "get", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/api/doctor/detail?postId=${doctorId}`,
+            url: `/api/doctor/detail?postId=${doctorId}`,
         }).then((res) => {
             setDoctorDetail(res.data);
         });
@@ -52,7 +52,7 @@ function DoctorDetailPage() {
         /* hospital detail */
         axios({
             method: "get", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/api/doctor/review?doctorId=${doctorId}&pages=${page - 1}`,
+            url: `/api/doctor/review?doctorId=${doctorId}&pages=${page - 1}`,
         }).then((res) => {
             setDoctorReviews(res.data);
             setTotalPages(res.data.length !== 0 ? res.data[0].totalPages : 1);

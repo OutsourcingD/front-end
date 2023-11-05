@@ -30,6 +30,9 @@ const DoctorAdd = () => {
     const [isDoctorInfoEditClicked,setIsDoctorInfoEditClicked] = React.useState<boolean>(false);
     const [isHopitalInfoEditClicked,setIsHospitalInfoEditClicked] = React.useState<boolean>(false);
     const [isInfoAddClicked,setIsInfoAddClicked] = React.useState<boolean>(false);
+
+    const [doctorId,setDoctorId] = React.useState(0);
+    const [hospitalId,sethospitalId] = React.useState(0);
     const navigate = useNavigate();
 
     const handleDoctorPageChange = (page: React.SetStateAction<number>) => {
@@ -43,7 +46,7 @@ const DoctorAdd = () => {
     const getHospitals = async () => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/hospital-info`,
+            url: `/api/admin/hospital-info`,
             params: {
                 pages: hospitalPage - 1,
                 hospitalName: hospitalSearchValue,
@@ -61,7 +64,7 @@ const DoctorAdd = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     }
@@ -69,7 +72,7 @@ const DoctorAdd = () => {
     const getDoctors = async () => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/doctor-info`,
+            url: `/api/admin/doctor-info`,
             params: {
                 pages: doctorPage - 1,
                 doctorName: doctorSearchValue,
@@ -87,7 +90,7 @@ const DoctorAdd = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     }
@@ -97,7 +100,7 @@ const DoctorAdd = () => {
         
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/hospital-info`,
+            url: `/api/admin/hospital-info`,
             params: {
                 pages: hospitalPage - 1,
                 hospitalName: hospitalSearchValue,
@@ -116,7 +119,7 @@ const DoctorAdd = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     };
@@ -124,7 +127,7 @@ const DoctorAdd = () => {
     const handleHospitalSearchButton = async () => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/hospital-info`,
+            url: `/api/admin/hospital-info`,
             params: {
                 pages: hospitalPage - 1,
                 hospitalName: hospitalSearchValue,
@@ -143,7 +146,7 @@ const DoctorAdd = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     }
@@ -153,7 +156,7 @@ const DoctorAdd = () => {
 
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/doctor-info`,
+            url: `/api/admin/doctor-info`,
             params: {
                 pages: doctorPage - 1,
                 doctorName: doctorSearchValue,
@@ -172,7 +175,7 @@ const DoctorAdd = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     };
@@ -180,7 +183,7 @@ const DoctorAdd = () => {
     const handleDoctorSearchButton = async () => {
         await axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/doctor-info`,
+            url: `/api/admin/doctor-info`,
             params: {
                 pages: doctorPage - 1,
                 doctorName: doctorSearchValue,
@@ -199,7 +202,7 @@ const DoctorAdd = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     };
@@ -207,7 +210,7 @@ const DoctorAdd = () => {
     const handledeleteHospitalButton = (index: number) => {
         axios({
             method: "delete",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/hospital-info/delete`,
+            url: `/api/admin/hospital-info/delete`,
             params: {
                 hospitalId: hospitalItems[index].hospitalId,
             },
@@ -227,7 +230,7 @@ const DoctorAdd = () => {
             else
             {
                 alert("Contact the administrator.");
-                navigate("/");
+                ;
             }
         });
     };
@@ -235,7 +238,7 @@ const DoctorAdd = () => {
     const handledeleteDoctorButton = (index: number) => {
         axios({
             method: "delete",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/doctor-info/delete`,
+            url: `/api/admin/doctor-info/delete`,
             params: {
                 doctorId: doctorItems[index].doctorId,
             },
@@ -310,7 +313,7 @@ const DoctorAdd = () => {
                                             </p>
                                         </div>
                                         <div className="doctor_edit_item_right_div">
-                                            <div className="doctor_edit_item_button_div" onClick={() => setIsHospitalInfoEditClicked(true)}>
+                                            <div className="doctor_edit_item_button_div" onClick={() => {setIsHospitalInfoEditClicked(true); sethospitalId(item.hospitalId);}}>
                                                 <p id="doctor_item_button_edit">
                                                     edit
                                                 </p>
@@ -378,7 +381,7 @@ const DoctorAdd = () => {
                                             </p>
                                         </div>
                                         <div className="doctor_edit_item_right_div">
-                                            <div className="doctor_edit_item_button_div" onClick={() => setIsDoctorInfoEditClicked(true)}>
+                                            <div className="doctor_edit_item_button_div" onClick={() => {setIsDoctorInfoEditClicked(true); setDoctorId(item.doctorId);}}>
                                                 <p id="doctor_item_button_edit">
                                                     edit
                                                 </p>
@@ -410,11 +413,11 @@ const DoctorAdd = () => {
                 <IoMdAddCircleOutline size="20px"/>
             </div>
             {
-                isDoctorInfoEditClicked ? <DoctorInfoEditComponent isDoctorInfoEditClicked={isDoctorInfoEditClicked} setIsDoctorInfoEditClicked={setIsDoctorInfoEditClicked} /> : null
+                isDoctorInfoEditClicked ? <DoctorInfoEditComponent doctorId={doctorId} isDoctorInfoEditClicked={isDoctorInfoEditClicked} setIsDoctorInfoEditClicked={setIsDoctorInfoEditClicked} /> : null
             }
 
             {
-                isHopitalInfoEditClicked ? <HospitalInfoEditComponent isHopitalInfoEditClicked={isHopitalInfoEditClicked} setIsHospitalInfoEditClicked={setIsHospitalInfoEditClicked}/> : null
+                isHopitalInfoEditClicked ? <HospitalInfoEditComponent hospitalId={hospitalId} isHopitalInfoEditClicked={isHopitalInfoEditClicked} setIsHospitalInfoEditClicked={setIsHospitalInfoEditClicked}/> : null
             }
 
             {

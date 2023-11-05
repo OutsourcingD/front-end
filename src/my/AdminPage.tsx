@@ -4,7 +4,7 @@ import SideMenu from "../components/SideMenu";
 import BannerManagementPage from "../components/BannerManagementPage";
 import ChangeReview from "../components/ChangeReview";
 import DoctorEdit from "../components/DoctorEdit";
-import DoctorAdd from "../components/DoctorAdd";
+import DoctorAdd from "../components/DoctorHospitalAdd";
 import CheckUserIp from "../components/CheckUserIp";
 import CheckUser from "../components/CheckUser";
 import AddAdminId from "../components/AddAdminId";
@@ -39,7 +39,7 @@ function AdminPage() {
     React.useEffect(() => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/auth/check`,
+            url: `/api/auth/check`,
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },  
@@ -56,7 +56,7 @@ function AdminPage() {
             });
 
             if(!admin)
-                navigate("/");
+                ;
         }).catch((err) => {  
             if(err.response.status === 401 || err.response.status === 403) {
                 alert("This is not admin ID.");
@@ -64,7 +64,7 @@ function AdminPage() {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
+                ;
             }        
         });
     }, []);

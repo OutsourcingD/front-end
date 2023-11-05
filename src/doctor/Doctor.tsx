@@ -27,7 +27,7 @@ function Doctor() {
     useEffect(() => {
         axios({
             method: "get", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/api/doctor/search?pages=0&title=${searchValue}`,
+            url: `/api/doctor/search?pages=0&title=${searchValue}`,
         }).then((res) => {
             setDoctorList(res.data);
             setTotalPages(res.data[0].totalPages);

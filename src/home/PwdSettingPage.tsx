@@ -16,7 +16,7 @@ function PwdSettingPage(props: PwdSettingPageProps) {
         if (pwd === pwdCheck) {
             axios({
                 method: "post",
-                url: `${process.env.REACT_APP_SERVER_URL}/api/email/password/change`,
+                url: `/api/email/password/change`,
                 data: {
                     newPassword: pwd,
                     userId: props.userId,

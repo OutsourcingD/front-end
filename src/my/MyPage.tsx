@@ -48,7 +48,7 @@ function MyPage() {
         //banner api
         axios({
             method: "get",
-            url: `${[process.env.REACT_APP_SERVER_URL]}/api/banner?location=3`,
+            url: `/api/banner?location=3`,
         }).then((res) => {
             setBanners(res.data);
         }).catch((err) => {
@@ -58,14 +58,14 @@ function MyPage() {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
+                ;
             }          
         });
 
         //my review api
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/review/my?pages=0`,
+            url: `/api/review/my?pages=0`,
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
@@ -78,14 +78,14 @@ function MyPage() {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
+                ;
             }          
         });
 
         //my comment api
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/comment/my`,
+            url: `/api/comment/my`,
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
@@ -98,14 +98,14 @@ function MyPage() {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
+                ;
             }          
         });
         
         //my inquery api
         axios({
           method: "get",
-          url: `${process.env.REACT_APP_SERVER_URL}/api/inquiry`,
+          url: `/api/inquiry`,
           headers: {
             Authorization: `Bearer ${localStorage.getItem("access_token")}`,
           },
@@ -118,7 +118,7 @@ function MyPage() {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
+                ;
             }          
         });
     }, []);

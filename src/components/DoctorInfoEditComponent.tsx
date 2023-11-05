@@ -1,15 +1,27 @@
-import React from "react";
+import React,{useEffect} from "react";
 import "./InfoEditComponent.css";
-import PartCategory from "../review_page/PartCategory";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import PartComponent from "../part/PartComponent";
+import { EditDoctorInfoRequestDto } from "../dto/EditDoctorInfoRequestDto";
 
 interface InfoEditProp {
+    doctorId: number;
     isDoctorInfoEditClicked : boolean;
     setIsDoctorInfoEditClicked: (value:boolean) => void;
 }
 
-const DoctorInfoEditComponent: React.FC<InfoEditProp> = ({isDoctorInfoEditClicked,setIsDoctorInfoEditClicked}) => {
+interface DoctorDetailProps {
+    location: string;
+    partList: string[];
+    doctorName: string;
+    mainImage: string;
+}
+
+const DoctorInfoEditComponent: React.FC<InfoEditProp> = ({doctorId,isDoctorInfoEditClicked,setIsDoctorInfoEditClicked}) => {
     const [category,setCategory] = React.useState<number>(0);
+    const [doctorName, setDoctorName] = React.useState("");
+    const [location, setLocation] = React.useState("");
 
     const [images,setImages] = React.useState(
         Array(10).fill("/add_picture_png.png")
@@ -19,8 +31,71 @@ const DoctorInfoEditComponent: React.FC<InfoEditProp> = ({isDoctorInfoEditClicke
         Array(10).fill("/add_picture_png.png")
     );
 
+    const navigate = useNavigate();
     const [profileFiles, setProfileFiles] = React.useState<File[]>([]); 
     const fileInputs = React.useRef<HTMLInputElement[]>([]);
+    const [doctorDetail,setDoctorDetail] = React.useState<DoctorDetailProps>({} as DoctorDetailProps);
+
+    const getDoctorEdit = () => {
+
+        const EditDoctorInfoRequestDto: EditDoctorInfoRequestDto = {
+            doctorId: doctorId,
+            doctorName: doctorName,
+            location: location,
+            mainImage: profileFiles[0]
+        };
+
+        axios({
+            method: "post",
+            url: `/api/admin/doctor/edit`,
+            data: EditDoctorInfoRequestDto,
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                "Content-Type": "multipart/form-data"
+            }
+        }).then((res) => {
+            alert("succcess");
+        }).catch((err) => {
+            if (err.response.status === 401 || err.response.status === 403) {
+                alert("This id is not admin id.");
+            }
+            else 
+            {
+                alert("Contact to developer." + err.response.status)
+            }
+        });
+    }
+
+    const getDoctorDetail = async (doctorId : number) => {
+        await axios({
+            method: "get",
+            url: `/api/doctor/detail-info?doctorId=${doctorId}`,
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            },
+        }).then((res) => {
+            setDoctorDetail(res.data);
+            setDoctorName(res.data.doctorName);
+            setLocation(res.data.location);
+        }).catch((err) => {
+            if(err.status === 401 || err.status === 403) {
+                alert("This is not admin ID.");
+                navigate("/login");
+            }
+            else if(err.status === 404) {
+                alert("Contact to developer.");
+                ;
+            }
+            else {
+                alert(`Contact to developer2. ${err.status}`);
+                ;
+            }
+        });
+    }
+
+    useEffect(() => {
+        getDoctorDetail(doctorId);
+    }, []);
 
     const saveImgFile = (index: number) => {
         if (
@@ -79,74 +154,48 @@ const DoctorInfoEditComponent: React.FC<InfoEditProp> = ({isDoctorInfoEditClicke
             <p id="banner_main_text">Category</p>
             <div className="banner_sub_div">
                 <div className="banner_sub_category_div">
-                    {category === 0 ? (
-                        <img
-                            src="/checkbox_pupple.png"
-                            alt=""
-                            id = "banner_edit_category_checkbox"
-                        />
-                    ) : (
-                        <img
-                            src="/checkbox.png"
-                            alt=""
-                            id ="banner_edit_category_checkbox_pupple"
-                            onClick={() => setCategory(0)}
-                        />
-                    )}
-                </div>
-                <p id="banner_sub_text">
-                    doctor
-                </p>
-            </div>
-            <div className="banner_sub_div">
-                {category === 1 ? (
                     <img
                         src="/checkbox_pupple.png"
                         alt=""
                         id = "banner_edit_category_checkbox"
                     />
-                ) : (
-                    <img
-                        src="/checkbox_pupple.png"
-                        alt=""
-                        id = "banner_edit_category_checkbox_pupple"
-                        onClick={() => setCategory(1)}
-                    />
-                )}
+                </div>
                 <p id="banner_sub_text">
-                    hospital
+                    doctor
                 </p>
             </div>
         </div>
 
         <div className="banner_link_add_container">
-                <div className="banner_link_add_div">
-                    <p id="banner_main_text">Location</p>
-                    <div className="banner_link_add_form_div">
-                        <form id = "banner_link_add_form">
-                            <input
-                                id ="banner_link_add_input"
-                                 placeholder="Enter the address of hospital"
-                            />
-                        </form>
-                    </div>
-
-                    <p id="banner_main_text">Name</p>
-                    <div className="banner_link_add_form_div">
-                        <form id = "banner_link_add_form">
-                            <input
-                                id ="banner_link_add_input"
-                                placeholder="Enter the name of the hospital or doctor"
-                            />
-                        </form>
-                    </div>
+            <div className="banner_link_add_div">
+                <p id="banner_main_text">Location</p>
+                <div className="banner_link_add_form_div">
+                    <form id = "banner_link_add_form">
+                        <input
+                            id ="banner_link_add_input"
+                            placeholder={doctorDetail.location}
+                            onChange={(e) => setLocation(e.target.value)}
+                        />
+                    </form>
                 </div>
+
+                <p id="banner_main_text">Name</p>
+                <div className="banner_link_add_form_div">
+                    <form id = "banner_link_add_form">
+                        <input
+                            id ="banner_link_add_input"
+                            placeholder={doctorDetail.doctorName}
+                            onChange={(e) => setDoctorName(e.target.value)}
+                        />
+                    </form>
+                </div>
+            </div>
         </div>
 
         <div className="doctor_info_add_part_container">
                 <p id="doctor_info_add_name_title">Part</p>
-                <div style={{ width: "300px" }}>
-                    <PartCategory />
+                <div>
+                    <PartComponent partList={doctorDetail.partList}/>
                 </div>
         </div>
 
@@ -155,7 +204,7 @@ const DoctorInfoEditComponent: React.FC<InfoEditProp> = ({isDoctorInfoEditClicke
         </div>
         <div className="banner_add_picture_wrapper">
                     <img
-                        src={images[0]}
+                        src={images[0] === '/add_picture_png.png' ? doctorDetail.mainImage:images[0]}
                         alt=""
                         id="banner_add_picture"
                         onClick={()=> {
@@ -184,7 +233,7 @@ const DoctorInfoEditComponent: React.FC<InfoEditProp> = ({isDoctorInfoEditClicke
                 <p id="banner_cancel_text" onClick={() => {setIsDoctorInfoEditClicked(false);}}>cancel</p>
             </div>
             <div className="banner_save_button_div">
-                <p id="banner_save_text">save</p>
+                <p id="banner_save_text" onClick={() => {getDoctorEdit();}}>save</p>
             </div>
         </div>
     </div>

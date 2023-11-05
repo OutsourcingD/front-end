@@ -39,7 +39,7 @@ function Header() {
         if (page === 0) {
             localStorage.setItem("selected", "0");
             setSelected(0);
-            navigate("/");
+            ;
         } else if (page === 1) {
             localStorage.setItem("selected", "1");
             setSelected(1);
@@ -66,7 +66,7 @@ function Header() {
         if (localStorage.getItem("access_token") !== null) {
             axios({
                 method: "get",
-                url: `${process.env.REACT_APP_SERVER_URL}/api/auth/check`,
+                url: `/api/auth/check`,
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("access_token")}`,
                 },
@@ -85,7 +85,7 @@ function Header() {
                 }
                 else {
                     alert(`Contact to developer. ${err.response.status}`);
-                    navigate("/");
+                    ;
                 }
             });
         }
@@ -153,7 +153,7 @@ function Header() {
         }
     }, [location]);
 
-    useEffect(() => {
+    /*useEffect(() => {
         if (localStorage.getItem("access_token") !== null) {
             axios({
                 method: "get", // or 'post', 'put', etc.
@@ -171,11 +171,11 @@ function Header() {
                 }
                 else {
                     alert(`Contact to developer. ${err.response.status}`);
-                    navigate("/");
+                    ;
                 }
             });
         }
-    }, []);
+    }, []);*/
 
     useEffect(() => {
         if (width > 920) setIsClick(false);

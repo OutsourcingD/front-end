@@ -29,7 +29,7 @@ const CheckUser = () => {
 
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member/whole-info`,
+            url: `/api/admin/member/whole-info`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -48,7 +48,7 @@ const CheckUser = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     };
@@ -56,7 +56,7 @@ const CheckUser = () => {
     const searchClick = () => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member/whole-info`,
+            url: `/api/admin/member/whole-info`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -75,7 +75,7 @@ const CheckUser = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     };
@@ -83,7 +83,7 @@ const CheckUser = () => {
     const handleBlock = (index: number) => {
         axios({
             method: "post",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member/ban`,
+            url: `/api/admin/member/ban`,
             data: {
                 userId: items[index].userId,
             },
@@ -102,7 +102,7 @@ const CheckUser = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     };
@@ -112,7 +112,7 @@ const CheckUser = () => {
         
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member/detail`,
+            url: `/api/admin/member/detail`,
             params: {
                 userId: useId,
             },
@@ -129,7 +129,7 @@ const CheckUser = () => {
             }
             else {
                 alert("Contact to developer.");
-                navigate("/");
+                ;
             }
         })
     }
@@ -139,7 +139,7 @@ const CheckUser = () => {
         
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member/detail`,
+            url: `/api/admin/member/detail`,
             params: {
                 userId: useId,
             },
@@ -156,7 +156,7 @@ const CheckUser = () => {
             }
             else {
                 alert("Contact to developer.");
-                navigate("/");
+                ;
             }
         })
     }
@@ -164,7 +164,7 @@ const CheckUser = () => {
     React.useEffect(() => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member/whole-info`,
+            url: `/api/admin/member/whole-info`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -182,7 +182,7 @@ const CheckUser = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     }, [page]);

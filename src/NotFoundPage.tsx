@@ -13,7 +13,7 @@ function NotFoundPage() {
                     <p id="not_found_main_title">404</p>
                     <p id="not_found_text">Not Found</p>
                     <p id="not_found_sub_title">Page you're looking for is not found</p>
-                    <div className="back_button_div" onClick={() => navigate("/")}>
+                    <div className="back_button_div" onClick={() => }>
                         <p id="back_button_text">Go back</p>
                     </div>
                 </div>

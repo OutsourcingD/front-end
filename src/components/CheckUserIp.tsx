@@ -28,7 +28,7 @@ const CheckUserIp = () => {
 
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member-ip`,
+            url: `/api/admin/member-ip`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -48,7 +48,7 @@ const CheckUserIp = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     };
@@ -56,7 +56,7 @@ const CheckUserIp = () => {
     const onClick = () => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member-ip`,
+            url: `/api/admin/member-ip`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -75,7 +75,7 @@ const CheckUserIp = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     };
@@ -83,7 +83,7 @@ const CheckUserIp = () => {
     React.useEffect(() => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member-ip`,
+            url: `/api/admin/member-ip`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -101,7 +101,7 @@ const CheckUserIp = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     }, [page]);

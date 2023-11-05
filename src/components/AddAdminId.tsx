@@ -26,7 +26,7 @@ const AddAdminId = () => {
 
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member/upgrade`,
+            url: `/api/admin/member/upgrade`,
             params: {
                 id: userId,
             },
@@ -48,10 +48,10 @@ const AddAdminId = () => {
                     navigate("/login");
                 } else if (err.response.status === 404) {
                     alert(`${userId} is not exist.`);
-                    navigate("/");
+                    ;
                 } else {
                     alert(`Contact to developer. ${err.response.status}`);
-                    navigate("/");
+                    ;
                 }
             });
     };
@@ -59,7 +59,7 @@ const AddAdminId = () => {
     const deleteHandler = (index: number) => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member/downgrade`,
+            url: `/api/admin/member/downgrade`,
             params: {
                 id: adminIdList[index].userId,
             },
@@ -85,7 +85,7 @@ const AddAdminId = () => {
     React.useEffect(() => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin`,
+            url: `/api/admin`,
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
@@ -99,7 +99,7 @@ const AddAdminId = () => {
                     navigate("/login");
                 } else {
                     alert(`Contact to developer2. ${err.status}`);
-                    navigate("/");
+                    ;
                 }
             });
     }, []);

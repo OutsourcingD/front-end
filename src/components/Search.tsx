@@ -34,7 +34,7 @@ const Search = (props: SearchProps) => {
             if (props.category < 9) {
                 axios({
                     method: "get", // or 'post', 'put', etc.
-                    url: `${process.env.REACT_APP_SERVER_URL}/api/review/search?type=${0}&query=${value}&category=${
+                    url: `/api/review/search?type=${0}&query=${value}&category=${
                         props.category
                     }&pages=${0}`,
                 }).then((res) => {
@@ -49,13 +49,13 @@ const Search = (props: SearchProps) => {
                     }
                     else {
                         alert(`Contact to developer. ${err.response.status}`);
-                        navigate("/");
+                        ;
                     }  
                 });
             } else {
                 axios({
                     method: "get", // or 'post', 'put', etc.
-                    url: `${process.env.REACT_APP_SERVER_URL}/api/review/search/doc-hos?sortType=0&type=${props.category}&query=${value}`,
+                    url: `/api/review/search/doc-hos?sortType=0&type=${props.category}&query=${value}`,
                 }).then((res) => {
                     if (props.onDoctorSearchResult) {
                         props.onDoctorSearchResult(res.data);
@@ -68,7 +68,7 @@ const Search = (props: SearchProps) => {
                     }
                     else {
                         alert(`Contact to developer. ${err.response.status}`);
-                        navigate("/");
+                        ;
                     }    
                 });
             }
@@ -76,7 +76,7 @@ const Search = (props: SearchProps) => {
             if (props.category < 9) {
                 axios({
                     method: "get", // or 'post', 'put', etc.
-                    url: `${process.env.REACT_APP_SERVER_URL}/api/review/recommendation/search?&pages=${0}&query=${value}&part=${props.category}`,
+                    url: `/api/review/recommendation/search?&pages=${0}&query=${value}&part=${props.category}`,
                 }).then((res) => {
                     if (props.onSearchResult) {
                         props.onSearchResult(res.data);
@@ -89,13 +89,13 @@ const Search = (props: SearchProps) => {
                     }
                     else {
                         alert(`Contact to developer. ${err.response.status}`);
-                        navigate("/");
+                        ;
                     }      
                 });
             } else {
                 axios({
                     method: "get", // or 'post', 'put', etc.
-                    url: `${process.env.REACT_APP_SERVER_URL}/api/review/recommendation/doc-hos?type=${props.category}&query=${value}`,
+                    url: `/api/review/recommendation/doc-hos?type=${props.category}&query=${value}`,
                 }).then((res) => {
                     if (props.onDoctorSearchResult) {
                         props.onDoctorSearchResult(res.data);
@@ -108,7 +108,7 @@ const Search = (props: SearchProps) => {
                     }
                     else {
                         alert(`Contact to developer. ${err.response.status}`);
-                        navigate("/");
+                        ;
                     }      
                 });
             }
@@ -116,7 +116,7 @@ const Search = (props: SearchProps) => {
         else if(props.parent === 2) {
             axios({
                 method: "get",
-                url: `${process.env.REACT_APP_SERVER_URL}/api/hospital/search?pages=0&title=${value}`,
+                url: `/api/hospital/search?pages=0&title=${value}`,
             }).then((res) => {
                 if (props.onHospitalSearchResult) {
                     props.onHospitalSearchResult(res.data);
@@ -129,13 +129,13 @@ const Search = (props: SearchProps) => {
                 }
                 else {
                     alert(`Contact to developer. ${err.response.status}`);
-                    navigate("/");
+                    ;
                 }        
             });
         } else if(props.parent === 3) {
             axios({
                 method: "get",
-                url: `${process.env.REACT_APP_SERVER_URL}/api/doctor/search?pages=0&title=${value}`,
+                url: `/api/doctor/search?pages=0&title=${value}`,
             }).then((res) => {
                 if (props.onDoctorPageSearchResult) {
                     props.onDoctorPageSearchResult(res.data);
@@ -148,7 +148,7 @@ const Search = (props: SearchProps) => {
                 }
                 else {
                     alert(`Contact to developer. ${err.response.status}`);
-                    navigate("/");
+                    ;
                 }          
             });
         }
@@ -159,7 +159,7 @@ const Search = (props: SearchProps) => {
             if (props.category < 9) {
                 axios({
                     method: "get", // or 'post', 'put', etc.
-                    url: `${process.env.REACT_APP_SERVER_URL}/api/review/recommendation/search?&pages=${0}&query=${value}&part=${props.category}`,
+                    url: `/api/review/recommendation/search?&pages=${0}&query=${value}&part=${props.category}`,
                 }).then((res) => {
                     if (props.onSearchResult) {
                         props.onSearchResult(res.data);
@@ -171,13 +171,13 @@ const Search = (props: SearchProps) => {
                     }
                     else {
                         alert(`Contact to developer. ${err.response.status}`);
-                        navigate("/");
+                        ;
                     }      
                 });
             } else {
                 axios({
                     method: "get", // or 'post', 'put', etc.
-                    url: `${process.env.REACT_APP_SERVER_URL}/api/review/recommendation/doc-hos?type=${props.category}&query=${value}`,
+                    url: `/api/review/recommendation/doc-hos?type=${props.category}&query=${value}`,
                 }).then((res) => {
                     if (props.onDoctorSearchResult) {
                         props.onDoctorSearchResult(res.data);
@@ -189,7 +189,7 @@ const Search = (props: SearchProps) => {
                     }
                     else {
                         alert(`Contact to developer. ${err.response.status}`);
-                        navigate("/");
+                        ;
                     }        
                 });
             }
@@ -198,7 +198,7 @@ const Search = (props: SearchProps) => {
             if (props.category < 9) {
                 axios({
                     method: "get", // or 'post', 'put', etc.
-                    url: `${process.env.REACT_APP_SERVER_URL}/api/review/recommendation/search?&pages=${0}&query=${value}&part=${props.category}`,
+                    url: `/api/review/recommendation/search?&pages=${0}&query=${value}&part=${props.category}`,
                 }).then((res) => {
                     if (props.onSearchResult) {
                         props.onSearchResult(res.data);
@@ -211,13 +211,13 @@ const Search = (props: SearchProps) => {
                     }
                     else {
                         alert(`Contact to developer. ${err.response.status}`);
-                        navigate("/");
+                        ;
                     }        
                 });
             } else {
                 axios({
                     method: "get", // or 'post', 'put', etc.
-                    url: `${process.env.REACT_APP_SERVER_URL}/api/review/recommendation/doc-hos?type=${props.category}&query=${value}`,
+                    url: `/api/review/recommendation/doc-hos?type=${props.category}&query=${value}`,
                 }).then((res) => {
                     if (props.onDoctorSearchResult) {
                         props.onDoctorSearchResult(res.data);
@@ -230,7 +230,7 @@ const Search = (props: SearchProps) => {
                     }
                     else {
                         alert(`Contact to developer. ${err.response.status}`);
-                        navigate("/");
+                        ;
                     }          
                 });
             }
@@ -238,7 +238,7 @@ const Search = (props: SearchProps) => {
         else if(props.parent === 3) {
             axios({
                 method: "get",
-                url: `${process.env.REACT_APP_SERVER_URL}/api/doctor/search?pages=0&title=${value}`,
+                url: `/api/doctor/search?pages=0&title=${value}`,
             }).then((res) => {
                 if (props.onDoctorPageSearchResult) {
                     props.onDoctorPageSearchResult(res.data);
@@ -251,7 +251,7 @@ const Search = (props: SearchProps) => {
                 }
                 else {
                     alert(`Contact to developer. ${err.response.status}`);
-                    navigate("/");
+                    ;
                 }          
             });
         }

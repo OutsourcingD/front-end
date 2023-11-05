@@ -1,5 +1,5 @@
 import React from "react";
-import "./PartCategory.css";
+import "../review_page/PartCategory.css";
 
 function PartCategory() {
   return (

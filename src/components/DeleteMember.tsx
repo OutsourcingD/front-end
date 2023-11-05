@@ -28,7 +28,7 @@ const DeleteMember = () => {
 
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member/whole-info`,
+            url: `/api/admin/member/whole-info`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -47,7 +47,7 @@ const DeleteMember = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     };
@@ -55,7 +55,7 @@ const DeleteMember = () => {
     const handleDelete = (id: string) => {
         axios({
             method: "delete",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member`,
+            url: `/api/admin/member`,
             params: {
                 id
             },
@@ -75,7 +75,7 @@ const DeleteMember = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     };
@@ -90,7 +90,7 @@ const DeleteMember = () => {
     const onClick = () => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member/whole-info`,
+            url: `/api/admin/member/whole-info`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -109,7 +109,7 @@ const DeleteMember = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     }
@@ -117,7 +117,7 @@ const DeleteMember = () => {
     React.useEffect(() => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/member/whole-info`,
+            url: `/api/admin/member/whole-info`,
             params: {
                 pages: page - 1,
                 userId: id,
@@ -135,7 +135,7 @@ const DeleteMember = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     }, [page]);

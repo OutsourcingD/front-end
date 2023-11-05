@@ -49,7 +49,7 @@ function InqueryComponent() {
     const sendInquery = () => {
         axios({
             method: "post", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/api/inquiry`,
+            url: `/api/inquiry`,
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
@@ -58,7 +58,7 @@ function InqueryComponent() {
             },
         }).then((res) => {
             alert("문의가 등록되었습니다.")
-            navigate("/");
+            ;
         }).catch((err) => {
             if(err.response.status === 401 || err.response.status === 403) {
                 alert("This is not admin ID.");
@@ -66,7 +66,7 @@ function InqueryComponent() {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
+                ;
             }          
         });
     };

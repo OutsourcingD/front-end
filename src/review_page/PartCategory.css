@@ -6,7 +6,7 @@
 }
 
 .part_category_item_div {
-    margin-right: 2%;
+    margin-right: 5px;
     border: 1.5px solid #DDB0E3;
     border-radius: 20px;
     padding-left: 3%;
@@ -18,7 +18,15 @@
 #part_category_item {
     white-space: nowrap;
     color: #DDB0E3;
-    font-size: 0.73vw;
+    font-size: 13px;
     font-weight: 600;
     text-align: center;
+}
+
+.part_category_item_div.clicked {
+    background-color: #DDB0E3;
+}
+
+.part_category_item_div.clicked #part_category_item {
+    color: white;
 }

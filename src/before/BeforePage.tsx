@@ -39,7 +39,7 @@ function BeforePage() {
     React.useEffect(() => {
         axios({
             method: "get", // or 'post', 'put', etc.
-            url: `${process.env.REACT_APP_SERVER_URL}/api/review/before-after?part=${category}&pages=${
+            url: `/api/review/before-after?part=${category}&pages=${
                 page - 1
             }`,
         }).then((res) => {
@@ -47,7 +47,7 @@ function BeforePage() {
             setTotalPages(res.data[0] !== undefined ? res.data[0].totalPages : 1);
         }).catch((err) => {
             alert("Server Error" + err.response.status);
-            navigate("/");
+            ;
         });
     }, [page]);
 
