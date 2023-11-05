@@ -507,7 +507,7 @@ const BannerManagementPage = () => {
                                                     src="/checkbox.png"
                                                     alt=""
                                                     id ="banner_edit_category_checkbox_pupple"
-                                                    onClick={() => {setCategory(0); setLocation(0);}}
+                                                    onClick={() => {setCategory(0); setLocation(1);}}
                                                 />
                                             )}
                                         </div>
