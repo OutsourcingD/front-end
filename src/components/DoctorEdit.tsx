@@ -218,21 +218,19 @@ const DoctorEdit = () => {
         });
     };
 
-    const HospitalDeleteHandler = (index: number) => {
+    const HospitalDeleteHandler = (postId: number) => {
         axios({
             method: "delete",
             url: `${process.env.REACT_APP_SERVER_URL}/api/admin/post/delete`,
             params: {
-                postId: hospitalItems[index].postId,
+                postId: postId,
             },
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         })
             .then((res) => {
-                const newItems = [...hospitalItems];
-                newItems.splice(index, 1);
-                setHospitalItems(newItems);
+                alert("delete success");
             })
             .catch((err) => {
                 if (err.response.status === 401 || err.response.status === 403) {
@@ -246,21 +244,19 @@ const DoctorEdit = () => {
             });
     };
 
-    const DoctorDeleteHandler = (index: number) => {
+    const DoctorDeleteHandler = (postId: number) => {
         axios({
             method: "delete",
             url: `${process.env.REACT_APP_SERVER_URL}/api/admin/post/delete`,
             params: {
-                postId: doctorItems[index].postId,
+                postId: postId,
             },
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
         })
             .then((res) => {
-                const newItems = [...doctorItems];
-                newItems.splice(index, 1);
-                setDoctorItems(newItems);
+                alert("delete success");
             })
             .catch((err) => {
                 if (err.response.status === 401 || err.response.status === 403) {
@@ -361,9 +357,6 @@ const DoctorEdit = () => {
                                             </div>
                                             <div
                                                 className="doctor_edit_item_button_div"
-                                                onClick={() =>
-                                                    HospitalDeleteHandler(index)
-                                                }
                                             >
                                                 <p id="doctor_item_button_delete" onClick={() => HospitalDeleteHandler(item.postId)}>
                                                     delete
@@ -559,18 +552,11 @@ const DoctorEdit = () => {
                         </div>
                     </div>
                     {
-                        category === 0 ? <DoctorPostAdd isAddClicked={isAddClicked}/> : 
-                        category === 1 ? <HospitalPostAdd isAddClicked={isAddClicked}/> : 
-                        category === 2 ? <BeforeAfterPostAdd isAddClicked={isAddClicked}/> : null
+                        category === 0 ? <DoctorPostAdd isAddClicked={isAddClicked} setIsAddClicked={setIsAddClicked}/> : 
+                        category === 1 ? <HospitalPostAdd isAddClicked={isAddClicked} setIsAddClicked={setIsAddClicked}/> : 
+                        category === 2 ? <BeforeAfterPostAdd isAddClicked={isAddClicked} setIsAddClicked={setIsAddClicked}/> : null
                     }
-                    <div className="banner_buttons_div">
-                        <div className="banner_cancel_button_div">
-                            <p id="banner_cancel_text" onClick={() => {setIsAddClicked(false);}}>cancel</p>
-                         </div>
-                        <div className="banner_save_button_div">
-                            <p id="banner_save_text">save</p>
-                        </div>
-                    </div>
+                    
                 </div>
             ) : null}
         </div>

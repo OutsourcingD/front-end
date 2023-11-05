@@ -38,6 +38,9 @@ const DoctorPostEdit: React.FC<DoctorPostEditProps> = ({postId,isRightClicked,se
     const [items, setItems] = React.useState([1]);
     const [doctorPostDetail,setDoctorPostDetail]  = React.useState<DoctorPostDetailProps>({} as DoctorPostDetailProps);
     const [imageList, setImageList] = React.useState<ImageVo[]>([]);
+    const [doctorName,setDoctorName] = React.useState("");
+    const [title,setTitle] = React.useState("");
+    const [description,setDescription] = React.useState("");
 
     const saveImgFile = (index: number) => {
         if (
@@ -131,6 +134,7 @@ const DoctorPostEdit: React.FC<DoctorPostEditProps> = ({postId,isRightClicked,se
                         <input
                             id="hospital_info_add_name_input"
                             placeholder={doctorPostDetail.doctorName}
+                            onChange={(e) => setDoctorName(e.target.value)}
                         />
                     </form>
                 </div>
@@ -148,6 +152,7 @@ const DoctorPostEdit: React.FC<DoctorPostEditProps> = ({postId,isRightClicked,se
                         <input
                             id="hospital_info_add_name_input"
                             placeholder={doctorPostDetail.title}
+                            onChange={(e) => setTitle(e.target.value)}
                         />
                     </form>
                 </div>
@@ -159,6 +164,7 @@ const DoctorPostEdit: React.FC<DoctorPostEditProps> = ({postId,isRightClicked,se
                         <input
                             id="hospital_info_add_name_input"
                             placeholder={doctorPostDetail.introduction}
+                            onChange={(e) => setDescription(e.target.value)}
                         />
                     </form>
                 </div>

@@ -4,9 +4,10 @@ import './BeforeAfterPostAdd.css';
 
 interface BeforeAfterAddProps {
     isAddClicked: boolean;
+    setIsAddClicked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const BeforeAfterPostAdd: React.FC<BeforeAfterAddProps> = ({isAddClicked}) => {
+const BeforeAfterPostAdd: React.FC<BeforeAfterAddProps> = ({isAddClicked,setIsAddClicked}) => {
     const [images, setImages] = React.useState(
         Array(10).fill("/add_picture_png.png")
     );
@@ -178,6 +179,14 @@ const BeforeAfterPostAdd: React.FC<BeforeAfterAddProps> = ({isAddClicked}) => {
                         </div>
                     </div>
                 </div>
+                <div className="banner_buttons_div">
+                        <div className="banner_cancel_button_div">
+                            <p id="banner_cancel_text" onClick={() => {setIsAddClicked(false);}}>cancel</p>
+                         </div>
+                        <div className="banner_save_button_div">
+                            <p id="banner_save_text">save</p>
+                        </div>
+                    </div>
             </div>
         </div>
     );

@@ -2,12 +2,23 @@ import React from "react";
 import "./HospitalPostAdd.css";
 import PartCategory from "../review_page/PartCategory";
 import Wysiwyg from "./ContentInput";
+import { HospitalPostAddDto } from "../dto/HospitalPostAddDto";
+import axios from "axios"
+import Breast from "../part/Breast";
+import Countouring from "../part/Countouring";
+import Eyes from "../part/Eyes";
+import FatGrafting from "../part/FatGrafting";
+import Lifting from "../part/Lifting";
+import Liposuction from "../part/Liposuction";
+import Nose from "../part/Nose";
+import Skin from "../part/Skin";
 
 interface HospitalInfoAddProps {
     isAddClicked: boolean;
+    setIsAddClicked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const HospitalPostAdd: React.FC<HospitalInfoAddProps> = ({isAddClicked}) => {
+const HospitalPostAdd: React.FC<HospitalInfoAddProps> = ({isAddClicked,setIsAddClicked}) => {
     const [images, setImages] = React.useState(
         Array(10).fill("/add_picture_png.png")
     );
@@ -17,6 +28,76 @@ const HospitalPostAdd: React.FC<HospitalInfoAddProps> = ({isAddClicked}) => {
     const [profileFiles, setProfileFiles] = React.useState<File[]>([]); // 파일 객체를 위한 상태
     const fileInputs = React.useRef<HTMLInputElement[]>([]);
     const [items, setItems] = React.useState([1]);
+    const [breastClicked,setBreastClicked] = React.useState(false);
+    const [countouringClicked,setCountouringClicked] = React.useState(false);
+    const [eyesClicked,setEyesClicked] = React.useState(false);
+    const [fatGraftingClicked,setFatGraftingClicked] = React.useState(false);
+    const [liftingClicked,setLiftingClicked] = React.useState(false);
+    const [liposuctionClicked,setLiposuctionClicked] = React.useState(false);
+    const [noseClicked,setNoseClicked] = React.useState(false);
+    const [skinClicked,setSkinClicked] = React.useState(false);
+
+    const [title,setTitle] = React.useState("");
+    const [hospitalName,setHospitalName] = React.useState("");
+    const [description,setDescription] = React.useState("");
+
+    const onHospitalPostAdd = () => {
+        let part = "";
+
+        if (breastClicked) {
+            part = part + 'breast'+' ';
+        }
+        if (countouringClicked) {
+            part = part + 'countouring'+' ';
+        }
+        if (eyesClicked) {
+            part = part + 'eyes'+' ';
+        }
+        if (fatGraftingClicked) {
+            part = part + 'fatgrafting'+' ';
+        }
+        if (liftingClicked) {
+            part = part + 'lifting'+' ';
+        }
+        if (liposuctionClicked) {
+            part = part + 'liposuction'+ ' ';
+        }
+        if (noseClicked) {
+            part = part + 'nose'+' ';
+        }
+        if (skinClicked) {
+            part = part  + 'skin'+' ';
+        }
+
+        const HospitalPostAddDto: HospitalPostAddDto = {
+            type: 0,
+            title: title,
+            name: hospitalName,
+            part: part,
+            introduction: description,
+            postImageList: profileFiles
+        };
+
+        axios({
+            method: "post",
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/post/add`,
+            data: HospitalPostAddDto,
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                "Content-Type": "multipart/form-data"
+            }    
+        }).then((res) => {
+            alert("Success");
+        }).catch((err) => {
+            if (err.response.status === 401 || err.response.status === 403) {
+                alert("This id is not admin id.");
+            }
+            else 
+            {
+                alert("Contact to developer." + err.response.status)
+            }
+        });
+    }
 
     const saveImgFile = (index: number) => {
         if (
@@ -85,6 +166,7 @@ const HospitalPostAdd: React.FC<HospitalInfoAddProps> = ({isAddClicked}) => {
                         <input
                             id="hospital_info_add_name_input"
                             placeholder="Please enter hospital name"
+                            onChange={(e) => setHospitalName(e.target.value)}
                         />
                     </form>
                 </div>
@@ -92,7 +174,32 @@ const HospitalPostAdd: React.FC<HospitalInfoAddProps> = ({isAddClicked}) => {
             <div className="hospital_info_add_part_container">
                 <p id="hospital_info_add_name_title">Part</p>
                 <div style={{ width: "300px" }}>
-                    <PartCategory />
+                <div className="part_category_div">
+                    <div onClick={() => setBreastClicked(breastClicked => !breastClicked)}>
+                    <Breast />
+                    </div>
+                    <div onClick={() => setCountouringClicked(countouringClicked => !countouringClicked)}>
+                    <Countouring />
+                    </div>
+                    <div onClick={() => setEyesClicked(eyesClicked => !eyesClicked)}>
+                    <Eyes />
+                    </div>
+                    <div onClick={() => setFatGraftingClicked(fatGraftingClicked => !fatGraftingClicked)}>
+                    <FatGrafting />
+                    </div>
+                    <div onClick={() => setLiftingClicked(liftingClicked => !liftingClicked)}>
+                    <Lifting />
+                    </div>
+                    <div onClick={() => setLiposuctionClicked(liposuctionClicked => !liposuctionClicked)}>
+                    <Liposuction />
+                    </div>
+                    <div onClick={() => setNoseClicked(noseClicked => !noseClicked)}>
+                    <Nose />
+                    </div>
+                    <div onClick={() => setSkinClicked(skinClicked => !skinClicked)}>
+                    <Skin />
+                    </div>
+                </div>
                 </div>
             </div>
             <div className="hospital_info_add_part_container">
@@ -102,6 +209,7 @@ const HospitalPostAdd: React.FC<HospitalInfoAddProps> = ({isAddClicked}) => {
                         <input
                             id="hospital_info_add_name_input"
                             placeholder="Please enter title"
+                            onChange={(e) => setTitle(e.target.value)}
                         />
                     </form>
                 </div>
@@ -113,6 +221,7 @@ const HospitalPostAdd: React.FC<HospitalInfoAddProps> = ({isAddClicked}) => {
                         <input
                             id="hospital_info_add_name_input"
                             placeholder="Please enter description"
+                            onChange={(e) => setDescription(e.target.value)}
                         />
                     </form>
                 </div>
@@ -168,6 +277,14 @@ const HospitalPostAdd: React.FC<HospitalInfoAddProps> = ({isAddClicked}) => {
                         </div>
                     </div>
                 </div>
+                <div className="banner_buttons_div">
+                        <div className="banner_cancel_button_div">
+                            <p id="banner_cancel_text" onClick={() => {setIsAddClicked(false);}}>cancel</p>
+                         </div>
+                        <div className="banner_save_button_div">
+                            <p id="banner_save_text" onClick={() => onHospitalPostAdd()}>save</p>
+                        </div>
+                    </div>
                 <div className="hospital_add_page_wysiwyg_div">
                     
                 </div>

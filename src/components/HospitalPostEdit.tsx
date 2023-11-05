@@ -38,6 +38,9 @@ const HospitalPostEdit: React.FC<HospitalPostEditProps> = ({postId,isLeftClicked
     const [items, setItems] = React.useState([1]);
     const [hospitalPostDetail,setHospitalPostDetail]  = React.useState<HospitalPostDetailProps>({} as HospitalPostDetailProps);
     const [imageList, setImageList] = React.useState<ImageVo[]>([]);
+    const [hospitalName,setHospitalName] = React.useState("");
+    const [title,setTitle] = React.useState("");
+    const [description,setDescription] = React.useState("");
 
     const saveImgFile = (index: number) => {
         if (
@@ -131,6 +134,7 @@ const HospitalPostEdit: React.FC<HospitalPostEditProps> = ({postId,isLeftClicked
                         <input
                             id="hospital_info_add_name_input"
                             placeholder={hospitalPostDetail.hospitalName}
+                            onChange={(e) => setHospitalName(e.target.value)}
                         />
                     </form>
                 </div>
@@ -148,6 +152,7 @@ const HospitalPostEdit: React.FC<HospitalPostEditProps> = ({postId,isLeftClicked
                         <input
                             id="hospital_info_add_name_input"
                             placeholder={hospitalPostDetail.title}
+                            onChange={(e) => setTitle(e.target.value)}
                         />
                     </form>
                 </div>
@@ -159,6 +164,7 @@ const HospitalPostEdit: React.FC<HospitalPostEditProps> = ({postId,isLeftClicked
                         <input
                             id="hospital_info_add_name_input"
                             placeholder={hospitalPostDetail.introduction}
+                            onChange={(e) => setDescription(e.target.value)}
                         />
                     </form>
                 </div>
