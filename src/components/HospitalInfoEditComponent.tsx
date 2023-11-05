@@ -3,6 +3,7 @@ import "./InfoEditComponent.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import PartComponent from "../part/PartComponent";
+import { EditHospitalInfoRequestDto } from "../dto/EditHospitalInfoRequestDto";
 
 interface InfoEditProp {
     hospitalId: number;
@@ -19,6 +20,8 @@ interface HospitalDetailProps {
 
 const HospitalInfoEditComponent:React.FC<InfoEditProp> = ({hospitalId,isHopitalInfoEditClicked,setIsHospitalInfoEditClicked}) => {
     const [category,setCategory] = React.useState<number>(0);
+    const [hospitalName, setHospitalName] = React.useState("");
+    const [location, setLocation] = React.useState("");
 
     const [images,setImages] = React.useState(
         Array(10).fill("/add_picture_png.png")
@@ -27,6 +30,37 @@ const HospitalInfoEditComponent:React.FC<InfoEditProp> = ({hospitalId,isHopitalI
     const [prevImages, setPrevImages] = React.useState(
         Array(10).fill("/add_picture_png.png")
     );
+
+    const getHospitalEdit = () => {
+
+        const EditHospitalInfoRequestDto: EditHospitalInfoRequestDto = {
+            hospitalId: hospitalId,
+            hospitalName: hospitalName,
+            location: location,
+            mainImage: profileFiles[0]
+        };
+
+        axios({
+            method: "post",
+            url: `${process.env.REACT_APP_SERVER_URL}/api/admin/hospital/edit`,
+            data: EditHospitalInfoRequestDto,
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                "Content-Type": "multipart/form-data"
+            }
+        }).then((res) => {
+            alert("succcess");
+        }).catch((err) => {
+            if (err.response.status === 401 || err.response.status === 403) {
+                alert("This id is not admin id.");
+            }
+            else 
+            {
+                alert("Contact to developer." + err.response.status)
+            }
+        });
+    }
+
 
     const navigate = useNavigate();
     const [profileFiles, setProfileFiles] = React.useState<File[]>([]); 
@@ -42,6 +76,8 @@ const HospitalInfoEditComponent:React.FC<InfoEditProp> = ({hospitalId,isHopitalI
             },
         }).then((res) => {
             setHospitalDetail(res.data);
+            setHospitalName(res.data.hospitalName);
+            setLocation(res.data.location);
         }).catch((err) => {
             if(err.status === 401 || err.status === 403) {
                 alert("This is not admin ID.");
@@ -139,6 +175,7 @@ const HospitalInfoEditComponent:React.FC<InfoEditProp> = ({hospitalId,isHopitalI
                             <input
                                 id ="banner_link_add_input"
                                  placeholder={hospitalDetail.location}
+                                 onChange={(e) => setLocation(e.target.value)}
                             />
                         </form>
                     </div>
@@ -149,6 +186,7 @@ const HospitalInfoEditComponent:React.FC<InfoEditProp> = ({hospitalId,isHopitalI
                             <input
                                 id ="banner_link_add_input"
                                 placeholder={hospitalDetail.hospitalName}
+                                onChange={(e) => setHospitalName(e.target.value)}
                             />
                         </form>
                     </div>
@@ -167,7 +205,7 @@ const HospitalInfoEditComponent:React.FC<InfoEditProp> = ({hospitalId,isHopitalI
         </div>
         <div className="banner_add_picture_wrapper">
                     <img
-                        src={hospitalDetail.mainImage}
+                        src={images[0] === '/add_picture_png.png' ? hospitalDetail.mainImage:images[0]}
                         alt=""
                         id="banner_add_picture"
                         onClick={()=> {
@@ -196,7 +234,7 @@ const HospitalInfoEditComponent:React.FC<InfoEditProp> = ({hospitalId,isHopitalI
                 <p id="banner_cancel_text" onClick={() => {setIsHospitalInfoEditClicked(false);}}>cancel</p>
             </div>
             <div className="banner_save_button_div">
-                <p id="banner_save_text">save</p>
+                <p id="banner_save_text" onClick = {() => getHospitalEdit()}>save</p>
             </div>
         </div>
     </div>

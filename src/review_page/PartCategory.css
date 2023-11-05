@@ -22,3 +22,11 @@
     font-weight: 600;
     text-align: center;
 }
+
+.part_category_item_div.clicked {
+    background-color: #DDB0E3;
+}
+
+.part_category_item_div.clicked #part_category_item {
+    color: white;
+}
