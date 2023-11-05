@@ -79,7 +79,7 @@ function MyPageInfo() {
                     }
                     else {
                         alert(`Contact to developer. ${err.response.status}`);
-                        navigate("/");
+                        ;
                     }          
                 });
         }
@@ -101,7 +101,7 @@ function MyPageInfo() {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
+                ;
             }          
         });
     };
@@ -163,7 +163,7 @@ function MyPageInfo() {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
+                ;
             }          
         });
     }, []);*/

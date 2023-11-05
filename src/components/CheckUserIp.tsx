@@ -48,7 +48,7 @@ const CheckUserIp = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     };
@@ -75,7 +75,7 @@ const CheckUserIp = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     };
@@ -101,7 +101,7 @@ const CheckUserIp = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     }, [page]);

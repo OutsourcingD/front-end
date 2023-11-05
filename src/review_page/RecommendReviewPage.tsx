@@ -85,7 +85,7 @@ function RecommendReviewPage() {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
+                ;
             }          
         });
     }

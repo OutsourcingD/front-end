@@ -64,7 +64,7 @@ const DoctorAdd = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     }
@@ -90,7 +90,7 @@ const DoctorAdd = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     }
@@ -119,7 +119,7 @@ const DoctorAdd = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     };
@@ -146,7 +146,7 @@ const DoctorAdd = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     }
@@ -175,7 +175,7 @@ const DoctorAdd = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     };
@@ -202,7 +202,7 @@ const DoctorAdd = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     };
@@ -230,7 +230,7 @@ const DoctorAdd = () => {
             else
             {
                 alert("Contact the administrator.");
-                navigate("/");
+                ;
             }
         });
     };

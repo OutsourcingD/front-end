@@ -56,7 +56,7 @@ function AdminPage() {
             });
 
             if(!admin)
-                navigate("/");
+                ;
         }).catch((err) => {  
             if(err.response.status === 401 || err.response.status === 403) {
                 alert("This is not admin ID.");
@@ -64,7 +64,7 @@ function AdminPage() {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
+                ;
             }        
         });
     }, []);

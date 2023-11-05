@@ -38,7 +38,7 @@ function ReviewPage() {
         else
         {
             alert("Server Error" + err.response.status);
-            navigate("/");
+            ;
         }
     });
     }

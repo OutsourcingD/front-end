@@ -27,7 +27,7 @@ const ChangeReview = () => {
       else 
       {
         alert(`Contact to developer. ${err.status}`);
-        navigate("/");
+        ;
       }
     });
   }, []);

@@ -36,7 +36,7 @@ function Hospital() {
             setTotalPages(res.data !== undefined && res.data.length !== 0 ? res.data[0].totalPages : 1);
         }).catch((err) => {
             alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");      
+                ;      
         });
     };
 

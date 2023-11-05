@@ -47,7 +47,7 @@ const DeleteMember = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     };
@@ -75,7 +75,7 @@ const DeleteMember = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     };
@@ -109,7 +109,7 @@ const DeleteMember = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     }
@@ -135,7 +135,7 @@ const DeleteMember = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     }, [page]);

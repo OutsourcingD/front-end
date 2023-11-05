@@ -39,7 +39,7 @@ function RecommendedReview() {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
+                ;
             }
         });
     }, [page]);

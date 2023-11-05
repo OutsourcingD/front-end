@@ -38,7 +38,7 @@ function Header() {
         if (page === 0) {
             localStorage.setItem("selected", "0");
             setSelected(0);
-            navigate("/");
+            ;
         } else if (page === 1) {
             localStorage.setItem("selected", "1");
             setSelected(1);
@@ -84,7 +84,7 @@ function Header() {
                 }
                 else {
                     alert(`Contact to developer. ${err.response.status}`);
-                    navigate("/");
+                    ;
                 }
             });
         }
@@ -169,7 +169,7 @@ function Header() {
                 }
                 else {
                     alert(`Contact to developer. ${err.response.status}`);
-                    navigate("/");
+                    ;
                 }
             });
         }

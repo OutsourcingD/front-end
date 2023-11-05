@@ -40,7 +40,7 @@ function MyPage() {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
+                ;
             }          
         });
 
@@ -60,7 +60,7 @@ function MyPage() {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
+                ;
             }          
         });
 
@@ -80,7 +80,7 @@ function MyPage() {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
+                ;
             }          
         });
         
@@ -100,7 +100,7 @@ function MyPage() {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
+                ;
             }          
         });
     }, []);

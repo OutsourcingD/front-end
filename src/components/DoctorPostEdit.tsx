@@ -107,11 +107,11 @@ const DoctorPostEdit: React.FC<DoctorPostEditProps> = ({postId,isRightClicked,se
             }
             else if(err.status === 404) {
                 alert("Contact to developer.");
-                navigate("/");
+                ;
             }
             else {
                 alert(`Contact to developer2. ${err.status}`);
-                navigate("/");
+                ;
             }
         });
     }

@@ -61,7 +61,7 @@ function MakeReviewItem() {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
+                ;
             }           
         });
 
@@ -81,7 +81,7 @@ function MakeReviewItem() {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
+                ;
             }             
         });
     }, []);

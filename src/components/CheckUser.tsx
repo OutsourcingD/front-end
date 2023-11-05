@@ -48,7 +48,7 @@ const CheckUser = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     };
@@ -75,7 +75,7 @@ const CheckUser = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     };
@@ -102,7 +102,7 @@ const CheckUser = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     };
@@ -129,7 +129,7 @@ const CheckUser = () => {
             }
             else {
                 alert("Contact to developer.");
-                navigate("/");
+                ;
             }
         })
     }
@@ -156,7 +156,7 @@ const CheckUser = () => {
             }
             else {
                 alert("Contact to developer.");
-                navigate("/");
+                ;
             }
         })
     }
@@ -182,7 +182,7 @@ const CheckUser = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");   
+                ;   
             }
         });
     }, [page]);

@@ -73,7 +73,7 @@ const DoctorEdit = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
+                ;
             }
         });
     };
@@ -99,7 +99,7 @@ const DoctorEdit = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
+                ;
             }
         });
     };
@@ -130,7 +130,7 @@ const DoctorEdit = () => {
             }
             else {
                 alert(`Contact to developer. ${err.response.status}`);
-                navigate("/");
+                ;
             }
         });
     };

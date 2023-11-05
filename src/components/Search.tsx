@@ -49,7 +49,7 @@ const Search = (props: SearchProps) => {
                     }
                     else {
                         alert(`Contact to developer. ${err.response.status}`);
-                        navigate("/");
+                        ;
                     }  
                 });
             } else {
@@ -68,7 +68,7 @@ const Search = (props: SearchProps) => {
                     }
                     else {
                         alert(`Contact to developer. ${err.response.status}`);
-                        navigate("/");
+                        ;
                     }    
                 });
             }
@@ -89,7 +89,7 @@ const Search = (props: SearchProps) => {
                     }
                     else {
                         alert(`Contact to developer. ${err.response.status}`);
-                        navigate("/");
+                        ;
                     }      
                 });
             } else {
@@ -108,7 +108,7 @@ const Search = (props: SearchProps) => {
                     }
                     else {
                         alert(`Contact to developer. ${err.response.status}`);
-                        navigate("/");
+                        ;
                     }      
                 });
             }
@@ -129,7 +129,7 @@ const Search = (props: SearchProps) => {
                 }
                 else {
                     alert(`Contact to developer. ${err.response.status}`);
-                    navigate("/");
+                    ;
                 }        
             });
         } else if(props.parent === 3) {
@@ -148,7 +148,7 @@ const Search = (props: SearchProps) => {
                 }
                 else {
                     alert(`Contact to developer. ${err.response.status}`);
-                    navigate("/");
+                    ;
                 }          
             });
         }
@@ -171,7 +171,7 @@ const Search = (props: SearchProps) => {
                     }
                     else {
                         alert(`Contact to developer. ${err.response.status}`);
-                        navigate("/");
+                        ;
                     }      
                 });
             } else {
@@ -189,7 +189,7 @@ const Search = (props: SearchProps) => {
                     }
                     else {
                         alert(`Contact to developer. ${err.response.status}`);
-                        navigate("/");
+                        ;
                     }        
                 });
             }
@@ -211,7 +211,7 @@ const Search = (props: SearchProps) => {
                     }
                     else {
                         alert(`Contact to developer. ${err.response.status}`);
-                        navigate("/");
+                        ;
                     }        
                 });
             } else {
@@ -230,7 +230,7 @@ const Search = (props: SearchProps) => {
                     }
                     else {
                         alert(`Contact to developer. ${err.response.status}`);
-                        navigate("/");
+                        ;
                     }          
                 });
             }
@@ -251,7 +251,7 @@ const Search = (props: SearchProps) => {
                 }
                 else {
                     alert(`Contact to developer. ${err.response.status}`);
-                    navigate("/");
+                    ;
                 }          
             });
         }

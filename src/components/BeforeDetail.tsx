@@ -41,7 +41,7 @@ const BeforeDetail = (props: BeforeDetailProps) => {
                 : setLast(false);
         }).catch((err) => {
             alert(`Contact to developer2. ${err.status}`);
-            navigate("/");
+            ;
         });
     }, []);
 

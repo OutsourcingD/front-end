@@ -48,10 +48,10 @@ const AddAdminId = () => {
                     navigate("/login");
                 } else if (err.response.status === 404) {
                     alert(`${userId} is not exist.`);
-                    navigate("/");
+                    ;
                 } else {
                     alert(`Contact to developer. ${err.response.status}`);
-                    navigate("/");
+                    ;
                 }
             });
     };
@@ -99,7 +99,7 @@ const AddAdminId = () => {
                     navigate("/login");
                 } else {
                     alert(`Contact to developer2. ${err.status}`);
-                    navigate("/");
+                    ;
                 }
             });
     }, []);

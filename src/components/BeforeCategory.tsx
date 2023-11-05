@@ -26,7 +26,7 @@ const BeforeCategory = (props: BeforeCategoryProps) => {
             props.onCategoryResult(res.data);
         }).catch((err) => {
             alert(`Contact to developer2. ${err.status}`);
-            navigate("/");
+            ;
         });
     }, [categoryNumber]);
 

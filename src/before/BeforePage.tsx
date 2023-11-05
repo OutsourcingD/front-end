@@ -47,7 +47,7 @@ function BeforePage() {
             setTotalPages(res.data[0] !== undefined ? res.data[0].totalPages : 1);
         }).catch((err) => {
             alert("Server Error" + err.response.status);
-            navigate("/");
+            ;
         });
     }, [page]);
 

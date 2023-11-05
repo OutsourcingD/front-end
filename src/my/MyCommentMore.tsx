@@ -47,7 +47,7 @@ function MyRecommendReview() {
                     navigate("/login");
                 } else {
                     alert(`Contact to developer. ${err.response.status}`);
-                    navigate("/");
+                    ;
                 }
             });
     }, [page]);
