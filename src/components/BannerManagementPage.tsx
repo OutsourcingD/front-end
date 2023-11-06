@@ -173,7 +173,7 @@ const BannerManagementPage = () => {
                 bannerId: bannerId
             },
             headers: {
-                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+                Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
             },
         }).then((res) => {
             setBannerDetail(res.data);

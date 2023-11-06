@@ -39,7 +39,12 @@ function Login() {
                   localStorage.setItem("refresh_token", res.data.refreshToken);
                   localStorage.setItem("member_id", res.data.memberId);
                   localStorage.setItem("flvnsfl", res.data.flvnsfl);
-                  ;
+                  
+                  if (res.data.flvnsfl) {
+                    navigate('/admin');
+                  } else {
+                    navigate("/");
+                  }
               }).catch((err) => {
                 if(err.response.status === 401 || err.response.status === 403) {
                     alert("Check the ID or Password.");
