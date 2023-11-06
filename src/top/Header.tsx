@@ -94,6 +94,8 @@ function Header() {
     const logoutClick = () => {
         setIsLogin(false);
         localStorage.clear();
+        alert("/logout success");
+        navigate("/login");
     };
 
     const handleHamburger = (id: number) => {
@@ -248,7 +250,7 @@ function Header() {
                     src="/logo.png"
                     alt="logo"
                     id="logo"
-                    onClick={() => movePage(0)}
+                    onClick={() => navigate("/")}
                 />
                 {width > 920 ? <><Menu
                     id={
