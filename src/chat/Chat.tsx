@@ -47,7 +47,7 @@ function Chatting() {
     const getRoom = () => {
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/member-chat/room`,
+            url: `/api/member-chat/room`,
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
@@ -62,7 +62,7 @@ function Chatting() {
         // 소켓 연결
         try {
             const clientdata = new StompJs.Client({
-                brokerURL: `ws://localhost:8080/api/chat`,
+                brokerURL: `/api/chat`,
                 debug: function (str) {
                     console.log("debug: ", str);
                 },
@@ -163,7 +163,7 @@ function Chatting() {
 
         axios({
             method: "get",
-            url: `${process.env.REACT_APP_SERVER_URL}/api/member/info`,
+            url: `/api/member/info`,
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
