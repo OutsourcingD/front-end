@@ -62,7 +62,7 @@ function Chatting() {
         // 소켓 연결
         try {
             const clientdata = new StompJs.Client({
-                brokerURL: `http://211.45.175.72:8080/api/chat`,
+                brokerURL: `ws://211.45.175.72:8080/api/chat`,
                 debug: function (str) {
                     console.log("debug: ", str);
                 },
