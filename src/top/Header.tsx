@@ -94,7 +94,7 @@ function Header() {
     const logoutClick = () => {
         setIsLogin(false);
         localStorage.clear();
-        alert("/logout success");
+        alert("logout success");
         navigate("/login");
     };
 
