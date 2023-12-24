@@ -41,7 +41,7 @@ function Routers () {
                 <Route path="/hospital" element={<Hospital />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
-                <Route path="/review/make" element={<MakeReviewPage checkBox={true} />} />
+                <Route path="/review/make" element={<MakeReviewPage />} />
                 <Route path="/recommend/review/all" element={<RecommendReviewPage />} />
                 <Route path="/review" element={<ReviewPage />} />
                 <Route path="/review/write" element={<MakeNthReviewPage />} />

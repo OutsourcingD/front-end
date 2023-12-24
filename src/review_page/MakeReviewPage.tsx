@@ -9,7 +9,7 @@ interface ReviewProps {
     checkBox: boolean;
 }
 
-const MakeReviewPage = ({ checkBox }: ReviewProps) => {
+const MakeReviewPage = () => {
     const [isReview, setIsReview] = React.useState<boolean>(false);
 
     const handleReview = (review: boolean) => {

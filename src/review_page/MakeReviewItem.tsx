@@ -17,6 +17,7 @@ function MakeReviewItem() {
     const [hospitalInfo, setHospitalInfo] =
         React.useState<HospitalNameResponseDto[]>();
     const navigate = useNavigate();
+    const [title, setTitle] = React.useState("");
 
     const selectHospital = (e: React.ChangeEvent<HTMLSelectElement>) => {
         if (e.target.value === "etc") {
@@ -44,6 +45,10 @@ function MakeReviewItem() {
         setEtcDoctor(e.target.value);
     };
 
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+    }
+
     useEffect(() => {
         //병원 정보 가져오기
         axios({
@@ -60,8 +65,7 @@ function MakeReviewItem() {
                 navigate("/login");
             }
             else {
-                alert(`Contact to developer. ${err.response.status}`);
-                ;
+                //alert(`Contact to developer. ${err.response.status}`);
             }           
         });
 
@@ -80,21 +84,27 @@ function MakeReviewItem() {
                 navigate("/login");
             }
             else {
-                alert(`Contact to developer. ${err.response.status}`);
-                ;
+                //alert(`Contact to developer. ${err.response.status}`);
             }             
         });
     }, []);
+
+    React.useEffect(() => {
+        console.log(title)
+    }, [title])
+
     return (
         <>
             <div className="make_review_sub_title">
                 <p id="make_review_sub_title_text">Title</p>
                 <div className="make_review_category_input">
-                    <form id="make_review_form">
+                    <form id="make_review_form" onSubmit={onSubmit}>
                         <input
                             type="text"
                             id="make_review_input"
                             placeholder="Enter a title."
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
                         />
                     </form>
                 </div>
