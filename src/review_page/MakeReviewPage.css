@@ -170,6 +170,8 @@
     justify-content: flex-start;
     flex-direction: row;
     margin-top: 10px;
+    flex-wrap: wrap;
+    overflow-x: auto;
 }
 
 .make_review_picture_input_div {
@@ -181,6 +183,13 @@
 .make_review_add_picture_wrapper {
     display: flex;
     flex-direction: column;
+    width: 240px;
+    margin-right: 10px;
+}
+
+.make_review_add_picture_box {
+    display: flex;
+    flex-direction: row;
     width: 240px;
     margin-right: 10px;
 }
@@ -205,7 +214,6 @@
     justify-content: center;
     display: flex;
     flex-direction: column;
-    position: relative;
 }
 
 .add_picture_plus_div {
@@ -349,6 +357,7 @@
 .start_rate_div {
     display: flex;
     flex-direction: row;
+    margin-top: 10px;
 }
 
 .star_rate_wrapper {

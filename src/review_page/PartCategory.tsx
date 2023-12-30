@@ -2,10 +2,10 @@ import React from "react";
 import "../review_page/PartCategory.css";
 
 interface PartCategoryProps {
-  onClick: (num: number) => void
+  changePart: (category: string) => void;
 }
 
-function PartCategory() {
+function PartCategory(props: PartCategoryProps) {
   const [one, setOne] = React.useState(false);
   const [two, setTwo] = React.useState(false);
   const [three, setThree] = React.useState(false);
@@ -16,8 +16,19 @@ function PartCategory() {
   const [eight, setEight] = React.useState(false);
 
   React.useEffect(() => {
-    console.log(one)
-  }, [one])
+    let category = "";
+
+    category += one === true ? "Fat Grafting" : "";
+    category += two === true ? "Lifting" : "";
+    category += three === true ? "Skin" : "";
+    category += four === true ? "Liposuction" : "";
+    category += five === true ? "Nose" : "";
+    category += six === true ? "Eyes" : "";
+    category += seven === true ? "Breast" : "";
+    category += eight === true ? "Contouring" : "";
+
+    props.changePart(category);
+  }, [one,two, three, four, five, six, seven, eight])
 
   return (
     <div className="part_category_div">

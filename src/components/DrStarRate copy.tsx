@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-const StarRateWrap = styled.div`
+const DrStarRateWrap = styled.div`
   display: flex;
   align-items: flex-start;
   width: 100%;
@@ -11,20 +11,18 @@ const StarRateWrap = styled.div`
   }
 `;
 
-interface StarRateProps {
+interface DrStarRateProps {
   rating: number;
   setRatingChange: (i: number) => void;
 }
 
-function StarRate(props: StarRateProps) {
+function DrStarRate(props: DrStarRateProps) {
   const AVR_RATE = 100;
   const STAR_IDX_ARR = ["first", "second", "third", "fourth", "last"];
   const [ratesResArr, setRatesResArr] = useState([0, 0, 0, 0, 0]);
-  const [rating, setRating] = useState(props.rating);
-
-  const calcStarRates = (rating: number) => {
+  const calcStarRates = () => {
     let tempStarRatesArr = [0, 0, 0, 0, 0];
-    let starVerScore = (AVR_RATE * rating) / 100;
+    let starVerScore = (AVR_RATE * props.rating) / 100;
     let idx = 0;
     while (starVerScore > 14) {
       tempStarRatesArr[idx] = 14;
@@ -35,24 +33,23 @@ function StarRate(props: StarRateProps) {
     return tempStarRatesArr;
   };
 
-  // rating 상태 변경 시, 부모 컴포넌트에게 알리는 함수 추가
-  const handleRatingChange = (newRating: number) => {
-    setRatesResArr(calcStarRates(newRating));
-  };
+  useEffect(() => {
+    setRatesResArr(calcStarRates);
+  }, [props.rating]);
 
   const handleStarClick = (e: React.MouseEvent<HTMLSpanElement>, idx: number) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const isMoreThanHalf = e.clientX - rect.left > rect.width / 2;
     
-    // setRatingChange 대신 handleRatingChange 사용
-    isMoreThanHalf ? handleRatingChange((idx + 1) * 14) : handleRatingChange((idx + 1) * 14 - 7);
+    isMoreThanHalf ? props.setRatingChange((idx + 1) * 14) : props.setRatingChange((idx + 1) * 14 - 7);
+    console.log(`Star ${idx + 1} clicked! More than half: ${isMoreThanHalf}`);
   };
 
   return (
-    <StarRateWrap key={props.rating}>
+    <DrStarRateWrap>
       {STAR_IDX_ARR.map((item, idx) => {
         return (
-          <span className="star_icon" key={`${props.rating}_${item}_${idx}`} onClick={(e) => handleStarClick(e, idx)}>
+          <span className="star_icon" key={`${item}_${idx}`} onClick={(e) => handleStarClick(e, idx)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="22.2px"
@@ -79,8 +76,8 @@ function StarRate(props: StarRateProps) {
           </span>
         );
       })}
-    </StarRateWrap>
+    </DrStarRateWrap>
   );
 }
 
-export default StarRate;
+export default DrStarRate;

@@ -94,7 +94,7 @@ const HospitalInfoAdd: React.FC<HospitalInfoAddProps> = ({isLeftClicked,isRightC
             <div className="hospital_info_add_part_container">
                 <p id="hospital_info_add_name_title">Part</p>
                 <div style={{ width: "300px" }}>
-                    <PartCategory />
+                    <PartCategory changePart={(e) => console.log(e)}/>
                 </div>
             </div>
             <div className="hospital_info_add_part_container">

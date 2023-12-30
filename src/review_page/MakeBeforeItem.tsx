@@ -2,33 +2,45 @@ import React from "react";
 import "./MakeBeforeItem.css";
 
 function MakeBeforeItem() {
+  const [selected, setSelected] = React.useState("Fat Grafting");
+  const [period, setPeriod] = React.useState(0);
+  const [items, setItems] = React.useState([1]);
+
+  const addButtonClick = () => {
+    if (items.length < 10) {
+        setItems((prev) => [...prev, prev.length + 1]);
+    } else {
+        alert("Exceeding the maximum number : 10");
+    }
+};
+
   return (
     <div className="review_hospital_doctor_input_div">
       <div className="before_input_div">
         <div className="before_hospital_input_div">
-          <p id="before_title_input">병원 입력</p>
+          <p id="before_title_input">Hospital</p>
           <form id="before_hospital_input_form">
             <input
               type="text"
               id="before_hospital_input"
-              placeholder="병원명을 입력해주세요."
+              placeholder="Input hospital name."
             />
           </form>
         </div>
         <div className="before_hospital_input_div">
-          <p id="before_title_input">병원 입력</p>
+          <p id="before_title_input">Doctor</p>
           <form id="before_hospital_input_form">
             <input
               type="text"
               id="before_hospital_input"
-              placeholder="병원명을 입력해주세요."
+              placeholder="Input doctor name."
             />
           </form>
         </div>
       </div>
       <div className="before_picture_div">
-        <p>사진 추가</p>
-        <p>사진은 최대 10장까지 가능해요</p>
+        <p>Add picture</p>
+        <p>Max 10</p>
       </div>
       <div className="before_pictures_div">
         {
@@ -48,7 +60,7 @@ function MakeBeforeItem() {
                     alt=""
                     id="before_picture_add_item"
                   />
-                  <p>전</p>
+                  <p>Before</p>
                 </div>
               </div>
               <div className="before_picture_item">
@@ -65,12 +77,12 @@ function MakeBeforeItem() {
                     alt=""
                     id="before_picture_add_item"
                   />
-                  <p>후</p>
+                  <p>After</p>
                 </div>
               </div>
             </div>
             <div className="before_detail_div">
-              <select id="category_select">
+              <select id="category_select" onChange={(e) => setSelected(e.target.value)}>
                 <option value="Fat Grafting">Fat Grafting</option>
                 <option value="Lifting">Lifting</option>
                 <option value="Skin">skin</option>
@@ -85,13 +97,14 @@ function MakeBeforeItem() {
                   type="text"
                   id="surgery_period_input"
                   placeholder="Write the period"
+                  onChange={(e) => setPeriod(Number(e.target.value))}
                 />
               </form>
             </div>
           </div>
         }
         <div className="add_picture_button">
-          <div className="add_picture_plus_div">
+          <div className="add_picture_plus_div" onClick={addButtonClick}>
             <img src="/add_picture_plus.png" alt="" id="add_picture_plus" />
           </div>
         </div>

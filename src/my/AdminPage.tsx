@@ -37,36 +37,7 @@ function AdminPage() {
     const navigate = useNavigate();
     
     React.useEffect(() => {
-        axios({
-            method: "get",
-            url: `/api/auth/check`,
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-            },  
-        }).then((res) => {
-            let admin = false;
-
-            console.log(res.data);
-
-            res.data.map((item: Props) => {
-                if (item.authorityName !== "ROLE_ADMIN") {
-                    console.log("관리자가 아닙니다.")
-                    admin = true;
-                }
-            });
-
-            if(!admin)
-            navigate("/");
-        }).catch((err) => {  
-            if(err.response.status === 401 || err.response.status === 403) {
-                alert("This is not admin ID.");
-                navigate("/login");
-            }
-            else {
-                alert(`Contact to developer. ${err.response.status}`);
-                ;
-            }        
-        });
+        
     }, []);
 
     const onClickMenu = (menu: number) => {
